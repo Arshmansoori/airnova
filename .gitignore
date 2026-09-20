@@ -1,0 +1,39 @@
+# ==========================================
+# AirNova Environment & Secrets
+# ==========================================
+prediction/config.php
+airnova-config.php
+.env
+.env.local
+.env.*.local
+
+# ==========================================
+# Caches & Dynamic Data
+# ==========================================
+prediction/data/cache/*
+!prediction/data/cache/.gitkeep
+.vite/
+node_modules/
+
+# ==========================================
+# Legacy Hackathon & Temp Test Artifacts
+# ==========================================
+*sih*
+*SIH*
+*26082*
+p1_test.*
+p2_test.*
+page1_*.*
+page2_*.*
+test_*.*
+crime_*.*
+*.zip
+
+# ==========================================
+# System & Editor Files
+# ==========================================
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
