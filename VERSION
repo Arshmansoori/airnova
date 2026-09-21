@@ -1,4 +1,4 @@
-AirNova v0.0.2
-Build: 2/100
-Commit: chore: configure .gitignore to safeguard secrets and environment files
-Timestamp: 2026-09-21T15:10:02 UTC
+AirNova v0.0.3
+Build: 3/100
+Commit: chore: add open-source MIT license agreement
+Timestamp: 2026-09-21T16:56:39 UTC
