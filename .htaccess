@@ -1,0 +1,11 @@
+RewriteEngine On
+
+RewriteRule ^(?:airnova/|airnova-config\.php|\.env|.*\.(?:sqlite|log|bak|uploading)$) - [F,L]
+
+RewriteRule ^api/(.*)$ api.php [QSA,L]
+RewriteRule ^(?:2|admin)/?$ index.html [L]
+
+# Allow direct access to existing files and directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]

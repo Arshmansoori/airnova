@@ -1,4 +1,4 @@
-AirNova v0.0.4
-Build: 4/100
-Commit: docs: initialize baseline architecture roadmap and environmental goals
-Timestamp: 2026-09-21T20:44:38 UTC
+AirNova v0.0.5
+Build: 5/100
+Commit: build: configure edge web server routing and htaccess rules
+Timestamp: 2026-09-21T23:03:26 UTC
