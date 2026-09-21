@@ -1,4 +1,4 @@
-AirNova v0.0.5
-Build: 5/100
-Commit: build: configure edge web server routing and htaccess rules
-Timestamp: 2026-09-21T23:03:26 UTC
+AirNova v0.0.6
+Build: 6/100
+Commit: feat(core): declare strict types and custom ApiError exception classes
+Timestamp: 2026-09-21T23:25:38 UTC
