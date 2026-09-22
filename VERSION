@@ -1,4 +1,4 @@
-AirNova v0.0.7
-Build: 7/100
-Commit: feat(core): implement dynamic configuration loader with env fallback
-Timestamp: 2026-09-22T12:39:04 UTC
+AirNova v0.0.8
+Build: 8/100
+Commit: feat(core): add numeric sanitation and positive float clamping helpers
+Timestamp: 2026-09-22T15:25:01 UTC
