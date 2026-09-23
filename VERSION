@@ -1,4 +1,4 @@
-AirNova v0.1.0
-Build: 10/100
-Commit: feat(math): implement Haversine spherical distance algorithm for GIS nodes
-Timestamp: 2026-09-23T15:08:35 UTC
+AirNova v0.1.1
+Build: 11/100
+Commit: feat(stations): define monitoring station data structures and telemetry fields
+Timestamp: 2026-09-23T19:03:55 UTC
