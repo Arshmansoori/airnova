@@ -1,4 +1,4 @@
-AirNova v0.1.6
-Build: 16/100
-Commit: feat(geo): implement nearest command station spatial lookup with fallback
-Timestamp: 2026-09-24T22:05:04 UTC
+AirNova v0.1.7
+Build: 17/100
+Commit: feat(geo): add coordinate validation boundaries for Delhi NCR bounding box
+Timestamp: 2026-09-24T23:11:26 UTC
