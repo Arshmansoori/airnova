@@ -1,4 +1,4 @@
-AirNova v0.1.7
-Build: 17/100
-Commit: feat(geo): add coordinate validation boundaries for Delhi NCR bounding box
-Timestamp: 2026-09-24T23:11:26 UTC
+AirNova v0.1.8
+Build: 18/100
+Commit: test(geo): verify Haversine distance accuracy between known coordinates
+Timestamp: 2026-09-25T02:42:37 UTC
