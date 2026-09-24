@@ -1,4 +1,4 @@
-AirNova v0.1.5
-Build: 15/100
-Commit: feat(stations): add West and North Delhi stations (Punjabi Bagh, Sonia Vihar)
-Timestamp: 2026-09-24T15:19:07 UTC
+AirNova v0.1.6
+Build: 16/100
+Commit: feat(geo): implement nearest command station spatial lookup with fallback
+Timestamp: 2026-09-24T22:05:04 UTC
