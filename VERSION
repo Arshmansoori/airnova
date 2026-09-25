@@ -1,4 +1,4 @@
-AirNova v0.2.1
-Build: 21/100
-Commit: feat(cpcb): define CPCB national air quality breakpoint constants
-Timestamp: 2026-09-25T09:26:35 UTC
+AirNova v0.2.2
+Build: 22/100
+Commit: feat(cpcb): implement PM2.5 rolling sub-index mathematical interpolation
+Timestamp: 2026-09-25T19:44:16 UTC
