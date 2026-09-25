@@ -1,4 +1,4 @@
-AirNova v0.1.9
-Build: 19/100
-Commit: refactor(core): optimize station iteration lookup with early loop exits
-Timestamp: 2026-09-25T07:42:10 UTC
+AirNova v0.2.0
+Build: 20/100
+Commit: feat(stations): support custom location coordinates with nearest station binding
+Timestamp: 2026-09-25T09:06:40 UTC
