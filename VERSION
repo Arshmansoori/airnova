@@ -1,4 +1,4 @@
-AirNova v0.1.8
-Build: 18/100
-Commit: test(geo): verify Haversine distance accuracy between known coordinates
-Timestamp: 2026-09-25T02:42:37 UTC
+AirNova v0.1.9
+Build: 19/100
+Commit: refactor(core): optimize station iteration lookup with early loop exits
+Timestamp: 2026-09-25T07:42:10 UTC
