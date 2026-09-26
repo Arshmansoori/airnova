@@ -1,4 +1,4 @@
-AirNova v0.2.3
-Build: 23/100
-Commit: feat(cpcb): implement PM10 rolling sub-index mathematical interpolation
-Timestamp: 2026-09-26T11:27:38 UTC
+AirNova v0.2.4
+Build: 24/100
+Commit: feat(cpcb): implement Nitrogen Dioxide (NO2) breakpoint bands
+Timestamp: 2026-09-27T04:36:04 UTC
