@@ -1,4 +1,4 @@
-AirNova v0.2.5
-Build: 25/100
-Commit: feat(cpcb): implement Sulphur Dioxide (SO2) breakpoint bands
-Timestamp: 2026-09-27T23:10:28 UTC
+AirNova v0.2.6
+Build: 26/100
+Commit: feat(cpcb): implement Carbon Monoxide (CO) 8-hour sub-index calculation
+Timestamp: 2026-09-28T04:02:39 UTC
