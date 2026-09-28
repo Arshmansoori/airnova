@@ -1,4 +1,4 @@
-AirNova v0.2.7
-Build: 27/100
-Commit: feat(cpcb): implement Ozone (O3) 8-hour photochemical sub-index calculation
-Timestamp: 2026-09-28T07:32:00 UTC
+AirNova v0.2.8
+Build: 28/100
+Commit: feat(cpcb): implement Ammonia (NH3) sub-index calculation logic
+Timestamp: 2026-09-28T08:24:19 UTC
