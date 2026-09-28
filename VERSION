@@ -1,4 +1,4 @@
-AirNova v0.2.8
-Build: 28/100
-Commit: feat(cpcb): implement Ammonia (NH3) sub-index calculation logic
-Timestamp: 2026-09-28T08:24:19 UTC
+AirNova v0.2.9
+Build: 29/100
+Commit: feat(cpcb): handle decimal edge gaps across CPCB pollutant bands
+Timestamp: 2026-09-28T17:25:07 UTC
