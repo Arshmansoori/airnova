@@ -1,4 +1,4 @@
-AirNova v0.3.0
-Build: 30/100
-Commit: feat(cpcb): implement dominant pollutant extraction and composite AQI logic
-Timestamp: 2026-09-29T18:03:36 UTC
+AirNova v0.3.1
+Build: 31/100
+Commit: feat(cpcb): map CPCB severity levels from Good to Severe with color scales
+Timestamp: 2026-09-30T01:41:25 UTC
