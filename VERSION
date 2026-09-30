@@ -1,4 +1,4 @@
-AirNova v0.3.5
-Build: 35/100
-Commit: test(cpcb): add unit tests validating CPCB sub-index math against official tables
-Timestamp: 2026-10-01T00:45:34 UTC
+AirNova v0.3.6
+Build: 36/100
+Commit: refactor(cpcb): clean up mathematical interpolators and clamping logic
+Timestamp: 2026-10-01T01:53:52 UTC
