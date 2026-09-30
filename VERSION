@@ -1,4 +1,4 @@
-AirNova v0.3.3
-Build: 33/100
-Commit: feat(advisory): map health advisories and outdoor activity recommendations
-Timestamp: 2026-09-30T15:50:26 UTC
+AirNova v0.3.4
+Build: 34/100
+Commit: feat(math): implement rolling average smoothing with data coverage thresholds
+Timestamp: 2026-09-30T20:53:11 UTC
