@@ -1,4 +1,4 @@
-AirNova v0.3.6
-Build: 36/100
-Commit: refactor(cpcb): clean up mathematical interpolators and clamping logic
-Timestamp: 2026-10-01T01:53:52 UTC
+AirNova v0.3.7
+Build: 37/100
+Commit: feat(api): scaffold primary API gateway and action dispatchers
+Timestamp: 2026-10-01T02:51:34 UTC
