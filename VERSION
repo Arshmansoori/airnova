@@ -1,4 +1,4 @@
-AirNova v0.3.2
-Build: 32/100
-Commit: feat(epa): implement US EPA air quality index breakpoints and ranges
-Timestamp: 2026-09-30T14:07:16 UTC
+AirNova v0.3.3
+Build: 33/100
+Commit: feat(advisory): map health advisories and outdoor activity recommendations
+Timestamp: 2026-09-30T15:50:26 UTC
