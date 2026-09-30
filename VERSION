@@ -1,4 +1,4 @@
-AirNova v0.3.1
-Build: 31/100
-Commit: feat(cpcb): map CPCB severity levels from Good to Severe with color scales
-Timestamp: 2026-09-30T01:41:25 UTC
+AirNova v0.3.2
+Build: 32/100
+Commit: feat(epa): implement US EPA air quality index breakpoints and ranges
+Timestamp: 2026-09-30T14:07:16 UTC
