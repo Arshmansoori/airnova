@@ -1,4 +1,4 @@
-AirNova v0.4.1
-Build: 41/100
-Commit: feat(physics): define planetary boundary layer (PBL) height thresholds
-Timestamp: 2026-10-01T17:05:50 UTC
+AirNova v0.4.2
+Build: 42/100
+Commit: feat(physics): implement temperature inversion delta: Temp(925 hPa) - Temp(Surface)
+Timestamp: 2026-10-01T17:14:55 UTC
