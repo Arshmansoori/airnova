@@ -1,4 +1,4 @@
-AirNova v0.3.7
-Build: 37/100
-Commit: feat(api): scaffold primary API gateway and action dispatchers
-Timestamp: 2026-10-01T02:51:34 UTC
+AirNova v0.3.8
+Build: 38/100
+Commit: feat(api): implement /api.php?action=stations endpoint
+Timestamp: 2026-10-01T06:05:13 UTC
