@@ -1,4 +1,4 @@
-AirNova v0.3.8
-Build: 38/100
-Commit: feat(api): implement /api.php?action=stations endpoint
-Timestamp: 2026-10-01T06:05:13 UTC
+AirNova v0.3.9
+Build: 39/100
+Commit: feat(api): implement /api.php?action=health diagnostic endpoint
+Timestamp: 2026-10-01T11:32:54 UTC
