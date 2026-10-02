@@ -1,4 +1,4 @@
-AirNova v0.4.3
-Build: 43/100
-Commit: feat(physics): calculate nocturnal thermal inversion score component
-Timestamp: 2026-10-02T07:15:11 UTC
+AirNova v0.4.4
+Build: 44/100
+Commit: feat(physics): implement PBL height compression stagnation penalty
+Timestamp: 2026-10-02T07:20:50 UTC
