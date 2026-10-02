@@ -1,4 +1,4 @@
-AirNova v0.4.2
-Build: 42/100
-Commit: feat(physics): implement temperature inversion delta: Temp(925 hPa) - Temp(Surface)
-Timestamp: 2026-10-01T17:14:55 UTC
+AirNova v0.4.3
+Build: 43/100
+Commit: feat(physics): calculate nocturnal thermal inversion score component
+Timestamp: 2026-10-02T07:15:11 UTC
