@@ -1,4 +1,4 @@
-AirNova v0.5.1
-Build: 51/100
-Commit: feat(cams): structure Open-Meteo European Copernicus CAMS client
-Timestamp: 2026-10-03T21:53:25 UTC
+AirNova v0.5.2
+Build: 52/100
+Commit: feat(cams): parse 72-hour hourly aerosol chemistry forecasts (PM2.5, PM10, NO2)
+Timestamp: 2026-10-03T22:08:36 UTC
