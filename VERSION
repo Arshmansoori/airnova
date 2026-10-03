@@ -1,4 +1,4 @@
-AirNova v0.4.7
-Build: 47/100
-Commit: feat(physics): construct aggregate 0-100 atmospheric inversion index
-Timestamp: 2026-10-03T09:58:06 UTC
+AirNova v0.4.8
+Build: 48/100
+Commit: test(physics): verify inversion diagnostic bounds and extreme conditions
+Timestamp: 2026-10-03T12:32:23 UTC
