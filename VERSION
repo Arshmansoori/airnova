@@ -1,4 +1,4 @@
-AirNova v0.4.6
-Build: 46/100
-Commit: feat(physics): integrate shortwave solar radiation thermal dissipation
-Timestamp: 2026-10-03T09:04:46 UTC
+AirNova v0.4.7
+Build: 47/100
+Commit: feat(physics): construct aggregate 0-100 atmospheric inversion index
+Timestamp: 2026-10-03T09:58:06 UTC
