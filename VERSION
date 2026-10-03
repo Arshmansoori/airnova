@@ -1,4 +1,4 @@
-AirNova v0.4.4
-Build: 44/100
-Commit: feat(physics): implement PBL height compression stagnation penalty
-Timestamp: 2026-10-02T07:20:50 UTC
+AirNova v0.4.5
+Build: 45/100
+Commit: feat(physics): incorporate wind speed ventilation dampening factor
+Timestamp: 2026-10-03T06:13:00 UTC
