@@ -1,4 +1,4 @@
-AirNova v0.5.3
-Build: 53/100
-Commit: feat(cams): fetch ECMWF boundary layer height and surface wind vectors
-Timestamp: 2026-10-04T11:11:21 UTC
+AirNova v0.5.4
+Build: 54/100
+Commit: feat(cams): fetch upper-air 925 hPa isobaric level temperatures
+Timestamp: 2026-10-04T15:36:18 UTC
