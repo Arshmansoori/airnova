@@ -1,4 +1,4 @@
-AirNova v0.5.2
-Build: 52/100
-Commit: feat(cams): parse 72-hour hourly aerosol chemistry forecasts (PM2.5, PM10, NO2)
-Timestamp: 2026-10-03T22:08:36 UTC
+AirNova v0.5.3
+Build: 53/100
+Commit: feat(cams): fetch ECMWF boundary layer height and surface wind vectors
+Timestamp: 2026-10-04T11:11:21 UTC
