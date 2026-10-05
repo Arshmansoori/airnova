@@ -1,4 +1,4 @@
-AirNova v0.5.4
-Build: 54/100
-Commit: feat(cams): fetch upper-air 925 hPa isobaric level temperatures
-Timestamp: 2026-10-04T15:36:18 UTC
+AirNova v0.5.5
+Build: 55/100
+Commit: feat(cams): implement HTTP client timeout and graceful network failover
+Timestamp: 2026-10-05T16:39:14 UTC
