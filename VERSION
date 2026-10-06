@@ -1,4 +1,4 @@
-AirNova v0.5.9
-Build: 59/100
-Commit: refactor(storage): add directory existence checks and error handling
-Timestamp: 2026-10-06T22:26:54 UTC
+AirNova v0.6.0
+Build: 60/100
+Commit: test(cams): test CAMS payload parsing with mock upstream response
+Timestamp: 2026-10-07T02:45:54 UTC
