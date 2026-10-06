@@ -1,4 +1,4 @@
-AirNova v0.5.8
-Build: 58/100
-Commit: feat(storage): configure separate TTL policies for meteorological and sensor feeds
-Timestamp: 2026-10-06T18:11:19 UTC
+AirNova v0.5.9
+Build: 59/100
+Commit: refactor(storage): add directory existence checks and error handling
+Timestamp: 2026-10-06T22:26:54 UTC
