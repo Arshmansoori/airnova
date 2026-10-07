@@ -1,4 +1,4 @@
-AirNova v0.6.3
-Build: 63/100
-Commit: feat(satellite): fetch active thermal anomalies from NOAA-20 and NOAA-21
-Timestamp: 2026-10-07T23:21:47 UTC
+AirNova v0.6.4
+Build: 64/100
+Commit: feat(satellite): parse Fire Radiative Power (FRP) and fire coordinates
+Timestamp: 2026-10-08T03:05:17 UTC
