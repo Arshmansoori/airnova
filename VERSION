@@ -1,4 +1,4 @@
-AirNova v0.6.5
-Build: 65/100
-Commit: feat(satellite): calculate regional stubble smoke plume influx risk proxy
-Timestamp: 2026-10-08T09:19:11 UTC
+AirNova v0.6.6
+Build: 66/100
+Commit: feat(satellite): correlate northwesterly wind vectors with plume transport risk
+Timestamp: 2026-10-08T19:03:08 UTC
