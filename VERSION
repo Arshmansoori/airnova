@@ -1,4 +1,4 @@
-AirNova v0.6.6
-Build: 66/100
-Commit: feat(satellite): correlate northwesterly wind vectors with plume transport risk
-Timestamp: 2026-10-08T19:03:08 UTC
+AirNova v0.6.7
+Build: 67/100
+Commit: feat(storage): implement stubble fire cache layer with 30-minute refresh TTL
+Timestamp: 2026-10-08T20:07:31 UTC
