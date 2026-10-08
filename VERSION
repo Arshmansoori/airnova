@@ -1,4 +1,4 @@
-AirNova v0.6.8
-Build: 68/100
-Commit: refactor(satellite): handle upstream NASA API timeouts and offline fallbacks
-Timestamp: 2026-10-08T20:40:30 UTC
+AirNova v0.6.9
+Build: 69/100
+Commit: test(satellite): verify stubble plume risk scoring under zero-fire scenarios
+Timestamp: 2026-10-08T20:54:24 UTC
