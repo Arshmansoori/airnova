@@ -1,4 +1,4 @@
-AirNova v0.6.9
-Build: 69/100
-Commit: test(satellite): verify stubble plume risk scoring under zero-fire scenarios
-Timestamp: 2026-10-08T20:54:24 UTC
+AirNova v0.7.0
+Build: 70/100
+Commit: docs(satellite): document NASA FIRMS VIIRS integration methodology
+Timestamp: 2026-10-09T21:25:07 UTC
