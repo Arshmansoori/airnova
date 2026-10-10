@@ -1,4 +1,4 @@
-AirNova v0.7.1
-Build: 71/100
-Commit: feat(cpcb): implement data.gov.in real-time sensor API connector
-Timestamp: 2026-10-10T18:48:13 UTC
+AirNova v0.7.2
+Build: 72/100
+Commit: feat(cpcb): parse raw multi-pollutant station observations from CPCB
+Timestamp: 2026-10-10T21:36:08 UTC
