@@ -1,4 +1,4 @@
-AirNova v0.7.2
-Build: 72/100
-Commit: feat(cpcb): parse raw multi-pollutant station observations from CPCB
-Timestamp: 2026-10-10T21:36:08 UTC
+AirNova v0.7.3
+Build: 73/100
+Commit: feat(bias): initialize historical bias calibration architecture
+Timestamp: 2026-10-10T22:24:33 UTC
