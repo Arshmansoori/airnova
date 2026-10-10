@@ -1,4 +1,4 @@
-AirNova v0.7.0
-Build: 70/100
-Commit: docs(satellite): document NASA FIRMS VIIRS integration methodology
-Timestamp: 2026-10-09T21:25:07 UTC
+AirNova v0.7.1
+Build: 71/100
+Commit: feat(cpcb): implement data.gov.in real-time sensor API connector
+Timestamp: 2026-10-10T18:48:13 UTC
