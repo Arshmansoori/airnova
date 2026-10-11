@@ -1,4 +1,4 @@
-AirNova v0.7.3
-Build: 73/100
-Commit: feat(bias): initialize historical bias calibration architecture
-Timestamp: 2026-10-10T22:24:33 UTC
+AirNova v0.7.4
+Build: 74/100
+Commit: feat(bias): compute variance delta between ground truth and CAMS models
+Timestamp: 2026-10-12T05:23:39 UTC
