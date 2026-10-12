@@ -1,4 +1,4 @@
-AirNova v0.7.6
-Build: 76/100
-Commit: feat(bias): persist adaptive calibration weights in data/bias.json
-Timestamp: 2026-10-12T17:17:47 UTC
+AirNova v0.7.7
+Build: 77/100
+Commit: feat(bias): apply dynamic calibration offsets to 72h forecast curves
+Timestamp: 2026-10-12T20:35:59 UTC
