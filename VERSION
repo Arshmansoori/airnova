@@ -1,4 +1,4 @@
-AirNova v0.7.7
-Build: 77/100
-Commit: feat(bias): apply dynamic calibration offsets to 72h forecast curves
-Timestamp: 2026-10-12T20:35:59 UTC
+AirNova v0.7.8
+Build: 78/100
+Commit: test(bias): ensure division-by-zero safeguards on zero sensor readings
+Timestamp: 2026-10-14T22:48:33 UTC
