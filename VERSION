@@ -1,4 +1,4 @@
-AirNova v0.8.1
-Build: 81/100
-Commit: feat(purifier): implement differential CADR mass-balance indoor air physics
-Timestamp: 2026-10-16T20:55:50 UTC
+AirNova v0.8.2
+Build: 82/100
+Commit: feat(purifier): compute room volume and required air changes per hour (ACH)
+Timestamp: 2026-10-16T21:25:33 UTC
