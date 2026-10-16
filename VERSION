@@ -1,4 +1,4 @@
-AirNova v0.8.2
-Build: 82/100
-Commit: feat(purifier): compute room volume and required air changes per hour (ACH)
-Timestamp: 2026-10-16T21:25:33 UTC
+AirNova v0.8.3
+Build: 83/100
+Commit: feat(purifier): calculate estimated indoor clean air delivery clearance time
+Timestamp: 2026-10-17T05:12:06 UTC
