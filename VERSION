@@ -1,4 +1,4 @@
-AirNova v0.7.9
-Build: 79/100
-Commit: refactor(bias): optimize bias matrix reading and write performance
-Timestamp: 2026-10-16T08:20:45 UTC
+AirNova v0.8.0
+Build: 80/100
+Commit: feat(health): implement upstream telemetry connectivity verification
+Timestamp: 2026-10-16T10:46:43 UTC
