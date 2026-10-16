@@ -1,4 +1,4 @@
-AirNova v0.8.0
-Build: 80/100
-Commit: feat(health): implement upstream telemetry connectivity verification
-Timestamp: 2026-10-16T10:46:43 UTC
+AirNova v0.8.1
+Build: 81/100
+Commit: feat(purifier): implement differential CADR mass-balance indoor air physics
+Timestamp: 2026-10-16T20:55:50 UTC
