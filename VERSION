@@ -1,4 +1,4 @@
-AirNova v0.7.8
-Build: 78/100
-Commit: test(bias): ensure division-by-zero safeguards on zero sensor readings
-Timestamp: 2026-10-14T22:48:33 UTC
+AirNova v0.7.9
+Build: 79/100
+Commit: refactor(bias): optimize bias matrix reading and write performance
+Timestamp: 2026-10-16T08:20:45 UTC
