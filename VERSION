@@ -1,4 +1,4 @@
-AirNova v0.8.3
-Build: 83/100
-Commit: feat(purifier): calculate estimated indoor clean air delivery clearance time
-Timestamp: 2026-10-17T05:12:06 UTC
+AirNova v0.8.4
+Build: 84/100
+Commit: feat(advisory): add indoor protection guidance based on external AQI severity
+Timestamp: 2026-10-17T10:55:16 UTC
