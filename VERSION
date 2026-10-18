@@ -1,4 +1,4 @@
-AirNova v0.8.6
-Build: 86/100
-Commit: feat(prediction): build standalone AQI-72 prediction dashboard interface
-Timestamp: 2026-10-17T22:50:25 UTC
+AirNova v0.8.7
+Build: 87/100
+Commit: feat(prediction): implement interactive forecast curves using SVG vector math
+Timestamp: 2026-10-18T10:41:30 UTC
