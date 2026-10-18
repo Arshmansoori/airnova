@@ -1,4 +1,4 @@
-AirNova v0.8.8
-Build: 88/100
-Commit: feat(prediction): add tabular hourly breakdown with PBL and inversion values
-Timestamp: 2026-10-19T00:34:19 UTC
+AirNova v0.8.9
+Build: 89/100
+Commit: feat(prediction): add live station preset dropdown and custom lat/lon inputs
+Timestamp: 2026-10-19T02:00:05 UTC
