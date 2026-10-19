@@ -1,4 +1,4 @@
-AirNova v0.9.0
-Build: 90/100
-Commit: feat(prediction): implement client-side fetch and rendering pipeline in app.js
-Timestamp: 2026-10-19T15:25:49 UTC
+AirNova v0.9.1
+Build: 91/100
+Commit: feat(ui): assemble primary responsive AirNova civic portal
+Timestamp: 2026-10-19T17:25:10 UTC
