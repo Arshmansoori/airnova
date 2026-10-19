@@ -1,0 +1,260 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 620" width="100%" height="100%" style="background:#ffffff; font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <!-- Soft Drop Shadow -->
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.06" />
+    </filter>
+    <filter id="pillShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.12" />
+    </filter>
+
+    <!-- Column Top Gradients -->
+    <linearGradient id="gradA" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0284c7" /><stop offset="100%" stop-color="#0369a1" /></linearGradient>
+    <linearGradient id="gradB" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6366f1" /><stop offset="100%" stop-color="#4f46e5" /></linearGradient>
+    <linearGradient id="gradC" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f43f5e" /><stop offset="100%" stop-color="#e11d48" /></linearGradient>
+    <linearGradient id="gradD" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f59e0b" /><stop offset="100%" stop-color="#d97706" /></linearGradient>
+    <linearGradient id="gradE" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8b5cf6" /><stop offset="100%" stop-color="#7c3aed" /></linearGradient>
+
+    <!-- Connectors -->
+    <marker id="flowArrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 Z" fill="#94a3b8" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1280" height="620" fill="#ffffff" rx="20" />
+
+  <!-- Main Title Header -->
+  <g transform="translate(640, 50)" text-anchor="middle">
+    <text y="0" font-size="26" font-weight="900" fill="#0f172a">AirNova Complete A-to-Z System Architecture</text>
+    <text y="26" font-size="14" font-weight="500" fill="#64748b">From Raw Multi-Sensor Telemetry to Sub-150ms Edge Citizen Intelligence</text>
+  </g>
+
+  <!-- CONNECTING ARROWS BETWEEN COLUMNS -->
+  <path d="M 270 330 L 295 330" stroke="#cbd5e1" stroke-width="3" marker-end="url(#flowArrow)" />
+  <path d="M 525 330 L 550 330" stroke="#cbd5e1" stroke-width="3" marker-end="url(#flowArrow)" />
+  <path d="M 780 330 L 805 330" stroke="#cbd5e1" stroke-width="3" marker-end="url(#flowArrow)" />
+  <path d="M 1035 330 L 1060 330" stroke="#cbd5e1" stroke-width="3" marker-end="url(#flowArrow)" />
+
+  <!-- ==================== COLUMN A: DATA INGESTION ==================== -->
+  <g transform="translate(45, 110)">
+    <rect width="225" height="460" rx="18" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1.8" filter="url(#cardShadow)" />
+    
+    <!-- Badge A -->
+    <circle cx="112" cy="0" r="22" fill="url(#gradA)" filter="url(#pillShadow)" />
+    <text x="112" y="7" text-anchor="middle" font-size="16" font-weight="900" fill="#ffffff">A</text>
+    
+    <text x="112" y="44" text-anchor="middle" font-size="15" font-weight="800" fill="#0369a1">Data Ingestion</text>
+
+    <!-- Sub cards -->
+    <g transform="translate(14, 60)">
+      <!-- Item 1 -->
+      <rect width="197" height="66" rx="12" fill="#ffffff" stroke="#e0f2fe" stroke-width="1.2" />
+      <text x="14" y="26" font-size="12" font-weight="800" fill="#0c4a6e">📍 CPCB Ground</text>
+      <text x="14" y="46" font-size="10" font-weight="500" fill="#64748b">Continuous 7-Gas CAAQMS</text>
+
+      <!-- Item 2 -->
+      <g transform="translate(0, 76)">
+        <rect width="197" height="66" rx="12" fill="#ffffff" stroke="#e0f2fe" stroke-width="1.2" />
+        <text x="14" y="26" font-size="12" font-weight="800" fill="#0c4a6e">🛰️ Sentinel-5P</text>
+        <text x="14" y="46" font-size="10" font-weight="500" fill="#64748b">Aerosol Optical Depth (AOD)</text>
+      </g>
+
+      <!-- Item 3 -->
+      <g transform="translate(0, 152)">
+        <rect width="197" height="66" rx="12" fill="#ffffff" stroke="#e0f2fe" stroke-width="1.2" />
+        <text x="14" y="26" font-size="12" font-weight="800" fill="#0c4a6e">🔥 NASA FIRMS</text>
+        <text x="14" y="46" font-size="10" font-weight="500" fill="#64748b">Stubble Fire FRP Thermal MW</text>
+      </g>
+
+      <!-- Item 4 -->
+      <g transform="translate(0, 228)">
+        <rect width="197" height="66" rx="12" fill="#ffffff" stroke="#e0f2fe" stroke-width="1.2" />
+        <text x="14" y="26" font-size="12" font-weight="800" fill="#0c4a6e">🗺️ Maps &amp; Traffic</text>
+        <text x="14" y="46" font-size="10" font-weight="500" fill="#64748b">3D Canyon H/W &amp; Jam Index</text>
+      </g>
+
+      <!-- Pill -->
+      <g transform="translate(0, 310)">
+        <rect width="197" height="40" rx="10" fill="#e0f2fe" />
+        <text x="98" y="24" text-anchor="middle" font-size="11" font-weight="700" fill="#0369a1">Free Public Telemetry</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ==================== COLUMN B: EDGE SECURITY & CLEANING ==================== -->
+  <g transform="translate(300, 110)">
+    <rect width="225" height="460" rx="18" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.8" filter="url(#cardShadow)" />
+    
+    <!-- Badge B -->
+    <circle cx="112" cy="0" r="22" fill="url(#gradB)" filter="url(#pillShadow)" />
+    <text x="112" y="7" text-anchor="middle" font-size="16" font-weight="900" fill="#ffffff">B</text>
+    
+    <text x="112" y="44" text-anchor="middle" font-size="15" font-weight="800" fill="#4338ca">Edge Security</text>
+
+    <!-- Sub cards -->
+    <g transform="translate(14, 60)">
+      <!-- Item 1 -->
+      <rect width="197" height="80" rx="12" fill="#ffffff" stroke="#ede9fe" stroke-width="1.2" />
+      <text x="14" y="28" font-size="12" font-weight="800" fill="#312e81">🧹 Data Cleaning</text>
+      <text x="14" y="48" font-size="10" font-weight="500" fill="#64748b">Outlier &amp; null removal</text>
+      <text x="14" y="64" font-size="9.5" font-weight="600" fill="#6366f1">µg/m³ unit standardization</text>
+
+      <!-- Item 2 -->
+      <g transform="translate(0, 94)">
+        <rect width="197" height="80" rx="12" fill="#ffffff" stroke="#ede9fe" stroke-width="1.2" />
+        <text x="14" y="28" font-size="12" font-weight="800" fill="#312e81">🔐 AES-GCM Proxy</text>
+        <text x="14" y="48" font-size="10" font-weight="500" fill="#64748b">Zero client API-key leak</text>
+        <text x="14" y="64" font-size="9.5" font-weight="600" fill="#6366f1">Strict edge rate-limiting</text>
+      </g>
+
+      <!-- Item 3 -->
+      <g transform="translate(0, 188)">
+        <rect width="197" height="80" rx="12" fill="#ffffff" stroke="#ede9fe" stroke-width="1.2" />
+        <text x="14" y="28" font-size="12" font-weight="800" fill="#312e81">⚡ Auto-Failover</text>
+        <text x="14" y="48" font-size="10" font-weight="500" fill="#64748b">If CPCB node delays &gt;3s</text>
+        <text x="14" y="64" font-size="9.5" font-weight="600" fill="#6366f1">Routes to European CAMS</text>
+      </g>
+
+      <!-- Pill -->
+      <g transform="translate(0, 310)">
+        <rect width="197" height="40" rx="10" fill="#ede9fe" />
+        <text x="98" y="24" text-anchor="middle" font-size="11" font-weight="700" fill="#4338ca">Zero Downtime Shield</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ==================== COLUMN C: MATH & PHYSICS CORE ==================== -->
+  <g transform="translate(555, 110)">
+    <rect width="225" height="460" rx="18" fill="#fff1f2" stroke="#fecdd3" stroke-width="1.8" filter="url(#cardShadow)" />
+    
+    <!-- Badge C -->
+    <circle cx="112" cy="0" r="22" fill="url(#gradC)" filter="url(#pillShadow)" />
+    <text x="112" y="7" text-anchor="middle" font-size="16" font-weight="900" fill="#ffffff">C</text>
+    
+    <text x="112" y="44" text-anchor="middle" font-size="15" font-weight="800" fill="#be123c">Math &amp; Physics Core</text>
+
+    <!-- Sub cards -->
+    <g transform="translate(14, 60)">
+      <!-- Item 1 -->
+      <rect width="197" height="66" rx="12" fill="#ffffff" stroke="#ffe4e6" stroke-width="1.2" />
+      <text x="14" y="26" font-size="12" font-weight="800" fill="#881337">⚖️ CPCB NAQI Math</text>
+      <text x="14" y="46" font-size="10" font-weight="500" fill="#64748b">Piecewise Linear + US-EPA</text>
+
+      <!-- Item 2 -->
+      <g transform="translate(0, 76)">
+        <rect width="197" height="66" rx="12" fill="#ffffff" stroke="#ffe4e6" stroke-width="1.2" />
+        <text x="14" y="26" font-size="12" font-weight="800" fill="#881337">🌀 Inversion Physics</text>
+        <text x="14" y="46" font-size="10" font-weight="500" fill="#64748b">VI = PBL Height × Wind</text>
+      </g>
+
+      <!-- Item 3 -->
+      <g transform="translate(0, 152)">
+        <rect width="197" height="66" rx="12" fill="#ffffff" stroke="#ffe4e6" stroke-width="1.2" />
+        <text x="14" y="26" font-size="12" font-weight="800" fill="#881337">🧪 Room Purifier CADR</text>
+        <text x="14" y="46" font-size="10" font-weight="500" fill="#64748b">V·(dC/dt) Mass-Balance</text>
+      </g>
+
+      <!-- Item 4 -->
+      <g transform="translate(0, 228)">
+        <rect width="197" height="66" rx="12" fill="#ffffff" stroke="#ffe4e6" stroke-width="1.2" />
+        <text x="14" y="26" font-size="12" font-weight="800" fill="#881337">🏘️ Street Downscaling</text>
+        <text x="14" y="46" font-size="10" font-weight="500" fill="#64748b">Canyon H/W + Green NDVI</text>
+      </g>
+
+      <!-- Pill -->
+      <g transform="translate(0, 310)">
+        <rect width="197" height="40" rx="10" fill="#ffe4e6" />
+        <text x="98" y="24" text-anchor="middle" font-size="11" font-weight="700" fill="#be123c">Deterministic • Zero AI</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ==================== COLUMN D: EDGE CDN CACHING ==================== -->
+  <g transform="translate(810, 110)">
+    <rect width="225" height="460" rx="18" fill="#fffbeb" stroke="#fde68a" stroke-width="1.8" filter="url(#cardShadow)" />
+    
+    <!-- Badge D -->
+    <circle cx="112" cy="0" r="22" fill="url(#gradD)" filter="url(#pillShadow)" />
+    <text x="112" y="7" text-anchor="middle" font-size="16" font-weight="900" fill="#ffffff">D</text>
+    
+    <text x="112" y="44" text-anchor="middle" font-size="15" font-weight="800" fill="#b45309">Edge CDN Caching</text>
+
+    <!-- Sub cards -->
+    <g transform="translate(14, 60)">
+      <!-- Item 1 -->
+      <rect width="197" height="80" rx="12" fill="#ffffff" stroke="#fef3c7" stroke-width="1.2" />
+      <text x="14" y="28" font-size="12" font-weight="800" fill="#78350f">⚡ Sub-150ms Speed</text>
+      <text x="14" y="48" font-size="10" font-weight="500" fill="#64748b">Instant edge delivery</text>
+      <text x="14" y="64" font-size="9.5" font-weight="600" fill="#d97706">98+ Lighthouse score</text>
+
+      <!-- Item 2 -->
+      <g transform="translate(0, 94)">
+        <rect width="197" height="80" rx="12" fill="#ffffff" stroke="#fef3c7" stroke-width="1.2" />
+        <text x="14" y="28" font-size="12" font-weight="800" fill="#78350f">💾 Serverless Cache</text>
+        <text x="14" y="48" font-size="10" font-weight="500" fill="#64748b">15-minute smart TTL</text>
+        <text x="14" y="64" font-size="9.5" font-weight="600" fill="#d97706">Zero DB bottleneck</text>
+      </g>
+
+      <!-- Item 3 -->
+      <g transform="translate(0, 188)">
+        <rect width="197" height="80" rx="12" fill="#ffffff" stroke="#fef3c7" stroke-width="1.2" />
+        <text x="14" y="28" font-size="12" font-weight="800" fill="#78350f">🛡️ Concurrency Ready</text>
+        <text x="14" y="48" font-size="10" font-weight="500" fill="#64748b">Handles 50,000+ users</text>
+        <text x="14" y="64" font-size="9.5" font-weight="600" fill="#d97706">Zero server spikes</text>
+      </g>
+
+      <!-- Pill -->
+      <g transform="translate(0, 310)">
+        <rect width="197" height="40" rx="10" fill="#fef3c7" />
+        <text x="98" y="24" text-anchor="middle" font-size="11" font-weight="700" fill="#b45309">Hostinger / Cloudflare</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ==================== COLUMN E: CITIZEN DASHBOARD ==================== -->
+  <g transform="translate(1065, 110)">
+    <rect width="170" height="460" rx="18" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1.8" filter="url(#cardShadow)" />
+    
+    <!-- Badge E -->
+    <circle cx="85" cy="0" r="22" fill="url(#gradE)" filter="url(#pillShadow)" />
+    <text x="85" y="7" text-anchor="middle" font-size="16" font-weight="900" fill="#ffffff">E</text>
+    
+    <text x="85" y="44" text-anchor="middle" font-size="14" font-weight="800" fill="#6b21a8">User Screen</text>
+
+    <!-- Sub cards -->
+    <g transform="translate(10, 60)">
+      <!-- Item 1 -->
+      <rect width="150" height="66" rx="12" fill="#ffffff" stroke="#f3e8ff" stroke-width="1.2" />
+      <text x="12" y="26" font-size="11" font-weight="800" fill="#581c87">⚡ Next.js 15</text>
+      <text x="12" y="46" font-size="9.5" font-weight="500" fill="#64748b">Live Hydration</text>
+
+      <!-- Item 2 -->
+      <g transform="translate(0, 76)">
+        <rect width="150" height="66" rx="12" fill="#ffffff" stroke="#f3e8ff" stroke-width="1.2" />
+        <text x="12" y="26" font-size="11" font-weight="800" fill="#581c87">🗺️ Leaflet Map</text>
+        <text x="12" y="46" font-size="9.5" font-weight="500" fill="#64748b">Live Pins &amp; Heat</text>
+      </g>
+
+      <!-- Item 3 -->
+      <g transform="translate(0, 152)">
+        <rect width="150" height="66" rx="12" fill="#ffffff" stroke="#f3e8ff" stroke-width="1.2" />
+        <text x="12" y="26" font-size="11" font-weight="800" fill="#581c87">📈 72h Charts</text>
+        <text x="12" y="46" font-size="9.5" font-weight="500" fill="#64748b">Smog Forecast</text>
+      </g>
+
+      <!-- Item 4 -->
+      <g transform="translate(0, 228)">
+        <rect width="150" height="66" rx="12" fill="#ffffff" stroke="#f3e8ff" stroke-width="1.2" />
+        <text x="12" y="26" font-size="11" font-weight="800" fill="#581c87">🧑 Health Avatar</text>
+        <text x="12" y="46" font-size="9.5" font-weight="500" fill="#64748b">Mask Alerts</text>
+      </g>
+
+      <!-- Pill -->
+      <g transform="translate(0, 310)">
+        <rect width="150" height="40" rx="10" fill="#f3e8ff" />
+        <text x="75" y="24" text-anchor="middle" font-size="11" font-weight="700" fill="#6b21a8">airnova.space</text>
+      </g>
+    </g>
+  </g>
+</svg>

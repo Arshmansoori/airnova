@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AirNova Feasibility and Viability Card</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=JetBrains+Mono:wght@700;800&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 1920px;
+      height: 1080px;
+      background: #ffffff;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #0f172a;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 55px 70px;
+      overflow: hidden;
+    }
+
+    /* Top Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 3.5px solid #0f172a;
+      padding-bottom: 22px;
+    }
+    .header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 18px;
+      border-radius: 8px;
+      background: #0f172a;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+    .badge-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #10b981;
+    }
+    .title {
+      font-size: 52px;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      color: #000000;
+      line-height: 1;
+    }
+    .subtitle {
+      font-size: 20px;
+      font-weight: 700;
+      color: #475569;
+    }
+    .header-right {
+      text-align: right;
+    }
+    .live-tag {
+      font-size: 22px;
+      font-weight: 900;
+      color: #0f172a;
+      background: #f1f5f9;
+      border: 2px solid #0f172a;
+      padding: 10px 22px;
+      border-radius: 12px;
+      box-shadow: 3px 3px 0px #0f172a;
+    }
+
+    /* Main 4-Card Grid */
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin: 28px 0;
+      flex: 1;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 3px solid #0f172a;
+      border-radius: 20px;
+      padding: 26px 30px;
+      box-shadow: 6px 6px 0px #0f172a;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+    }
+    .card-title-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .card-icon {
+      font-size: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border: 2px solid #0f172a;
+    }
+    .card-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: 0.5px;
+    }
+    .pill-label {
+      font-size: 13px;
+      font-weight: 800;
+      padding: 5px 12px;
+      border-radius: 8px;
+      background: #f1f5f9;
+      border: 1.5px solid #0f172a;
+      color: #0f172a;
+    }
+
+    /* List Points */
+    .point-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .point-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 16.5px;
+      line-height: 1.4;
+      color: #334155;
+      font-weight: 600;
+    }
+    .point-bullet {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      background: #0f172a;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .point-item strong {
+      color: #000000;
+      font-weight: 800;
+    }
+
+    /* Table for Card 4 */
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+    .comp-table th {
+      text-align: left;
+      padding: 8px 10px;
+      background: #f1f5f9;
+      color: #0f172a;
+      font-weight: 800;
+      border-bottom: 2px solid #0f172a;
+    }
+    .comp-table td {
+      padding: 9px 10px;
+      border-bottom: 1px solid #e2e8f0;
+      font-weight: 600;
+      color: #334155;
+    }
+    .comp-table tr:last-child td {
+      border-bottom: none;
+    }
+    .comp-table td.highlight {
+      font-weight: 800;
+      color: #047857;
+      background: #f0fdf4;
+    }
+
+    /* Bottom Footer */
+    .footer {
+      background: #0f172a;
+      border: 3px solid #000000;
+      border-radius: 16px;
+      padding: 18px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 5px 5px 0px #000000;
+    }
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .footer-brand {
+      font-size: 26px;
+      font-weight: 900;
+      color: #ffffff;
+    }
+    .footer-stat {
+      font-size: 16px;
+      font-weight: 700;
+      color: #94a3b8;
+    }
+    .footer-stat span {
+      color: #38bdf8;
+      font-weight: 800;
+    }
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .footer-pill {
+      background: #10b981;
+      color: #000000;
+      font-size: 15px;
+      font-weight: 900;
+      padding: 8px 18px;
+      border-radius: 8px;
+      border: 1.5px solid #059669;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <div class="badge">
+        <div class="badge-dot"></div>
+        SIH 2024 EVALUATION CRITERIA
+      </div>
+      <h1 class="title">FEASIBILITY AND VIABILITY</h1>
+      <p class="subtitle">Technical Implementation Proof, Economic Model &amp; Scalability Architecture</p>
+    </div>
+    <div class="header-right">
+      <div class="live-tag">🚀 LIVE AT AIRNOVA.SPACE</div>
+    </div>
+  </div>
+
+  <!-- 4-Card Main Grid -->
+  <div class="grid-container">
+
+    <!-- Card 1: Technical Feasibility -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title-group">
+          <div class="card-icon">🛠️</div>
+          <div class="card-title">1. TECHNICAL FEASIBILITY</div>
+        </div>
+        <div class="pill-label">100% IMPLEMENTED</div>
+      </div>
+      <div class="point-list">
+        <div class="point-item">
+          <div class="point-bullet">✓</div>
+          <div><strong>Production Prototype Live:</strong> Already deployed at <strong>airnova.space</strong> running sub-150ms SSR with 98+ Google Lighthouse Performance score.</div>
+        </div>
+        <div class="point-item">
+          <div class="point-bullet">✓</div>
+          <div><strong>$0 External API Cost:</strong> Built completely on verified free public telemetry — CPCB CAAQMS, ESA Sentinel-5P, NASA FIRMS, and OpenStreetMap.</div>
+        </div>
+        <div class="point-item">
+          <div class="point-bullet">✓</div>
+          <div><strong>Automated Waterfall Failover:</strong> If state DPCC nodes experience lag (>3000ms), architecture routes seamlessly to European Copernicus CAMS grid with zero user downtime.</div>
+        </div>
+        <div class="point-item">
+          <div class="point-bullet">✓</div>
+          <div><strong>High-Concurrency Edge CDN:</strong> Serverless caching architecture capable of handling 50,000+ simultaneous users without database bottlenecks.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Economic Viability -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title-group">
+          <div class="card-icon">💼</div>
+          <div class="card-title">2. ECONOMIC &amp; REVENUE VIABILITY</div>
+        </div>
+        <div class="pill-label">FINANCIALLY SUSTAINABLE</div>
+      </div>
+      <div class="point-list">
+        <div class="point-item">
+          <div class="point-bullet">₹</div>
+          <div><strong>Zero Hardware CapEx:</strong> Eliminates need for ₹2 Crore physical monitors every 4 km via our software-driven Micro-Spatial Downscaling AI.</div>
+        </div>
+        <div class="point-item">
+          <div class="point-bullet">₹</div>
+          <div><strong>Ultra-Low OpEx (&lt; ₹1,000/mo):</strong> Serverless static edge hosting costs negligible maintenance, guaranteeing permanent operational sustainability.</div>
+        </div>
+        <div class="point-item">
+          <div class="point-bullet">₹</div>
+          <div><strong>B2G Municipal Contracts:</strong> Smart City Air Quality Dashboards &amp; National Clean Air Programme (NCAP) ward-level compliance analytics.</div>
+        </div>
+        <div class="point-item">
+          <div class="point-bullet">₹</div>
+          <div><strong>B2B Purifier OEM Licensing:</strong> API monetization for smart air purifier and HVAC manufacturers for physics-backed CADR room calculations.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Regulatory Compliance -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title-group">
+          <div class="card-icon">⚖️</div>
+          <div class="card-title">3. REGULATORY &amp; SCIENTIFIC RIGOR</div>
+        </div>
+        <div class="pill-label">GOVT &amp; WHO COMPLIANT</div>
+      </div>
+      <div class="point-list">
+        <div class="point-item">
+          <div class="point-bullet">§</div>
+          <div><strong>100% CPCB NAQI Compliant:</strong> Strictly implements MoEFCC (2014) official 8-subindex linear interpolation breakpoint mathematics.</div>
+        </div>
+        <div class="point-item">
+          <div class="point-bullet">§</div>
+          <div><strong>WHO (2021) &amp; ICMR Standards:</strong> Health vulnerability recommendations calibrated to clinical respiratory risk levels for asthma, elderly, and children.</div>
+        </div>
+        <div class="point-item">
+          <div class="point-bullet">§</div>
+          <div><strong>ANSI/AHAM AC-1 Verified:</strong> Air purifier timing uses peer-reviewed differential decay equations rather than marketing assumptions.</div>
+        </div>
+        <div class="point-item">
+          <div class="point-bullet">§</div>
+          <div><strong>AES-GCM Web Crypto Security:</strong> Zero client-side API key leakage with automated serverless encryption proxies.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4: Comparative Advantage -->
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title-group">
+          <div class="card-icon">📊</div>
+          <div class="card-title">4. COMPETITIVE EDGE COMPARISON</div>
+        </div>
+        <div class="pill-label">THE AIRNOVA ADVANTAGE</div>
+      </div>
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Metric / Feature</th>
+            <th>Traditional Apps</th>
+            <th>Govt Sameer</th>
+            <th>AirNova Platform</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Hardware Deployment</strong></td>
+            <td>Costly sensor mesh</td>
+            <td>₹1.5–2 Cr / station</td>
+            <td class="highlight"><strong>₹0 (Hardware-Free)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>API Running Cost</strong></td>
+            <td>Heavy Paid APIs ($$)</td>
+            <td>Govt Budget</td>
+            <td class="highlight"><strong>$0 (Free Open Grids)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Failover Security</strong></td>
+            <td>Single point failure</td>
+            <td>Frequent downtime</td>
+            <td class="highlight"><strong>Auto Waterfall Failover</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Exposure Latency</strong></td>
+            <td>1–3 hours lag</td>
+            <td>24-hour average</td>
+            <td class="highlight"><strong>Real-time Continuous</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- Bottom Footer -->
+  <div class="footer">
+    <div class="footer-left">
+      <div class="footer-brand">AIRNOVA</div>
+      <div class="footer-stat">Stack: <span>Next.js 15 • TypeScript • Node.js • Leaflet GIS</span></div>
+      <div class="footer-stat">Performance: <span>&lt; 150ms FCP (Edge CDN)</span></div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-pill">✓ 100% REPRODUCIBLE DETERMINISTIC CODE</div>
+    </div>
+  </div>
+
+</body>
+</html>

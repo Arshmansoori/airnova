@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AirNova Tech Stack Reel (Bold Clean White)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=JetBrains+Mono:wght@700;800&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 1080px;
+      height: 1920px;
+      background: #ffffff;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #0f172a;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 70px 60px;
+    }
+
+    /* Content Wrapper */
+    .content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-between;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      border-bottom: 3px solid #0f172a;
+      padding-bottom: 28px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 24px;
+      border-radius: 12px;
+      background: #0f172a;
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .badge-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #10b981;
+    }
+    .title {
+      font-size: 76px;
+      font-weight: 900;
+      letter-spacing: -2.5px;
+      color: #000000;
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    .subtitle {
+      font-size: 26px;
+      font-weight: 700;
+      color: #334155;
+      letter-spacing: -0.5px;
+    }
+
+    /* Cards Grid */
+    .cards-container {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      margin: 24px 0;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 2.5px solid #0f172a;
+      border-radius: 22px;
+      padding: 24px 28px;
+      box-shadow: 6px 6px 0px #0f172a;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 14px;
+    }
+    .card-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .card-icon {
+      font-size: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: #f1f5f9;
+      border: 2px solid #0f172a;
+    }
+    .card-title {
+      font-size: 24px;
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: 0.5px;
+    }
+    .card-badge {
+      font-size: 15px;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 8px;
+      background: #f1f5f9;
+      border: 1.5px solid #cbd5e1;
+      color: #334155;
+    }
+
+    /* Tag Pills Grid - BOLD & HIGH CONTRAST */
+    .pills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .pill {
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 19px;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      background: #ffffff;
+      border: 2px solid #0f172a;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 2px 2px 0px #0f172a;
+    }
+    .pill span {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: #475569;
+    }
+
+    /* Solid Key Badges */
+    .pill-highlight {
+      background: #0f172a;
+      color: #ffffff;
+    }
+    .pill-highlight span {
+      color: #94a3b8;
+    }
+
+    /* Bottom Dock */
+    .footer {
+      background: #0f172a;
+      border: 3px solid #000000;
+      border-radius: 22px;
+      padding: 26px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 8px 8px 0px #000000;
+    }
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .footer-url {
+      font-size: 34px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+    }
+    .footer-desc {
+      font-size: 18px;
+      color: #94a3b8;
+      font-weight: 700;
+    }
+    .speed-badge {
+      background: #10b981;
+      border: 2px solid #059669;
+      color: #000000;
+      padding: 14px 24px;
+      border-radius: 14px;
+      font-size: 20px;
+      font-weight: 900;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <!-- Top Header -->
+    <div class="header">
+      <div class="badge">
+        <div class="badge-dot"></div>
+        SIH FINALIST • VERIFIED PRODUCTION
+      </div>
+      <h1 class="title">AIRNOVA</h1>
+      <p class="subtitle">Complete Core Technology &amp; Engineering Stack</p>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="cards-container">
+      
+      <!-- Card 1: Programming Languages -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-wrap">
+            <div class="card-icon">💻</div>
+            <div class="card-title">PROGRAMMING LANGUAGES</div>
+          </div>
+          <div class="card-badge">CORE ENGINES</div>
+        </div>
+        <div class="pills-grid">
+          <div class="pill pill-highlight">TypeScript 5.x <span>(Type Safety)</span></div>
+          <div class="pill">JavaScript <span>(Node.js ESM)</span></div>
+          <div class="pill">HTML5 &amp; CSS3 <span>(Design Tokens)</span></div>
+          <div class="pill">SQL / GeoJSON <span>(Spatial Telemetry)</span></div>
+          <div class="pill">Bash / PowerShell <span>(CI/CD Pipeline)</span></div>
+        </div>
+      </div>
+
+      <!-- Card 2: Frontend & Visuals -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-wrap">
+            <div class="card-icon">⚛️</div>
+            <div class="card-title">FRONTEND &amp; VISUALIZATION</div>
+          </div>
+          <div class="card-badge">CLIENT HYDRATION</div>
+        </div>
+        <div class="pills-grid">
+          <div class="pill pill-highlight">Next.js 15 <span>(App Router)</span></div>
+          <div class="pill">React 19 <span>(Server Actions)</span></div>
+          <div class="pill">Tailwind CSS 3.4 <span>(Styling)</span></div>
+          <div class="pill pill-highlight">Leaflet.js <span>(GIS Geospatial Map)</span></div>
+          <div class="pill">Recharts <span>(D3 Atmospheric Curves)</span></div>
+          <div class="pill">Radix UI <span>(Accessible Primitives)</span></div>
+        </div>
+      </div>
+
+      <!-- Card 3: Backend & Security -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-wrap">
+            <div class="card-icon">⚙️</div>
+            <div class="card-title">BACKEND, RUNTIME &amp; SECURITY</div>
+          </div>
+          <div class="card-badge">SUB-150MS EDGE</div>
+        </div>
+        <div class="pills-grid">
+          <div class="pill pill-highlight">Node.js v24 <span>(High-Throughput)</span></div>
+          <div class="pill">Vite 8.0 <span>(Fast Bundler)</span></div>
+          <div class="pill pill-highlight">AES-GCM <span>(256-bit Key Encryption)</span></div>
+          <div class="pill">Serverless APIs <span>(Edge Handlers)</span></div>
+          <div class="pill">Waterfall Failover <span>(Zero Downtime)</span></div>
+          <div class="pill">Hostinger &amp; CF <span>(Global Edge CDN)</span></div>
+        </div>
+      </div>
+
+      <!-- Card 4: Scientific Engines -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-wrap">
+            <div class="card-icon">🔬</div>
+            <div class="card-title">DETERMINISTIC SCIENTIFIC ENGINES</div>
+          </div>
+          <div class="card-badge">ZERO BLACK-BOX</div>
+        </div>
+        <div class="pills-grid">
+          <div class="pill pill-highlight">CPCB NAQI <span>(8-Subindex Formulation)</span></div>
+          <div class="pill">ECMWF IFS 48r1 <span>(Boundary Layer VI)</span></div>
+          <div class="pill">NASA FIRMS <span>(MODIS/VIIRS Fire MW)</span></div>
+          <div class="pill">Oke 1988 Model <span>(3D Street Canyon H/W)</span></div>
+          <div class="pill">ANSI/AHAM AC-1 <span>(Purifier Mass-Balance)</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Footer Dock -->
+    <div class="footer">
+      <div class="footer-left">
+        <div class="footer-url">airnova.space</div>
+        <div class="footer-desc">Deterministic Atmospheric &amp; Street Air Intelligence</div>
+      </div>
+      <div class="speed-badge">
+        🚀 &lt; 150ms Speed<br>
+        <span style="font-size:15px; font-weight:700;">98+ Lighthouse</span>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

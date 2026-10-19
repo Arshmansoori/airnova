@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 440" width="100%" height="100%" style="background:#ffffff; border-radius:18px;">
+  <defs>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.06" />
+    </filter>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 Z" fill="#2563eb" />
+    </marker>
+  </defs>
+
+  <!-- Header -->
+  <text x="40" y="42" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="12" font-weight="800" fill="#2563eb" letter-spacing="1.5">5-STEP WATERFALL FAILOVER &amp; EDGE SECURITY FLOWCHART</text>
+  <text x="40" y="66" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="18" font-weight="800" fill="#0f172a">Zero-Downtime Telemetry Ingestion with Enterprise Encryption</text>
+
+  <!-- Waterfall Horizontal Flow Line -->
+  <path d="M 190 190 L 225 190" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowBlue)" />
+  <path d="M 380 190 L 415 190" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowBlue)" />
+  <path d="M 570 190 L 605 190" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowBlue)" />
+  <path d="M 760 190 L 795 190" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowBlue)" />
+
+  <!-- 5 STEPS -->
+  <!-- STEP 1 -->
+  <g transform="translate(40, 100)" filter="url(#cardShadow)">
+    <rect width="150" height="180" rx="14" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5" />
+    <rect x="12" y="12" width="55" height="20" rx="6" fill="#2563eb" />
+    <text x="39" y="26" font-family="system-ui, sans-serif" font-size="9" font-weight="800" fill="#ffffff" text-anchor="middle">STEP 01</text>
+    
+    <text x="12" y="55" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#1e3a8a">DPCC Station</text>
+    <text x="12" y="72" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#475569">CAAQMS Live</text>
+
+    <rect x="12" y="90" width="126" height="42" rx="6" fill="#ffffff" stroke="#e2e8f0" />
+    <text x="75" y="108" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="800" fill="#059669" text-anchor="middle">142 ms</text>
+    <text x="75" y="122" font-family="system-ui, sans-serif" font-size="8.5" fill="#64748b" text-anchor="middle">Physical ground</text>
+
+    <text x="12" y="155" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#dc2626">If sensor lags ➔</text>
+  </g>
+
+  <!-- STEP 2 -->
+  <g transform="translate(230, 100)" filter="url(#cardShadow)">
+    <rect width="150" height="180" rx="14" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5" />
+    <rect x="12" y="12" width="55" height="20" rx="6" fill="#2563eb" />
+    <text x="39" y="26" font-family="system-ui, sans-serif" font-size="9" font-weight="800" fill="#ffffff" text-anchor="middle">STEP 02</text>
+    
+    <text x="12" y="55" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#1e3a8a">WeatherAPI</text>
+    <text x="12" y="72" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#475569">Micro-Climate</text>
+
+    <rect x="12" y="90" width="126" height="42" rx="6" fill="#ffffff" stroke="#e2e8f0" />
+    <text x="75" y="108" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="800" fill="#059669" text-anchor="middle">78 ms</text>
+    <text x="75" y="122" font-family="system-ui, sans-serif" font-size="8.5" fill="#64748b" text-anchor="middle">Live weather feed</text>
+
+    <text x="12" y="155" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#dc2626">If chemistry fails ➔</text>
+  </g>
+
+  <!-- STEP 3 -->
+  <g transform="translate(420, 100)" filter="url(#cardShadow)">
+    <rect width="150" height="180" rx="14" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5" />
+    <rect x="12" y="12" width="55" height="20" rx="6" fill="#2563eb" />
+    <text x="39" y="26" font-family="system-ui, sans-serif" font-size="9" font-weight="800" fill="#ffffff" text-anchor="middle">STEP 03</text>
+    
+    <text x="12" y="55" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#1e3a8a">Copernicus</text>
+    <text x="12" y="72" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#475569">CAMS ECMWF</text>
+
+    <rect x="12" y="90" width="126" height="42" rx="6" fill="#ffffff" stroke="#e2e8f0" />
+    <text x="75" y="108" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="800" fill="#059669" text-anchor="middle">94 ms</text>
+    <text x="75" y="122" font-family="system-ui, sans-serif" font-size="8.5" fill="#64748b" text-anchor="middle">European physics</text>
+
+    <text x="12" y="155" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#dc2626">If backend timeout ➔</text>
+  </g>
+
+  <!-- STEP 4 -->
+  <g transform="translate(610, 100)" filter="url(#cardShadow)">
+    <rect width="150" height="180" rx="14" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5" />
+    <rect x="12" y="12" width="55" height="20" rx="6" fill="#2563eb" />
+    <text x="39" y="26" font-family="system-ui, sans-serif" font-size="9" font-weight="800" fill="#ffffff" text-anchor="middle">STEP 04</text>
+    
+    <text x="12" y="55" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#1e3a8a">Open-Meteo</text>
+    <text x="12" y="72" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#475569">Client Failover</text>
+
+    <rect x="12" y="90" width="126" height="42" rx="6" fill="#ffffff" stroke="#e2e8f0" />
+    <text x="75" y="108" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="800" fill="#059669" text-anchor="middle">45 ms</text>
+    <text x="75" y="122" font-family="system-ui, sans-serif" font-size="8.5" fill="#64748b" text-anchor="middle">High-res grid</text>
+
+    <text x="12" y="155" font-family="system-ui, sans-serif" font-size="9" font-weight="700" fill="#059669">Buffer instant ➔</text>
+  </g>
+
+  <!-- STEP 5 -->
+  <g transform="translate(800, 100)" filter="url(#cardShadow)">
+    <rect width="160" height="180" rx="14" fill="#f0fdf4" stroke="#86efac" stroke-width="2" />
+    <rect x="12" y="12" width="70" height="20" rx="6" fill="#059669" />
+    <text x="47" y="26" font-family="system-ui, sans-serif" font-size="9" font-weight="800" fill="#ffffff" text-anchor="middle">FINAL BUFFER</text>
+    
+    <text x="12" y="55" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#065f46">Edge Memory</text>
+    <text x="12" y="72" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#047857">Hostinger / CF</text>
+
+    <rect x="12" y="90" width="136" height="42" rx="6" fill="#ffffff" stroke="#bbf7d0" />
+    <text x="80" y="108" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="800" fill="#059669" text-anchor="middle">&lt; 15 ms</text>
+    <text x="80" y="122" font-family="system-ui, sans-serif" font-size="8.5" fill="#047857" text-anchor="middle">Instant edge delivery</text>
+
+    <text x="12" y="155" font-family="system-ui, sans-serif" font-size="9.5" font-weight="800" fill="#059669">✓ 100% Uptime</text>
+  </g>
+
+  <!-- Bottom Security Pillars -->
+  <g transform="translate(40, 310)" filter="url(#cardShadow)">
+    <rect width="920" height="95" rx="14" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5" />
+    
+    <g transform="translate(24, 20)">
+      <text x="0" y="16" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#0f172a">🔒 AES-GCM Encrypted Key Management</text>
+      <text x="0" y="34" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b">Zero client browser token exposure. All station credentials stored with authenticated cryptography.</text>
+      <text x="0" y="52" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b">D1 atomic rate limiting prevents DDoS and scraping attacks.</text>
+    </g>
+
+    <g transform="translate(560, 20)">
+      <text x="0" y="16" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#059669">💰 $0 Operating Cost at 100k+ Users</text>
+      <text x="0" y="34" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b">Edge memory caching prevents duplicate upstream API calls.</text>
+      <text x="0" y="52" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#64748b">100% free open-access European Copernicus CAMS grid fallback.</text>
+    </g>
+  </g>
+</svg>

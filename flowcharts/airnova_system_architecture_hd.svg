@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="100%" height="100%" style="background:#ffffff; font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <defs>
+    <!-- Soft Drop Shadow -->
+    <filter id="shadowLight" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.05" />
+    </filter>
+    <filter id="shadowHover" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#2563eb" flood-opacity="0.08" />
+    </filter>
+
+    <!-- Gradients -->
+    <linearGradient id="gradBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1d4ed8" />
+      <stop offset="100%" stop-color="#2563eb" />
+    </linearGradient>
+    <linearGradient id="gradTeal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#047857" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="gradAmber" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#b45309" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    <linearGradient id="gradPurple" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6d28d9" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+
+    <!-- Arrow Markers -->
+    <marker id="arrowGray" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 Z" fill="#94a3b8" />
+    </marker>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 Z" fill="#3b82f6" />
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 Z" fill="#10b981" />
+    </marker>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="1200" height="680" fill="#ffffff" rx="16" />
+
+  <!-- HEADER -->
+  <g transform="translate(50, 42)">
+    <rect x="0" y="0" width="8" height="34" rx="4" fill="#2563eb" />
+    <text x="20" y="16" font-size="12" font-weight="800" fill="#2563eb" letter-spacing="1.5">AIRNOVA PRODUCTION SYSTEM ARCHITECTURE</text>
+    <text x="20" y="34" font-size="20" font-weight="800" fill="#0f172a">Deterministic Data Ingestion, Atmospheric Physics &amp; Edge Delivery Pipeline</text>
+  </g>
+
+  <!-- ==================== LAYER 1: DATA INGESTION ==================== -->
+  <g transform="translate(50, 95)">
+    <!-- Layer Background -->
+    <rect width="1100" height="110" rx="14" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5" />
+    <text x="20" y="24" font-size="11" font-weight="800" fill="#64748b" letter-spacing="1">LAYER 1 : MULTI-SOURCE TELEMETRY INGESTION</text>
+
+    <!-- Card 1.1 -->
+    <g transform="translate(20, 36)" filter="url(#shadowLight)">
+      <rect width="250" height="60" rx="10" fill="url(#gradBlue)" />
+      <text x="16" y="25" font-size="12" font-weight="800" fill="#ffffff">📍 CPCB / DPCC CAAQMS</text>
+      <text x="16" y="44" font-size="10.5" font-weight="500" fill="#dbeafe">Continuous Ground Chemistry (7 Gases)</text>
+    </g>
+
+    <!-- Card 1.2 -->
+    <g transform="translate(290, 36)" filter="url(#shadowLight)">
+      <rect width="250" height="60" rx="10" fill="url(#gradTeal)" />
+      <text x="16" y="25" font-size="12" font-weight="800" fill="#ffffff">🛰️ Sentinel-5P (TROPOMI)</text>
+      <text x="16" y="44" font-size="10.5" font-weight="500" fill="#d1fae5">Columnar Aerosol Optical Depth (AOD)</text>
+    </g>
+
+    <!-- Card 1.3 -->
+    <g transform="translate(560, 36)" filter="url(#shadowLight)">
+      <rect width="250" height="60" rx="10" fill="url(#gradAmber)" />
+      <text x="16" y="25" font-size="12" font-weight="800" fill="#ffffff">🔥 NASA FIRMS (MODIS/VIIRS)</text>
+      <text x="16" y="44" font-size="10.5" font-weight="500" fill="#fef3c7">Stubble Fire Radiative Power (FRP MW)</text>
+    </g>
+
+    <!-- Card 1.4 -->
+    <g transform="translate(830, 36)" filter="url(#shadowLight)">
+      <rect width="250" height="60" rx="10" fill="url(#gradPurple)" />
+      <text x="16" y="25" font-size="12" font-weight="800" fill="#ffffff">🗺️ OpenStreetMap &amp; Traffic</text>
+      <text x="16" y="44" font-size="10.5" font-weight="500" fill="#ede9fe">3D Street Canyons (H/W) &amp; Live Delays</text>
+    </g>
+  </g>
+
+  <!-- Connectors Layer 1 to Layer 2 -->
+  <path d="M 195 205 L 195 235" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrowGray)" />
+  <path d="M 465 205 L 465 235" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrowGray)" />
+  <path d="M 735 205 L 735 235" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrowGray)" />
+  <path d="M 1005 205 L 1005 235" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrowGray)" />
+
+  <!-- ==================== LAYER 2: EDGE INGESTION & FAILOVER ==================== -->
+  <g transform="translate(50, 238)">
+    <rect width="1100" height="105" rx="14" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5" />
+    <text x="20" y="24" font-size="11" font-weight="800" fill="#1d4ed8" letter-spacing="1">LAYER 2 : EDGE INGESTION &amp; ZERO-COST WATERFALL FAILOVER</text>
+
+    <!-- Card 2.1 -->
+    <g transform="translate(20, 34)" filter="url(#shadowLight)">
+      <rect width="335" height="56" rx="10" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5" />
+      <text x="16" y="24" font-size="12" font-weight="800" fill="#1e3a8a">🔐 AES-GCM Encrypted Gateway</text>
+      <text x="16" y="42" font-size="10" font-weight="600" fill="#3b82f6">Zero Client-Side Key Exposure • Strict Rate Limits</text>
+    </g>
+
+    <!-- Card 2.2 -->
+    <g transform="translate(382, 34)" filter="url(#shadowLight)">
+      <rect width="335" height="56" rx="10" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5" />
+      <text x="16" y="24" font-size="12" font-weight="800" fill="#1e3a8a">🧹 Microsecond Data Sanitization</text>
+      <text x="16" y="42" font-size="10" font-weight="600" fill="#3b82f6">Outlier Scrubbing • Unit Standardization (µg/m³)</text>
+    </g>
+
+    <!-- Card 2.3 -->
+    <g transform="translate(745, 34)" filter="url(#shadowLight)">
+      <rect width="335" height="56" rx="10" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5" />
+      <text x="16" y="24" font-size="12" font-weight="800" fill="#1e3a8a">⚡ Automated Waterfall Failover</text>
+      <text x="16" y="42" font-size="10" font-weight="600" fill="#3b82f6">Instant Route to Copernicus CAMS if DPCC Lags</text>
+    </g>
+  </g>
+
+  <!-- Connectors Layer 2 to Layer 3 -->
+  <path d="M 600 343 L 600 376" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrowBlue)" />
+
+  <!-- ==================== LAYER 3: COMPUTATION CORE ==================== -->
+  <g transform="translate(50, 380)">
+    <rect width="1100" height="110" rx="14" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5" />
+    <text x="20" y="24" font-size="11" font-weight="800" fill="#15803d" letter-spacing="1">LAYER 3 : DETERMINISTIC SCIENTIFIC COMPUTATION ENGINES (ZERO AI / PURE PHYSICS)</text>
+
+    <!-- Card 3.1 -->
+    <g transform="translate(20, 36)" filter="url(#shadowLight)">
+      <rect width="335" height="60" rx="10" fill="#ffffff" stroke="#86efac" stroke-width="1.5" />
+      <text x="16" y="25" font-size="12" font-weight="800" fill="#065f46">⚖️ CPCB NAQI Interpolation Engine</text>
+      <text x="16" y="44" font-size="10" font-weight="600" fill="#059669">8-Subindex Piecewise Linear • Dual US-EPA Toggle</text>
+    </g>
+
+    <!-- Card 3.2 -->
+    <g transform="translate(382, 36)" filter="url(#shadowLight)">
+      <rect width="335" height="60" rx="10" fill="#ffffff" stroke="#86efac" stroke-width="1.5" />
+      <text x="16" y="25" font-size="12" font-weight="800" fill="#065f46">🌀 ECMWF Boundary Layer Inversion</text>
+      <text x="16" y="44" font-size="10" font-weight="600" fill="#059669">Ventilation Index: VI = PBL × Wind Speed (72h Forecast)</text>
+    </g>
+
+    <!-- Card 3.3 -->
+    <g transform="translate(745, 36)" filter="url(#shadowLight)">
+      <rect width="335" height="60" rx="10" fill="#ffffff" stroke="#86efac" stroke-width="1.5" />
+      <text x="16" y="25" font-size="12" font-weight="800" fill="#065f46">🧪 Differential Room Mass-Balance</text>
+      <text x="16" y="44" font-size="10" font-weight="600" fill="#059669">ANSI/AHAM AC-1 CADR Solver: V·(dC/dt) Equation</text>
+    </g>
+  </g>
+
+  <!-- Connectors Layer 3 to Layer 4 -->
+  <path d="M 600 490 L 600 523" stroke="#059669" stroke-width="2.5" marker-end="url(#arrowGreen)" />
+
+  <!-- ==================== LAYER 4: PRODUCTION DELIVERY ==================== -->
+  <g transform="translate(50, 526)">
+    <rect width="1100" height="110" rx="14" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5" />
+    <text x="20" y="24" font-size="11" font-weight="800" fill="#475569" letter-spacing="1">LAYER 4 : PRODUCTION EDGE DELIVERY LAYER (LIVE AT AIRNOVA.SPACE)</text>
+
+    <!-- Card 4.1 -->
+    <g transform="translate(20, 36)" filter="url(#shadowLight)">
+      <rect width="250" height="60" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+      <text x="16" y="25" font-size="12" font-weight="800" fill="#0f172a">⚡ Next.js 15 &amp; React 19</text>
+      <text x="16" y="44" font-size="10" font-weight="600" fill="#64748b">Instant Edge Hydration • SSR</text>
+    </g>
+
+    <!-- Card 4.2 -->
+    <g transform="translate(290, 36)" filter="url(#shadowLight)">
+      <rect width="250" height="60" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+      <text x="16" y="25" font-size="12" font-weight="800" fill="#0f172a">🗺️ Leaflet Geospatial Map</text>
+      <text x="16" y="44" font-size="10" font-weight="600" fill="#64748b">Interactive Station Pins &amp; Heatmap</text>
+    </g>
+
+    <!-- Card 4.3 -->
+    <g transform="translate(560, 36)" filter="url(#shadowLight)">
+      <rect width="250" height="60" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+      <text x="16" y="25" font-size="12" font-weight="800" fill="#0f172a">📈 Recharts 72h Timeline</text>
+      <text x="16" y="44" font-size="10" font-weight="600" fill="#64748b">Multi-Chemical Atmospheric Curves</text>
+    </g>
+
+    <!-- Card 4.4 -->
+    <g transform="translate(830, 36)" filter="url(#shadowLight)">
+      <rect width="250" height="60" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+      <text x="16" y="25" font-size="12" font-weight="800" fill="#0f172a">🚀 Global Edge CDN</text>
+      <text x="16" y="44" font-size="10" font-weight="600" fill="#059669">&lt; 150ms FCP • 98+ Lighthouse Score</text>
+    </g>
+  </g>
+</svg>

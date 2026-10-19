@@ -1,0 +1,397 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4300 2250" width="4300" height="2250" style="background:#ffffff; font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- 4K Deep Studio Shadows -->
+    <filter id="cardShadow4K" x="-12%" y="-12%" width="124%" height="124%">
+      <feDropShadow dx="0" dy="20" stdDeviation="30" flood-color="#0f172a" flood-opacity="0.06" />
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#0f172a" flood-opacity="0.04" />
+    </filter>
+    <filter id="itemShadow4K" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.04" />
+    </filter>
+    <filter id="pillGlowBlue" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="24" flood-color="#2563eb" flood-opacity="0.25" />
+    </filter>
+    <filter id="pillGlowAmber" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="24" flood-color="#d97706" flood-opacity="0.25" />
+    </filter>
+    <filter id="pillGlowGreen" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="24" flood-color="#059669" flood-opacity="0.25" />
+    </filter>
+    <filter id="pillGlowPurple" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="24" flood-color="#7c3aed" flood-opacity="0.25" />
+    </filter>
+
+    <!-- Gradients -->
+    <linearGradient id="headerBlue" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1d4ed8" /><stop offset="100%" stop-color="#3b82f6" /></linearGradient>
+    <linearGradient id="headerAmber" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#b45309" /><stop offset="100%" stop-color="#f59e0b" /></linearGradient>
+    <linearGradient id="headerGreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#047857" /><stop offset="100%" stop-color="#10b981" /></linearGradient>
+    <linearGradient id="headerPurple" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#5b21b6" /><stop offset="100%" stop-color="#8b5cf6" /></linearGradient>
+    <linearGradient id="rightPanelBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0f172a" /><stop offset="100%" stop-color="#1e293b" /></linearGradient>
+
+    <!-- Arrow Marker -->
+    <marker id="arrow4K" markerWidth="14" markerHeight="14" refX="10" refY="7" orient="auto">
+      <path d="M 0 0 L 14 7 L 0 14 Z" fill="#64748b" />
+    </marker>
+  </defs>
+
+  <!-- Pure White Background -->
+  <rect width="4300" height="2250" fill="#ffffff" />
+
+  <!-- HEADER -->
+  <g transform="translate(2150, 140)" text-anchor="middle">
+    <text y="0" font-size="76" font-weight="900" fill="#0f172a" letter-spacing="-1.5">AirNova Complete Architecture &amp; Technology Stack</text>
+    <text y="68" font-size="34" font-weight="600" fill="#64748b" letter-spacing="-0.5">3-Step Deterministic Pipeline (Data Ingestion ➔ Physics Math ➔ Edge Delivery) + Complete Languages &amp; Frameworks</text>
+  </g>
+
+  <!-- BIG CONNECTING ARROWS -->
+  <g stroke="#94a3b8" stroke-width="10" fill="none">
+    <path d="M 1040 1020 L 1140 1020" marker-end="url(#arrow4K)" />
+    <path d="M 2130 1020 L 2230 1020" marker-end="url(#arrow4K)" />
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- STEP 1: DATA SOURCES -->
+  <!-- ================================================================ -->
+  <g transform="translate(120, 280)">
+    <rect width="920" height="1820" rx="40" fill="#f8fafc" stroke="#e2e8f0" stroke-width="3" filter="url(#cardShadow4K)" />
+
+    <!-- Header Pill -->
+    <g transform="translate(50, 50)" filter="url(#pillGlowBlue)">
+      <rect width="820" height="130" rx="28" fill="url(#headerBlue)" />
+      <text x="410" y="80" text-anchor="middle" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="1.5">STEP 1: DATA SOURCES</text>
+    </g>
+
+    <g transform="translate(50, 220)">
+      <!-- Item 1.1 -->
+      <g filter="url(#itemShadow4K)">
+        <rect width="820" height="190" rx="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" />
+        <circle cx="70" cy="95" r="38" fill="#eff6ff" />
+        <text x="70" y="107" text-anchor="middle" font-size="36">📍</text>
+        <text x="135" y="78" font-size="32" font-weight="800" fill="#1e3a8a">Govt Ground Stations (CPCB)</text>
+        <text x="135" y="128" font-size="24" font-weight="600" fill="#64748b">Continuous PM2.5, PM10, 7 gases</text>
+      </g>
+
+      <!-- Item 1.2 -->
+      <g transform="translate(0, 220)" filter="url(#itemShadow4K)">
+        <rect width="820" height="190" rx="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" />
+        <circle cx="70" cy="95" r="38" fill="#eff6ff" />
+        <text x="70" y="107" text-anchor="middle" font-size="36">🛰️</text>
+        <text x="135" y="78" font-size="32" font-weight="800" fill="#1e3a8a">Space Satellites (ESA &amp; NASA)</text>
+        <text x="135" y="128" font-size="24" font-weight="600" fill="#64748b">Sentinel-5P AOD &amp; Stubble fire MW</text>
+      </g>
+
+      <!-- Item 1.3 -->
+      <g transform="translate(0, 440)" filter="url(#itemShadow4K)">
+        <rect width="820" height="190" rx="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" />
+        <circle cx="70" cy="95" r="38" fill="#eff6ff" />
+        <text x="70" y="107" text-anchor="middle" font-size="36">🗺️</text>
+        <text x="135" y="78" font-size="32" font-weight="800" fill="#1e3a8a">City Map &amp; Live Traffic</text>
+        <text x="135" y="128" font-size="24" font-weight="600" fill="#64748b">Building heights, roads, traffic jam index</text>
+      </g>
+
+      <!-- Open Tag -->
+      <g transform="translate(0, 660)">
+        <rect width="820" height="90" rx="20" fill="#eff6ff" stroke="#bfdbfe" stroke-width="2" />
+        <text x="410" y="56" text-anchor="middle" font-size="28" font-weight="800" fill="#2563eb">🔄 100% Free &amp; Open Scientific Feeds</text>
+      </g>
+
+      <!-- Integrated Tech Box -->
+      <g transform="translate(0, 780)">
+        <rect width="820" height="740" rx="24" fill="#0f172a" />
+        <text x="40" y="60" font-size="26" font-weight="900" fill="#38bdf8" letter-spacing="1">⚡ INGESTION ARCHITECTURE</text>
+        
+        <g transform="translate(40, 100)">
+          <rect width="740" height="85" rx="14" fill="#1e293b" />
+          <text x="30" y="52" font-size="24" font-weight="700" fill="#f8fafc">REST Telemetry Pull (15-min TTL)</text>
+        </g>
+        <g transform="translate(40, 205)">
+          <rect width="740" height="85" rx="14" fill="#1e293b" />
+          <text x="30" y="52" font-size="24" font-weight="700" fill="#f8fafc">Copernicus CDS &amp; Sentinel Hub</text>
+        </g>
+        <g transform="translate(40, 310)">
+          <rect width="740" height="85" rx="14" fill="#1e293b" />
+          <text x="30" y="52" font-size="24" font-weight="700" fill="#f8fafc">NASA FIRMS LANCE Vector Feeds</text>
+        </g>
+        <g transform="translate(40, 415)">
+          <rect width="740" height="85" rx="14" fill="#1e293b" />
+          <text x="30" y="52" font-size="24" font-weight="700" fill="#f8fafc">OpenStreetMap Overpass Turbo</text>
+        </g>
+        <g transform="translate(40, 520)">
+          <rect width="740" height="85" rx="14" fill="#1e293b" />
+          <text x="30" y="52" font-size="24" font-weight="700" fill="#f8fafc">TomTom Real-Time Jam Vector</text>
+        </g>
+        <text x="40" y="670" font-size="22" font-weight="500" fill="#94a3b8">Zero client latency with serverless cron workers</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- STEP 2: AIRNOVA ENGINE -->
+  <!-- ================================================================ -->
+  <g transform="translate(1210, 280)">
+    <rect width="920" height="1820" rx="40" fill="#fffbeb" stroke="#fde68a" stroke-width="3" filter="url(#cardShadow4K)" />
+
+    <!-- Header Pill -->
+    <g transform="translate(50, 50)" filter="url(#pillGlowAmber)">
+      <rect width="820" height="130" rx="28" fill="url(#headerAmber)" />
+      <text x="410" y="80" text-anchor="middle" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="1.5">STEP 2: AIRNOVA ENGINE</text>
+    </g>
+
+    <g transform="translate(50, 220)">
+      <!-- Item 2.1 -->
+      <g filter="url(#itemShadow4K)">
+        <rect width="820" height="190" rx="24" fill="#ffffff" stroke="#fde68a" stroke-width="2" />
+        <circle cx="70" cy="95" r="38" fill="#fef3c7" />
+        <text x="70" y="107" text-anchor="middle" font-size="36">🧹</text>
+        <text x="135" y="78" font-size="32" font-weight="800" fill="#92400e">Data Cleaning &amp; Security</text>
+        <text x="135" y="128" font-size="24" font-weight="600" fill="#78350f">Null filter + Automated waterfall failover</text>
+      </g>
+
+      <!-- Item 2.2 -->
+      <g transform="translate(0, 220)" filter="url(#itemShadow4K)">
+        <rect width="820" height="190" rx="24" fill="#ffffff" stroke="#fde68a" stroke-width="2" />
+        <circle cx="70" cy="95" r="38" fill="#fef3c7" />
+        <text x="70" y="107" text-anchor="middle" font-size="36">📐</text>
+        <text x="135" y="78" font-size="32" font-weight="800" fill="#92400e">Standard CPCB NAQI Math</text>
+        <text x="135" y="128" font-size="24" font-weight="600" fill="#78350f">Official Indian formula + US EPA toggle</text>
+      </g>
+
+      <!-- Item 2.3 -->
+      <g transform="translate(0, 440)" filter="url(#itemShadow4K)">
+        <rect width="820" height="190" rx="24" fill="#ffffff" stroke="#fde68a" stroke-width="2" />
+        <circle cx="70" cy="95" r="38" fill="#fef3c7" />
+        <text x="70" y="107" text-anchor="middle" font-size="36">🌪️</text>
+        <text x="135" y="78" font-size="32" font-weight="800" fill="#92400e">Atmospheric Physics Models</text>
+        <text x="135" y="128" font-size="24" font-weight="600" fill="#78350f">Ventilation Index &amp; Winter Smog Traps</text>
+      </g>
+
+      <!-- Fast Tag -->
+      <g transform="translate(0, 660)">
+        <rect width="820" height="90" rx="20" fill="#fef3c7" stroke="#fcd34d" stroke-width="2" />
+        <text x="410" y="56" text-anchor="middle" font-size="28" font-weight="800" fill="#b45309">⚡ Fast &amp; Deterministic (Zero AI)</text>
+      </g>
+
+      <!-- Integrated Tech Box -->
+      <g transform="translate(0, 780)">
+        <rect width="820" height="740" rx="24" fill="#0f172a" />
+        <text x="40" y="60" font-size="26" font-weight="900" fill="#fbbf24" letter-spacing="1">⚡ PROCESSING CORE</text>
+        
+        <g transform="translate(40, 100)">
+          <rect width="740" height="85" rx="14" fill="#1e293b" />
+          <text x="30" y="52" font-size="24" font-weight="700" fill="#f8fafc">Node.js (ESM) &amp; TypeScript Core</text>
+        </g>
+        <g transform="translate(40, 205)">
+          <rect width="740" height="85" rx="14" fill="#1e293b" />
+          <text x="30" y="52" font-size="24" font-weight="700" fill="#f8fafc">AES-GCM 256-bit Key Encryption</text>
+        </g>
+        <g transform="translate(40, 310)">
+          <rect width="740" height="85" rx="14" fill="#1e293b" />
+          <text x="30" y="52" font-size="24" font-weight="700" fill="#f8fafc">CPCB Piecewise Linear Interpolator</text>
+        </g>
+        <g transform="translate(40, 415)">
+          <rect width="740" height="85" rx="14" fill="#1e293b" />
+          <text x="30" y="52" font-size="24" font-weight="700" fill="#f8fafc">ECMWF Boundary Layer Height Solver</text>
+        </g>
+        <g transform="translate(40, 520)">
+          <rect width="740" height="85" rx="14" fill="#1e293b" />
+          <text x="30" y="52" font-size="24" font-weight="700" fill="#f8fafc">ANSI/AHAM AC-1 Mass-Balance Calc</text>
+        </g>
+        <text x="40" y="670" font-size="22" font-weight="500" fill="#94a3b8">Sub-millisecond algebraic execution</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- STEP 3: CITIZEN BENEFITS -->
+  <!-- ================================================================ -->
+  <g transform="translate(2300, 280)">
+    <rect width="920" height="1820" rx="40" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="3" filter="url(#cardShadow4K)" />
+
+    <!-- Header Pill -->
+    <g transform="translate(50, 50)" filter="url(#pillGlowGreen)">
+      <rect width="820" height="130" rx="28" fill="url(#headerGreen)" />
+      <text x="410" y="80" text-anchor="middle" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="1.5">STEP 3: CITIZEN BENEFITS</text>
+    </g>
+
+    <g transform="translate(50, 220)">
+      <!-- Item 3.1 -->
+      <g filter="url(#itemShadow4K)">
+        <rect width="820" height="190" rx="24" fill="#ffffff" stroke="#bbf7d0" stroke-width="2" />
+        <circle cx="70" cy="95" r="38" fill="#dcfce7" />
+        <text x="70" y="107" text-anchor="middle" font-size="36">🏘️</text>
+        <text x="135" y="78" font-size="32" font-weight="800" fill="#065f46">Local Gali / Park AQI</text>
+        <text x="135" y="128" font-size="24" font-weight="600" fill="#047857">Street-level air without any new hardware</text>
+      </g>
+
+      <!-- Item 3.2 -->
+      <g transform="translate(0, 220)" filter="url(#itemShadow4K)">
+        <rect width="820" height="190" rx="24" fill="#ffffff" stroke="#bbf7d0" stroke-width="2" />
+        <circle cx="70" cy="95" r="38" fill="#dcfce7" />
+        <text x="70" y="107" text-anchor="middle" font-size="36">⏱️</text>
+        <text x="135" y="78" font-size="32" font-weight="800" fill="#065f46">72-Hour Smog Advance Alert</text>
+        <text x="135" y="128" font-size="24" font-weight="600" fill="#047857">Early warning for asthma &amp; schools</text>
+      </g>
+
+      <!-- Item 3.3 -->
+      <g transform="translate(0, 440)" filter="url(#itemShadow4K)">
+        <rect width="820" height="190" rx="24" fill="#ffffff" stroke="#bbf7d0" stroke-width="2" />
+        <circle cx="70" cy="95" r="38" fill="#dcfce7" />
+        <text x="70" y="107" text-anchor="middle" font-size="36">💡</text>
+        <text x="135" y="78" font-size="32" font-weight="800" fill="#065f46">Room Purifier Timer</text>
+        <text x="135" y="128" font-size="24" font-weight="600" fill="#047857">"Clean in 20 mins" → Saves 35% power</text>
+      </g>
+
+      <!-- Speed Tag -->
+      <g transform="translate(0, 660)">
+        <rect width="820" height="90" rx="20" fill="#dcfce7" stroke="#86efac" stroke-width="2" />
+        <text x="410" y="56" text-anchor="middle" font-size="28" font-weight="800" fill="#059669">🚀 Sub-150ms Speed at airnova.space</text>
+      </g>
+
+      <!-- Integrated Tech Box -->
+      <g transform="translate(0, 780)">
+        <rect width="820" height="740" rx="24" fill="#0f172a" />
+        <text x="40" y="60" font-size="26" font-weight="900" fill="#34d399" letter-spacing="1">⚡ FRONTEND &amp; CDN</text>
+        
+        <g transform="translate(40, 100)">
+          <rect width="740" height="85" rx="14" fill="#1e293b" />
+          <text x="30" y="52" font-size="24" font-weight="700" fill="#f8fafc">Next.js 15 &amp; React 19 Client</text>
+        </g>
+        <g transform="translate(40, 205)">
+          <rect width="740" height="85" rx="14" fill="#1e293b" />
+          <text x="30" y="52" font-size="24" font-weight="700" fill="#f8fafc">Tailwind CSS &amp; Radix UI Primitives</text>
+        </g>
+        <g transform="translate(40, 310)">
+          <rect width="740" height="85" rx="14" fill="#1e293b" />
+          <text x="30" y="52" font-size="24" font-weight="700" fill="#f8fafc">Leaflet.js Real-Time Geospatial Map</text>
+        </g>
+        <g transform="translate(40, 415)">
+          <rect width="740" height="85" rx="14" fill="#1e293b" />
+          <text x="30" y="52" font-size="24" font-weight="700" fill="#f8fafc">Recharts (D3) Atmospheric Curves</text>
+        </g>
+        <g transform="translate(40, 520)">
+          <rect width="740" height="85" rx="14" fill="#1e293b" />
+          <text x="30" y="52" font-size="24" font-weight="700" fill="#f8fafc">Cloudflare / Hostinger Edge CDN</text>
+        </g>
+        <text x="40" y="670" font-size="22" font-weight="500" fill="#94a3b8">98+ Google Lighthouse Performance</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ================================================================ -->
+  <!-- RIGHT DEDICATED PANEL: LANGUAGES & TECH STACK USED -->
+  <!-- ================================================================ -->
+  <g transform="translate(3290, 280)">
+    <rect width="890" height="1820" rx="40" fill="url(#rightPanelBg)" stroke="#334155" stroke-width="3" filter="url(#cardShadow4K)" />
+
+    <!-- Top Header Pill -->
+    <g transform="translate(45, 50)" filter="url(#pillGlowPurple)">
+      <rect width="800" height="130" rx="28" fill="url(#headerPurple)" />
+      <text x="400" y="80" text-anchor="middle" font-size="34" font-weight="900" fill="#ffffff" letter-spacing="1.5">LANGUAGES &amp; TECH STACK</text>
+    </g>
+
+    <g transform="translate(45, 220)">
+      <!-- SECTION 1: PROGRAMMING LANGUAGES -->
+      <g>
+        <rect width="800" height="340" rx="20" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+        <text x="35" y="50" font-size="24" font-weight="800" fill="#c084fc">💻 PROGRAMMING LANGUAGES</text>
+        
+        <g transform="translate(35, 75)">
+          <!-- Badge 1: TypeScript -->
+          <rect width="340" height="60" rx="12" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" />
+          <text x="20" y="38" font-size="22" font-weight="800" fill="#38bdf8">TypeScript 5.x (Primary)</text>
+
+          <!-- Badge 2: JavaScript -->
+          <rect x="360" width="360" height="60" rx="12" fill="#0f172a" stroke="#facc15" stroke-width="1.5" />
+          <text x="380" y="38" font-size="22" font-weight="800" fill="#facc15">JavaScript (ESM / Node)</text>
+        </g>
+        <g transform="translate(35, 150)">
+          <!-- Badge 3: HTML5/CSS3 -->
+          <rect width="340" height="60" rx="12" fill="#0f172a" stroke="#fb923c" stroke-width="1.5" />
+          <text x="20" y="38" font-size="22" font-weight="800" fill="#fb923c">HTML5 &amp; Modern CSS3</text>
+
+          <!-- Badge 4: SQL & GeoJSON -->
+          <rect x="360" width="360" height="60" rx="12" fill="#0f172a" stroke="#4ade80" stroke-width="1.5" />
+          <text x="380" y="38" font-size="22" font-weight="800" fill="#4ade80">SQL / GeoJSON Query</text>
+        </g>
+        <g transform="translate(35, 225)">
+          <!-- Badge 5: Bash / Shell -->
+          <rect width="720" height="60" rx="12" fill="#0f172a" stroke="#94a3b8" stroke-width="1.5" />
+          <text x="20" y="38" font-size="22" font-weight="800" fill="#f1f5f9">PowerShell &amp; Bash (Automated CI/CD)</text>
+        </g>
+      </g>
+
+      <!-- SECTION 2: FRAMEWORKS & LIBRARIES -->
+      <g transform="translate(0, 370)">
+        <rect width="800" height="340" rx="20" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+        <text x="35" y="50" font-size="24" font-weight="800" fill="#38bdf8">⚛️ FRAMEWORKS &amp; LIBRARIES</text>
+        
+        <g transform="translate(35, 75)">
+          <rect width="340" height="60" rx="12" fill="#0f172a" stroke="#60a5fa" stroke-width="1.5" />
+          <text x="20" y="38" font-size="22" font-weight="800" fill="#60a5fa">Next.js 15 (App Router)</text>
+
+          <rect x="360" width="360" height="60" rx="12" fill="#0f172a" stroke="#60a5fa" stroke-width="1.5" />
+          <text x="380" y="38" font-size="22" font-weight="800" fill="#60a5fa">React 19 (Server Client)</text>
+        </g>
+        <g transform="translate(35, 150)">
+          <rect width="340" height="60" rx="12" fill="#0f172a" stroke="#2dd4bf" stroke-width="1.5" />
+          <text x="20" y="38" font-size="22" font-weight="800" fill="#2dd4bf">Tailwind CSS 3.4</text>
+
+          <rect x="360" width="360" height="60" rx="12" fill="#0f172a" stroke="#2dd4bf" stroke-width="1.5" />
+          <text x="380" y="38" font-size="22" font-weight="800" fill="#2dd4bf">Radix UI &amp; Lucide Icons</text>
+        </g>
+        <g transform="translate(35, 225)">
+          <rect width="340" height="60" rx="12" fill="#0f172a" stroke="#34d399" stroke-width="1.5" />
+          <text x="20" y="38" font-size="22" font-weight="800" fill="#34d399">Leaflet.js (GIS Engine)</text>
+
+          <rect x="360" width="360" height="60" rx="12" fill="#0f172a" stroke="#34d399" stroke-width="1.5" />
+          <text x="380" y="38" font-size="22" font-weight="800" fill="#34d399">Recharts (D3.js Charts)</text>
+        </g>
+      </g>
+
+      <!-- SECTION 3: RUNTIME & INFRASTRUCTURE -->
+      <g transform="translate(0, 740)">
+        <rect width="800" height="340" rx="20" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+        <text x="35" y="50" font-size="24" font-weight="800" fill="#4ade80">⚙️ RUNTIME &amp; INFRASTRUCTURE</text>
+        
+        <g transform="translate(35, 75)">
+          <rect width="340" height="60" rx="12" fill="#0f172a" stroke="#22c55e" stroke-width="1.5" />
+          <text x="20" y="38" font-size="22" font-weight="800" fill="#22c55e">Node.js v24 (ESM Engine)</text>
+
+          <rect x="360" width="360" height="60" rx="12" fill="#0f172a" stroke="#a855f7" stroke-width="1.5" />
+          <text x="380" y="38" font-size="22" font-weight="800" fill="#a855f7">Vite 8 Bundler</text>
+        </g>
+        <g transform="translate(35, 150)">
+          <rect width="720" height="60" rx="12" fill="#0f172a" stroke="#eab308" stroke-width="1.5" />
+          <text x="20" y="38" font-size="22" font-weight="800" fill="#facc15">AES-GCM Web Crypto (Server-Side)</text>
+        </g>
+        <g transform="translate(35, 225)">
+          <rect width="720" height="60" rx="12" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" />
+          <text x="20" y="38" font-size="22" font-weight="800" fill="#38bdf8">Hostinger / Cloudflare Global Edge CDN</text>
+        </g>
+      </g>
+
+      <!-- SECTION 4: SCIENTIFIC ENGINES -->
+      <g transform="translate(0, 1110)">
+        <rect width="800" height="380" rx="20" fill="#1e293b" stroke="#334155" stroke-width="1.5" />
+        <text x="35" y="50" font-size="24" font-weight="800" fill="#fbbf24">🔬 SCIENTIFIC ENGINES &amp; STANDARDS</text>
+        
+        <g transform="translate(35, 75)">
+          <rect width="720" height="60" rx="12" fill="#0f172a" stroke="#fbbf24" stroke-width="1.5" />
+          <text x="20" y="38" font-size="21" font-weight="700" fill="#fef08a">CPCB MoEFCC (2014) NAQI 8-Subindex Engine</text>
+        </g>
+        <g transform="translate(35, 150)">
+          <rect width="720" height="60" rx="12" fill="#0f172a" stroke="#fbbf24" stroke-width="1.5" />
+          <text x="20" y="38" font-size="21" font-weight="700" fill="#fef08a">ECMWF IFS 48r1 Planetary Boundary Layer Physics</text>
+        </g>
+        <g transform="translate(35, 225)">
+          <rect width="720" height="60" rx="12" fill="#0f172a" stroke="#fbbf24" stroke-width="1.5" />
+          <text x="20" y="38" font-size="21" font-weight="700" fill="#fef08a">ANSI/AHAM AC-1 Differential CADR Solver</text>
+        </g>
+        <g transform="translate(35, 300)">
+          <rect width="720" height="55" rx="12" fill="#064e3b" stroke="#10b981" stroke-width="1.5" />
+          <text x="360" y="36" text-anchor="middle" font-size="22" font-weight="800" fill="#34d399">100% Deterministic • Zero Black-Box</text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

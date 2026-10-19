@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 440" width="100%" height="100%" style="background:#ffffff; border-radius:18px;">
+  <defs>
+    <!-- Shadows -->
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0f172a" flood-opacity="0.06" />
+    </filter>
+    <filter id="accentGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#ef4444" flood-opacity="0.15" />
+    </filter>
+
+    <!-- Gradients -->
+    <linearGradient id="step1Grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff1f2" />
+      <stop offset="100%" stop-color="#ffe4e6" />
+    </linearGradient>
+    <linearGradient id="step2Grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffbeb" />
+      <stop offset="100%" stop-color="#fef3c7" />
+    </linearGradient>
+    <linearGradient id="step3Grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#eff6ff" />
+      <stop offset="100%" stop-color="#dbeafe" />
+    </linearGradient>
+    <linearGradient id="step4Grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f0fdf4" />
+      <stop offset="100%" stop-color="#dcfce7" />
+    </linearGradient>
+
+    <!-- Arrow Markers -->
+    <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 Z" fill="#3b82f6" />
+    </marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M 0 0 L 8 4 L 0 8 Z" fill="#10b981" />
+    </marker>
+  </defs>
+
+  <!-- Title Header -->
+  <text x="40" y="42" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="12" font-weight="800" fill="#2563eb" letter-spacing="1.5">URBAN SMOG INVERSION & CRISIS LIFECYCLE FLOWCHART</text>
+  <text x="40" y="66" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="18" font-weight="800" fill="#0f172a">From Emission Origin to Citizen Respiratory Danger</text>
+
+  <!-- Flow Connector Line -->
+  <path d="M 170 190 L 320 190" stroke="#cbd5e1" stroke-width="3" stroke-dasharray="6 6" />
+  <path d="M 390 190 L 540 190" stroke="#cbd5e1" stroke-width="3" stroke-dasharray="6 6" />
+  <path d="M 610 190 L 760 190" stroke="#cbd5e1" stroke-width="3" stroke-dasharray="6 6" />
+
+  <!-- Connecting Animated Arrowheads -->
+  <path d="M 230 190 L 250 190" stroke="#3b82f6" stroke-width="4" marker-end="url(#arrowBlue)" />
+  <path d="M 450 190 L 470 190" stroke="#3b82f6" stroke-width="4" marker-end="url(#arrowBlue)" />
+  <path d="M 670 190 L 690 190" stroke="#3b82f6" stroke-width="4" marker-end="url(#arrowBlue)" />
+
+  <!-- STEP 1: Ground Emissions -->
+  <g transform="translate(40, 100)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="200" height="180" rx="16" fill="url(#step1Grad)" stroke="#fecdd3" stroke-width="1.5" />
+    <!-- Step Badge -->
+    <rect x="14" y="14" width="60" height="22" rx="6" fill="#e11d48" />
+    <text x="44" y="29" font-family="system-ui, sans-serif" font-size="10" font-weight="800" fill="#ffffff" text-anchor="middle">STEP 01</text>
+    
+    <!-- Icon Circle -->
+    <circle cx="150" cy="30" r="18" fill="#ffe4e6" />
+    <text x="150" y="37" font-size="18" text-anchor="middle">🏭</text>
+    
+    <text x="16" y="65" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="800" fill="#0f172a">Ground Emissions</text>
+    <text x="16" y="85" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#475569">Vehicles &amp; Heavy Industry</text>
+
+    <!-- Sub Info Box -->
+    <rect x="14" y="100" width="172" height="64" rx="8" fill="#ffffff" stroke="#fecdd3" stroke-width="1" />
+    <text x="24" y="120" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#9f1239">• PM2.5 &amp; PM10 dust</text>
+    <text x="24" y="136" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#9f1239">• Toxic gases: CO, NO2, SO2</text>
+    <text x="24" y="152" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#9f1239">• Continuous daytime build</text>
+  </g>
+
+  <!-- STEP 2: NASA Stubble Fires -->
+  <g transform="translate(260, 100)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="200" height="180" rx="16" fill="url(#step2Grad)" stroke="#fde68a" stroke-width="1.5" />
+    <rect x="14" y="14" width="60" height="22" rx="6" fill="#d97706" />
+    <text x="44" y="29" font-family="system-ui, sans-serif" font-size="10" font-weight="800" fill="#ffffff" text-anchor="middle">STEP 02</text>
+    
+    <circle cx="150" cy="30" r="18" fill="#fef3c7" />
+    <text x="150" y="37" font-size="18" text-anchor="middle">🔥</text>
+
+    <text x="16" y="65" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="800" fill="#0f172a">Crop Stubble Fire</text>
+    <text x="16" y="85" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#475569">NASA FIRMS Satellite</text>
+
+    <rect x="14" y="100" width="172" height="64" rx="8" fill="#ffffff" stroke="#fde68a" stroke-width="1" />
+    <text x="24" y="120" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#92400e">• Active farm fire vectors</text>
+    <text x="24" y="136" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#92400e">• Drift from Punjab/Haryana</text>
+    <text x="24" y="152" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#92400e">• Dense carbon smoke plume</text>
+  </g>
+
+  <!-- STEP 3: Nocturnal Boundary Collapse -->
+  <g transform="translate(480, 100)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="200" height="180" rx="16" fill="url(#step3Grad)" stroke="#bfdbfe" stroke-width="1.5" />
+    <rect x="14" y="14" width="60" height="22" rx="6" fill="#2563eb" />
+    <text x="44" y="29" font-family="system-ui, sans-serif" font-size="10" font-weight="800" fill="#ffffff" text-anchor="middle">STEP 03</text>
+    
+    <circle cx="150" cy="30" r="18" fill="#dbeafe" />
+    <text x="150" y="37" font-size="18" text-anchor="middle">❄️</text>
+
+    <text x="16" y="65" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="800" fill="#0f172a">Night Inversion</text>
+    <text x="16" y="85" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#475569">Boundary Layer Drops</text>
+
+    <rect x="14" y="100" width="172" height="64" rx="8" fill="#ffffff" stroke="#bfdbfe" stroke-width="1" />
+    <text x="24" y="120" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#1e40af">• Ceiling drops &lt; 250 meters</text>
+    <text x="24" y="136" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#1e40af">• Ventilation crashes &lt; 1000</text>
+    <text x="24" y="152" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#1e40af">• Sealed urban gas chamber</text>
+  </g>
+
+  <!-- STEP 4: Citizen Risk & AirNova Solution -->
+  <g transform="translate(700, 100)" filter="url(#accentGlow)">
+    <rect x="0" y="0" width="260" height="180" rx="16" fill="url(#step4Grad)" stroke="#86efac" stroke-width="2" />
+    <rect x="14" y="14" width="70" height="22" rx="6" fill="#059669" />
+    <text x="49" y="29" font-family="system-ui, sans-serif" font-size="10" font-weight="800" fill="#ffffff" text-anchor="middle">SOLUTION</text>
+    
+    <circle cx="210" cy="30" r="18" fill="#dcfce7" />
+    <text x="210" y="37" font-size="18" text-anchor="middle">🛡️</text>
+
+    <text x="16" y="65" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="800" fill="#065f46">AirNova Action</text>
+    <text x="16" y="85" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#047857">Predictive Protection</text>
+
+    <rect x="14" y="100" width="232" height="64" rx="8" fill="#ffffff" stroke="#86efac" stroke-width="1" />
+    <text x="24" y="120" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#065f46">✓ 72h Inversion alert sent</text>
+    <text x="24" y="136" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#065f46">✓ N95 mask advisory triggered</text>
+    <text x="24" y="152" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#065f46">✓ Indoor CADR purifier timer set</text>
+  </g>
+
+  <!-- Bottom Comparison Bar -->
+  <g transform="translate(40, 310)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="920" height="90" rx="14" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5" />
+    
+    <text x="24" y="34" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="12" font-weight="800" fill="#0f172a">WHY EXISTING APPS FAIL CITIZENS:</text>
+    
+    <!-- Badges -->
+    <rect x="24" y="48" width="270" height="28" rx="8" fill="#fee2e2" stroke="#fca5a5" stroke-width="1" />
+    <text x="36" y="66" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#991b1b">❌ Google/Apple: US EPA Mismatch</text>
+
+    <rect x="310" y="48" width="270" height="28" rx="8" fill="#fef3c7" stroke="#fcd34d" stroke-width="1" />
+    <text x="322" y="66" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#92400e">❌ Govt Sameer: 2-Hour Stale Delay</text>
+
+    <rect x="596" y="48" width="300" height="28" rx="8" fill="#d1fae5" stroke="#6ee7b7" stroke-width="1.5" />
+    <text x="608" y="66" font-family="system-ui, sans-serif" font-size="11" font-weight="800" fill="#065f46">✅ AirNova: Real DPCC + 72h Physics Forecast</text>
+  </g>
+</svg>
