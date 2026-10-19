@@ -1,4 +1,4 @@
-AirNova v0.9.1
-Build: 91/100
-Commit: feat(ui): assemble primary responsive AirNova civic portal
-Timestamp: 2026-10-19T17:25:10 UTC
+AirNova v0.9.2
+Build: 92/100
+Commit: feat(ui): embed Leaflet geospatial hotspot map and station telemetry
+Timestamp: 2026-10-19T23:43:00 UTC
