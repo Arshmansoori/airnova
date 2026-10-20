@@ -1,4 +1,4 @@
-AirNova v0.9.3
-Build: 93/100
-Commit: style(ui): apply high-contrast dark theme and civic glassmorphism tokens
-Timestamp: 2026-10-20T10:39:19 UTC
+AirNova v0.9.4
+Build: 94/100
+Commit: perf(edge): configure gzip compression and browser caching in .htaccess
+Timestamp: 2026-10-20T22:26:46 UTC
