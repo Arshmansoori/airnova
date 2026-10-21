@@ -1,4 +1,4 @@
-AirNova v0.9.5
-Build: 95/100
-Commit: security: protect internal data directories and prevent config file traversal
-Timestamp: 2026-10-21T05:49:51 UTC
+AirNova v0.9.6
+Build: 96/100
+Commit: docs: add high-definition system architecture and physics flowcharts
+Timestamp: 2026-10-21T06:39:13 UTC
