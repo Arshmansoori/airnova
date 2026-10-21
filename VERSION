@@ -1,4 +1,4 @@
-AirNova v0.9.8
-Build: 98/100
-Commit: test: conduct full integration test across health, upstreams and forecast
-Timestamp: 2026-10-21T11:40:53 UTC
+AirNova v0.9.9
+Build: 99/100
+Commit: docs: polish production README with live demo link and deployment guide
+Timestamp: 2026-10-21T21:02:37 UTC
