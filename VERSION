@@ -1,4 +1,4 @@
-AirNova v0.9.7
-Build: 97/100
-Commit: refactor(config): decouple live credentials into config.example.php template
-Timestamp: 2026-10-21T11:00:50 UTC
+AirNova v0.9.8
+Build: 98/100
+Commit: test: conduct full integration test across health, upstreams and forecast
+Timestamp: 2026-10-21T11:40:53 UTC
