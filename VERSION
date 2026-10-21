@@ -1,4 +1,4 @@
-AirNova v0.9.6
-Build: 96/100
-Commit: docs: add high-definition system architecture and physics flowcharts
-Timestamp: 2026-10-21T06:39:13 UTC
+AirNova v0.9.7
+Build: 97/100
+Commit: refactor(config): decouple live credentials into config.example.php template
+Timestamp: 2026-10-21T11:00:50 UTC
