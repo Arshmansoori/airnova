@@ -1,4 +1,4 @@
-AirNova v0.9.4
-Build: 94/100
-Commit: perf(edge): configure gzip compression and browser caching in .htaccess
-Timestamp: 2026-10-20T22:26:46 UTC
+AirNova v0.9.5
+Build: 95/100
+Commit: security: protect internal data directories and prevent config file traversal
+Timestamp: 2026-10-21T05:49:51 UTC
