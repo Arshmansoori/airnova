@@ -77,8 +77,14 @@ Integrates NASA FIRMS VIIRS (NOAA-20 / NOAA-21) fire radiometry across northwest
 ### 4. Differential CADR Purifier Calculator
 Uses clean-air delivery rate mass-balance fluid dynamics equations to calculate the exact room purification time and filtration speed requirements based on indoor dimensions and ambient outdoor pollution.
 
-### 5. Micro-Architecture & Shared-Hosting Ready
-Built with zero framework bloat. The core PHP micro-engine runs comfortably on standard Linux/Apache shared hosting or edge instances with memory-efficient flat-file caching.
+### 5. 📷 AirVision Cam: Computer Vision AQI & Dehazer
+Uses He et al.'s Dark Channel Prior (DCP) and the Koschmieder Atmospheric Extinction Law ($I(x) = J(x)t(x) + A(1-t(x))$) to calculate aerosol optical scattering across 11×11 local patches. Directly estimates street-level PM2.5 and CPCB AQI from any smartphone sky/building photo, accompanied by real-time dehazed clean-scene reconstruction.
+
+### 6. 💨 60 FPS Stubble Plume & Wind Vector Stream Engine (Windy.com Style)
+Models 2D atmospheric fluid advection ($\frac{\partial C}{\partial t} + \mathbf{u}\cdot\nabla C = S$) over Northern India on HTML5 Canvas. Integrates active NASA FIRMS VIIRS stubble fire clusters across Punjab/Haryana, rendering dynamic fiery red/amber smoke trails that trace plume transport directly into the Delhi-NCR basin with interactive wind speed and 72-hour forecast timeline controls.
+
+### 7. Micro-Architecture & Shared-Hosting Ready
+Built with zero framework bloat. The core PHP micro-engine runs comfortably on standard Linux/Apache shared hosting or edge instances with memory-efficient flat-file caching. Dedicated standalone client `airvision.html` runs offline with zero server dependencies.
 
 ---
 

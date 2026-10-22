@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#071018" />
+  <title>AirNova Deep Tech Suite — AirVision AI Cam & Particle Wind Stream</title>
+  <style>
+    :root {
+      --bg: #071018;
+      --panel: #0c1823;
+      --panel2: #102231;
+      --line: #203748;
+      --text: #f1f7fb;
+      --muted: #8ba3b5;
+      --cyan: #38bdf8;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --red: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: radial-gradient(circle at 20% 0%, #102a3f 0%, #071018 45%), var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      padding: 24px;
+    }
+    .container { max-width: 1400px; margin: 0 auto; }
+    
+    /* Top Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand-logo {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: linear-gradient(135deg, #0284c7, #10b981);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 20px; color: #fff;
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+    }
+    .brand-title { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+    .brand-sub { font-size: 12px; color: var(--muted); }
+    .nav-pill {
+      background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.25);
+      color: var(--cyan); padding: 8px 16px; border-radius: 9999px;
+      font-size: 12px; font-weight: 700; text-decoration: none;
+    }
+
+    /* Hero intro */
+    .hero { margin-bottom: 32px; }
+    .hero-tag {
+      font-size: 11px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--cyan); margin-bottom: 8px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 4vw, 44px); font-weight: 900;
+      line-height: 1.1; letter-spacing: -0.8px; margin-bottom: 12px;
+    }
+    .hero p { max-width: 820px; color: var(--muted); font-size: 15px; line-height: 1.6; }
+
+    /* Grid Layout */
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 1024px) {
+      .showcase-grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(16, 34, 49, 0.95), rgba(9, 22, 32, 0.95));
+      border: 1.5px solid var(--line);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card-top { margin-bottom: 20px; }
+    .card-label {
+      font-size: 11px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 1.2px; color: var(--cyan); margin-bottom: 4px;
+    }
+    .card-title { font-size: 24px; font-weight: 800; letter-spacing: -0.4px; margin-bottom: 8px; }
+    .card-desc { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+
+    /* Controls & Buttons */
+    .btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+    button {
+      border: 0; outline: none; cursor: pointer; font-weight: 700;
+      border-radius: 12px; transition: all 0.15s ease;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #38bdf8, #0284c7);
+      color: #04121d; padding: 11px 18px; font-size: 13px;
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(56, 189, 248, 0.35); }
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line);
+      color: #e2e8f0; padding: 11px 16px; font-size: 13px;
+    }
+    .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); }
+
+    /* Canvas Viewports */
+    .view-wrap {
+      width: 100%; height: 330px; background: #050d15;
+      border-radius: 16px; border: 1px solid var(--line);
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .view-wrap canvas { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+    /* Stats Grid */
+    .stat-bar {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 12px; margin-top: 20px;
+    }
+    .stat-cell {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 14px; padding: 14px; text-align: center;
+    }
+    .stat-num { font-size: 26px; font-weight: 900; color: #fff; margin-top: 2px; }
+    .stat-lbl { font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 700; }
+
+    /* Controls Deck for Wind */
+    .deck {
+      background: rgba(6, 16, 25, 0.65); border: 1px solid var(--line);
+      border-radius: 16px; padding: 16px 20px; margin-top: 18px;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .deck-row { display: flex; justify-content: space-between; align-items: center; gap: 14px; font-size: 13px; }
+    input[type=range] { flex: 1; accent-color: var(--cyan); cursor: pointer; }
+
+    /* Science Footer */
+    .science-banner {
+      background: linear-gradient(135deg, rgba(16, 34, 49, 0.8), rgba(6, 16, 25, 0.8));
+      border: 1px solid var(--line); border-radius: 20px; padding: 24px 28px;
+      display: flex; justify-content: space-between; align-items: center; gap: 24px;
+      flex-wrap: wrap;
+    }
+    .formula-tag {
+      font-family: monospace; background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25); color: var(--cyan);
+      padding: 6px 14px; border-radius: 8px; font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="brand-logo">AN</div>
+        <div>
+          <div class="brand-title">AirNova Deep Tech Suite</div>
+          <div class="brand-sub">Atmospheric Physics &amp; Computer Vision Engine</div>
+        </div>
+      </div>
+      <a href="prediction/index.php" class="nav-pill">Open 72h Forecast Portal ↗</a>
+    </header>
+
+    <div class="hero">
+      <div class="hero-tag">NEXT-GEN ENVIRONMENTAL COMPUTING</div>
+      <h1>Real-Time AI Sky Scanner &amp; 60 FPS Stubble Plume Vectors</h1>
+      <p>
+        Experience AirNova's two flagship technical breakthroughs: instantaneous street-level AQI estimation from any sky photo using <strong>Dark Channel Prior (DCP) optical extinction</strong>, and <strong>60 FPS fluid particle advection</strong> modeling agricultural stubble smoke transport from Punjab/Haryana into Delhi NCR.
+      </p>
+    </div>
+
+    <div class="showcase-grid">
+
+      <!-- ==============================================
+           MODULE 1: AIRVISION CAM
+           ============================================== -->
+      <section class="card">
+        <div class="card-top">
+          <div class="card-label">ATMOSPHERIC OPTICS &amp; EXTINCTION PHYSICS</div>
+          <h2 class="card-title">📷 AirVision Cam: Image AQI &amp; Dehazer</h2>
+          <p class="card-desc">
+            Takes any photo of the sky or urban buildings, measures aerosol scattering using the Koschmieder atmospheric law, and extracts particulate transmission to reconstruct a crystal-clear dehazed image.
+          </p>
+
+          <div class="btn-row">
+            <input type="file" id="standaloneFileInput" accept="image/*" style="display:none" />
+            <button class="btn-primary" onclick="document.getElementById('standaloneFileInput').click()">
+              📷 Upload / Capture Photo
+            </button>
+            <button class="btn-outline" id="btnRunDelhiTest">Simulate Delhi Smog</button>
+            <button class="btn-outline" id="btnToggleCleanView" style="display:none">✨ View Dehazed Clean Scene</button>
+          </div>
+
+          <div class="view-wrap">
+            <div id="camHintBox" style="text-align:center;color:var(--muted);padding:30px">
+              <div style="font-size:42px;margin-bottom:10px">🏙️</div>
+              <div style="font-weight:700;color:#fff;font-size:15px">Upload a photo or click Simulate Delhi Smog</div>
+              <div style="font-size:12.5px;margin-top:4px">Analyzes haze optical depth &amp; calculates PM2.5</div>
+            </div>
+            <canvas id="standaloneCamCanvas" style="display:none"></canvas>
+          </div>
+
+          <div class="stat-bar">
+            <div class="stat-cell">
+              <div class="stat-lbl">Estimated AQI</div>
+              <div id="lblAqi" class="stat-num">—</div>
+            </div>
+            <div class="stat-cell">
+              <div class="stat-lbl">Est. PM2.5</div>
+              <div id="lblPm25" class="stat-num">—</div>
+            </div>
+            <div class="stat-cell">
+              <div class="stat-lbl">Haze Density</div>
+              <div id="lblHaze" class="stat-num">—</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="lblAdvice" style="padding:14px 18px;border-radius:14px;background:rgba(255,255,255,0.03);border:1px solid var(--line);font-size:13px;line-height:1.5;color:var(--muted)">
+          Ready to compute optical transmission across 11×11 local patches.
+        </div>
+      </section>
+
+      <!-- ==============================================
+           MODULE 2: PARTICLE WIND & STUBBLE SMOKE
+           ============================================== -->
+      <section class="card">
+        <div class="card-top">
+          <div class="card-label">2D FLUID ADVECTION &amp; REGIONAL TRANSPORT</div>
+          <h2 class="card-title">💨 Stubble Fire Smoke Streams (Windy Style)</h2>
+          <p class="card-desc">
+            Simulates real-time seasonal atmospheric wind velocity vectors across Northern India. Active NASA FIRMS VIIRS fire clusters in Punjab &amp; Haryana generate burning smoke trails that converge directly into Delhi NCR.
+          </p>
+
+          <div class="btn-row">
+            <button class="btn-primary" id="btnTogglePlumes">
+              🔥 Plumes Mode: Active
+            </button>
+            <button class="btn-outline" id="btnCycleSpeed">Speed: 1.0x</button>
+            <button class="btn-outline" id="btnResetSimulation">Respawn Particles</button>
+          </div>
+
+          <div class="view-wrap">
+            <canvas id="standaloneWindCanvas"></canvas>
+          </div>
+
+          <div class="deck">
+            <div class="deck-row">
+              <span style="font-weight:700">72h Forecast Hour:</span>
+              <span id="lblHour" style="font-family:monospace;color:var(--cyan);font-weight:800">+0 Hours</span>
+              <input type="range" id="hourSlider" min="0" max="72" value="0" />
+            </div>
+            <div class="deck-row">
+              <span style="font-weight:700">Particle Density:</span>
+              <span id="lblDensity" style="font-family:monospace;color:var(--muted)">2,000 Particles</span>
+              <input type="range" id="densitySlider" min="800" max="3200" step="200" value="2000" />
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted);padding-top:10px">
+          <span>📍 Flow Vector: NW Continental Winds ➔ Delhi Bowl Stagnation</span>
+          <span style="color:#ef4444;font-weight:700">● 6 Active Hotspot Zones</span>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Science Footnote -->
+    <div class="science-banner">
+      <div>
+        <h3 style="font-size:16px;font-weight:800;margin-bottom:4px">Scientific Foundation: Atmospheric Optics &amp; Advection</h3>
+        <p style="font-size:13px;color:var(--muted);max-width:700px">
+          AirVision Cam implements He et al.'s Dark Channel Prior with Koschmieder extinction law. The wind stream engine models 2D advection vectors using ECMWF 10m wind fields and NASA FIRMS active fire radiometry.
+        </p>
+      </div>
+      <div class="formula-tag">
+        I(x) = J(x)·t(x) + A·(1-t(x))
+      </div>
+    </div>
+  </div>
+
+  <!-- Engine Scripts -->
+  <script src="prediction/assets/airvision-cam.js"></script>
+  <script src="prediction/assets/wind-particles.js"></script>
+
+  <script>
+    // 1. Initialize AirVision Cam
+    const vision = new AirVisionEngine();
+    let currentResult = null;
+    let showingDehazed = false;
+
+    const fileInput = document.getElementById('standaloneFileInput');
+    const camCanvas = document.getElementById('standaloneCamCanvas');
+    const camHint = document.getElementById('camHintBox');
+    const btnToggle = document.getElementById('btnToggleCleanView');
+
+    function handleImage(img) {
+      document.getElementById('lblAdvice').textContent = 'Analyzing atmospheric optical transmission…';
+      setTimeout(() => {
+        currentResult = vision.analyze(img, { relativeHumidity: 65 });
+        camHint.style.display = 'none';
+        camCanvas.style.display = 'block';
+
+        camCanvas.width = currentResult.dimensions.width;
+        camCanvas.height = currentResult.dimensions.height;
+        const ctx = camCanvas.getContext('2d');
+        ctx.drawImage(currentResult.originalCanvas, 0, 0);
+        showingDehazed = false;
+
+        document.getElementById('lblAqi').textContent = currentResult.aqi;
+        document.getElementById('lblAqi').style.color = currentResult.color;
+        document.getElementById('lblPm25').textContent = currentResult.estimatedPm25 + ' µg/m³';
+        document.getElementById('lblHaze').textContent = currentResult.hazeDensityPercent + '%';
+
+        document.getElementById('lblAdvice').innerHTML = `
+          <strong style="color:${currentResult.color}">● ${currentResult.category} (AQI ${currentResult.aqi}):</strong>
+          ${currentResult.healthGuidance}
+          <br><small style="color:var(--muted)">Mean Transmission: ${currentResult.avgTransmission} | Airlight: (${currentResult.airlight.r}, ${currentResult.airlight.g}, ${currentResult.airlight.b})</small>
+        `;
+
+        btnToggle.style.display = 'inline-block';
+        btnToggle.textContent = '✨ View Dehazed Clean Scene';
+      }, 50);
+    }
+
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const img = new Image();
+        img.onload = () => handleImage(img);
+        img.src = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    btnToggle.addEventListener('click', () => {
+      if (!currentResult) return;
+      const ctx = camCanvas.getContext('2d');
+      if (showingDehazed) {
+        ctx.drawImage(currentResult.originalCanvas, 0, 0);
+        btnToggle.textContent = '✨ View Dehazed Clean Scene';
+        showingDehazed = false;
+      } else {
+        ctx.drawImage(currentResult.dehazedCanvas, 0, 0);
+        btnToggle.textContent = '🔄 View Original Hazy Scene';
+        showingDehazed = true;
+      }
+    });
+
+    // Simulated Delhi Smog Scene
+    document.getElementById('btnRunDelhiTest').addEventListener('click', () => {
+      const c = document.createElement('canvas');
+      c.width = 460; c.height = 300;
+      const ctx = c.getContext('2d');
+
+      const sky = ctx.createLinearGradient(0, 0, 0, 190);
+      sky.addColorStop(0, '#baa998');
+      sky.addColorStop(1, '#dbcdbc');
+      ctx.fillStyle = sky;
+      ctx.fillRect(0, 0, 460, 190);
+
+      // Distant smoggy skyline
+      ctx.fillStyle = 'rgba(140, 130, 120, 0.4)';
+      ctx.fillRect(50, 110, 60, 90);
+      ctx.fillRect(130, 80, 80, 120);
+      ctx.fillRect(230, 120, 90, 80);
+      ctx.fillRect(340, 70, 75, 130);
+
+      // Near monuments & trees
+      ctx.fillStyle = '#614f44';
+      ctx.fillRect(80, 140, 65, 60);
+      ctx.fillRect(250, 130, 80, 70);
+
+      // Road
+      ctx.fillStyle = '#423a35';
+      ctx.fillRect(0, 190, 460, 110);
+
+      // Heavy atmospheric smog blanket
+      ctx.fillStyle = 'rgba(215, 202, 190, 0.58)';
+      ctx.fillRect(0, 0, 460, 300);
+
+      const simImg = new Image();
+      simImg.onload = () => handleImage(simImg);
+      simImg.src = c.toDataURL();
+    });
+
+    // 2. Initialize Particle Stream
+    const windCanvas = document.getElementById('standaloneWindCanvas');
+    const wind = new WindParticleEngine(windCanvas, {
+      particleCount: 2000,
+      speedMultiplier: 1.1,
+      plumeMode: true
+    });
+    wind.start();
+
+    window.addEventListener('resize', () => wind.resize());
+
+    // Controls
+    const btnPlumes = document.getElementById('btnTogglePlumes');
+    btnPlumes.addEventListener('click', () => {
+      const next = !wind.plumeMode;
+      wind.setPlumeMode(next);
+      if (next) {
+        btnPlumes.textContent = '🔥 Plumes Mode: Active';
+        btnPlumes.className = 'btn-primary';
+      } else {
+        btnPlumes.textContent = '💨 Pure Wind Vectors';
+        btnPlumes.className = 'btn-outline';
+      }
+    });
+
+    const btnSpeed = document.getElementById('btnCycleSpeed');
+    const spds = [1.0, 1.8, 2.5, 0.6];
+    let spdIdx = 0;
+    btnSpeed.addEventListener('click', () => {
+      spdIdx = (spdIdx + 1) % spds.length;
+      wind.setSpeed(spds[spdIdx]);
+      btnSpeed.textContent = `Speed: ${spds[spdIdx].toFixed(1)}x`;
+    });
+
+    document.getElementById('btnResetSimulation').addEventListener('click', () => {
+      wind.initParticles();
+    });
+
+    const hourSlider = document.getElementById('hourSlider');
+    const lblHour = document.getElementById('lblHour');
+    hourSlider.addEventListener('input', (e) => {
+      const h = +e.target.value;
+      lblHour.textContent = `+${h} Hours`;
+      wind.setHour(h);
+    });
+
+    const densitySlider = document.getElementById('densitySlider');
+    const lblDensity = document.getElementById('lblDensity');
+    densitySlider.addEventListener('input', (e) => {
+      const d = +e.target.value;
+      lblDensity.textContent = d.toLocaleString() + ' Particles';
+      wind.setParticleCount(d);
+    });
+
+    // Trigger synthetic demo on load so both modules are visually alive instantly
+    window.addEventListener('load', () => {
+      document.getElementById('btnRunDelhiTest').click();
+    });
+  </script>
+</body>
+</html>

@@ -74,4 +74,180 @@ function drawChart(hours){
   const idx=[0,12,24,36,48,60,71].filter(i=>i<hours.length),ticks=idx.map(i=>`<text x="${x(i)}" y="${H-10}" fill="#7794a8" font-size="11" text-anchor="middle">+${i}h</text>`).join('');
   svg.innerHTML=`${grid}${ticks}<polyline points="${points}" fill="none" stroke="#52e3c2" stroke-width="4" vector-effect="non-scaling-stroke"/><circle cx="${x(0)}" cy="${y(vals[0])}" r="7" fill="#fff"/>`;
 }
-init();
+
+/* ========================================================
+   AIRVISION CAM & WIND PARTICLES INTEGRATION
+   ======================================================== */
+let airVisionEngine = null;
+let currentVisionResult = null;
+let isShowingDehazed = false;
+
+function initAirVision() {
+  if (!window.AirVisionEngine) return;
+  airVisionEngine = new window.AirVisionEngine();
+
+  const fileInput = $('camFileInput');
+  const placeholder = $('camPlaceholder');
+  const canvas = $('camCanvas');
+  const btnToggle = $('btnToggleDehaze');
+  const btnSample = $('btnSampleDelhi');
+
+  const processImage = (img) => {
+    $('camStatusBadge').textContent = 'Analyzing optics…';
+    setTimeout(() => {
+      currentVisionResult = airVisionEngine.analyze(img, { relativeHumidity: 65 });
+      placeholder.style.display = 'none';
+      canvas.style.display = 'block';
+
+      // Draw original by default
+      const ctx = canvas.getContext('2d');
+      canvas.width = currentVisionResult.dimensions.width;
+      canvas.height = currentVisionResult.dimensions.height;
+      ctx.drawImage(currentVisionResult.originalCanvas, 0, 0);
+      isShowingDehazed = false;
+
+      // Update UI readouts
+      $('vStatAqi').textContent = currentVisionResult.aqi;
+      $('vStatAqi').style.color = currentVisionResult.color;
+      $('vStatPm25').textContent = `${currentVisionResult.estimatedPm25} µg/m³`;
+      $('vStatHaze').textContent = `${currentVisionResult.hazeDensityPercent}%`;
+      $('camStatusBadge').textContent = `${currentVisionResult.category} (AQI ${currentVisionResult.aqi})`;
+      $('camStatusBadge').style.borderColor = currentVisionResult.color;
+      $('camStatusBadge').style.color = currentVisionResult.color;
+
+      $('vHealthAlert').innerHTML = `
+        <strong style="color:${currentVisionResult.color}">● ${currentVisionResult.category} Air Quality Detected:</strong>
+        ${currentVisionResult.healthGuidance}
+        <br><small style="color:var(--muted)">Airlight vector A=(${currentVisionResult.airlight.r}, ${currentVisionResult.airlight.g}, ${currentVisionResult.airlight.b}) | Mean Transmission t=${currentVisionResult.avgTransmission}</small>
+      `;
+
+      btnToggle.style.display = 'inline-block';
+      btnToggle.textContent = '✨ View Dehazed Reconstruction';
+    }, 40);
+  };
+
+  fileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const img = new Image();
+      img.onload = () => processImage(img);
+      img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+
+  btnToggle.addEventListener('click', () => {
+    if (!currentVisionResult) return;
+    const ctx = canvas.getContext('2d');
+    if (isShowingDehazed) {
+      ctx.drawImage(currentVisionResult.originalCanvas, 0, 0);
+      btnToggle.textContent = '✨ View Dehazed Reconstruction';
+      isShowingDehazed = false;
+    } else {
+      ctx.drawImage(currentVisionResult.dehazedCanvas, 0, 0);
+      btnToggle.textContent = '🔄 View Original Hazy Scene';
+      isShowingDehazed = true;
+    }
+  });
+
+  // Built-in synthetic procedural Delhi smog test generator
+  btnSample.addEventListener('click', () => {
+    const tCanvas = document.createElement('canvas');
+    tCanvas.width = 460;
+    tCanvas.height = 300;
+    const tCtx = tCanvas.getContext('2d');
+
+    // Sky with heavy smog gradient
+    const skyGrad = tCtx.createLinearGradient(0, 0, 0, 200);
+    skyGrad.addColorStop(0, '#c7bfae');
+    skyGrad.addColorStop(1, '#dfd5c4');
+    tCtx.fillStyle = skyGrad;
+    tCtx.fillRect(0, 0, 460, 200);
+
+    // Far skyline silhouette (washed out by smog)
+    tCtx.fillStyle = 'rgba(150, 140, 130, 0.45)';
+    tCtx.fillRect(40, 120, 50, 80);
+    tCtx.fillRect(110, 90, 70, 110);
+    tCtx.fillRect(200, 130, 90, 70);
+    tCtx.fillRect(320, 80, 80, 120);
+
+    // Near monuments / buildings (higher contrast but hazy)
+    tCtx.fillStyle = '#6e5e52';
+    tCtx.fillRect(70, 150, 60, 50);
+    tCtx.fillRect(230, 140, 75, 60);
+
+    // Ground road
+    tCtx.fillStyle = '#4a433d';
+    tCtx.fillRect(0, 200, 460, 100);
+
+    // Apply atmospheric haze blanket
+    tCtx.fillStyle = 'rgba(215, 205, 195, 0.55)';
+    tCtx.fillRect(0, 0, 460, 300);
+
+    const testImg = new Image();
+    testImg.onload = () => processImage(testImg);
+    testImg.src = tCanvas.toDataURL();
+  });
+}
+
+let windEngine = null;
+function initWindSimulation() {
+  const canvas = $('windCanvas');
+  if (!canvas || !window.WindParticleEngine) return;
+
+  windEngine = new window.WindParticleEngine(canvas, {
+    particleCount: 1800,
+    speedMultiplier: 1.1,
+    plumeMode: true
+  });
+  windEngine.start();
+
+  window.addEventListener('resize', () => {
+    if (windEngine) windEngine.resize();
+  });
+
+  const slider = $('windHourSlider');
+  const hourLbl = $('windHourLbl');
+  slider.addEventListener('input', (e) => {
+    const val = +e.target.value;
+    hourLbl.textContent = `+${val} Hours Forecast`;
+    windEngine.setHour(val);
+  });
+
+  const btnPlume = $('btnPlumeToggle');
+  const plumeBadge = $('plumeStatusBadge');
+  btnPlume.addEventListener('click', () => {
+    const isPlume = !windEngine.plumeMode;
+    windEngine.setPlumeMode(isPlume);
+    if (isPlume) {
+      plumeBadge.textContent = '🔥 Plume Mode Active';
+      plumeBadge.className = 'toggle-badge toggle-active';
+      btnPlume.textContent = 'Disable Stubble Plumes';
+    } else {
+      plumeBadge.textContent = '💨 Pure Wind Vectors';
+      plumeBadge.className = 'toggle-badge toggle-inactive';
+      btnPlume.textContent = 'Enable Stubble Plumes';
+    }
+  });
+
+  const btnSpeed = $('btnSpeedToggle');
+  const speeds = [1.0, 1.6, 2.2, 0.6];
+  let speedIdx = 0;
+  btnSpeed.addEventListener('click', () => {
+    speedIdx = (speedIdx + 1) % speeds.length;
+    const spd = speeds[speedIdx];
+    windEngine.setSpeed(spd);
+    btnSpeed.textContent = `Speed: ${spd.toFixed(1)}x`;
+  });
+}
+
+// Enhance standard init to launch deep-tech modules
+const originalInit = init;
+init = async function() {
+  await originalInit();
+  initAirVision();
+  initWindSimulation();
+};
+
