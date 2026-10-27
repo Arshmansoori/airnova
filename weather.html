@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#040911" />
-  <title>AirNova Atmospheric Intelligence — Precision Meteorological & Fluid Dynamics Hub</title>
+  <title>AirNova Atmospheric Intelligence • Weather &amp; Air Quality Command</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -22,8 +22,10 @@
       --blue: #0284c7;
       --emerald: #10b981;
       --amber: #f59e0b;
+      --orange: #f97316;
       --red: #ef4444;
       --purple: #8b5cf6;
+      --maroon: #881337;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -74,37 +76,36 @@
       --card-glow: rgba(139, 92, 246, 0.22);
     }
 
-    body.theme-cloudy {
-      background: radial-gradient(circle at 50% 20%, rgba(148, 163, 184, 0.18) 0%, transparent 60%),
-                  linear-gradient(180deg, #0f1825 0%, #172436 50%, #080d14 100%);
-      --card-glow: rgba(148, 163, 184, 0.2);
-    }
-
     body.theme-rain {
-      background: radial-gradient(circle at 30% 25%, rgba(2, 132, 199, 0.22) 0%, transparent 50%),
-                  radial-gradient(circle at 75% 75%, rgba(30, 41, 59, 0.35) 0%, transparent 60%),
-                  linear-gradient(180deg, #081420 0%, #102438 50%, #050b12 100%);
+      background: radial-gradient(circle at 50% 10%, rgba(14, 165, 233, 0.25) 0%, transparent 50%),
+                  linear-gradient(180deg, #051329 0%, #0a1f3d 50%, #030a14 100%);
       --card-glow: rgba(56, 189, 248, 0.28);
     }
 
     body.theme-storm {
-      background: radial-gradient(circle at 50% 12%, rgba(139, 92, 246, 0.28) 0%, transparent 55%),
-                  linear-gradient(180deg, #0b0717 0%, #16102d 45%, #04020a 100%);
-      --card-glow: rgba(139, 92, 246, 0.35);
+      background: radial-gradient(circle at 35% 25%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
+                  linear-gradient(180deg, #09061c 0%, #170d36 50%, #04020a 100%);
+      --card-glow: rgba(168, 85, 247, 0.35);
+    }
+
+    body.theme-cloudy {
+      background: radial-gradient(circle at 75% 25%, rgba(148, 163, 184, 0.22) 0%, transparent 60%),
+                  linear-gradient(180deg, #0b1526 0%, #162238 50%, #060b13 100%);
+      --card-glow: rgba(148, 163, 184, 0.2);
     }
 
     body.theme-fog {
-      background: radial-gradient(circle at 50% 40%, rgba(212, 175, 55, 0.15) 0%, transparent 65%),
-                  linear-gradient(180deg, #16181c 0%, #1f2025 50%, #0b0c0d 100%);
-      --card-glow: rgba(212, 175, 55, 0.18);
+      background: radial-gradient(circle at 50% 30%, rgba(245, 158, 11, 0.22) 0%, transparent 60%),
+                  linear-gradient(180deg, #1f1406 0%, #2b1d0b 45%, #0d0802 100%);
+      --card-glow: rgba(245, 158, 11, 0.28);
     }
 
     .app-shell {
       position: relative;
       z-index: 2;
-      max-width: 1420px;
+      max-width: 1480px;
       margin: 0 auto;
-      padding: 24px 20px 90px 20px;
+      padding: 24px 20px 80px 20px;
     }
 
     /* VisionOS / Apple Glassmorphism - 100% Transparent Floating Glass */
@@ -142,7 +143,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 22px;
+      margin-bottom: 18px;
       gap: 16px;
       flex-wrap: wrap;
     }
@@ -229,14 +230,46 @@
       box-shadow: 0 0 18px rgba(16, 185, 129, 0.4);
     }
 
-    /* Cinematic Atmospheric Scene Switcher Pill Bar */
+    /* AQI.in Signature Breadcrumb & Station Context Strip */
+    .aqi-breadcrumb-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 22px;
+      margin-bottom: 18px;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 12.5px;
+    }
+    .breadcrumb-path {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+    .breadcrumb-path a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+    .breadcrumb-path a:hover { text-decoration: underline; }
+    .station-telemetry-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+
+    /* Atmosphere Scene Switcher Pill Bar */
     .scene-switcher-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
       padding: 10px 20px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       flex-wrap: wrap;
     }
     .scene-pills-left {
@@ -269,7 +302,7 @@
       grid-template-columns: 1fr auto;
       gap: 16px;
       padding: 14px 24px;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
       align-items: center;
     }
     @media (max-width: 860px) {
@@ -353,30 +386,32 @@
       white-space: nowrap;
     }
 
-    /* Hero Weather Showcase: Giant Temp + Windy Mini-Radar */
-    .hero-weather-grid {
+    /* =========================================================================
+       AQI.in HYBRID HERO SHOWCASE: WEATHER + AIR QUALITY COMMAND DUAL COCKPIT
+       ========================================================================= */
+    .hero-dual-grid {
       display: grid;
-      grid-template-columns: 1.35fr 1.05fr;
+      grid-template-columns: 1.15fr 1.05fr;
       gap: 22px;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
-    @media (max-width: 980px) {
-      .hero-weather-grid { grid-template-columns: 1fr; }
+    @media (max-width: 1040px) {
+      .hero-dual-grid { grid-template-columns: 1fr; }
     }
 
-    /* Left Hero: Giant Temp & Micro-Physics */
-    .main-temp-card {
-      padding: 38px 36px;
+    /* Left Hero: Weather Hub & Animated SVG */
+    .weather-hero-card {
+      padding: 34px 34px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 350px;
+      min-height: 380px;
     }
     .temp-top-meta {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
     .loc-tag {
       font-size: 13px;
@@ -395,7 +430,7 @@
       gap: 20px;
     }
     .temp-huge-num {
-      font-size: clamp(74px, 9vw, 118px);
+      font-size: clamp(72px, 8.5vw, 112px);
       font-weight: 900;
       line-height: 0.88;
       letter-spacing: -4px;
@@ -411,10 +446,9 @@
       color: var(--cyan);
     }
     
-    /* Bespoke Animated SVG Weather Icon Container */
     .hero-weather-icon-wrap {
-      width: clamp(100px, 12vw, 140px);
-      height: clamp(100px, 12vw, 140px);
+      width: clamp(96px, 11vw, 136px);
+      height: clamp(96px, 11vw, 136px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -427,45 +461,544 @@
     }
 
     .condition-headline {
-      font-size: 28px;
+      font-size: 27px;
       font-weight: 800;
       letter-spacing: -0.6px;
       color: #fff;
-      margin-top: 14px;
+      margin-top: 12px;
     }
     .condition-subline {
-      font-size: 15px;
+      font-size: 14.5px;
       color: var(--text-muted);
-      margin-top: 6px;
+      margin-top: 5px;
       line-height: 1.55;
-      max-width: 540px;
     }
     .vitals-pills-row {
       display: flex;
-      gap: 10px;
-      margin-top: 26px;
+      gap: 9px;
+      margin-top: 22px;
       flex-wrap: wrap;
     }
     .vp-tag {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 7px 15px;
+      padding: 7px 14px;
       border-radius: 14px;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 600;
       color: #e2e8f0;
     }
 
-    /* Right Hero: Windy 60 FPS Fluid Radar */
+    /* Right Hero: AQI.in Style Air Quality Master Meter */
+    .aqi-master-card {
+      padding: 34px 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 380px;
+    }
+    .aqi-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .aqi-section-title {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      color: var(--amber);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .aqi-meter-main-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 6px;
+    }
+    .aqi-big-val {
+      font-size: clamp(68px, 8vw, 104px);
+      font-weight: 900;
+      line-height: 0.88;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: -3px;
+    }
+    .aqi-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 18px;
+      border-radius: 9999px;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-top: 10px;
+      box-shadow: 0 0 25px rgba(245, 158, 11, 0.35);
+    }
+    .aqi-dominant-pollutant-box {
+      text-align: right;
+    }
+    .aqi-dominant-pollutant-box .dp-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--text-dim);
+      font-weight: 700;
+    }
+    .aqi-dominant-pollutant-box .dp-val {
+      font-size: 26px;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      color: #fff;
+      margin-top: 4px;
+    }
+    .aqi-dominant-pollutant-box .dp-sub {
+      font-size: 12px;
+      color: var(--cyan);
+      font-weight: 600;
+    }
+
+    /* 0 - 500 Continuous Spectrum Gauge Bar */
+    .aqi-spectrum-wrap {
+      margin: 20px 0 16px 0;
+      position: relative;
+    }
+    .aqi-spectrum-bar {
+      height: 10px;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, 
+        #10b981 0%, /* Good 0-50 */
+        #84cc16 20%, /* Satisfactory 51-100 */
+        #f59e0b 40%, /* Moderate 101-200 */
+        #f97316 60%, /* Poor 201-300 */
+        #ef4444 80%, /* Very Poor 301-400 */
+        #701a75 100% /* Severe 401-500 */
+      );
+      box-shadow: 0 0 16px rgba(245, 158, 11, 0.35);
+      position: relative;
+    }
+    .aqi-spectrum-needle {
+      position: absolute;
+      top: -6px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 3px solid #03070d;
+      box-shadow: 0 0 14px rgba(255, 255, 255, 0.9);
+      transform: translateX(-50%);
+      transition: left 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .aqi-spectrum-ticks {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 10.5px;
+      color: var(--text-dim);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .aqi-impact-banner {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 12px 16px;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .aqi-comparative-stats-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      font-size: 12.5px;
+      color: var(--text-dim);
+    }
+    .aqi-comparative-stats-row strong {
+      color: #fff;
+    }
+
+    /* =========================================================================
+       SIGNATURE AQI.IN 6-POLLUTANT CONCENTRATION MATRIX
+       ========================================================================= */
+    .pollutant-section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 32px 0 16px 0;
+    }
+    .pollutant-title {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      color: var(--cyan);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pollutants-grid-six {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 1040px) {
+      .pollutants-grid-six { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 680px) {
+      .pollutants-grid-six { grid-template-columns: 1fr; }
+    }
+
+    .pollutant-card {
+      padding: 24px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 210px;
+      transition: all 0.25s ease;
+    }
+    .pol-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+    .pol-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 16px;
+      font-weight: 900;
+      font-family: 'JetBrains Mono', monospace;
+      color: #fff;
+    }
+    .pol-name-block {
+      text-align: right;
+    }
+    .pol-full-name {
+      font-size: 14px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .pol-sub-cat {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+    .pol-reading-row {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin: 10px 0 6px 0;
+    }
+    .pol-num {
+      font-size: 32px;
+      font-weight: 900;
+      font-family: 'JetBrains Mono', monospace;
+      color: #fff;
+    }
+    .pol-unit {
+      font-size: 13px;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+    .pol-bar-track {
+      height: 7px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 9999px;
+      overflow: hidden;
+      margin: 10px 0 8px 0;
+      position: relative;
+    }
+    .pol-bar-fill {
+      height: 100%;
+      border-radius: 9999px;
+      transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .pol-footer-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+    .pol-standard-chip {
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 10.5px;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* =========================================================================
+       AQI.in HEALTH ADVISORY & PRECAUTIONARY MATRIX
+       ========================================================================= */
+    .health-section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 32px 0 16px 0;
+    }
+    .health-title {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      color: var(--emerald);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .health-matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 1180px) {
+      .health-matrix-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .health-matrix-grid { grid-template-columns: 1fr; }
+    }
+    .health-card {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 200px;
+    }
+    .health-card-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .health-icon-bubble {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    .health-card-title {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .health-card-status {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+    .health-card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* =========================================================================
+       AQI.in HYPERLOCAL DELHI NCR NEIGHBORHOOD MONITORING STATIONS TABLE
+       ========================================================================= */
+    .station-table-card {
+      padding: 28px 32px;
+      margin-bottom: 24px;
+    }
+    .station-table-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .stations-live-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+    .stations-live-table th {
+      text-align: left;
+      padding: 12px 14px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--text-dim);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .stations-live-table td {
+      padding: 14px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      vertical-align: middle;
+    }
+    .stations-live-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .station-name-cell {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .station-type-tag {
+      font-size: 10.5px;
+      padding: 2px 7px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+    .station-aqi-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12.5px;
+    }
+    .btn-switch-station {
+      padding: 5px 12px;
+      border-radius: 9999px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--cyan);
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-switch-station:hover {
+      background: var(--cyan);
+      color: #03070d;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+    }
+
+    /* =========================================================================
+       DUAL-MODE 24-HOUR INTERACTIVE FORECAST SPLINE (TEMP & AQI MODES)
+       ========================================================================= */
+    .hourly-spline-card {
+      padding: 26px 30px;
+      margin-bottom: 24px;
+    }
+    .chart-head-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .chart-tabs-group {
+      display: flex;
+      gap: 8px;
+    }
+    .chart-tab-btn {
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .chart-tab-btn.active {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: var(--cyan);
+      color: #fff;
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.3);
+    }
+    .spline-canvas-wrap {
+      width: 100%;
+      height: 135px;
+      position: relative;
+    }
+    #hourlyCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .hourly-chips-scroll {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding: 16px 0 6px 0;
+      scroll-behavior: smooth;
+    }
+    .hourly-chips-scroll::-webkit-scrollbar { height: 6px; }
+    .hourly-chips-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15); border-radius: 999px;
+    }
+    .h-chip {
+      flex: 0 0 102px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 20px;
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+    .h-chip:hover, .h-chip.active {
+      background: rgba(56, 189, 248, 0.16);
+      border-color: var(--cyan);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(56, 189, 248, 0.2);
+    }
+    .h-chip-time { font-size: 12px; font-weight: 700; color: var(--text-muted); }
+    .h-chip-icon-box { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; }
+    .h-chip-temp { font-size: 17px; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #fff; }
+    .h-chip-pop { font-size: 11px; font-weight: 700; color: var(--cyan); }
+
+    /* =========================================================================
+       WINDY-STYLE 60 FPS STREAM & ACCUWEATHER MINUTECAST
+       ========================================================================= */
+    .windy-radar-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 22px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 980px) {
+      .windy-radar-grid { grid-template-columns: 1fr; }
+    }
     .windy-stage-card {
       padding: 24px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 350px;
+      min-height: 330px;
     }
     .radar-top-bar {
       display: flex;
@@ -485,7 +1018,7 @@
     }
     .radar-canvas-container {
       width: 100%;
-      height: 220px;
+      height: 210px;
       border-radius: 18px;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -523,10 +1056,13 @@
       margin-top: 12px;
     }
 
-    /* AccuWeather MinuteCast 120-Min Precision Forecast Bar */
+    /* AccuWeather MinuteCast Timeline */
     .minutecast-card {
-      padding: 22px 28px;
-      margin-bottom: 24px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 330px;
     }
     .mc-header {
       display: flex;
@@ -535,7 +1071,7 @@
       margin-bottom: 14px;
     }
     .mc-title {
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 800;
       letter-spacing: 1.2px;
       text-transform: uppercase;
@@ -550,12 +1086,12 @@
       display: flex;
       gap: 4px;
       align-items: flex-end;
-      height: 48px;
-      padding: 6px 0;
+      height: 72px;
       background: rgba(255, 255, 255, 0.02);
       border-radius: 12px;
-      padding: 8px 12px;
+      padding: 10px 12px;
       border: 1px solid rgba(255, 255, 255, 0.04);
+      margin: 12px 0;
     }
     .mc-bar {
       flex: 1;
@@ -574,66 +1110,11 @@
       font-size: 11px;
       color: var(--text-dim);
       font-family: 'JetBrains Mono', monospace;
-      margin-top: 8px;
     }
 
-    /* 24-Hour Interactive Spline Curve Section */
-    .hourly-spline-card {
-      padding: 26px 30px;
-      margin-bottom: 24px;
-    }
-    .chart-head-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
-    }
-    .spline-canvas-wrap {
-      width: 100%;
-      height: 125px;
-      position: relative;
-    }
-    #hourlyCanvas {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-    .hourly-chips-scroll {
-      display: flex;
-      gap: 12px;
-      overflow-x: auto;
-      padding: 16px 0 6px 0;
-      scroll-behavior: smooth;
-    }
-    .hourly-chips-scroll::-webkit-scrollbar { height: 6px; }
-    .hourly-chips-scroll::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.15); border-radius: 999px;
-    }
-    .h-chip {
-      flex: 0 0 96px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 20px;
-      padding: 16px 12px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.25s ease;
-      cursor: pointer;
-    }
-    .h-chip:hover, .h-chip.active {
-      background: rgba(56, 189, 248, 0.16);
-      border-color: var(--cyan);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(56, 189, 248, 0.2);
-    }
-    .h-chip-time { font-size: 12px; font-weight: 700; color: var(--text-muted); }
-    .h-chip-icon-box { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; }
-    .h-chip-temp { font-size: 17px; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #fff; }
-    .h-chip-pop { font-size: 11px; font-weight: 700; color: var(--cyan); }
-
-    /* 9-Vitals Precision Master Grid */
+    /* =========================================================================
+       9-VITALS APPLE WEATHER MASTER GRID
+       ========================================================================= */
     .vitals-master-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -685,7 +1166,7 @@
       margin-top: 10px;
     }
 
-    /* Gauge & Dial Widgets inside Vitals */
+    /* Compass needle & Solar Arc */
     .compass-display {
       display: flex;
       align-items: center;
@@ -726,11 +1207,17 @@
     }
     .forecast-row-item {
       display: grid;
-      grid-template-columns: 120px 48px 1fr 120px;
+      grid-template-columns: 110px 44px 1fr 110px 100px;
       align-items: center;
       gap: 16px;
       padding: 16px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    @media (max-width: 740px) {
+      .forecast-row-item {
+        grid-template-columns: 80px 36px 1fr 90px;
+      }
+      .forecast-row-item .f-aqi-pill { display: none; }
     }
     .forecast-row-item:last-child { border-bottom: none; }
     .f-day { font-size: 15px; font-weight: 700; color: #fff; }
@@ -750,73 +1237,44 @@
       box-shadow: 0 0 10px rgba(56, 189, 248, 0.35);
     }
     .f-temps {
-      text-align: right;
-      font-size: 14px;
+      display: flex;
+      gap: 12px;
+      font-size: 14.5px;
       font-family: 'JetBrains Mono', monospace;
       font-weight: 700;
     }
-    .t-min { color: var(--text-dim); margin-right: 10px; }
+    .t-min { color: var(--text-dim); }
     .t-max { color: #fff; }
+    .f-aqi-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-align: center;
+      white-space: nowrap;
+    }
 
     /* Footer */
     footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-top: 28px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 13px;
+      padding: 24px 8px 12px 8px;
       color: var(--text-dim);
+      font-size: 12.5px;
       flex-wrap: wrap;
-      gap: 14px;
-    }
-
-    /* Embedded Keyframe Animations for Animated SVG Weather Icons */
-    @keyframes spinRays {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    .anim-spin-rays {
-      animation: spinRays 16s linear infinite;
-      transform-origin: 50% 50%;
-    }
-    @keyframes cloudDrift {
-      0%, 100% { transform: translateX(0); }
-      50% { transform: translateX(4px); }
-    }
-    .anim-cloud-drift {
-      animation: cloudDrift 5s ease-in-out infinite;
-    }
-    @keyframes raindropFall {
-      0% { transform: translateY(-4px); opacity: 0; }
-      40% { opacity: 1; }
-      100% { transform: translateY(14px); opacity: 0; }
-    }
-    .anim-drop-1 { animation: raindropFall 1.1s cubic-bezier(0.4, 0, 0.8, 1) infinite; }
-    .anim-drop-2 { animation: raindropFall 1.1s cubic-bezier(0.4, 0, 0.8, 1) infinite 0.35s; }
-    .anim-drop-3 { animation: raindropFall 1.1s cubic-bezier(0.4, 0, 0.8, 1) infinite 0.7s; }
-    @keyframes lightningFlash {
-      0%, 90%, 94%, 98%, 100% { opacity: 0.1; }
-      92%, 96% { opacity: 1; }
-    }
-    .anim-lightning-bolt {
-      animation: lightningFlash 3.5s ease-in-out infinite;
-    }
-    @keyframes fogSway {
-      0%, 100% { transform: translateX(-3px); opacity: 0.55; }
-      50% { transform: translateX(3px); opacity: 0.85; }
-    }
-    .anim-fog-bar {
-      animation: fogSway 4s ease-in-out infinite;
+      gap: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
     }
   </style>
 </head>
 <body class="theme-sunny">
 
-  <!-- Fullscreen Multi-Layer Ambient Sky Simulator -->
+  <!-- Ambient Dynamic Sky Canvas Engine -->
   <canvas id="skyCanvas"></canvas>
   <div id="lightningFlashOverlay"></div>
 
+  <!-- Main Viewport Shell -->
   <div class="app-shell">
 
     <!-- Top Navigation Header -->
@@ -824,8 +1282,8 @@
       <div class="brand-group">
         <div class="brand-mark">AN</div>
         <div class="brand-text">
-          <h1>AirNova Weather</h1>
-          <p><span class="live-chip"></span> Atmospheric Physics &amp; Precision Meteorology</p>
+          <h1>AirNova Weather &amp; AQI</h1>
+          <p><span class="live-chip"></span> Atmospheric Physics &amp; Precision Environmental Hub</p>
         </div>
       </div>
 
@@ -840,7 +1298,26 @@
       </div>
     </header>
 
-    <!-- Cinematic Atmosphere Showcase & Manual Theme Switcher Pill Bar -->
+    <!-- AQI.in Signature Breadcrumb & Station Context Strip -->
+    <div class="glass-card aqi-breadcrumb-bar">
+      <div class="breadcrumb-path">
+        <a href="/">Home</a>
+        <span>&rsaquo;</span>
+        <a href="/weather.html">Weather &amp; AQI</a>
+        <span>&rsaquo;</span>
+        <span>India</span>
+        <span>&rsaquo;</span>
+        <span>Delhi NCR</span>
+        <span>&rsaquo;</span>
+        <strong id="breadcrumbCurrentLoc" style="color:#fff">New Delhi (Mandir Marg)</strong>
+      </div>
+      <div class="station-telemetry-badge">
+        <span class="live-chip"></span>
+        <span id="sensorFeedStatus">DPCC Physical Monitor + ECMWF IFS Atmosphere Sync</span>
+      </div>
+    </div>
+
+    <!-- Atmospheric Scene Switcher Pill Bar -->
     <div class="glass-card scene-switcher-bar">
       <div class="scene-pills-left">
         <span style="font-size:11px;font-weight:800;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-right:4px;">
@@ -868,12 +1345,12 @@
           <input type="text" id="citySearchInput" class="search-input" placeholder="Search any city globally (e.g. Mumbai, Bengaluru, Shimla, London)..." />
         </div>
         <div class="quick-stations-wrap">
-          <button class="quick-station-pill active" onclick="switchPreset('delhi', this)">Delhi Mandir Marg</button>
-          <button class="quick-station-pill" onclick="switchPreset('anand_vihar', this)">Anand Vihar</button>
-          <button class="quick-station-pill" onclick="switchPreset('rk_puram', this)">R.K. Puram</button>
-          <button class="quick-station-pill" onclick="switchPreset('cyber_city', this)">Gurugram</button>
+          <button class="quick-station-pill active" onclick="switchPreset('delhi', this)">Mandir Marg (Central)</button>
+          <button class="quick-station-pill" onclick="switchPreset('anand_vihar', this)">Anand Vihar (East)</button>
+          <button class="quick-station-pill" onclick="switchPreset('rk_puram', this)">R.K. Puram (South)</button>
+          <button class="quick-station-pill" onclick="switchPreset('punjabi_bagh', this)">Punjabi Bagh (West)</button>
+          <button class="quick-station-pill" onclick="switchPreset('cyber_city', this)">Gurugram Cyber City</button>
           <button class="quick-station-pill" onclick="switchPreset('noida', this)">Noida Sec 62</button>
-          <button class="quick-station-pill" onclick="switchPreset('ghaziabad', this)">Ghaziabad</button>
           <button class="quick-station-pill" onclick="useGPSLocate(this)">📍 Locate Me</button>
         </div>
       </div>
@@ -885,11 +1362,13 @@
       </div>
     </div>
 
-    <!-- Hero Weather Showcase: Giant Temp + Windy Mini-Radar -->
-    <div class="hero-weather-grid">
+    <!-- =========================================================================
+         HYBRID HERO SHOWCASE: WEATHER HUB & AQI.IN MASTER AIR QUALITY METER
+         ========================================================================= -->
+    <div class="hero-dual-grid">
       
-      <!-- Card 1: Giant Temperature & Micro-Physics -->
-      <div class="glass-card main-temp-card">
+      <!-- Card 1: Giant Temperature & Atmospheric Microphysics -->
+      <div class="glass-card weather-hero-card">
         <div>
           <div class="temp-top-meta">
             <span class="loc-tag">
@@ -932,7 +1411,353 @@
         </div>
       </div>
 
-      <!-- Card 2: Windy-Style 60 FPS Particle Stream Radar Mini-Stage -->
+      <!-- Card 2: Signature AQI.in Air Quality Master Gauge & Health Index -->
+      <div class="glass-card aqi-master-card">
+        <div>
+          <div class="aqi-card-header">
+            <span class="aqi-section-title">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              Air Quality Index (India NAQI &amp; CPCB)
+            </span>
+            <span style="font-size:11px;color:var(--text-dim);font-family:'JetBrains Mono',monospace">Real-Time Sensor</span>
+          </div>
+
+          <div class="aqi-meter-main-row">
+            <div>
+              <div id="masterAqiVal" class="aqi-big-val" style="color:var(--amber)">184</div>
+              <div id="masterAqiBadge" class="aqi-status-badge" style="background:rgba(245,158,11,0.2);color:var(--amber);border:1px solid rgba(245,158,11,0.4)">
+                Moderate / Poor
+              </div>
+            </div>
+
+            <div class="aqi-dominant-pollutant-box">
+              <div class="dp-label">Dominant Pollutant</div>
+              <div id="masterDominantVal" class="dp-val">PM2.5</div>
+              <div id="masterDominantConc" class="dp-sub">86.4 µg/m³</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 0 - 500 Continuous Spectrum Gauge Bar -->
+        <div class="aqi-spectrum-wrap">
+          <div class="aqi-spectrum-bar">
+            <div id="aqiSpectrumNeedle" class="aqi-spectrum-needle" style="left: 36%;"></div>
+          </div>
+          <div class="aqi-spectrum-ticks">
+            <span>0 Good</span>
+            <span>50</span>
+            <span>100</span>
+            <span>200 Mod</span>
+            <span>300 Poor</span>
+            <span>400 V.Poor</span>
+            <span>500+ Severe</span>
+          </div>
+        </div>
+
+        <!-- Immediate Health Impact Banner -->
+        <div class="aqi-impact-banner">
+          <span style="font-size:24px">⚠️</span>
+          <div>
+            <strong id="aqiImpactTitle" style="color:#fff">Air Quality Unhealthy for Sensitive Groups</strong>
+            <p id="aqiImpactDesc" style="margin-top:2px;font-size:12.5px">Fine particulate loading irritates respiratory tracts. Children and elderly should reduce strenuous outdoor workouts.</p>
+          </div>
+        </div>
+
+        <!-- Comparative WHO & Cigarette Burden Stats -->
+        <div class="aqi-comparative-stats-row">
+          <span>WHO 24h Guideline: <strong id="whoMultiplierText" style="color:var(--amber)">5.8x Annual Limit</strong></span>
+          <span>Passive Lung Burden: <strong id="heroCigarettesText" style="color:var(--orange)">~3.9 Cigs/Day</strong></span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- =========================================================================
+         AQI.IN 6-POLLUTANT CONCENTRATION MATRIX (PM2.5, PM10, NO2, SO2, CO, O3)
+         ========================================================================= -->
+    <div class="pollutant-section-head">
+      <div class="pollutant-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Six Key Atmospheric Pollutants • Real-Time Concentration Matrix
+      </div>
+      <span style="font-size:12px;color:var(--text-dim);font-weight:600">WHO &amp; CPCB Ambient Standards Benchmark</span>
+    </div>
+
+    <div class="pollutants-grid-six">
+      
+      <!-- 1. PM 2.5 -->
+      <div class="glass-card pollutant-card" id="polCardPM25">
+        <div class="pol-top-row">
+          <div class="pol-badge" style="color:var(--amber);border-color:rgba(245,158,11,0.3)">PM<sub>2.5</sub></div>
+          <div class="pol-name-block">
+            <div class="pol-full-name">Fine Inhalable Particles</div>
+            <div class="pol-sub-cat">Aerodynamic diameter &lt; 2.5 µm</div>
+          </div>
+        </div>
+        <div class="pol-reading-row">
+          <span id="polPM25Val" class="pol-num">40.6</span>
+          <span class="pol-unit">µg/m³</span>
+        </div>
+        <div class="pol-bar-track">
+          <div id="polPM25Bar" class="pol-bar-fill" style="width: 55%; background: var(--amber);"></div>
+        </div>
+        <div class="pol-footer-meta">
+          <span>WHO Limit: 15 µg/m³</span>
+          <span id="polPM25Status" class="pol-standard-chip" style="background:rgba(245,158,11,0.15);color:var(--amber)">2.7x Limit</span>
+        </div>
+      </div>
+
+      <!-- 2. PM 10 -->
+      <div class="glass-card pollutant-card" id="polCardPM10">
+        <div class="pol-top-row">
+          <div class="pol-badge" style="color:var(--amber);border-color:rgba(245,158,11,0.3)">PM<sub>10</sub></div>
+          <div class="pol-name-block">
+            <div class="pol-full-name">Respirable Coarse Dust</div>
+            <div class="pol-sub-cat">Road dust, fly ash &lt; 10 µm</div>
+          </div>
+        </div>
+        <div class="pol-reading-row">
+          <span id="polPM10Val" class="pol-num">93.4</span>
+          <span class="pol-unit">µg/m³</span>
+        </div>
+        <div class="pol-bar-track">
+          <div id="polPM10Bar" class="pol-bar-fill" style="width: 48%; background: var(--amber);"></div>
+        </div>
+        <div class="pol-footer-meta">
+          <span>WHO Limit: 45 µg/m³</span>
+          <span id="polPM10Status" class="pol-standard-chip" style="background:rgba(245,158,11,0.15);color:var(--amber)">2.1x Limit</span>
+        </div>
+      </div>
+
+      <!-- 3. NO2 -->
+      <div class="glass-card pollutant-card" id="polCardNO2">
+        <div class="pol-top-row">
+          <div class="pol-badge" style="color:var(--cyan);border-color:rgba(56,189,248,0.3)">NO<sub>2</sub></div>
+          <div class="pol-name-block">
+            <div class="pol-full-name">Nitrogen Dioxide</div>
+            <div class="pol-sub-cat">Vehicular combustion emission</div>
+          </div>
+        </div>
+        <div class="pol-reading-row">
+          <span id="polNO2Val" class="pol-num">38.8</span>
+          <span class="pol-unit">µg/m³</span>
+        </div>
+        <div class="pol-bar-track">
+          <div id="polNO2Bar" class="pol-bar-fill" style="width: 38%; background: var(--cyan);"></div>
+        </div>
+        <div class="pol-footer-meta">
+          <span>WHO Limit: 25 µg/m³</span>
+          <span id="polNO2Status" class="pol-standard-chip" style="background:rgba(56,189,248,0.15);color:var(--cyan)">1.5x Limit</span>
+        </div>
+      </div>
+
+      <!-- 4. SO2 -->
+      <div class="glass-card pollutant-card" id="polCardSO2">
+        <div class="pol-top-row">
+          <div class="pol-badge" style="color:var(--emerald);border-color:rgba(16,185,129,0.3)">SO<sub>2</sub></div>
+          <div class="pol-name-block">
+            <div class="pol-full-name">Sulphur Dioxide</div>
+            <div class="pol-sub-cat">Power plant &amp; coal combustion</div>
+          </div>
+        </div>
+        <div class="pol-reading-row">
+          <span id="polSO2Val" class="pol-num">28.2</span>
+          <span class="pol-unit">µg/m³</span>
+        </div>
+        <div class="pol-bar-track">
+          <div id="polSO2Bar" class="pol-bar-fill" style="width: 30%; background: var(--emerald);"></div>
+        </div>
+        <div class="pol-footer-meta">
+          <span>WHO Limit: 40 µg/m³</span>
+          <span id="polSO2Status" class="pol-standard-chip" style="background:rgba(16,185,129,0.15);color:var(--emerald)">Safe Limit</span>
+        </div>
+      </div>
+
+      <!-- 5. CO -->
+      <div class="glass-card pollutant-card" id="polCardCO">
+        <div class="pol-top-row">
+          <div class="pol-badge" style="color:var(--emerald);border-color:rgba(16,185,129,0.3)">CO</div>
+          <div class="pol-name-block">
+            <div class="pol-full-name">Carbon Monoxide</div>
+            <div class="pol-sub-cat">Incomplete fuel combustion</div>
+          </div>
+        </div>
+        <div class="pol-reading-row">
+          <span id="polCOVal" class="pol-num">1.20</span>
+          <span class="pol-unit">mg/m³</span>
+        </div>
+        <div class="pol-bar-track">
+          <div id="polCOBar" class="pol-bar-fill" style="width: 25%; background: var(--emerald);"></div>
+        </div>
+        <div class="pol-footer-meta">
+          <span>WHO Limit: 4.0 mg/m³</span>
+          <span id="polCOStatus" class="pol-standard-chip" style="background:rgba(16,185,129,0.15);color:var(--emerald)">Good / Safe</span>
+        </div>
+      </div>
+
+      <!-- 6. O3 Ozone -->
+      <div class="glass-card pollutant-card" id="polCardO3">
+        <div class="pol-top-row">
+          <div class="pol-badge" style="color:var(--amber);border-color:rgba(245,158,11,0.3)">O<sub>3</sub></div>
+          <div class="pol-name-block">
+            <div class="pol-full-name">Surface Ozone</div>
+            <div class="pol-sub-cat">Photochemical sunlight smog</div>
+          </div>
+        </div>
+        <div class="pol-reading-row">
+          <span id="polO3Val" class="pol-num">109.0</span>
+          <span class="pol-unit">µg/m³</span>
+        </div>
+        <div class="pol-bar-track">
+          <div id="polO3Bar" class="pol-bar-fill" style="width: 52%; background: var(--amber);"></div>
+        </div>
+        <div class="pol-footer-meta">
+          <span>WHO Limit: 100 µg/m³</span>
+          <span id="polO3Status" class="pol-standard-chip" style="background:rgba(245,158,11,0.15);color:var(--amber)">Elevated (1.1x)</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- =========================================================================
+         AQI.IN HEALTH ADVISORY & PRECAUTIONARY ACTION MATRIX
+         ========================================================================= -->
+    <div class="health-section-head">
+      <div class="health-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Health Advisory &amp; Precautionary Measures (AQI.in Health Model)
+      </div>
+      <span style="font-size:12px;color:var(--text-dim);font-weight:600">Actionable guidance for Delhi NCR</span>
+    </div>
+
+    <div class="health-matrix-grid">
+      
+      <!-- 1. Mask Recommendation -->
+      <div class="glass-card health-card">
+        <div class="health-card-top">
+          <div class="health-icon-bubble">😷</div>
+          <div>
+            <div class="health-card-title">Protective Mask</div>
+            <div class="health-card-status" style="color:var(--amber)">Recommended Outdoors</div>
+          </div>
+        </div>
+        <div class="health-card-desc">
+          Wear an N95 or FFP2 rated particulate respirator when commuting or walking along arterial traffic corridors. Cloth masks do not filter PM2.5.
+        </div>
+      </div>
+
+      <!-- 2. Home Ventilation -->
+      <div class="glass-card health-card">
+        <div class="health-card-top">
+          <div class="health-icon-bubble">🪟</div>
+          <div>
+            <div class="health-card-title">Indoor Air &amp; Purifier</div>
+            <div class="health-card-status" style="color:var(--cyan)">Keep Windows Sealed</div>
+          </div>
+        </div>
+        <div class="health-card-desc">
+          Seal windows during early morning and late night boundary layer inversions. Operate true HEPA air purifiers in sleeping quarters.
+        </div>
+      </div>
+
+      <!-- 3. Outdoor Sports & Workout -->
+      <div class="glass-card health-card">
+        <div class="health-card-top">
+          <div class="health-icon-bubble">🏃</div>
+          <div>
+            <div class="health-card-title">Outdoor Exercise</div>
+            <div class="health-card-status" style="color:var(--orange)">Avoid 6 AM – 9 AM</div>
+          </div>
+        </div>
+        <div class="health-card-desc">
+          Thermal inversion traps severe smog at ground level early morning. Shift running or intense cardio indoors or after 12:00 PM when sun heats the air.
+        </div>
+      </div>
+
+      <!-- 4. Sensitive Groups -->
+      <div class="glass-card health-card">
+        <div class="health-card-top">
+          <div class="health-icon-bubble">👶</div>
+          <div>
+            <div class="health-card-title">Sensitive Cohorts</div>
+            <div class="health-card-status" style="color:var(--red)">High Vigilance</div>
+          </div>
+        </div>
+        <div class="health-card-desc">
+          Asthmatic individuals, young children, and elderly citizens should limit unneeded outdoor transit. Keep bronchodilator rescue inhalers at hand.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- =========================================================================
+         HYPERLOCAL DELHI NCR MONITORING STATIONS LIVE COMPARISON TABLE
+         ========================================================================= -->
+    <div class="glass-card station-table-card">
+      <div class="station-table-head">
+        <div class="pollutant-title" style="color:var(--cyan)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          Delhi NCR Neighborhood Monitoring Station Rankings (Live Feed)
+        </div>
+        <span style="font-size:12px;color:var(--text-dim)">Click "Inspect Station" to load hyper-local telemetry</span>
+      </div>
+
+      <div style="overflow-x:auto">
+        <table class="stations-live-table">
+          <thead>
+            <tr>
+              <th>Station / Neighborhood</th>
+              <th>Network Type</th>
+              <th>Current AQI</th>
+              <th>Air Quality Status</th>
+              <th>Dominant Pollutant</th>
+              <th>Temp</th>
+              <th>Humidity</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="stationRankingsTableBody">
+            <!-- Dynamically populated via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- =========================================================================
+         DUAL-MODE 24-HOUR INTERACTIVE FORECAST SPLINE (TEMP & AQI CURVES)
+         ========================================================================= -->
+    <div class="glass-card hourly-spline-card">
+      <div class="chart-head-row">
+        <div>
+          <span class="mc-title">24-Hour Atmospheric &amp; Air Quality Trend</span>
+          <p style="font-size:12px;color:var(--text-dim);margin-top:2px">Hourly diurnal cycle model across Delhi NCR boundary layer</p>
+        </div>
+        
+        <div class="chart-tabs-group">
+          <button id="tabTempCurve" class="chart-tab-btn active" onclick="switchHourlyChartMode('temp')">
+            🌡️ Temperature Forecast (°C)
+          </button>
+          <button id="tabAqiCurve" class="chart-tab-btn" onclick="switchHourlyChartMode('aqi')">
+            ⚡ Predicted AQI Evolution
+          </button>
+        </div>
+      </div>
+      
+      <div class="spline-canvas-wrap">
+        <canvas id="hourlyCanvas"></canvas>
+      </div>
+
+      <div class="hourly-chips-scroll" id="hourlyChipsScroll">
+        <!-- Dynamic chips generated via JS -->
+      </div>
+    </div>
+
+    <!-- =========================================================================
+         WINDY-STYLE 60 FPS STREAM & ACCUWEATHER MINUTECAST
+         ========================================================================= -->
+    <div class="windy-radar-grid">
+      
+      <!-- Windy-Style 60 FPS Particle Stream Radar Mini-Stage -->
       <div class="glass-card windy-stage-card">
         <div class="radar-top-bar">
           <span class="radar-title">
@@ -958,43 +1783,29 @@
         </div>
       </div>
 
+      <!-- AccuWeather MinuteCast 120-Minute Precipitation Timeline -->
+      <div class="glass-card minutecast-card">
+        <div class="mc-header">
+          <span class="mc-title">⏱️ AccuWeather MinuteCast • 120-Minute Precipitation</span>
+        </div>
+        <div id="mcSummaryText" class="mc-summary">Clear dry atmospheric column across region. Zero precipitation detected.</div>
+        <div class="mc-bars-grid" id="minuteCastBars">
+          <!-- 30 Dynamic slots generated via JS -->
+        </div>
+        <div class="mc-axis-labels">
+          <span>Now</span>
+          <span>30m</span>
+          <span>60m</span>
+          <span>90m</span>
+          <span>120m</span>
+        </div>
+      </div>
+
     </div>
 
-    <!-- AccuWeather-Style MinuteCast 120-Minute Precipitation Timeline -->
-    <div class="glass-card minutecast-card">
-      <div class="mc-header">
-        <span class="mc-title">⏱️ AccuWeather MinuteCast • 120-Minute Precipitation Timeline</span>
-        <span id="mcSummaryText" class="mc-summary">Clear dry atmospheric column across region</span>
-      </div>
-      <div class="mc-bars-grid" id="minuteCastBars">
-        <!-- 30 Dynamic slots generated via JS -->
-      </div>
-      <div class="mc-axis-labels">
-        <span>Now</span>
-        <span>30m</span>
-        <span>60m</span>
-        <span>90m</span>
-        <span>120m</span>
-      </div>
-    </div>
-
-    <!-- 24-Hour Interactive Spline Curve Section -->
-    <div class="glass-card hourly-spline-card">
-      <div class="chart-head-row">
-        <span class="mc-title">24-Hour Precision Meteorological Curve</span>
-        <span style="font-size:12px;color:var(--text-dim);font-weight:600">Hourly ECMWF model intervals</span>
-      </div>
-      
-      <div class="spline-canvas-wrap">
-        <canvas id="hourlyCanvas"></canvas>
-      </div>
-
-      <div class="hourly-chips-scroll" id="hourlyChipsScroll">
-        <!-- Dynamic chips generated via JS -->
-      </div>
-    </div>
-
-    <!-- 9 Apple Weather Master Vitals Grid -->
+    <!-- =========================================================================
+         9 APPLE WEATHER MASTER VITALS GRID
+         ========================================================================= -->
     <div class="vitals-master-grid">
       
       <!-- 1. UV Index -->
@@ -1093,11 +1904,16 @@
 
     </div>
 
-    <!-- 7-Day Extended Forecast Section -->
+    <!-- =========================================================================
+         7-DAY EXTENDED METEOROLOGICAL & AIR QUALITY FORECAST
+         ========================================================================= -->
     <div class="glass-card sevenday-card">
       <div class="chart-head-row">
-        <span class="mc-title">7-Day Extended Meteorological Forecast</span>
-        <span style="font-size:12px;color:var(--text-dim);font-weight:600">Daily temperature ranges</span>
+        <div>
+          <span class="mc-title">7-Day Extended Meteorological &amp; Air Quality Forecast</span>
+          <p style="font-size:12px;color:var(--text-dim);margin-top:2px">Daily temperature ranges &amp; predicted AQI category</p>
+        </div>
+        <span style="font-size:12px;color:var(--text-dim);font-weight:600">High / Low Spectrum</span>
       </div>
       <div id="sevenDayContainer">
         <!-- Rendered dynamically -->
@@ -1107,7 +1923,7 @@
     <!-- Footer -->
     <footer>
       <div>
-        <strong>AirNova Weather Intelligence Engine</strong> • Powered by ECMWF IFS, Copernicus CAMS &amp; DPCC Ground Telemetry
+        <strong>AirNova Weather &amp; AQI Suite</strong> • Synthesizing ECMWF IFS, Copernicus CAMS &amp; DPCC Continuous Monitors
       </div>
       <div>
         Sub-150ms Edge API • <a href="https://airnova.space" target="_blank" style="color:var(--cyan);text-decoration:none">airnova.space</a>
@@ -1121,21 +1937,87 @@
     // Global Application State
     let isFahrenheit = false;
     let currentRawData = null;
+    let currentAirData = null;
     let currentStationKey = 'delhi';
     let currentTheme = 'theme-sunny';
     let isAutoSyncEnabled = true;
     let isAudioActive = false;
     let audioCtx = null;
     let gainNode = null;
+    let hourlyChartMode = 'temp'; // 'temp' or 'aqi'
 
-    // Station Coordinates Mapping
+    // Hyperlocal Delhi NCR Monitoring Stations Database
     const stationCoords = {
-      delhi: { lat: 28.6341, lon: 77.2005, name: 'Delhi (Mandir Marg Command)' },
-      anand_vihar: { lat: 28.6508, lon: 77.3152, name: 'Delhi (Anand Vihar Trans-Yamuna)' },
-      rk_puram: { lat: 28.5648, lon: 77.1744, name: 'Delhi (R.K. Puram South)' },
-      cyber_city: { lat: 28.4950, lon: 77.0895, name: 'Gurugram (Cyber City)' },
-      noida: { lat: 28.6202, lon: 77.3639, name: 'Noida (Sector 62)' },
-      ghaziabad: { lat: 28.6603, lon: 77.3573, name: 'Ghaziabad (Vasundhara)' }
+      delhi: { 
+        name: 'Mandir Marg (Central Delhi)', 
+        lat: 28.6341, lon: 77.2005, 
+        type: 'DPCC Continuous CAAQMS',
+        baseAqi: 184,
+        pm25: 40.6, pm10: 93.4
+      },
+      anand_vihar: { 
+        name: 'Anand Vihar (Trans-Yamuna East)', 
+        lat: 28.6508, lon: 77.3152, 
+        type: 'DPCC Real-Time CAAQMS',
+        baseAqi: 268,
+        pm25: 114.2, pm10: 242.0
+      },
+      rk_puram: { 
+        name: 'R.K. Puram (South Delhi)', 
+        lat: 28.5648, lon: 77.1744, 
+        type: 'CPCB Physical Sensor',
+        baseAqi: 188,
+        pm25: 52.1, pm10: 112.5
+      },
+      punjabi_bagh: { 
+        name: 'Punjabi Bagh (West Delhi)', 
+        lat: 28.6740, lon: 77.1310, 
+        type: 'DPCC Continuous Monitor',
+        baseAqi: 214,
+        pm25: 68.4, pm10: 148.0
+      },
+      lodhi_road: { 
+        name: 'Lodhi Road (Central South)', 
+        lat: 28.5910, lon: 77.2270, 
+        type: 'IMD Meteorological CAAQMS',
+        baseAqi: 148,
+        pm25: 34.0, pm10: 82.0
+      },
+      igi_airport: { 
+        name: 'IGI Airport T3 (Aviation Zone)', 
+        lat: 28.5562, lon: 77.1000, 
+        type: 'AAI / DPCC Monitor',
+        baseAqi: 162,
+        pm25: 38.5, pm10: 89.0
+      },
+      bawana: { 
+        name: 'Bawana Industrial (North-West)', 
+        lat: 28.7997, lon: 77.0329, 
+        type: 'Industrial Sensor Hub',
+        baseAqi: 292,
+        pm25: 135.0, pm10: 288.0
+      },
+      jahangirpuri: { 
+        name: 'Jahangirpuri (North Delhi)', 
+        lat: 28.7328, lon: 77.1706, 
+        type: 'DPCC Physical Station',
+        baseAqi: 305,
+        pm25: 146.5, pm10: 312.0
+      },
+      noida: { 
+        name: 'Noida Sector 62 (Gautam Buddh Nagar)', 
+        lat: 28.6202, lon: 77.3639, 
+        type: 'UPPCB Telemetry Station',
+        baseAqi: 218,
+        pm25: 72.0, pm10: 154.0
+      },
+      cyber_city: { 
+        name: 'Gurugram Cyber City (Sector 51)', 
+        lat: 28.4950, lon: 77.0895, 
+        type: 'HSPCB Continuous Station',
+        baseAqi: 195,
+        pm25: 58.0, pm10: 126.0
+      }
     };
 
     // 1. Bespoke Animated SVG Weather Icon Generator
@@ -1149,19 +2031,17 @@
                 <stop offset="40%" stop-color="#fde047" />
                 <stop offset="100%" stop-color="#f59e0b" />
               </radialGradient>
-              <filter id="heroSunFilter"><feGaussianBlur stdDeviation="3.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              <filter id="heroSunFilter">
+                <feGaussianBlur stdDeviation="3.5" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
             </defs>
-            <g class="anim-spin-rays">
-              <line x1="50" y1="10" x2="50" y2="19" stroke="#fbbf24" stroke-width="4.5" stroke-linecap="round"/>
-              <line x1="50" y1="81" x2="50" y2="90" stroke="#fbbf24" stroke-width="4.5" stroke-linecap="round"/>
-              <line x1="10" y1="50" x2="19" y2="50" stroke="#fbbf24" stroke-width="4.5" stroke-linecap="round"/>
-              <line x1="81" y1="50" x2="90" y2="50" stroke="#fbbf24" stroke-width="4.5" stroke-linecap="round"/>
-              <line x1="22" y1="22" x2="28" y2="28" stroke="#fbbf24" stroke-width="4.5" stroke-linecap="round"/>
-              <line x1="72" y1="72" x2="78" y2="78" stroke="#fbbf24" stroke-width="4.5" stroke-linecap="round"/>
-              <line x1="22" y1="78" x2="28" y2="72" stroke="#fbbf24" stroke-width="4.5" stroke-linecap="round"/>
-              <line x1="72" y1="28" x2="78" y2="22" stroke="#fbbf24" stroke-width="4.5" stroke-linecap="round"/>
+            <g class="anim-sun-spin" style="transform-origin:50px 50px;">
+              ${[0, 45, 90, 135, 180, 225, 270, 315].map(deg => `
+                <line x1="50" y1="12" x2="50" y2="2" stroke="#f59e0b" stroke-width="3.5" stroke-linecap="round" transform="rotate(${deg} 50 50)"/>
+              `).join('')}
             </g>
-            <circle cx="50" cy="50" r="22" fill="url(#sunGlowHero)" filter="url(#heroSunFilter)"/>
+            <circle cx="50" cy="50" r="23" fill="url(#sunGlowHero)" filter="url(#heroSunFilter)" />
           </svg>
         `;
       }
@@ -1172,19 +2052,18 @@
             <defs>
               <linearGradient id="moonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stop-color="#ffffff"/>
-                <stop offset="70%" stop-color="#e0e7ff"/>
-                <stop offset="100%" stop-color="#c7d2fe"/>
+                <stop offset="60%" stop-color="#e0e7ff"/>
+                <stop offset="100%" stop-color="#a5b4fc"/>
               </linearGradient>
             </defs>
-            <circle cx="25" cy="28" r="2" fill="#fff" opacity="0.8"/>
-            <circle cx="78" cy="22" r="1.5" fill="#fff" opacity="0.9"/>
-            <circle cx="82" cy="70" r="2.2" fill="#fff" opacity="0.75"/>
-            <path d="M 52 18 A 32 32 0 1 0 78 74 A 26 26 0 1 1 52 18 Z" fill="url(#moonGrad)" filter="drop-shadow(0 0 16px rgba(199,210,254,0.65))"/>
+            <path d="M 58 20 A 28 28 0 1 0 78 72 A 25 25 0 0 1 58 20 Z" fill="url(#moonGrad)" filter="drop-shadow(0 0 16px rgba(165,180,252,0.85))" />
+            <circle cx="68" cy="24" r="1.5" fill="#fff" opacity="0.9" />
+            <circle cx="28" cy="74" r="1.2" fill="#fff" opacity="0.8" />
           </svg>
         `;
       }
 
-      if (code === 1 || code === 2) {
+      if (code >= 1 && code <= 3) {
         return `
           <svg width="${size}" height="${size}" viewBox="0 0 100 100">
             <defs>
@@ -1193,32 +2072,13 @@
                 <stop offset="100%" stop-color="#94a3b8"/>
               </linearGradient>
             </defs>
-            <circle cx="36" cy="36" r="16" fill="#f59e0b" filter="drop-shadow(0 0 10px #f59e0b)"/>
-            <path class="anim-cloud-drift" d="M 30 72 L 74 72 A 14 14 0 0 0 74 44 A 18 18 0 0 0 42 40 A 15 15 0 0 0 30 72 Z" fill="url(#cloudGrad)" filter="drop-shadow(0 8px 20px rgba(0,0,0,0.5))"/>
+            ${isDay ? '<circle cx="68" cy="32" r="15" fill="#f59e0b" filter="drop-shadow(0 0 10px #f59e0b)"/>' : '<circle cx="68" cy="32" r="12" fill="#c7d2fe"/>'}
+            <path d="M 32 68 L 74 68 A 16 16 0 0 0 74 36 A 22 22 0 0 0 36 40 A 14 14 0 0 0 32 68 Z" fill="url(#cloudGrad)" class="anim-cloud-drift" filter="drop-shadow(0 8px 18px rgba(0,0,0,0.5))"/>
           </svg>
         `;
       }
 
-      if (code === 3) {
-        return `
-          <svg width="${size}" height="${size}" viewBox="0 0 100 100">
-            <defs>
-              <linearGradient id="cloudBack" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#64748b"/>
-                <stop offset="100%" stop-color="#334155"/>
-              </linearGradient>
-              <linearGradient id="cloudFront" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#cbd5e1"/>
-                <stop offset="100%" stop-color="#64748b"/>
-              </linearGradient>
-            </defs>
-            <path d="M 22 56 L 66 56 A 12 12 0 0 0 66 32 A 16 16 0 0 0 38 28 A 14 14 0 0 0 22 56 Z" fill="url(#cloudBack)"/>
-            <path class="anim-cloud-drift" d="M 32 75 L 78 75 A 15 15 0 0 0 78 45 A 20 20 0 0 0 46 40 A 16 16 0 0 0 32 75 Z" fill="url(#cloudFront)" filter="drop-shadow(0 10px 22px rgba(0,0,0,0.6))"/>
-          </svg>
-        `;
-      }
-
-      if ([51, 53, 61, 63, 65, 80].includes(code)) {
+      if (code >= 51 && code <= 67) {
         return `
           <svg width="${size}" height="${size}" viewBox="0 0 100 100">
             <defs>
@@ -1227,56 +2087,47 @@
                 <stop offset="100%" stop-color="#475569"/>
               </linearGradient>
             </defs>
-            <path d="M 30 54 L 75 54 A 15 15 0 0 0 75 24 A 20 20 0 0 0 44 20 A 16 16 0 0 0 30 54 Z" fill="url(#cloudRain)" filter="drop-shadow(0 8px 18px rgba(0,0,0,0.6))"/>
-            <line x1="38" y1="62" x2="34" y2="76" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round" class="anim-drop-1"/>
-            <line x1="52" y1="62" x2="48" y2="76" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round" class="anim-drop-2"/>
-            <line x1="66" y1="62" x2="62" y2="76" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round" class="anim-drop-3"/>
+            <path d="M 30 58 L 74 58 A 15 15 0 0 0 74 28 A 20 20 0 0 0 38 32 A 13 13 0 0 0 30 58 Z" fill="url(#cloudRain)"/>
+            <line x1="36" y1="66" x2="32" y2="82" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" class="anim-rain-drop"/>
+            <line x1="52" y1="66" x2="48" y2="84" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" class="anim-rain-drop" style="animation-delay:0.3s"/>
+            <line x1="68" y1="66" x2="64" y2="82" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" class="anim-rain-drop" style="animation-delay:0.6s"/>
           </svg>
         `;
       }
 
-      if (code === 95) {
+      if (code >= 95) {
         return `
           <svg width="${size}" height="${size}" viewBox="0 0 100 100">
             <defs>
               <linearGradient id="cloudStorm" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stop-color="#64748b"/>
-                <stop offset="100%" stop-color="#1e293b"/>
+                <stop offset="100%" stop-color="#1e1b4b"/>
               </linearGradient>
             </defs>
-            <path d="M 30 52 L 75 52 A 15 15 0 0 0 75 22 A 20 20 0 0 0 44 18 A 16 16 0 0 0 30 52 Z" fill="url(#cloudStorm)"/>
-            <line x1="36" y1="62" x2="32" y2="76" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" class="anim-drop-1"/>
-            <line x1="68" y1="62" x2="64" y2="76" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" class="anim-drop-2"/>
-            <polygon points="54,48 44,66 51,66 46,86 63,61 55,61" fill="#facc15" filter="drop-shadow(0 0 10px #eab308)" class="anim-lightning-bolt"/>
+            <path d="M 30 56 L 76 56 A 15 15 0 0 0 76 26 A 21 21 0 0 0 38 30 A 13 13 0 0 0 30 56 Z" fill="url(#cloudStorm)"/>
+            <polygon points="52,48 40,68 50,68 44,88 64,64 54,64" fill="#fbbf24" class="anim-bolt-flash" filter="drop-shadow(0 0 8px #f59e0b)"/>
           </svg>
         `;
       }
 
-      if (code === 45 || code === 48) {
-        return `
-          <svg width="${size}" height="${size}" viewBox="0 0 100 100">
-            <defs>
-              <linearGradient id="fogGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#94a3b8" stop-opacity="0.3"/>
-                <stop offset="50%" stop-color="#e2e8f0" stop-opacity="0.9"/>
-                <stop offset="100%" stop-color="#94a3b8" stop-opacity="0.3"/>
-              </linearGradient>
-            </defs>
-            <rect x="20" y="32" width="60" height="7" rx="3.5" fill="url(#fogGrad)" class="anim-fog-bar"/>
-            <rect x="14" y="47" width="72" height="8" rx="4" fill="url(#fogGrad)" class="anim-fog-bar" style="animation-delay:0.7s"/>
-            <rect x="24" y="63" width="52" height="7" rx="3.5" fill="url(#fogGrad)" class="anim-fog-bar" style="animation-delay:1.4s"/>
-          </svg>
-        `;
-      }
-
+      // Fog / Haze default
       return `
         <svg width="${size}" height="${size}" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="20" fill="#38bdf8" filter="drop-shadow(0 0 12px #38bdf8)"/>
+          <defs>
+            <linearGradient id="fogGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#94a3b8" stop-opacity="0.3"/>
+              <stop offset="50%" stop-color="#e2e8f0" stop-opacity="0.9"/>
+              <stop offset="100%" stop-color="#94a3b8" stop-opacity="0.3"/>
+            </linearGradient>
+          </defs>
+          <rect x="20" y="32" width="60" height="7" rx="3.5" fill="url(#fogGrad)" class="anim-fog-bar"/>
+          <rect x="14" y="47" width="72" height="8" rx="4" fill="url(#fogGrad)" class="anim-fog-bar" style="animation-delay:0.7s"/>
+          <rect x="24" y="63" width="52" height="7" rx="3.5" fill="url(#fogGrad)" class="anim-fog-bar" style="animation-delay:1.4s"/>
         </svg>
       `;
     }
 
-    // 2. Cinematic Multi-Layer Atmospheric Sky Engine
+    // 2. Cinematic Multi-Layer Atmospheric Sky Canvas Engine
     class CinematicSky {
       constructor(canvas) {
         this.canvas = canvas;
@@ -1286,11 +2137,9 @@
         this.stars = [];
         this.meteors = [];
         this.raindrops = [];
-        this.splashes = [];
         this.dustMotes = [];
         this.clouds = [];
         this.fogBands = [];
-
         this.time = 0;
         this.initAll();
       }
@@ -1301,7 +2150,6 @@
       }
 
       initAll() {
-        // 1. Stars for Night Sky
         this.stars = [];
         for (let i = 0; i < 180; i++) {
           this.stars.push({
@@ -1314,7 +2162,6 @@
           });
         }
 
-        // 2. Raindrops for Rain / Storm
         this.raindrops = [];
         for (let i = 0; i < 120; i++) {
           this.raindrops.push({
@@ -1327,19 +2174,6 @@
           });
         }
 
-        // 3. Volumetric Puffy Clouds
-        this.clouds = [];
-        for (let i = 0; i < 4; i++) {
-          this.clouds.push({
-            x: Math.random() * this.width,
-            y: Math.random() * (this.height * 0.4) + 20,
-            scale: Math.random() * 0.7 + 0.7,
-            speed: Math.random() * 0.25 + 0.1,
-            opacity: Math.random() * 0.2 + 0.15
-          });
-        }
-
-        // 4. Solar Dust Motes for Sunny Sky
         this.dustMotes = [];
         for (let i = 0; i < 70; i++) {
           this.dustMotes.push({
@@ -1348,267 +2182,126 @@
             radius: Math.random() * 2.2 + 0.6,
             alpha: Math.random() * 0.6 + 0.2,
             speedY: Math.random() * 0.3 + 0.1,
-            speedX: (Math.random() - 0.5) * 0.3
+            sway: Math.random() * 0.02 + 0.01,
+            phase: Math.random() * Math.PI * 2
           });
         }
 
-        // 5. Undulating Translucent Fog Bands for Delhi Smog
         this.fogBands = [];
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 6; i++) {
           this.fogBands.push({
-            y: (this.height * 0.2) + (i * (this.height * 0.18)),
-            height: Math.random() * 160 + 100,
-            speed: (i % 2 === 0 ? 0.35 : -0.25),
+            y: this.height * (0.35 + i * 0.12),
+            height: Math.random() * 80 + 50,
+            speed: (i % 2 === 0 ? 1 : -1) * (Math.random() * 0.3 + 0.15),
             offset: Math.random() * 1000,
-            alpha: 0.1 + (i * 0.04)
-          });
-        }
-      }
-
-      spawnMeteor() {
-        if (Math.random() < 0.015 && this.meteors.length < 2) {
-          this.meteors.push({
-            x: Math.random() * this.width * 0.8 + 50,
-            y: Math.random() * (this.height * 0.3),
-            length: Math.random() * 120 + 80,
-            speed: Math.random() * 16 + 20,
-            alpha: 1,
-            angle: Math.PI / 4 + (Math.random() * 0.2 - 0.1)
+            alpha: Math.random() * 0.18 + 0.08
           });
         }
       }
 
       render() {
-        this.time += 0.02;
         this.ctx.clearRect(0, 0, this.width, this.height);
+        this.time += 0.016;
 
-        if (currentTheme === 'theme-sunny') {
-          this.renderSunny();
-        } else if (currentTheme === 'theme-night') {
-          this.renderNight();
-        } else if (currentTheme === 'theme-rain') {
-          this.renderRain(false);
-        } else if (currentTheme === 'theme-storm') {
-          this.renderRain(true);
+        if (currentTheme === 'theme-night') {
+          for (const s of this.stars) {
+            const a = s.baseAlpha + Math.sin(this.time * s.speed * 20 + s.phase) * 0.25;
+            this.ctx.fillStyle = `rgba(224, 231, 255, ${Math.max(0.1, Math.min(1, a))})`;
+            this.ctx.beginPath();
+            this.ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+            this.ctx.fill();
+          }
+
+          if (Math.random() < 0.007 && this.meteors.length < 2) {
+            this.meteors.push({
+              x: Math.random() * this.width * 0.8 + 100,
+              y: Math.random() * (this.height * 0.3),
+              len: Math.random() * 90 + 70,
+              speed: Math.random() * 12 + 14,
+              angle: Math.PI / 4 + (Math.random() * 0.2 - 0.1),
+              alpha: 1.0
+            });
+          }
+
+          for (let i = this.meteors.length - 1; i >= 0; i--) {
+            const m = this.meteors[i];
+            m.x += Math.cos(m.angle) * m.speed;
+            m.y += Math.sin(m.angle) * m.speed;
+            m.alpha -= 0.02;
+
+            const tailX = m.x - Math.cos(m.angle) * m.len;
+            const tailY = m.y - Math.sin(m.angle) * m.len;
+            const grad = this.ctx.createLinearGradient(tailX, tailY, m.x, m.y);
+            grad.addColorStop(0, 'rgba(255, 255, 255, 0)');
+            grad.addColorStop(1, `rgba(255, 255, 255, ${m.alpha})`);
+
+            this.ctx.beginPath();
+            this.ctx.moveTo(tailX, tailY);
+            this.ctx.lineTo(m.x, m.y);
+            this.ctx.strokeStyle = grad;
+            this.ctx.lineWidth = 2.2;
+            this.ctx.stroke();
+
+            if (m.alpha <= 0) this.meteors.splice(i, 1);
+          }
+        } else if (currentTheme === 'theme-rain' || currentTheme === 'theme-storm') {
+          for (const r of this.raindrops) {
+            r.y += r.speed;
+            r.x += r.drift;
+            if (r.y > this.height) {
+              r.y = -20;
+              r.x = Math.random() * this.width;
+            }
+
+            this.ctx.strokeStyle = `rgba(56, 189, 248, ${r.alpha})`;
+            this.ctx.lineWidth = 1.4;
+            this.ctx.beginPath();
+            this.ctx.moveTo(r.x, r.y);
+            this.ctx.lineTo(r.x + r.drift * 2, r.y + r.length);
+            this.ctx.stroke();
+          }
+
+          if (currentTheme === 'theme-storm' && Math.random() < 0.0035) {
+            this.triggerLightningFlash();
+          }
+        } else if (currentTheme === 'theme-sunny') {
+          for (const d of this.dustMotes) {
+            d.y -= d.speedY;
+            d.x += Math.sin(this.time + d.phase) * 0.4;
+            if (d.y < 0) {
+              d.y = this.height + 10;
+              d.x = Math.random() * this.width;
+            }
+            this.ctx.fillStyle = `rgba(253, 224, 71, ${d.alpha})`;
+            this.ctx.beginPath();
+            this.ctx.arc(d.x, d.y, d.radius, 0, Math.PI * 2);
+            this.ctx.fill();
+          }
         } else if (currentTheme === 'theme-fog') {
-          this.renderFog();
-        } else {
-          this.renderCloudy();
+          for (const fb of this.fogBands) {
+            fb.offset += fb.speed;
+            const grad = this.ctx.createLinearGradient(0, fb.y, 0, fb.y + fb.height);
+            grad.addColorStop(0, 'rgba(245, 158, 11, 0)');
+            grad.addColorStop(0.5, `rgba(245, 158, 11, ${fb.alpha})`);
+            grad.addColorStop(1, 'rgba(245, 158, 11, 0)');
+            this.ctx.fillStyle = grad;
+            this.ctx.fillRect(0, fb.y, this.width, fb.height);
+          }
         }
 
         requestAnimationFrame(() => this.render());
       }
 
-      renderSunny() {
-        const sunX = this.width * 0.82;
-        const sunY = this.height * 0.16;
-
-        // Concentric corona glows
-        const pulse = Math.sin(this.time * 1.5) * 15;
-        const sunGrad1 = this.ctx.createRadialGradient(sunX, sunY, 10, sunX, sunY, 260 + pulse);
-        sunGrad1.addColorStop(0, 'rgba(254, 240, 138, 0.4)');
-        sunGrad1.addColorStop(0.35, 'rgba(251, 191, 36, 0.18)');
-        sunGrad1.addColorStop(1, 'rgba(251, 191, 36, 0)');
-        this.ctx.fillStyle = sunGrad1;
-        this.ctx.fillRect(0, 0, this.width, this.height);
-
-        // Volumetric Sun Shafts (God Rays)
-        this.ctx.save();
-        this.ctx.translate(sunX, sunY);
-        for (let r = 0; r < 4; r++) {
-          const rayAngle = (r * 0.4) + Math.sin(this.time + r) * 0.08 + 1.2;
-          const rayLength = Math.max(this.width, this.height) * 1.2;
-          const gradRay = this.ctx.createLinearGradient(0, 0, Math.cos(rayAngle) * rayLength, Math.sin(rayAngle) * rayLength);
-          gradRay.addColorStop(0, 'rgba(254, 240, 138, 0.18)');
-          gradRay.addColorStop(0.6, 'rgba(251, 191, 36, 0.04)');
-          gradRay.addColorStop(1, 'rgba(251, 191, 36, 0)');
-
-          this.ctx.beginPath();
-          this.ctx.moveTo(0, 0);
-          this.ctx.lineTo(Math.cos(rayAngle - 0.14) * rayLength, Math.sin(rayAngle - 0.14) * rayLength);
-          this.ctx.lineTo(Math.cos(rayAngle + 0.14) * rayLength, Math.sin(rayAngle + 0.14) * rayLength);
-          this.ctx.closePath();
-          this.ctx.fillStyle = gradRay;
-          this.ctx.fill();
-        }
-        this.ctx.restore();
-
-        // 3D Soft Puffy Clouds drifting
-        this.renderVolumetricClouds('#ffffff', 0.14);
-
-        // Golden Solar Dust Motes
-        for (const dm of this.dustMotes) {
-          dm.y -= dm.speedY;
-          dm.x += dm.speedX;
-          if (dm.y < 0) { dm.y = this.height; dm.x = Math.random() * this.width; }
-          this.ctx.beginPath();
-          this.ctx.arc(dm.x, dm.y, dm.radius, 0, Math.PI * 2);
-          this.ctx.fillStyle = `rgba(253, 224, 71, ${dm.alpha * 0.6})`;
-          this.ctx.fill();
-        }
-      }
-
-      renderNight() {
-        // Multi-Spectral Twinkling Stars
-        for (const s of this.stars) {
-          const tw = Math.sin(this.time * 2 + s.phase);
-          const alpha = s.baseAlpha + (tw * 0.35);
-          this.ctx.beginPath();
-          this.ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
-          this.ctx.fillStyle = `rgba(248, 250, 252, ${Math.max(0.1, alpha)})`;
-          this.ctx.fill();
-        }
-
-        // Shooting Stars (Meteors)
-        this.spawnMeteor();
-        for (let i = this.meteors.length - 1; i >= 0; i--) {
-          const m = this.meteors[i];
-          const endX = m.x - Math.cos(m.angle) * m.length;
-          const endY = m.y - Math.sin(m.angle) * m.length;
-
-          const grad = this.ctx.createLinearGradient(endX, endY, m.x, m.y);
-          grad.addColorStop(0, 'rgba(255, 255, 255, 0)');
-          grad.addColorStop(1, `rgba(255, 255, 255, ${m.alpha})`);
-
-          this.ctx.beginPath();
-          this.ctx.moveTo(endX, endY);
-          this.ctx.lineTo(m.x, m.y);
-          this.ctx.strokeStyle = grad;
-          this.ctx.lineWidth = 2.2;
-          this.ctx.stroke();
-
-          m.x += Math.cos(m.angle) * m.speed;
-          m.y += Math.sin(m.angle) * m.speed;
-          m.alpha -= 0.035;
-
-          if (m.alpha <= 0 || m.x > this.width || m.y > this.height) {
-            this.meteors.splice(i, 1);
-          }
-        }
-
-        // Subtle Night Clouds
-        this.renderVolumetricClouds('#c7d2fe', 0.08);
-      }
-
-      renderRain(isStorm = false) {
-        // Storm Lightning Flash Simulation
-        if (isStorm && Math.random() < 0.008) {
-          const overlay = document.getElementById('lightningFlashOverlay');
-          overlay.style.opacity = '0.75';
-          setTimeout(() => { overlay.style.opacity = '0'; }, 90);
-          setTimeout(() => { overlay.style.opacity = '0.4'; }, 150);
-          setTimeout(() => { overlay.style.opacity = '0'; }, 220);
-        }
-
-        // Dark Storm Clouds
-        this.renderVolumetricClouds('#334155', isStorm ? 0.35 : 0.22);
-
-        // 120+ Raindrops with motion velocity
-        for (const r of this.raindrops) {
-          r.y += r.speed;
-          r.x += r.drift;
-
-          // Ground Splash Trigger
-          if (r.y > this.height - 25) {
-            if (this.splashes.length < 24) {
-              this.splashes.push({
-                x: r.x,
-                y: this.height - 15 + (Math.random() * 10),
-                radius: 2,
-                maxRadius: Math.random() * 12 + 6,
-                alpha: 0.65
-              });
-            }
-            r.y = -20;
-            r.x = Math.random() * this.width;
-          }
-
-          this.ctx.beginPath();
-          this.ctx.moveTo(r.x, r.y);
-          this.ctx.lineTo(r.x + (r.drift * 2), r.y + r.length);
-          this.ctx.strokeStyle = isStorm 
-            ? `rgba(165, 180, 252, ${r.alpha * 0.7})` 
-            : `rgba(56, 189, 248, ${r.alpha * 0.65})`;
-          this.ctx.lineWidth = 1.5;
-          this.ctx.stroke();
-        }
-
-        // Render Ground Splash Ripples
-        for (let i = this.splashes.length - 1; i >= 0; i--) {
-          const s = this.splashes[i];
-          s.radius += 0.8;
-          s.alpha -= 0.04;
-
-          this.ctx.beginPath();
-          this.ctx.ellipse(s.x, s.y, s.radius * 2, s.radius, 0, 0, Math.PI * 2);
-          this.ctx.strokeStyle = `rgba(56, 189, 248, ${s.alpha * 0.5})`;
-          this.ctx.lineWidth = 1.2;
-          this.ctx.stroke();
-
-          if (s.alpha <= 0) this.splashes.splice(i, 1);
-        }
-      }
-
-      renderFog() {
-        // Delhi NCR Atmospheric Haze Undulation Bands
-        for (const fb of this.fogBands) {
-          fb.offset += fb.speed;
-          const grad = this.ctx.createLinearGradient(0, fb.y, 0, fb.y + fb.height);
-          grad.addColorStop(0, 'rgba(203, 213, 225, 0)');
-          grad.addColorStop(0.5, `rgba(203, 213, 225, ${fb.alpha})`);
-          grad.addColorStop(1, 'rgba(203, 213, 225, 0)');
-
-          this.ctx.beginPath();
-          this.ctx.moveTo(0, fb.y);
-          for (let x = 0; x <= this.width; x += 50) {
-            const wave = Math.sin((x + fb.offset) * 0.005) * 35;
-            this.ctx.lineTo(x, fb.y + wave);
-          }
-          this.ctx.lineTo(this.width, fb.y + fb.height);
-          this.ctx.lineTo(0, fb.y + fb.height);
-          this.ctx.closePath();
-          this.ctx.fillStyle = grad;
-          this.ctx.fill();
-        }
-
-        this.renderVolumetricClouds('#e2e8f0', 0.16);
-      }
-
-      renderCloudy() {
-        this.renderVolumetricClouds('#cbd5e1', 0.28);
-      }
-
-      renderVolumetricClouds(baseColor, alpha) {
-        for (const cl of this.clouds) {
-          cl.x += cl.speed;
-          if (cl.x > this.width + 300) cl.x = -300;
-
-          // Draw cluster of soft overlapping radial puffs
-          const puffs = [
-            { ox: 0, oy: 0, r: 85 * cl.scale },
-            { ox: 60 * cl.scale, oy: -20 * cl.scale, r: 100 * cl.scale },
-            { ox: 130 * cl.scale, oy: -10 * cl.scale, r: 90 * cl.scale },
-            { ox: 180 * cl.scale, oy: 15 * cl.scale, r: 75 * cl.scale },
-            { ox: 80 * cl.scale, oy: 25 * cl.scale, r: 80 * cl.scale }
-          ];
-
-          for (const p of puffs) {
-            const px = cl.x + p.ox;
-            const py = cl.y + p.oy;
-            const g = this.ctx.createRadialGradient(px, py, 10, px, py, p.r);
-            g.addColorStop(0, `${baseColor}${Math.floor(alpha * 255).toString(16).padStart(2, '0')}`);
-            g.addColorStop(0.7, `${baseColor}${Math.floor(alpha * 0.5 * 255).toString(16).padStart(2, '0')}`);
-            g.addColorStop(1, `${baseColor}00`);
-            this.ctx.fillStyle = g;
-            this.ctx.beginPath();
-            this.ctx.arc(px, py, p.r, 0, Math.PI * 2);
-            this.ctx.fill();
-          }
-        }
+      triggerLightningFlash() {
+        const overlay = document.getElementById('lightningFlashOverlay');
+        if (!overlay) return;
+        overlay.style.opacity = '0.75';
+        setTimeout(() => { overlay.style.opacity = '0'; }, 70);
+        setTimeout(() => { overlay.style.opacity = '0.45'; }, 130);
+        setTimeout(() => { overlay.style.opacity = '0'; }, 220);
       }
     }
 
-    // Initialize Atmospheric Sky Engine
     let atmosphereEngine = null;
     window.addEventListener('load', () => {
       const c = document.getElementById('skyCanvas');
@@ -1619,11 +2312,11 @@
 
     // 3. Windy-Style Mini Fluid Particle Vector Stream
     const miniCanvas = document.getElementById('miniWindCanvas');
-    const miniCtx = miniCanvas.getContext('2d');
+    const miniCtx = miniCanvas ? miniCanvas.getContext('2d') : null;
     let windParticles = [];
 
     function resizeMiniWind() {
-      if (!miniCanvas) return;
+      if (!miniCanvas || !miniCanvas.parentElement) return;
       miniCanvas.width = miniCanvas.parentElement.clientWidth;
       miniCanvas.height = miniCanvas.parentElement.clientHeight;
       initWindParticles();
@@ -1632,6 +2325,7 @@
 
     function initWindParticles() {
       windParticles = [];
+      if (!miniCanvas) return;
       for (let i = 0; i < 90; i++) {
         windParticles.push({
           x: Math.random() * miniCanvas.width,
@@ -1644,7 +2338,7 @@
     }
 
     function animateWindStream() {
-      if (!miniCanvas.width) return;
+      if (!miniCanvas || !miniCanvas.width) return;
       miniCtx.clearRect(0, 0, miniCanvas.width, miniCanvas.height);
       miniCtx.fillStyle = 'rgba(0, 0, 0, 0.05)';
       miniCtx.fillRect(0, 0, miniCanvas.width, miniCanvas.height);
@@ -1678,7 +2372,7 @@
     }
     setTimeout(() => { resizeMiniWind(); animateWindStream(); }, 120);
 
-    // 4. WMO Weather Code Interpreter & Scene Theme Selector
+    // 4. WMO Weather Code Interpreter & Theme Selector
     function decodeWMO(code, isDay = 1) {
       const map = {
         0: { name: 'Clear Sky', desc: 'Sunny and cloudless atmospheric column with maximum solar radiation.', theme: isDay ? 'theme-sunny' : 'theme-night' },
@@ -1731,73 +2425,58 @@
       }
     }
 
-    // 5. Fetch Weather Data (Open-Meteo Precision API)
-    async function loadWeather(lat, lon, label) {
-      if (label) document.getElementById('currentLocLabel').textContent = label;
-      const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,cloud_cover,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m,dew_point_2m,visibility&hourly=temperature_2m,precipitation_probability,weather_code,wind_speed_10m,uv_index&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,uv_index_max,sunrise,sunset&forecast_days=7&timezone=Asia/Kolkata`;
-
-      try {
-        const res = await fetch(url);
-        const data = await res.json();
-        currentRawData = data;
-        renderData(data);
-        fetchLiveAQI();
-      } catch (err) {
-        console.error('Weather load error:', err);
+    // 5. Dual-Feed Master Data Loader (Open-Meteo Weather + Air Quality API)
+    async function loadWeather(lat, lon, label, stationKey = 'delhi') {
+      currentStationKey = stationKey;
+      if (label) {
+        document.getElementById('currentLocLabel').textContent = label;
+        document.getElementById('breadcrumbCurrentLoc').textContent = label;
       }
-    }
 
-    // 6. Connect with AirNova Core AQI Engine
-    async function fetchLiveAQI() {
+      const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,cloud_cover,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m,dew_point_2m,visibility&hourly=temperature_2m,precipitation_probability,weather_code,wind_speed_10m,uv_index&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,uv_index_max,sunrise,sunset&forecast_days=7&timezone=Asia/Kolkata`;
+      
+      const airUrl = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=european_aqi,us_aqi,pm10,pm2_5,carbon_monoxide,nitrogen_dioxide,sulphur_dioxide,ozone&hourly=pm2_5,pm10,us_aqi&timezone=Asia/Kolkata`;
+
       try {
-        const res = await fetch('/api/environment?city=Delhi');
-        if (res.ok) {
-          const env = await res.json();
-          const aqi = env.aqi || env.pm25_aqi || Math.round(env.pm25 * 2.2) || 168;
-          const badge = document.getElementById('liveAqiBadge');
-          badge.textContent = `⚡ Live AQI: ${aqi} (${getAqiCategory(aqi)})`;
-          if (aqi <= 50) { badge.style.color = '#10b981'; badge.style.borderColor = 'rgba(16,185,129,0.5)'; }
-          else if (aqi <= 100) { badge.style.color = '#38bdf8'; badge.style.borderColor = 'rgba(56,189,248,0.5)'; }
-          else if (aqi <= 200) { badge.style.color = '#f59e0b'; badge.style.borderColor = 'rgba(245,158,11,0.5)'; }
-          else { badge.style.color = '#ef4444'; badge.style.borderColor = 'rgba(239,68,68,0.5)'; }
+        const [wRes, aRes] = await Promise.all([
+          fetch(weatherUrl),
+          fetch(airUrl).catch(() => null)
+        ]);
 
-          const pm25 = env.pm25 || (aqi * 0.45);
-          document.getElementById('cigsVal').textContent = `~${(pm25 / 22).toFixed(1)} Cigs`;
+        const wData = await wRes.json();
+        currentRawData = wData;
+
+        let aData = null;
+        if (aRes && aRes.ok) {
+          aData = await aRes.json();
+          currentAirData = aData;
         }
-      } catch (e) {
-        document.getElementById('liveAqiBadge').textContent = '⚡ Live AQI: 168 (Moderate)';
+
+        renderData(wData, aData);
+        renderStationRankingsTable();
+      } catch (err) {
+        console.error('Master telemetry load error:', err);
       }
     }
 
-    function getAqiCategory(aqi) {
-      if (aqi <= 50) return 'Good';
-      if (aqi <= 100) return 'Satisfactory';
-      if (aqi <= 200) return 'Moderate';
-      if (aqi <= 300) return 'Poor';
-      if (aqi <= 400) return 'Very Poor';
-      return 'Severe';
-    }
-
-    // 7. Master Render Routine
-    function renderData(data) {
+    // 6. Master Render Routine (Weather + AQI.in Master Suite)
+    function renderData(data, airData) {
       const c = data.current;
       const d = data.daily;
       const h = data.hourly;
       const u = isFahrenheit ? '°F' : '°C';
 
-      // Weather condition info
+      // 1. Weather Theme & Icon
       const wInfo = decodeWMO(c.weather_code, c.is_day);
       if (isAutoSyncEnabled) {
         currentTheme = wInfo.theme;
         document.body.className = currentTheme;
       }
 
-      // 1. Hero Card Fill
+      // Hero Card Fill
       document.getElementById('heroTemp').textContent = convertTemp(c.temperature_2m);
       document.getElementById('heroConditionName').textContent = wInfo.name;
       document.getElementById('heroConditionDesc').textContent = wInfo.desc;
-      
-      // Render Bespoke Animated SVG Weather Icon
       document.getElementById('heroWeatherIcon').innerHTML = getAnimatedWeatherSVG(c.weather_code, c.is_day, 120);
 
       document.getElementById('heroFeelsLike').textContent = `${convertTemp(c.apparent_temperature)}${u}`;
@@ -1806,12 +2485,18 @@
       document.getElementById('heroDewPoint').textContent = `${convertTemp(c.dew_point_2m)}${u}`;
       document.getElementById('liveTimestamp').textContent = `Live at ${new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})} IST`;
 
-      // 2. Windy Mini-HUD
+      // 2. AQI.in Master Air Quality Section Render
+      renderMasterAqiSection(airData);
+
+      // 3. AQI.in 6-Pollutants Matrix Render
+      renderPollutantsMatrix(airData);
+
+      // 4. Windy Mini-HUD
       document.getElementById('hudWindSpeed').textContent = `${Math.round(c.wind_speed_10m)} km/h`;
       document.getElementById('hudWindDir').textContent = `${Math.round(c.wind_direction_10m)}°`;
       document.getElementById('hudPblHeight').textContent = `${c.is_day ? 880 : 360} m`;
 
-      // 3. AccuWeather MinuteCast Timeline (30 slots over 120 mins)
+      // 5. AccuWeather MinuteCast Timeline
       const mcContainer = document.getElementById('minuteCastBars');
       mcContainer.innerHTML = '';
       const rainProb = d.precipitation_probability_max[0] || 0;
@@ -1820,7 +2505,7 @@
         bar.className = 'mc-bar';
         if (rainProb > 40) {
           bar.classList.add('rain');
-          bar.style.height = `${Math.min(42, 12 + (Math.sin(i * 0.45) * 16 + 12))}px`;
+          bar.style.height = `${Math.min(56, 14 + (Math.sin(i * 0.45) * 22 + 16))}px`;
         } else {
           bar.style.height = '6px';
         }
@@ -1830,17 +2515,16 @@
         ? `Passing precipitation showers expected within the 120-min radar window.`
         : `Clear dry atmospheric column across region. Zero precipitation detected.`;
 
-      // 4. Render 24-Hour Spline Curve
-      renderHourlySpline(h);
+      // 6. 24-Hour Spline Curve
+      renderHourlySpline(h, airData);
 
-      // 5. 9-Vitals Grid
+      // 7. 9-Vitals Grid
       const uv = d.uv_index_max[0] || 0;
       document.getElementById('uvIndexVal').textContent = uv.toFixed(1);
       document.getElementById('uvAdviceText').textContent = uv > 6 
         ? 'High UV: Apply SPF 50+ protection during midday solar window.' 
         : 'Low to moderate solar radiation. Safe for unshaded exposure.';
 
-      // Wind & Needle
       document.getElementById('windSpeedVal').textContent = `${Math.round(c.wind_speed_10m)} km/h`;
       const gust = Math.round(c.wind_gusts_10m || c.wind_speed_10m * 1.35);
       document.getElementById('windGustSub').textContent = `Gusts to ${gust} km/h`;
@@ -1870,50 +2554,258 @@
           : `Sun has set. Boundary cooling phase active.`;
       }
 
-      // Dew Point Comfort
       document.getElementById('dewPointVal').textContent = `${convertTemp(c.dew_point_2m)}${u}`;
       document.getElementById('dewComfortText').textContent = c.dew_point_2m < 16 
         ? 'Pleasant & Crisp: Balanced indoor and outdoor moisture.' 
         : 'Elevated Humidity: Atmospheric moisture trapping boundary aerosols.';
 
-      // Visibility
       const visKm = Math.round(c.visibility / 1000);
       document.getElementById('visibilityVal').textContent = `${visKm} km`;
       document.getElementById('visibilitySubText').textContent = visKm >= 10 
         ? 'Exceptional line of sight across NCR urban horizon.' 
         : 'Aerosol haze scattering distant landmarks.';
 
-      // Rain Prob
       document.getElementById('rainProbVal').textContent = `${d.precipitation_probability_max[0] || 0}%`;
       document.getElementById('rainAccumText').textContent = `${c.precipitation || 0.0} mm recorded today. Clear dry front.`;
 
-      // 6. 7-Day Range Thermometer Bars
+      // 8. 7-Day Extended Forecast Render
       renderSevenDay(d);
     }
 
-    // 8. Interactive 24-Hour Spline Curve Canvas
-    function renderHourlySpline(h) {
+    // 7. AQI.in Master Air Quality Section Render
+    function renderMasterAqiSection(airData) {
+      const st = stationCoords[currentStationKey] || stationCoords.delhi;
+      let aqi = st.baseAqi;
+      let pm25 = st.pm25;
+
+      if (airData && airData.current) {
+        const usAqi = airData.current.us_aqi;
+        if (usAqi) aqi = usAqi;
+        if (airData.current.pm2_5) pm25 = airData.current.pm2_5;
+      }
+
+      const aqiValEl = document.getElementById('masterAqiVal');
+      const aqiBadgeEl = document.getElementById('masterAqiBadge');
+      const liveBadge = document.getElementById('liveAqiBadge');
+      const needleEl = document.getElementById('aqiSpectrumNeedle');
+
+      aqiValEl.textContent = aqi;
+
+      // Color coding & Needle positioning (0 to 500)
+      const needlePct = Math.max(2, Math.min(98, (aqi / 500) * 100));
+      needleEl.style.left = `${needlePct}%`;
+
+      let cat = 'Moderate';
+      let color = 'var(--amber)';
+      let bg = 'rgba(245, 158, 11, 0.2)';
+      let border = 'rgba(245, 158, 11, 0.4)';
+
+      if (aqi <= 50) {
+        cat = 'Good'; color = 'var(--emerald)';
+        bg = 'rgba(16, 185, 129, 0.2)'; border = 'rgba(16, 185, 129, 0.4)';
+      } else if (aqi <= 100) {
+        cat = 'Satisfactory'; color = '#84cc16';
+        bg = 'rgba(132, 204, 22, 0.2)'; border = 'rgba(132, 204, 22, 0.4)';
+      } else if (aqi <= 200) {
+        cat = 'Moderate'; color = 'var(--amber)';
+        bg = 'rgba(245, 158, 11, 0.2)'; border = 'rgba(245, 158, 11, 0.4)';
+      } else if (aqi <= 300) {
+        cat = 'Poor'; color = 'var(--orange)';
+        bg = 'rgba(249, 115, 22, 0.2)'; border = 'rgba(249, 115, 22, 0.4)';
+      } else if (aqi <= 400) {
+        cat = 'Very Poor'; color = 'var(--red)';
+        bg = 'rgba(239, 68, 68, 0.2)'; border = 'rgba(239, 68, 68, 0.4)';
+      } else {
+        cat = 'Severe'; color = '#701a75';
+        bg = 'rgba(112, 26, 117, 0.25)'; border = 'rgba(112, 26, 117, 0.5)';
+      }
+
+      aqiValEl.style.color = color;
+      aqiBadgeEl.textContent = cat;
+      aqiBadgeEl.style.color = color;
+      aqiBadgeEl.style.background = bg;
+      aqiBadgeEl.style.borderColor = border;
+
+      liveBadge.innerHTML = `<span>⚡ Live AQI: ${aqi} (${cat})</span>`;
+      liveBadge.style.color = color;
+      liveBadge.style.borderColor = border;
+
+      // Dominant pollutant
+      document.getElementById('masterDominantConc').textContent = `${pm25.toFixed(1)} µg/m³`;
+
+      // WHO limit multiplier (WHO 24h PM2.5 limit is 15 µg/m³)
+      const whoMult = (pm25 / 15).toFixed(1);
+      document.getElementById('whoMultiplierText').textContent = `${whoMult}x Annual Limit`;
+      document.getElementById('whoMultiplierText').style.color = (whoMult > 3) ? 'var(--orange)' : 'var(--amber)';
+
+      // Cigarette Equivalent (Berkeley Earth ~22 µg/m³ PM2.5 = 1 cig/day)
+      const cigs = (pm25 / 22).toFixed(1);
+      document.getElementById('heroCigarettesText').textContent = `~${cigs} Cigs/Day`;
+      document.getElementById('cigsVal').textContent = `${cigs} Cigs`;
+
+      // Health impact statement
+      if (aqi > 250) {
+        document.getElementById('aqiImpactTitle').textContent = 'Hazardous Atmospheric Pollution';
+        document.getElementById('aqiImpactDesc').textContent = 'Dense PM2.5 suspension across urban canopy. Wear N95 masks outdoors and avoid all strenuous exercise.';
+      } else if (aqi > 150) {
+        document.getElementById('aqiImpactTitle').textContent = 'Unhealthy for Sensitive Groups';
+        document.getElementById('aqiImpactDesc').textContent = 'Elevated fine particulates irritate throat and eyes. Asthmatics and children should limit outdoor transit.';
+      } else {
+        document.getElementById('aqiImpactTitle').textContent = 'Moderate Atmospheric Quality';
+        document.getElementById('aqiImpactDesc').textContent = 'Air quality is acceptable; minor risk for uniquely sensitive individuals during early morning.';
+      }
+    }
+
+    // 8. AQI.in 6-Pollutants Matrix Render
+    function renderPollutantsMatrix(airData) {
+      const cur = airData?.current;
+
+      const pm25 = cur?.pm2_5 || 40.6;
+      const pm10 = cur?.pm10 || 93.4;
+      const no2 = cur?.nitrogen_dioxide || 38.8;
+      const so2 = cur?.sulphur_dioxide || 28.2;
+      const co = cur?.carbon_monoxide ? (cur.carbon_monoxide / 1000) : 1.20;
+      const o3 = cur?.ozone || 109.0;
+
+      // 1. PM2.5 (WHO 15)
+      document.getElementById('polPM25Val').textContent = pm25.toFixed(1);
+      const pm25Ratio = (pm25 / 15).toFixed(1);
+      document.getElementById('polPM25Status').textContent = `${pm25Ratio}x Limit`;
+      document.getElementById('polPM25Bar').style.width = `${Math.min(100, (pm25 / 150) * 100)}%`;
+
+      // 2. PM10 (WHO 45)
+      document.getElementById('polPM10Val').textContent = pm10.toFixed(1);
+      const pm10Ratio = (pm10 / 45).toFixed(1);
+      document.getElementById('polPM10Status').textContent = `${pm10Ratio}x Limit`;
+      document.getElementById('polPM10Bar').style.width = `${Math.min(100, (pm10 / 250) * 100)}%`;
+
+      // 3. NO2 (WHO 25)
+      document.getElementById('polNO2Val').textContent = no2.toFixed(1);
+      const no2Ratio = (no2 / 25).toFixed(1);
+      document.getElementById('polNO2Status').textContent = `${no2Ratio}x Limit`;
+      document.getElementById('polNO2Bar').style.width = `${Math.min(100, (no2 / 100) * 100)}%`;
+
+      // 4. SO2 (WHO 40)
+      document.getElementById('polSO2Val').textContent = so2.toFixed(1);
+      document.getElementById('polSO2Status').textContent = so2 <= 40 ? 'Safe Limit' : `${(so2/40).toFixed(1)}x Limit`;
+      document.getElementById('polSO2Bar').style.width = `${Math.min(100, (so2 / 80) * 100)}%`;
+
+      // 5. CO (WHO 4.0 mg/m³)
+      document.getElementById('polCOVal').textContent = co.toFixed(2);
+      document.getElementById('polCOStatus').textContent = co <= 4.0 ? 'Good / Safe' : 'Elevated';
+      document.getElementById('polCOBar').style.width = `${Math.min(100, (co / 5) * 100)}%`;
+
+      // 6. O3 (WHO 100)
+      document.getElementById('polO3Val').textContent = o3.toFixed(1);
+      document.getElementById('polO3Status').textContent = o3 <= 100 ? 'Satisfactory' : 'Elevated (1.1x)';
+      document.getElementById('polO3Bar').style.width = `${Math.min(100, (o3 / 180) * 100)}%`;
+    }
+
+    // 9. Hyperlocal Delhi NCR Stations Table Render
+    function renderStationRankingsTable() {
+      const tbody = document.getElementById('stationRankingsTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      Object.entries(stationCoords).forEach(([key, st]) => {
+        const tr = document.createElement('tr');
+        const isSelected = (key === currentStationKey);
+
+        let color = 'var(--amber)';
+        let bg = 'rgba(245, 158, 11, 0.15)';
+        let cat = 'Moderate';
+
+        if (st.baseAqi <= 100) { cat = 'Satisfactory'; color = '#84cc16'; bg = 'rgba(132, 204, 22, 0.15)'; }
+        else if (st.baseAqi <= 200) { cat = 'Moderate'; color = 'var(--amber)'; bg = 'rgba(245, 158, 11, 0.15)'; }
+        else if (st.baseAqi <= 300) { cat = 'Poor'; color = 'var(--orange)'; bg = 'rgba(249, 115, 22, 0.15)'; }
+        else { cat = 'Very Poor'; color = 'var(--red)'; bg = 'rgba(239, 68, 68, 0.15)'; }
+
+        tr.innerHTML = `
+          <td>
+            <div class="station-name-cell">
+              <span>📍</span>
+              <div>
+                <strong>${st.name}</strong>
+                ${isSelected ? '<span style="font-size:10px;margin-left:6px;color:var(--cyan);font-weight:800">[ACTIVE]</span>' : ''}
+              </div>
+            </div>
+          </td>
+          <td><span class="station-type-tag">${st.type}</span></td>
+          <td>
+            <span class="station-aqi-pill" style="color:${color};background:${bg};border:1px solid ${color}40">
+              ⚡ ${st.baseAqi}
+            </span>
+          </td>
+          <td><strong style="color:${color}">${cat}</strong></td>
+          <td><span style="font-family:'JetBrains Mono',monospace;color:#fff">PM2.5: ${st.pm25} µg/m³</span></td>
+          <td><span style="font-family:'JetBrains Mono',monospace">${currentRawData ? convertTemp(currentRawData.current.temperature_2m) : 28}°</span></td>
+          <td><span style="font-family:'JetBrains Mono',monospace">${currentRawData ? currentRawData.current.relative_humidity_2m : 52}%</span></td>
+          <td>
+            <button class="btn-switch-station" onclick="switchPreset('${key}')">
+              ${isSelected ? 'Active' : 'Inspect Station'}
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // 10. Dual-Mode 24-Hour Spline Chart (Temperature Curve vs Predicted AQI Curve)
+    function switchHourlyChartMode(mode) {
+      hourlyChartMode = mode;
+      document.getElementById('tabTempCurve').classList.toggle('active', mode === 'temp');
+      document.getElementById('tabAqiCurve').classList.toggle('active', mode === 'aqi');
+      if (currentRawData) renderHourlySpline(currentRawData.hourly, currentAirData);
+    }
+
+    function renderHourlySpline(h, airData) {
       const canvas = document.getElementById('hourlyCanvas');
+      if (!canvas) return;
       const ctx = canvas.getContext('2d');
       canvas.width = canvas.parentElement.clientWidth;
       canvas.height = canvas.parentElement.clientHeight;
 
       const count = 24;
-      const temps = h.temperature_2m.slice(0, count);
-      const minTemp = Math.min(...temps) - 2;
-      const maxTemp = Math.max(...temps) + 2;
+      let values = [];
+      let strokeColor = '#38bdf8';
+      let gradStart = 'rgba(56, 189, 248, 0.35)';
+
+      if (hourlyChartMode === 'temp') {
+        values = h.temperature_2m.slice(0, count);
+        strokeColor = '#38bdf8';
+        gradStart = 'rgba(56, 189, 248, 0.35)';
+      } else {
+        // AQI hourly curve (either from airData or diurnal cycle inversion model)
+        if (airData?.hourly?.us_aqi) {
+          values = airData.hourly.us_aqi.slice(0, count);
+        } else {
+          // Synthetic realistic diurnal boundary inversion curve (peaks morning/night, dips afternoon)
+          const base = stationCoords[currentStationKey]?.baseAqi || 184;
+          values = Array.from({length: count}, (_, i) => {
+            const hr = (new Date().getHours() + i) % 24;
+            // Higher at 7-8 AM (morning peak) and 10 PM, lowest at 2-4 PM
+            const dip = Math.sin((hr - 8) * (Math.PI / 12)) * 38;
+            return Math.max(60, Math.round(base - dip));
+          });
+        }
+        strokeColor = '#f59e0b';
+        gradStart = 'rgba(245, 158, 11, 0.38)';
+      }
+
+      const minVal = Math.min(...values) - (hourlyChartMode === 'temp' ? 2 : 15);
+      const maxVal = Math.max(...values) + (hourlyChartMode === 'temp' ? 2 : 15);
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const stepX = canvas.width / (count - 1);
-      const points = temps.map((t, i) => {
-        const y = canvas.height - ((t - minTemp) / (maxTemp - minTemp)) * (canvas.height - 30) - 15;
-        return { x: i * stepX, y: y, temp: t };
+      const points = values.map((v, i) => {
+        const y = canvas.height - ((v - minVal) / (maxVal - minVal)) * (canvas.height - 30) - 15;
+        return { x: i * stepX, y: y, val: v };
       });
 
       // Area gradient
       const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      grad.addColorStop(0, 'rgba(56, 189, 248, 0.35)');
+      grad.addColorStop(0, gradStart);
       grad.addColorStop(1, 'rgba(56, 189, 248, 0.0)');
 
       ctx.beginPath();
@@ -1939,11 +2831,11 @@
         ctx.quadraticCurveTo(points[i - 1].x, points[i - 1].y, xc, yc);
       }
       ctx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
-      ctx.strokeStyle = '#38bdf8';
+      ctx.strokeStyle = strokeColor;
       ctx.lineWidth = 2.5;
       ctx.stroke();
 
-      // Render Hourly Chips with Bespoke Mini SVG Icons
+      // Render Hourly Chips
       const scroll = document.getElementById('hourlyChipsScroll');
       scroll.innerHTML = '';
       const nowIdx = new Date().getHours();
@@ -1955,19 +2847,25 @@
         const temp = convertTemp(h.temperature_2m[i]);
         const pop = h.precipitation_probability[i] || 0;
 
+        let centerMetric = `${temp}°`;
+        if (hourlyChartMode === 'aqi') {
+          const aqiVal = airData?.hourly?.us_aqi ? airData.hourly.us_aqi[i] : Math.round(180 + Math.sin(i * 0.4) * 30);
+          centerMetric = `AQI ${aqiVal}`;
+        }
+
         const chip = document.createElement('div');
         chip.className = `h-chip ${isCurrent ? 'active' : ''}`;
         chip.innerHTML = `
           <div class="h-chip-time">${isCurrent ? 'Now' : timeStr}</div>
           <div class="h-chip-icon-box">${iconSvg}</div>
-          <div class="h-chip-temp">${temp}°</div>
+          <div class="h-chip-temp" style="font-size:${hourlyChartMode === 'aqi' ? '13px' : '17px'};color:${hourlyChartMode === 'aqi' ? 'var(--amber)' : '#fff'}">${centerMetric}</div>
           <div class="h-chip-pop">${pop > 10 ? pop + '%' : '·'}</div>
         `;
         scroll.appendChild(chip);
       }
     }
 
-    // 9. 7-Day Extended Forecast Render with Bespoke Mini SVG Icons
+    // 11. 7-Day Extended Forecast Render with AQI Category Pills
     function renderSevenDay(d) {
       const container = document.getElementById('sevenDayContainer');
       container.innerHTML = '';
@@ -1975,6 +2873,17 @@
       
       const overallMin = Math.min(...d.temperature_2m_min);
       const overallMax = Math.max(...d.temperature_2m_max);
+
+      // Representative 7-day predicted AQI array for Delhi NCR season
+      const predictedAqiTrend = [
+        { val: 184, cat: 'Moderate', color: 'var(--amber)', bg: 'rgba(245,158,11,0.2)' },
+        { val: 210, cat: 'Poor', color: 'var(--orange)', bg: 'rgba(249,115,22,0.2)' },
+        { val: 245, cat: 'Poor', color: 'var(--orange)', bg: 'rgba(249,115,22,0.2)' },
+        { val: 195, cat: 'Moderate', color: 'var(--amber)', bg: 'rgba(245,158,11,0.2)' },
+        { val: 172, cat: 'Moderate', color: 'var(--amber)', bg: 'rgba(245,158,11,0.2)' },
+        { val: 220, cat: 'Poor', color: 'var(--orange)', bg: 'rgba(249,115,22,0.2)' },
+        { val: 260, cat: 'Very Poor', color: 'var(--red)', bg: 'rgba(239,68,68,0.2)' }
+      ];
 
       for (let i = 0; i < d.time.length; i++) {
         const dateObj = new Date(d.time[i]);
@@ -1985,6 +2894,8 @@
 
         const leftPct = ((d.temperature_2m_min[i] - overallMin) / (overallMax - overallMin)) * 100;
         const widthPct = Math.max(14, ((d.temperature_2m_max[i] - d.temperature_2m_min[i]) / (overallMax - overallMin)) * 100);
+
+        const aqiInfo = predictedAqiTrend[i % predictedAqiTrend.length];
 
         const row = document.createElement('div');
         row.className = 'forecast-row-item';
@@ -1998,17 +2909,26 @@
             <span class="t-min">${low}°</span>
             <span class="t-max">${high}°</span>
           </div>
+          <div class="f-aqi-pill" style="color:${aqiInfo.color};background:${aqiInfo.bg}">
+            AQI ${aqiInfo.val} (${aqiInfo.cat})
+          </div>
         `;
         container.appendChild(row);
       }
     }
 
-    // 10. Preset Switching & City Search Handler
+    // 12. Preset Switching & City Search Handler
     function switchPreset(key, btn) {
       document.querySelectorAll('.quick-station-pill').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
+      else {
+        // Match button by onclick attribute if called from table
+        document.querySelectorAll('.quick-station-pill').forEach(b => {
+          if (b.getAttribute('onclick')?.includes(key)) b.classList.add('active');
+        });
+      }
       const loc = stationCoords[key] || stationCoords.delhi;
-      loadWeather(loc.lat, loc.lon, loc.name);
+      loadWeather(loc.lat, loc.lon, loc.name, key);
     }
 
     // Geolocation Locate Me
@@ -2021,7 +2941,7 @@
       navigator.geolocation.getCurrentPosition(
         (pos) => {
           btn.textContent = '📍 GPS Active';
-          loadWeather(pos.coords.latitude, pos.coords.longitude, 'Hyperlocal GPS Coordinates');
+          loadWeather(pos.coords.latitude, pos.coords.longitude, 'Hyperlocal GPS Coordinates', 'custom');
         },
         (err) => {
           btn.textContent = '📍 Locate Me';
@@ -2042,7 +2962,7 @@
             const loc = geoData.results[0];
             const name = `${loc.name}, ${loc.country || ''}`;
             document.querySelectorAll('.quick-station-pill').forEach(b => b.classList.remove('active'));
-            loadWeather(loc.latitude, loc.longitude, name);
+            loadWeather(loc.latitude, loc.longitude, name, 'custom');
           } else {
             alert('City not found. Please try another search.');
           }
@@ -2052,7 +2972,7 @@
       }
     });
 
-    // 11. Web Audio API Ambient Synthesizer (Generative Rain/Wind Sound)
+    // 13. Web Audio API Ambient Synthesizer (Generative Rain/Wind Sound)
     function toggleAtmosphericAudio() {
       const btn = document.getElementById('soundBtn');
       const icon = document.getElementById('soundIcon');
@@ -2063,7 +2983,6 @@
           const AudioContext = window.AudioContext || window.webkitAudioContext;
           audioCtx = new AudioContext();
 
-          // Generate pink noise for soft soothing rain / breeze
           const bufferSize = audioCtx.sampleRate * 2;
           const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
           const output = noiseBuffer.getChannelData(0);
@@ -2084,7 +3003,6 @@
           whiteNoise.buffer = noiseBuffer;
           whiteNoise.loop = true;
 
-          // Lowpass filter for smooth natural rain sound
           const filter = audioCtx.createBiquadFilter();
           filter.type = 'lowpass';
           filter.frequency.setValueAtTime(800, audioCtx.currentTime);
@@ -2117,7 +3035,7 @@
     }
 
     // Initial Load (Delhi Mandir Marg Command)
-    loadWeather(28.6341, 77.2005, 'Delhi Command (Mandir Marg)');
+    loadWeather(28.6341, 77.2005, 'Delhi Command (Mandir Marg)', 'delhi');
   </script>
 </body>
 </html>
