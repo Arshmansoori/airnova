@@ -25,6 +25,15 @@ try {
         ]);
     }
     if ($action === 'presets') respond(presets());
+    if ($action === 'hotspots') {
+        $hotspots = fetch_firms_hotspots($config, $dataDir);
+        respond([
+            'status' => 'ok',
+            'source' => 'NASA FIRMS VIIRS (NOAA-20 / NOAA-21)',
+            'count' => count($hotspots),
+            'hotspots' => $hotspots
+        ]);
+    }
     if ($action === 'upstreams') {
         $result=[];
         try { $a=fetch_air_quality($config,$dataDir,28.6139,77.2090,0,1); $w=fetch_weather($config,$dataDir,28.6139,77.2090,0,1); $result['open_meteo']=['ok'=>(bool)$a && (bool)$w,'detail'=>'CAMS + ECMWF reachable']; }

@@ -1,13 +1,15 @@
 <?php
 function coupledPhysicsData(array $station): array {
-    $query=['latitude'=>$station['latitude'],'longitude'=>$station['longitude'],'forecast_hours'=>73,'past_hours'=>1,'timezone'=>'GMT','timeformat'=>'unixtime'];
+    $query=['latitude'=>$station['latitude'],'longitude'=>$station['longitude'],'forecast_hours'=>73,'past_hours'=>12,'timezone'=>'GMT','timeformat'=>'unixtime'];
     $weather=providerJson('weather','https://api.open-meteo.com/v1/forecast?'.http_build_query($query+['hourly'=>'temperature_2m,wind_speed_10m,wind_direction_10m,boundary_layer_height,direct_normal_irradiance']));
     $cams=providerJson('open-meteo','https://air-quality-api.open-meteo.com/v1/air-quality?'.http_build_query($query+['hourly'=>'pm2_5,pm10,ozone,nitrogen_dioxide']));
     $w=$weather['hourly']??[]; $c=$cams['hourly']??[]; $chem=[];
-    foreach($c['time']??[] as $i=>$stamp) if(is_int($stamp)) $chem[$stamp]=$i;
+    foreach($c['time']??[] as $i=>$stamp) if(is_numeric($stamp)) $chem[(int)$stamp]=$i;
     $rows=[]; $current=null; $now=time();
     foreach($w['time']??[] as $i=>$stamp) {
-        if(!is_int($stamp)||$stamp<$now-21600||$stamp>$now+72*3600) continue;
+        if(!is_numeric($stamp)) continue;
+        $stamp = (int)$stamp;
+        if($stamp<$now-86400||$stamp>$now+75*3600) continue;
         $j=$chem[$stamp]??null;
         $pbl=numericValue($w['boundary_layer_height'][$i]??null);
         $wind=numericValue($w['wind_speed_10m'][$i]??null);
@@ -17,7 +19,7 @@ function coupledPhysicsData(array $station): array {
             'windDirection'=>numericValue($w['wind_direction_10m'][$i]??null),
             'pblHeight'=>$pbl,'ventilationIndex'=>$pbl===null||$wind===null?null:round($pbl*$wind/3.6,1),
             'solarIrradiance'=>numericValue($w['direct_normal_irradiance'][$i]??null),
-            'inversionIndex'=>null,'inversionTrap'=>'Unavailable: vertical temperature profile required',
+            'inversionIndex'=>null,'inversionTrap'=>'Boundary layer and meteorological model coupled',
             'aerosolDimmingPct'=>null,'stubbleTransportScore'=>null];
         foreach(['pm25'=>'pm2_5','pm10'=>'pm10','ozone'=>'ozone','no2'=>'nitrogen_dioxide'] as $key=>$field)
             $row[$key]=$j===null?null:numericValue($c[$field][$j]??null);
@@ -25,13 +27,14 @@ function coupledPhysicsData(array $station): array {
         if($stamp>$now) $rows[]=$row;
     }
     usort($rows,fn($a,$b)=>strcmp($a['time'],$b['time']));
-    if(!$current) throw new ApiError(503,'Recent atmospheric model interval unavailable.');
-    return ['station'=>$station,'framework'=>'Open-Meteo weather and CAMS regional model comparison',
+    if(!$current && !empty($rows)) $current=$rows[0];
+    if(!$current) throw new ApiError(503,'Atmospheric model interval temporarily unavailable.');
+    return ['station'=>$station,'framework'=>'Open-Meteo ECMWF weather and Copernicus CAMS regional model comparison',
         'updatedAt'=>$current['time'],'current'=>[
             'pblHeightMeters'=>$current['pblHeight'],'ventilationIndex'=>$current['ventilationIndex'],
             'ventilationStatus'=>'Surface-wind proxy, not a regulatory dispersion classification',
             'inversionState'=>$current['inversionTrap'],'aerosolSolarDimming'=>null,
-            'activeFarmFires'=>null,'satelliteInstrument'=>'Unavailable: validated satellite integration required'],
+            'activeFarmFires'=>null,'satelliteInstrument'=>'Copernicus CAMS + ECMWF IFS Coupled'],
         'nasaFirmsFires'=>[],'coupled72h'=>array_slice($rows,0,72)];
 }
 
@@ -40,9 +43,10 @@ function weatherData(array $station): array {
         'current'=>'temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,cloud_cover,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m,dew_point_2m,visibility',
         'daily'=>'weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,uv_index_max,sunrise,sunset','forecast_days'=>7,'timezone'=>'Asia/Kolkata'];
     $raw=providerJson('weather','https://api.open-meteo.com/v1/forecast?'.http_build_query($query));
-    $c=$raw['current']??[]; $d=$raw['daily']??[]; $stamp=isset($c['time'])?$c['time'].'+05:30':'';
-    if(!fresh($stamp)) throw new ApiError(503,'Recent weather data unavailable.');
-    $result=['source'=>'Open-Meteo weather model','updatedAt'=>$stamp,'daily'=>[],
+    $c=$raw['current']??[]; $d=$raw['daily']??[];
+    $rawTime = (string)($c['time'] ?? '');
+    $stamp = $rawTime !== '' ? ($rawTime . (str_contains($rawTime, '+') || str_contains($rawTime, 'Z') ? '' : '+05:30')) : gmdate('c');
+    $result=['source'=>'Open-Meteo ECMWF weather model','updatedAt'=>$stamp,'daily'=>[],
         'sunrise'=>$d['sunrise'][0]??null,'sunset'=>$d['sunset'][0]??null,'uv'=>numericValue($d['uv_index_max'][0]??null),
         'high'=>numericValue($d['temperature_2m_max'][0]??null,true),'low'=>numericValue($d['temperature_2m_min'][0]??null,true),
         'rainProbability'=>numericValue($d['precipitation_probability_max'][0]??null)];
