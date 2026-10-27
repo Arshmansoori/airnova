@@ -198,8 +198,10 @@
           <div class="btn-row">
             <input type="file" id="standaloneFileInput" accept="image/*" style="display:none" />
             <button class="btn-primary" onclick="document.getElementById('standaloneFileInput').click()">
-              📷 Upload / Capture Photo
+              📁 Upload Photo
             </button>
+            <button class="btn-outline" id="btnStandaloneWebcam">📹 Live Webcam</button>
+            <button class="btn-primary" id="btnStandaloneSnap" style="display:none;background:#10b981">📸 Snap &amp; Analyze</button>
             <button class="btn-outline" id="btnRunDelhiTest">Simulate Delhi Smog</button>
             <button class="btn-outline" id="btnToggleCleanView" style="display:none">✨ View Dehazed Clean Scene</button>
           </div>
@@ -207,9 +209,10 @@
           <div class="view-wrap">
             <div id="camHintBox" style="text-align:center;color:var(--muted);padding:30px">
               <div style="font-size:42px;margin-bottom:10px">🏙️</div>
-              <div style="font-weight:700;color:#fff;font-size:15px">Upload a photo or click Simulate Delhi Smog</div>
+              <div style="font-weight:700;color:#fff;font-size:15px">Upload a photo, click Simulate Smog, or start Live Webcam</div>
               <div style="font-size:12.5px;margin-top:4px">Analyzes haze optical depth &amp; calculates PM2.5</div>
             </div>
+            <video id="standaloneVideo" playsinline autoplay muted style="display:none;max-width:100%;max-height:100%;border-radius:8px"></video>
             <canvas id="standaloneCamCanvas" style="display:none"></canvas>
           </div>
 
@@ -307,6 +310,57 @@
     const camCanvas = document.getElementById('standaloneCamCanvas');
     const camHint = document.getElementById('camHintBox');
     const btnToggle = document.getElementById('btnToggleCleanView');
+    const btnWebcam = document.getElementById('btnStandaloneWebcam');
+    const btnSnap = document.getElementById('btnStandaloneSnap');
+    const video = document.getElementById('standaloneVideo');
+    let webcamStream = null;
+
+    btnWebcam.addEventListener('click', async () => {
+      if (webcamStream) {
+        webcamStream.getTracks().forEach(t => t.stop());
+        webcamStream = null;
+        video.style.display = 'none';
+        btnSnap.style.display = 'none';
+        btnWebcam.textContent = '📹 Live Webcam';
+        document.getElementById('lblAdvice').textContent = 'Camera stream stopped.';
+        return;
+      }
+      try {
+        document.getElementById('lblAdvice').textContent = 'Requesting camera permissions…';
+        webcamStream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: 'environment', width: { ideal: 640 } }
+        });
+        video.srcObject = webcamStream;
+        await video.play();
+        camHint.style.display = 'none';
+        camCanvas.style.display = 'none';
+        video.style.display = 'block';
+        btnSnap.style.display = 'inline-block';
+        btnWebcam.textContent = '⏹ Stop Camera';
+        document.getElementById('lblAdvice').textContent = 'Live camera stream running. Click "📸 Snap & Analyze" to process!';
+      } catch (err) {
+        document.getElementById('lblAdvice').textContent = 'Webcam error: ' + err.message;
+        alert('Webcam permission denied or not available: ' + err.message);
+      }
+    });
+
+    btnSnap.addEventListener('click', () => {
+      if (!video || !video.videoWidth) return;
+      const c = document.createElement('canvas');
+      c.width = video.videoWidth;
+      c.height = video.videoHeight;
+      c.getContext('2d').drawImage(video, 0, 0);
+
+      if (webcamStream) {
+        webcamStream.getTracks().forEach(t => t.stop());
+        webcamStream = null;
+      }
+      video.style.display = 'none';
+      btnSnap.style.display = 'none';
+      btnWebcam.textContent = '📹 Live Webcam';
+
+      handleImage(c);
+    });
 
     function handleImage(img) {
       document.getElementById('lblAdvice').textContent = 'Analyzing atmospheric optical transmission…';
@@ -407,6 +461,13 @@
       speedMultiplier: 1.1,
       plumeMode: true
     });
+    wind.onHotspotsLoaded = (count) => {
+      const b = document.getElementById('btnTogglePlumes');
+      if (b && wind.plumeMode) {
+        b.textContent = `🔥 ${count} Live NASA Sat Hotspots`;
+      }
+    };
+    wind.loadLiveFirmsHotspots('prediction/api.php?action=hotspots');
     wind.start();
 
     window.addEventListener('resize', () => wind.resize());

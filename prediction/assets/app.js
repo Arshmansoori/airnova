@@ -89,8 +89,65 @@ function initAirVision() {
   const fileInput = $('camFileInput');
   const placeholder = $('camPlaceholder');
   const canvas = $('camCanvas');
+  const video = $('camVideo');
+  const btnWebcam = $('btnLiveWebcam');
+  const btnCapture = $('btnCaptureFrame');
   const btnToggle = $('btnToggleDehaze');
   const btnSample = $('btnSampleDelhi');
+  let mediaStream = null;
+
+  if (btnWebcam) {
+    btnWebcam.addEventListener('click', async () => {
+      if (mediaStream) {
+        mediaStream.getTracks().forEach(t => t.stop());
+        mediaStream = null;
+        if (video) video.style.display = 'none';
+        if (btnCapture) btnCapture.style.display = 'none';
+        btnWebcam.textContent = '📹 Live Webcam';
+        $('camStatusBadge').textContent = 'Camera stopped';
+        return;
+      }
+      try {
+        $('camStatusBadge').textContent = 'Requesting camera…';
+        mediaStream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: 'environment', width: { ideal: 640 } }
+        });
+        if (video) {
+          video.srcObject = mediaStream;
+          await video.play();
+          placeholder.style.display = 'none';
+          canvas.style.display = 'none';
+          video.style.display = 'block';
+          if (btnCapture) btnCapture.style.display = 'inline-block';
+          btnWebcam.textContent = '⏹ Stop Camera';
+          $('camStatusBadge').textContent = 'Live camera stream active';
+        }
+      } catch (err) {
+        $('camStatusBadge').textContent = 'Camera error';
+        alert('Webcam permission denied or not available: ' + err.message);
+      }
+    });
+  }
+
+  if (btnCapture) {
+    btnCapture.addEventListener('click', () => {
+      if (!video || !video.videoWidth) return;
+      const c = document.createElement('canvas');
+      c.width = video.videoWidth;
+      c.height = video.videoHeight;
+      c.getContext('2d').drawImage(video, 0, 0);
+
+      if (mediaStream) {
+        mediaStream.getTracks().forEach(t => t.stop());
+        mediaStream = null;
+      }
+      video.style.display = 'none';
+      btnCapture.style.display = 'none';
+      if (btnWebcam) btnWebcam.textContent = '📹 Live Webcam';
+
+      processImage(c);
+    });
+  }
 
   const processImage = (img) => {
     $('camStatusBadge').textContent = 'Analyzing optics…';
@@ -202,6 +259,12 @@ function initWindSimulation() {
     speedMultiplier: 1.1,
     plumeMode: true
   });
+  windEngine.onHotspotsLoaded = (count) => {
+    const badge = $('plumeStatusBadge');
+    if (badge && windEngine.plumeMode) {
+      badge.textContent = `🔥 ${count} Live NASA Sat Hotspots`;
+    }
+  };
   windEngine.start();
 
   window.addEventListener('resize', () => {

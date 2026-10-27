@@ -36,9 +36,36 @@ class WindParticleEngine {
     this.particles = [];
     this.animationId = null;
     this.isRunning = false;
+    this.liveHotspotsLoaded = false;
+    this.liveHotspotCount = 0;
+    this.onHotspotsLoaded = null;
 
     this.resize();
     this.initParticles();
+    this.loadLiveFirmsHotspots();
+  }
+
+  async loadLiveFirmsHotspots(apiUrl = 'api.php?action=hotspots') {
+    try {
+      const res = await fetch(apiUrl);
+      if (!res.ok) return;
+      const data = await res.json();
+      if (data && Array.isArray(data.hotspots) && data.hotspots.length > 0) {
+        this.fireClusters = data.hotspots.slice(0, 40).map((h, i) => ({
+          name: h.satellite ? `${h.satellite}` : `VIIRS-${i+1}`,
+          lat: h.lat,
+          lon: h.lon,
+          intensity: Math.min(100, Math.max(50, Math.round((h.frp || 15) * 1.8)))
+        }));
+        this.liveHotspotsLoaded = true;
+        this.liveHotspotCount = data.hotspots.length;
+        if (typeof this.onHotspotsLoaded === 'function') {
+          this.onHotspotsLoaded(this.liveHotspotCount);
+        }
+      }
+    } catch (e) {
+      // Graceful fallback to verified agrarian baseline
+    }
   }
 
   resize() {

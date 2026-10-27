@@ -64,9 +64,11 @@
             <div class="cam-controls">
               <input type="file" id="camFileInput" accept="image/*" style="display:none" />
               <button class="btn-action" onclick="document.getElementById('camFileInput').click()">
-                📁 Upload / Capture Photo
+                📁 Upload Photo
               </button>
-              <button class="btn-secondary" id="btnSampleDelhi">Load Delhi Smog Sample</button>
+              <button class="btn-secondary" id="btnLiveWebcam">📹 Live Webcam</button>
+              <button class="btn-action" id="btnCaptureFrame" style="display:none;background:#10b981;color:#fff">📸 Snap &amp; Analyze</button>
+              <button class="btn-secondary" id="btnSampleDelhi">Simulate Delhi Smog</button>
               <button class="btn-secondary" id="btnToggleDehaze" style="display:none">Toggle Dehazed View</button>
             </div>
 
@@ -74,9 +76,10 @@
             <div id="camDisplayArea" class="cam-canvas-wrap">
               <div id="camPlaceholder" style="padding:40px 20px;text-align:center;color:var(--muted)">
                 <div style="font-size:38px;margin-bottom:8px">📸</div>
-                <div style="font-weight:700;color:var(--text);font-size:14px">Drop a photo here or click upload</div>
+                <div style="font-weight:700;color:var(--text);font-size:14px">Drop a photo here, upload, or start webcam</div>
                 <div style="font-size:12px;margin-top:4px">Instant optical extinction &amp; PM2.5 estimation</div>
               </div>
+              <video id="camVideo" playsinline autoplay muted style="display:none;max-width:100%;max-height:340px;border-radius:8px"></video>
               <canvas id="camCanvas" style="display:none"></canvas>
             </div>
 
