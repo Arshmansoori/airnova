@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#071018" />
-  <title>AirNova Weather — Precision Atmospheric & Meteorological Intelligence</title>
+  <meta name="theme-color" content="#040911" />
+  <title>AirNova Atmospheric Intelligence — Precision Meteorological & Fluid Dynamics Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #040911;
-      --card-bg: rgba(10, 20, 32, 0.68);
-      --card-border: rgba(255, 255, 255, 0.09);
-      --card-border-hover: rgba(56, 189, 248, 0.45);
-      --card-glow: rgba(56, 189, 248, 0.15);
+      --bg: #03070d;
+      --card-bg: rgba(11, 22, 36, 0.62);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --card-border-hover: rgba(56, 189, 248, 0.5);
+      --card-glow: rgba(56, 189, 248, 0.18);
       --text: #f8fafc;
       --text-muted: #94a3b8;
       --text-dim: #64748b;
@@ -24,7 +24,6 @@
       --amber: #f59e0b;
       --red: #ef4444;
       --purple: #8b5cf6;
-      --sky-glow: rgba(56, 189, 248, 0.18);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -39,96 +38,107 @@
       transition: background 1.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Weather Scene Atmospheric Themes */
-    body.theme-sunny {
-      background: radial-gradient(circle at 85% 15%, rgba(251, 191, 36, 0.22) 0%, transparent 60%),
-                  radial-gradient(circle at 20% 40%, rgba(14, 165, 233, 0.18) 0%, transparent 55%),
-                  linear-gradient(180deg, #07172b 0%, #0c233f 40%, #050d18 100%);
-      --card-bg: rgba(9, 24, 42, 0.65);
-      --card-glow: rgba(251, 191, 36, 0.2);
-    }
-
-    body.theme-night {
-      background: radial-gradient(circle at 80% 20%, rgba(167, 139, 250, 0.18) 0%, transparent 50%),
-                  radial-gradient(circle at 15% 85%, rgba(56, 189, 248, 0.12) 0%, transparent 60%),
-                  linear-gradient(180deg, #030610 0%, #080d1e 50%, #020408 100%);
-      --card-bg: rgba(8, 14, 28, 0.7);
-      --card-glow: rgba(139, 92, 246, 0.2);
-    }
-
-    body.theme-cloudy {
-      background: radial-gradient(circle at 50% 20%, rgba(148, 163, 184, 0.15) 0%, transparent 60%),
-                  linear-gradient(180deg, #101722 0%, #162030 50%, #090e15 100%);
-      --card-bg: rgba(16, 25, 38, 0.72);
-      --card-glow: rgba(148, 163, 184, 0.18);
-    }
-
-    body.theme-rain {
-      background: radial-gradient(circle at 30% 20%, rgba(2, 132, 199, 0.2) 0%, transparent 50%),
-                  radial-gradient(circle at 75% 75%, rgba(30, 41, 59, 0.3) 0%, transparent 60%),
-                  linear-gradient(180deg, #09131e 0%, #112234 50%, #060c14 100%);
-      --card-bg: rgba(10, 22, 36, 0.75);
-      --card-glow: rgba(56, 189, 248, 0.25);
-    }
-
-    body.theme-storm {
-      background: radial-gradient(circle at 50% 10%, rgba(139, 92, 246, 0.25) 0%, transparent 50%),
-                  linear-gradient(180deg, #0c0817 0%, #17112b 45%, #05030a 100%);
-      --card-bg: rgba(15, 12, 28, 0.75);
-      --card-glow: rgba(139, 92, 246, 0.3);
-    }
-
-    body.theme-fog {
-      background: radial-gradient(circle at 50% 40%, rgba(212, 175, 55, 0.12) 0%, transparent 60%),
-                  linear-gradient(180deg, #18191c 0%, #202024 50%, #0c0d0e 100%);
-      --card-bg: rgba(22, 23, 27, 0.75);
-      --card-glow: rgba(212, 175, 55, 0.15);
-    }
-
-    /* Fullscreen Ambient Sky Simulator */
+    /* Ambient Dynamic Sky Canvas */
     #skyCanvas {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
       pointer-events: none;
       z-index: 0;
-      opacity: 0.95;
+    }
+
+    /* Cinematic Lightning Screen Flash Overlay */
+    #lightningFlashOverlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #fff;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1;
+      transition: opacity 0.08s ease-out;
+    }
+
+    /* Atmospheric Theme Palettes */
+    body.theme-sunny {
+      background: radial-gradient(circle at 82% 16%, rgba(251, 191, 36, 0.25) 0%, transparent 60%),
+                  radial-gradient(circle at 18% 45%, rgba(14, 165, 233, 0.2) 0%, transparent 55%),
+                  linear-gradient(180deg, #07192f 0%, #0d2847 45%, #040d18 100%);
+      --card-bg: rgba(9, 26, 46, 0.62);
+      --card-glow: rgba(251, 191, 36, 0.25);
+    }
+
+    body.theme-night {
+      background: radial-gradient(circle at 80% 20%, rgba(167, 139, 250, 0.2) 0%, transparent 55%),
+                  radial-gradient(circle at 15% 85%, rgba(56, 189, 248, 0.14) 0%, transparent 60%),
+                  linear-gradient(180deg, #02050e 0%, #080f24 50%, #020306 100%);
+      --card-bg: rgba(8, 15, 30, 0.65);
+      --card-glow: rgba(139, 92, 246, 0.22);
+    }
+
+    body.theme-cloudy {
+      background: radial-gradient(circle at 50% 20%, rgba(148, 163, 184, 0.18) 0%, transparent 60%),
+                  linear-gradient(180deg, #0f1825 0%, #172436 50%, #080d14 100%);
+      --card-bg: rgba(16, 26, 40, 0.65);
+      --card-glow: rgba(148, 163, 184, 0.2);
+    }
+
+    body.theme-rain {
+      background: radial-gradient(circle at 30% 25%, rgba(2, 132, 199, 0.22) 0%, transparent 50%),
+                  radial-gradient(circle at 75% 75%, rgba(30, 41, 59, 0.35) 0%, transparent 60%),
+                  linear-gradient(180deg, #081420 0%, #102438 50%, #050b12 100%);
+      --card-bg: rgba(10, 24, 38, 0.68);
+      --card-glow: rgba(56, 189, 248, 0.28);
+    }
+
+    body.theme-storm {
+      background: radial-gradient(circle at 50% 12%, rgba(139, 92, 246, 0.28) 0%, transparent 55%),
+                  linear-gradient(180deg, #0b0717 0%, #16102d 45%, #04020a 100%);
+      --card-bg: rgba(15, 12, 30, 0.7);
+      --card-glow: rgba(139, 92, 246, 0.35);
+    }
+
+    body.theme-fog {
+      background: radial-gradient(circle at 50% 40%, rgba(212, 175, 55, 0.15) 0%, transparent 65%),
+                  linear-gradient(180deg, #16181c 0%, #1f2025 50%, #0b0c0d 100%);
+      --card-bg: rgba(22, 24, 28, 0.7);
+      --card-glow: rgba(212, 175, 55, 0.18);
     }
 
     .app-shell {
       position: relative;
       z-index: 2;
-      max-width: 1400px;
+      max-width: 1420px;
       margin: 0 auto;
       padding: 24px 20px 90px 20px;
     }
 
-    /* Glassmorphism 2.0 Ultra Luxury */
+    /* VisionOS / Apple Glassmorphism */
     .glass-card {
       background: var(--card-bg);
-      backdrop-filter: blur(30px) saturate(180%);
-      -webkit-backdrop-filter: blur(30px) saturate(180%);
+      backdrop-filter: blur(34px) saturate(190%);
+      -webkit-backdrop-filter: blur(34px) saturate(190%);
       border: 1px solid var(--card-border);
       border-radius: 28px;
       box-shadow: 
-        inset 0 1px 1px 0 rgba(255, 255, 255, 0.16),
-        0 24px 55px -15px rgba(0, 0, 0, 0.65);
-      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.2),
+        0 24px 60px -15px rgba(0, 0, 0, 0.7);
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
       position: relative;
       overflow: hidden;
     }
     .glass-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-      opacity: 0.8;
+      top: 0; left: 0; right: 0; height: 1.5px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+      opacity: 0.85;
     }
     .glass-card:hover {
       border-color: var(--card-border-hover);
       box-shadow: 
-        inset 0 1px 2px 0 rgba(255, 255, 255, 0.25),
-        0 30px 70px -15px var(--card-glow);
+        inset 0 1px 2px 0 rgba(255, 255, 255, 0.3),
+        0 30px 75px -15px var(--card-glow);
       transform: translateY(-2px);
     }
 
@@ -137,7 +147,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
       gap: 16px;
       flex-wrap: wrap;
     }
@@ -147,30 +157,30 @@
       gap: 16px;
     }
     .brand-mark {
-      width: 50px; height: 50px;
-      border-radius: 17px;
+      width: 52px; height: 52px;
+      border-radius: 18px;
       background: linear-gradient(135deg, #0284c7, #10b981, #6366f1);
       display: flex; align-items: center; justify-content: center;
-      font-size: 21px; font-weight: 900; color: #fff;
-      box-shadow: 0 0 26px rgba(56, 189, 248, 0.55);
+      font-size: 22px; font-weight: 900; color: #fff;
+      box-shadow: 0 0 28px rgba(56, 189, 248, 0.6);
       position: relative;
     }
     .brand-mark::after {
       content: '';
       position: absolute; inset: -2px;
-      border-radius: 19px;
+      border-radius: 20px;
       background: linear-gradient(135deg, #38bdf8, transparent, #10b981);
       z-index: -1;
-      opacity: 0.6;
+      opacity: 0.65;
     }
     .brand-text h1 {
-      font-size: 22px; font-weight: 800; letter-spacing: -0.5px;
+      font-size: 23px; font-weight: 800; letter-spacing: -0.5px;
       background: linear-gradient(180deg, #ffffff 40%, #cbd5e1 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .brand-text p {
-      font-size: 12px; color: var(--text-muted); font-weight: 500;
+      font-size: 12.5px; color: var(--text-muted); font-weight: 500;
       display: flex; align-items: center; gap: 7px;
     }
     .live-chip {
@@ -206,10 +216,10 @@
       cursor: pointer;
     }
     .nav-btn:hover {
-      background: rgba(56, 189, 248, 0.16);
+      background: rgba(56, 189, 248, 0.18);
       border-color: var(--cyan);
       color: var(--cyan);
-      box-shadow: 0 0 18px rgba(56, 189, 248, 0.3);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
       transform: translateY(-1px);
     }
     .nav-btn-highlight {
@@ -221,7 +231,41 @@
       background: rgba(16, 185, 129, 0.25);
       border-color: rgba(16, 185, 129, 0.5);
       color: #10b981;
-      box-shadow: 0 0 16px rgba(16, 185, 129, 0.35);
+      box-shadow: 0 0 18px rgba(16, 185, 129, 0.4);
+    }
+
+    /* Cinematic Atmospheric Scene Switcher Pill Bar */
+    .scene-switcher-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 20px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .scene-pills-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .scene-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .scene-pill:hover, .scene-pill.active {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: var(--cyan);
+      color: #fff;
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.3);
     }
 
     /* Controls Deck: Global Search & Stations */
@@ -774,8 +818,9 @@
 </head>
 <body class="theme-sunny">
 
-  <!-- Ambient Dynamic Sky Canvas -->
+  <!-- Fullscreen Multi-Layer Ambient Sky Simulator -->
   <canvas id="skyCanvas"></canvas>
+  <div id="lightningFlashOverlay"></div>
 
   <div class="app-shell">
 
@@ -799,6 +844,26 @@
         <a href="/prediction/" class="nav-btn">💨 72h Inversion Engine ↗</a>
       </div>
     </header>
+
+    <!-- Cinematic Atmosphere Showcase & Manual Theme Switcher Pill Bar -->
+    <div class="glass-card scene-switcher-bar">
+      <div class="scene-pills-left">
+        <span style="font-size:11px;font-weight:800;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-right:4px;">
+          Atmosphere Mode:
+        </span>
+        <button class="scene-pill" onclick="setAtmosphereScene('theme-sunny', this)">☀️ Sunny Azure</button>
+        <button class="scene-pill" onclick="setAtmosphereScene('theme-rain', this)">🌧️ Monsoon Rain</button>
+        <button class="scene-pill" onclick="setAtmosphereScene('theme-storm', this)">⚡ Electric Storm</button>
+        <button class="scene-pill" onclick="setAtmosphereScene('theme-cloudy', this)">☁️ Overcast Deck</button>
+        <button class="scene-pill" onclick="setAtmosphereScene('theme-night', this)">🌙 Cosmic Night</button>
+        <button class="scene-pill" onclick="setAtmosphereScene('theme-fog', this)">🌫️ Delhi NCR Smog</button>
+      </div>
+      <div>
+        <button id="autoSyncBtn" class="scene-pill active" onclick="enableLiveAutoSync(this)">
+          🔄 Live Station Sync
+        </button>
+      </div>
+    </div>
 
     <!-- Global City Search & Presets Deck -->
     <div class="glass-card controls-deck">
@@ -1063,6 +1128,7 @@
     let currentRawData = null;
     let currentStationKey = 'delhi';
     let currentTheme = 'theme-sunny';
+    let isAutoSyncEnabled = true;
     let isAudioActive = false;
     let audioCtx = null;
     let gainNode = null;
@@ -1079,7 +1145,6 @@
 
     // 1. Bespoke Animated SVG Weather Icon Generator
     function getAnimatedWeatherSVG(code, isDay = 1, size = 110) {
-      // Sunny / Clear Day
       if (code === 0 && isDay) {
         return `
           <svg width="${size}" height="${size}" viewBox="0 0 100 100">
@@ -1106,7 +1171,6 @@
         `;
       }
 
-      // Clear Night / Moon
       if (code === 0 && !isDay) {
         return `
           <svg width="${size}" height="${size}" viewBox="0 0 100 100">
@@ -1125,7 +1189,6 @@
         `;
       }
 
-      // Partly Cloudy (Day or Night)
       if (code === 1 || code === 2) {
         return `
           <svg width="${size}" height="${size}" viewBox="0 0 100 100">
@@ -1141,7 +1204,6 @@
         `;
       }
 
-      // Overcast / Cloudy
       if (code === 3) {
         return `
           <svg width="${size}" height="${size}" viewBox="0 0 100 100">
@@ -1161,7 +1223,6 @@
         `;
       }
 
-      // Rain / Drizzle (51, 53, 61, 63, 65, 80)
       if ([51, 53, 61, 63, 65, 80].includes(code)) {
         return `
           <svg width="${size}" height="${size}" viewBox="0 0 100 100">
@@ -1179,7 +1240,6 @@
         `;
       }
 
-      // Thunderstorm (95)
       if (code === 95) {
         return `
           <svg width="${size}" height="${size}" viewBox="0 0 100 100">
@@ -1197,7 +1257,6 @@
         `;
       }
 
-      // Fog / Smog (45, 48)
       if (code === 45 || code === 48) {
         return `
           <svg width="${size}" height="${size}" viewBox="0 0 100 100">
@@ -1215,7 +1274,6 @@
         `;
       }
 
-      // Fallback Default
       return `
         <svg width="${size}" height="${size}" viewBox="0 0 100 100">
           <circle cx="50" cy="50" r="20" fill="#38bdf8" filter="drop-shadow(0 0 12px #38bdf8)"/>
@@ -1223,80 +1281,346 @@
       `;
     }
 
-    // 2. Fullscreen Ambient Sky Simulator (Rain streaks, Fog puffs, Stars, Sunbeams)
-    const skyCanvas = document.getElementById('skyCanvas');
-    const skyCtx = skyCanvas.getContext('2d');
-    let particles = [];
+    // 2. Cinematic Multi-Layer Atmospheric Sky Engine
+    class CinematicSky {
+      constructor(canvas) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
+        this.resize();
 
-    function resizeSky() {
-      skyCanvas.width = window.innerWidth;
-      skyCanvas.height = window.innerHeight;
-      initSkyParticles();
-    }
-    window.addEventListener('resize', resizeSky);
+        this.stars = [];
+        this.meteors = [];
+        this.raindrops = [];
+        this.splashes = [];
+        this.dustMotes = [];
+        this.clouds = [];
+        this.fogBands = [];
 
-    function initSkyParticles() {
-      particles = [];
-      const count = Math.min(100, Math.floor(window.innerWidth / 16));
-      for (let i = 0; i < count; i++) {
-        particles.push({
-          x: Math.random() * skyCanvas.width,
-          y: Math.random() * skyCanvas.height,
-          radius: Math.random() * 2 + 0.6,
-          alpha: Math.random() * 0.7 + 0.2,
-          speed: Math.random() * 0.4 + 0.15,
-          drift: (Math.random() - 0.5) * 0.3,
-          length: Math.random() * 18 + 8
-        });
+        this.time = 0;
+        this.initAll();
       }
-    }
 
-    function animateSky() {
-      skyCtx.clearRect(0, 0, skyCanvas.width, skyCanvas.height);
-      const isRain = (currentTheme === 'theme-rain' || currentTheme === 'theme-storm');
-      const isFog = (currentTheme === 'theme-fog');
-      const isNight = (currentTheme === 'theme-night');
+      resize() {
+        this.width = this.canvas.width = window.innerWidth;
+        this.height = this.canvas.height = window.innerHeight;
+      }
 
-      for (const p of particles) {
-        if (isRain) {
-          p.y += p.speed * 16 + 8;
-          p.x += p.drift * 2.5;
-          if (p.y > skyCanvas.height) {
-            p.y = -15;
-            p.x = Math.random() * skyCanvas.width;
-          }
-          skyCtx.beginPath();
-          skyCtx.moveTo(p.x, p.y);
-          skyCtx.lineTo(p.x + p.drift * 4, p.y + p.length);
-          skyCtx.strokeStyle = `rgba(56, 189, 248, ${p.alpha * 0.5})`;
-          skyCtx.lineWidth = 1.4;
-          skyCtx.stroke();
-        } else if (isFog) {
-          p.x += p.drift * 0.8 + 0.2;
-          p.y -= p.speed * 0.2;
-          if (p.x > skyCanvas.width) p.x = 0;
-          if (p.y < 0) p.y = skyCanvas.height;
-          skyCtx.beginPath();
-          skyCtx.arc(p.x, p.y, p.radius * 3.5, 0, Math.PI * 2);
-          skyCtx.fillStyle = `rgba(203, 213, 225, ${p.alpha * 0.15})`;
-          skyCtx.fill();
-        } else {
-          p.y -= p.speed;
-          p.x += p.drift;
-          if (p.y < 0) {
-            p.y = skyCanvas.height;
-            p.x = Math.random() * skyCanvas.width;
-          }
-          skyCtx.beginPath();
-          skyCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-          skyCtx.fillStyle = isNight ? `rgba(248, 250, 252, ${p.alpha * 0.5})` : `rgba(251, 191, 36, ${p.alpha * 0.35})`;
-          skyCtx.fill();
+      initAll() {
+        // 1. Stars for Night Sky
+        this.stars = [];
+        for (let i = 0; i < 180; i++) {
+          this.stars.push({
+            x: Math.random() * this.width,
+            y: Math.random() * this.height * 0.75,
+            radius: Math.random() * 1.8 + 0.4,
+            baseAlpha: Math.random() * 0.7 + 0.3,
+            phase: Math.random() * Math.PI * 2,
+            speed: Math.random() * 0.05 + 0.02
+          });
+        }
+
+        // 2. Raindrops for Rain / Storm
+        this.raindrops = [];
+        for (let i = 0; i < 120; i++) {
+          this.raindrops.push({
+            x: Math.random() * this.width,
+            y: Math.random() * this.height,
+            speed: Math.random() * 14 + 16,
+            length: Math.random() * 24 + 14,
+            alpha: Math.random() * 0.5 + 0.3,
+            drift: Math.random() * 1.5 - 0.75
+          });
+        }
+
+        // 3. Volumetric Puffy Clouds
+        this.clouds = [];
+        for (let i = 0; i < 4; i++) {
+          this.clouds.push({
+            x: Math.random() * this.width,
+            y: Math.random() * (this.height * 0.4) + 20,
+            scale: Math.random() * 0.7 + 0.7,
+            speed: Math.random() * 0.25 + 0.1,
+            opacity: Math.random() * 0.2 + 0.15
+          });
+        }
+
+        // 4. Solar Dust Motes for Sunny Sky
+        this.dustMotes = [];
+        for (let i = 0; i < 70; i++) {
+          this.dustMotes.push({
+            x: Math.random() * this.width,
+            y: Math.random() * this.height,
+            radius: Math.random() * 2.2 + 0.6,
+            alpha: Math.random() * 0.6 + 0.2,
+            speedY: Math.random() * 0.3 + 0.1,
+            speedX: (Math.random() - 0.5) * 0.3
+          });
+        }
+
+        // 5. Undulating Translucent Fog Bands for Delhi Smog
+        this.fogBands = [];
+        for (let i = 0; i < 4; i++) {
+          this.fogBands.push({
+            y: (this.height * 0.2) + (i * (this.height * 0.18)),
+            height: Math.random() * 160 + 100,
+            speed: (i % 2 === 0 ? 0.35 : -0.25),
+            offset: Math.random() * 1000,
+            alpha: 0.1 + (i * 0.04)
+          });
         }
       }
-      requestAnimationFrame(animateSky);
+
+      spawnMeteor() {
+        if (Math.random() < 0.015 && this.meteors.length < 2) {
+          this.meteors.push({
+            x: Math.random() * this.width * 0.8 + 50,
+            y: Math.random() * (this.height * 0.3),
+            length: Math.random() * 120 + 80,
+            speed: Math.random() * 16 + 20,
+            alpha: 1,
+            angle: Math.PI / 4 + (Math.random() * 0.2 - 0.1)
+          });
+        }
+      }
+
+      render() {
+        this.time += 0.02;
+        this.ctx.clearRect(0, 0, this.width, this.height);
+
+        if (currentTheme === 'theme-sunny') {
+          this.renderSunny();
+        } else if (currentTheme === 'theme-night') {
+          this.renderNight();
+        } else if (currentTheme === 'theme-rain') {
+          this.renderRain(false);
+        } else if (currentTheme === 'theme-storm') {
+          this.renderRain(true);
+        } else if (currentTheme === 'theme-fog') {
+          this.renderFog();
+        } else {
+          this.renderCloudy();
+        }
+
+        requestAnimationFrame(() => this.render());
+      }
+
+      renderSunny() {
+        const sunX = this.width * 0.82;
+        const sunY = this.height * 0.16;
+
+        // Concentric corona glows
+        const pulse = Math.sin(this.time * 1.5) * 15;
+        const sunGrad1 = this.ctx.createRadialGradient(sunX, sunY, 10, sunX, sunY, 260 + pulse);
+        sunGrad1.addColorStop(0, 'rgba(254, 240, 138, 0.4)');
+        sunGrad1.addColorStop(0.35, 'rgba(251, 191, 36, 0.18)');
+        sunGrad1.addColorStop(1, 'rgba(251, 191, 36, 0)');
+        this.ctx.fillStyle = sunGrad1;
+        this.ctx.fillRect(0, 0, this.width, this.height);
+
+        // Volumetric Sun Shafts (God Rays)
+        this.ctx.save();
+        this.ctx.translate(sunX, sunY);
+        for (let r = 0; r < 4; r++) {
+          const rayAngle = (r * 0.4) + Math.sin(this.time + r) * 0.08 + 1.2;
+          const rayLength = Math.max(this.width, this.height) * 1.2;
+          const gradRay = this.ctx.createLinearGradient(0, 0, Math.cos(rayAngle) * rayLength, Math.sin(rayAngle) * rayLength);
+          gradRay.addColorStop(0, 'rgba(254, 240, 138, 0.18)');
+          gradRay.addColorStop(0.6, 'rgba(251, 191, 36, 0.04)');
+          gradRay.addColorStop(1, 'rgba(251, 191, 36, 0)');
+
+          this.ctx.beginPath();
+          this.ctx.moveTo(0, 0);
+          this.ctx.lineTo(Math.cos(rayAngle - 0.14) * rayLength, Math.sin(rayAngle - 0.14) * rayLength);
+          this.ctx.lineTo(Math.cos(rayAngle + 0.14) * rayLength, Math.sin(rayAngle + 0.14) * rayLength);
+          this.ctx.closePath();
+          this.ctx.fillStyle = gradRay;
+          this.ctx.fill();
+        }
+        this.ctx.restore();
+
+        // 3D Soft Puffy Clouds drifting
+        this.renderVolumetricClouds('#ffffff', 0.14);
+
+        // Golden Solar Dust Motes
+        for (const dm of this.dustMotes) {
+          dm.y -= dm.speedY;
+          dm.x += dm.speedX;
+          if (dm.y < 0) { dm.y = this.height; dm.x = Math.random() * this.width; }
+          this.ctx.beginPath();
+          this.ctx.arc(dm.x, dm.y, dm.radius, 0, Math.PI * 2);
+          this.ctx.fillStyle = `rgba(253, 224, 71, ${dm.alpha * 0.6})`;
+          this.ctx.fill();
+        }
+      }
+
+      renderNight() {
+        // Multi-Spectral Twinkling Stars
+        for (const s of this.stars) {
+          const tw = Math.sin(this.time * 2 + s.phase);
+          const alpha = s.baseAlpha + (tw * 0.35);
+          this.ctx.beginPath();
+          this.ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+          this.ctx.fillStyle = `rgba(248, 250, 252, ${Math.max(0.1, alpha)})`;
+          this.ctx.fill();
+        }
+
+        // Shooting Stars (Meteors)
+        this.spawnMeteor();
+        for (let i = this.meteors.length - 1; i >= 0; i--) {
+          const m = this.meteors[i];
+          const endX = m.x - Math.cos(m.angle) * m.length;
+          const endY = m.y - Math.sin(m.angle) * m.length;
+
+          const grad = this.ctx.createLinearGradient(endX, endY, m.x, m.y);
+          grad.addColorStop(0, 'rgba(255, 255, 255, 0)');
+          grad.addColorStop(1, `rgba(255, 255, 255, ${m.alpha})`);
+
+          this.ctx.beginPath();
+          this.ctx.moveTo(endX, endY);
+          this.ctx.lineTo(m.x, m.y);
+          this.ctx.strokeStyle = grad;
+          this.ctx.lineWidth = 2.2;
+          this.ctx.stroke();
+
+          m.x += Math.cos(m.angle) * m.speed;
+          m.y += Math.sin(m.angle) * m.speed;
+          m.alpha -= 0.035;
+
+          if (m.alpha <= 0 || m.x > this.width || m.y > this.height) {
+            this.meteors.splice(i, 1);
+          }
+        }
+
+        // Subtle Night Clouds
+        this.renderVolumetricClouds('#c7d2fe', 0.08);
+      }
+
+      renderRain(isStorm = false) {
+        // Storm Lightning Flash Simulation
+        if (isStorm && Math.random() < 0.008) {
+          const overlay = document.getElementById('lightningFlashOverlay');
+          overlay.style.opacity = '0.75';
+          setTimeout(() => { overlay.style.opacity = '0'; }, 90);
+          setTimeout(() => { overlay.style.opacity = '0.4'; }, 150);
+          setTimeout(() => { overlay.style.opacity = '0'; }, 220);
+        }
+
+        // Dark Storm Clouds
+        this.renderVolumetricClouds('#334155', isStorm ? 0.35 : 0.22);
+
+        // 120+ Raindrops with motion velocity
+        for (const r of this.raindrops) {
+          r.y += r.speed;
+          r.x += r.drift;
+
+          // Ground Splash Trigger
+          if (r.y > this.height - 25) {
+            if (this.splashes.length < 24) {
+              this.splashes.push({
+                x: r.x,
+                y: this.height - 15 + (Math.random() * 10),
+                radius: 2,
+                maxRadius: Math.random() * 12 + 6,
+                alpha: 0.65
+              });
+            }
+            r.y = -20;
+            r.x = Math.random() * this.width;
+          }
+
+          this.ctx.beginPath();
+          this.ctx.moveTo(r.x, r.y);
+          this.ctx.lineTo(r.x + (r.drift * 2), r.y + r.length);
+          this.ctx.strokeStyle = isStorm 
+            ? `rgba(165, 180, 252, ${r.alpha * 0.7})` 
+            : `rgba(56, 189, 248, ${r.alpha * 0.65})`;
+          this.ctx.lineWidth = 1.5;
+          this.ctx.stroke();
+        }
+
+        // Render Ground Splash Ripples
+        for (let i = this.splashes.length - 1; i >= 0; i--) {
+          const s = this.splashes[i];
+          s.radius += 0.8;
+          s.alpha -= 0.04;
+
+          this.ctx.beginPath();
+          this.ctx.ellipse(s.x, s.y, s.radius * 2, s.radius, 0, 0, Math.PI * 2);
+          this.ctx.strokeStyle = `rgba(56, 189, 248, ${s.alpha * 0.5})`;
+          this.ctx.lineWidth = 1.2;
+          this.ctx.stroke();
+
+          if (s.alpha <= 0) this.splashes.splice(i, 1);
+        }
+      }
+
+      renderFog() {
+        // Delhi NCR Atmospheric Haze Undulation Bands
+        for (const fb of this.fogBands) {
+          fb.offset += fb.speed;
+          const grad = this.ctx.createLinearGradient(0, fb.y, 0, fb.y + fb.height);
+          grad.addColorStop(0, 'rgba(203, 213, 225, 0)');
+          grad.addColorStop(0.5, `rgba(203, 213, 225, ${fb.alpha})`);
+          grad.addColorStop(1, 'rgba(203, 213, 225, 0)');
+
+          this.ctx.beginPath();
+          this.ctx.moveTo(0, fb.y);
+          for (let x = 0; x <= this.width; x += 50) {
+            const wave = Math.sin((x + fb.offset) * 0.005) * 35;
+            this.ctx.lineTo(x, fb.y + wave);
+          }
+          this.ctx.lineTo(this.width, fb.y + fb.height);
+          this.ctx.lineTo(0, fb.y + fb.height);
+          this.ctx.closePath();
+          this.ctx.fillStyle = grad;
+          this.ctx.fill();
+        }
+
+        this.renderVolumetricClouds('#e2e8f0', 0.16);
+      }
+
+      renderCloudy() {
+        this.renderVolumetricClouds('#cbd5e1', 0.28);
+      }
+
+      renderVolumetricClouds(baseColor, alpha) {
+        for (const cl of this.clouds) {
+          cl.x += cl.speed;
+          if (cl.x > this.width + 300) cl.x = -300;
+
+          // Draw cluster of soft overlapping radial puffs
+          const puffs = [
+            { ox: 0, oy: 0, r: 85 * cl.scale },
+            { ox: 60 * cl.scale, oy: -20 * cl.scale, r: 100 * cl.scale },
+            { ox: 130 * cl.scale, oy: -10 * cl.scale, r: 90 * cl.scale },
+            { ox: 180 * cl.scale, oy: 15 * cl.scale, r: 75 * cl.scale },
+            { ox: 80 * cl.scale, oy: 25 * cl.scale, r: 80 * cl.scale }
+          ];
+
+          for (const p of puffs) {
+            const px = cl.x + p.ox;
+            const py = cl.y + p.oy;
+            const g = this.ctx.createRadialGradient(px, py, 10, px, py, p.r);
+            g.addColorStop(0, `${baseColor}${Math.floor(alpha * 255).toString(16).padStart(2, '0')}`);
+            g.addColorStop(0.7, `${baseColor}${Math.floor(alpha * 0.5 * 255).toString(16).padStart(2, '0')}`);
+            g.addColorStop(1, `${baseColor}00`);
+            this.ctx.fillStyle = g;
+            this.ctx.beginPath();
+            this.ctx.arc(px, py, p.r, 0, Math.PI * 2);
+            this.ctx.fill();
+          }
+        }
+      }
     }
-    resizeSky();
-    animateSky();
+
+    // Initialize Atmospheric Sky Engine
+    let atmosphereEngine = null;
+    window.addEventListener('load', () => {
+      const c = document.getElementById('skyCanvas');
+      atmosphereEngine = new CinematicSky(c);
+      atmosphereEngine.render();
+      window.addEventListener('resize', () => atmosphereEngine.resize());
+    });
 
     // 3. Windy-Style Mini Fluid Particle Vector Stream
     const miniCanvas = document.getElementById('miniWindCanvas');
@@ -1389,6 +1713,28 @@
       if (currentRawData) renderData(currentRawData);
     }
 
+    // Manual Theme Switcher Routine
+    function setAtmosphereScene(themeClass, btn) {
+      isAutoSyncEnabled = false;
+      document.querySelectorAll('.scene-pill').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      document.getElementById('autoSyncBtn').classList.remove('active');
+
+      currentTheme = themeClass;
+      document.body.className = themeClass;
+    }
+
+    function enableLiveAutoSync(btn) {
+      isAutoSyncEnabled = true;
+      document.querySelectorAll('.scene-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (currentRawData) {
+        const wInfo = decodeWMO(currentRawData.current.weather_code, currentRawData.current.is_day);
+        currentTheme = wInfo.theme;
+        document.body.className = currentTheme;
+      }
+    }
+
     // 5. Fetch Weather Data (Open-Meteo Precision API)
     async function loadWeather(lat, lon, label) {
       if (label) document.getElementById('currentLocLabel').textContent = label;
@@ -1445,10 +1791,10 @@
 
       // Weather condition info
       const wInfo = decodeWMO(c.weather_code, c.is_day);
-      currentTheme = wInfo.theme;
-
-      // Update Body Theme for dynamic atmospheric background
-      document.body.className = currentTheme;
+      if (isAutoSyncEnabled) {
+        currentTheme = wInfo.theme;
+        document.body.className = currentTheme;
+      }
 
       // 1. Hero Card Fill
       document.getElementById('heroTemp').textContent = convertTemp(c.temperature_2m);
