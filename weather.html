@@ -3,28 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#040911" />
-  <title>AirNova Atmospheric Intelligence — Precision Meteorological & Fluid Dynamics Hub</title>
+  <meta name="theme-color" content="#071018" />
+  <title>AirNova Weather — Precision Atmospheric & Meteorological Intelligence</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #03070d;
-      --card-bg: rgba(10, 20, 32, 0.65);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --card-border-hover: rgba(56, 189, 248, 0.4);
-      --card-glow: rgba(56, 189, 248, 0.12);
+      --bg: #040911;
+      --card-bg: rgba(10, 20, 32, 0.68);
+      --card-border: rgba(255, 255, 255, 0.09);
+      --card-border-hover: rgba(56, 189, 248, 0.45);
+      --card-glow: rgba(56, 189, 248, 0.15);
       --text: #f8fafc;
       --text-muted: #94a3b8;
       --text-dim: #64748b;
       --cyan: #38bdf8;
-      --cyan-glow: rgba(56, 189, 248, 0.4);
       --blue: #0284c7;
       --emerald: #10b981;
       --amber: #f59e0b;
       --red: #ef4444;
       --purple: #8b5cf6;
+      --sky-glow: rgba(56, 189, 248, 0.18);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -36,20 +36,63 @@
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
-      background-image: 
-        radial-gradient(circle at 15% 15%, rgba(2, 132, 199, 0.15) 0%, transparent 45%),
-        radial-gradient(circle at 85% 25%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
-        radial-gradient(circle at 50% 85%, rgba(16, 185, 129, 0.08) 0%, transparent 60%);
-      background-attachment: fixed;
+      transition: background 1.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Ambient Dynamic 60 FPS Particle Canvas */
+    /* Weather Scene Atmospheric Themes */
+    body.theme-sunny {
+      background: radial-gradient(circle at 85% 15%, rgba(251, 191, 36, 0.22) 0%, transparent 60%),
+                  radial-gradient(circle at 20% 40%, rgba(14, 165, 233, 0.18) 0%, transparent 55%),
+                  linear-gradient(180deg, #07172b 0%, #0c233f 40%, #050d18 100%);
+      --card-bg: rgba(9, 24, 42, 0.65);
+      --card-glow: rgba(251, 191, 36, 0.2);
+    }
+
+    body.theme-night {
+      background: radial-gradient(circle at 80% 20%, rgba(167, 139, 250, 0.18) 0%, transparent 50%),
+                  radial-gradient(circle at 15% 85%, rgba(56, 189, 248, 0.12) 0%, transparent 60%),
+                  linear-gradient(180deg, #030610 0%, #080d1e 50%, #020408 100%);
+      --card-bg: rgba(8, 14, 28, 0.7);
+      --card-glow: rgba(139, 92, 246, 0.2);
+    }
+
+    body.theme-cloudy {
+      background: radial-gradient(circle at 50% 20%, rgba(148, 163, 184, 0.15) 0%, transparent 60%),
+                  linear-gradient(180deg, #101722 0%, #162030 50%, #090e15 100%);
+      --card-bg: rgba(16, 25, 38, 0.72);
+      --card-glow: rgba(148, 163, 184, 0.18);
+    }
+
+    body.theme-rain {
+      background: radial-gradient(circle at 30% 20%, rgba(2, 132, 199, 0.2) 0%, transparent 50%),
+                  radial-gradient(circle at 75% 75%, rgba(30, 41, 59, 0.3) 0%, transparent 60%),
+                  linear-gradient(180deg, #09131e 0%, #112234 50%, #060c14 100%);
+      --card-bg: rgba(10, 22, 36, 0.75);
+      --card-glow: rgba(56, 189, 248, 0.25);
+    }
+
+    body.theme-storm {
+      background: radial-gradient(circle at 50% 10%, rgba(139, 92, 246, 0.25) 0%, transparent 50%),
+                  linear-gradient(180deg, #0c0817 0%, #17112b 45%, #05030a 100%);
+      --card-bg: rgba(15, 12, 28, 0.75);
+      --card-glow: rgba(139, 92, 246, 0.3);
+    }
+
+    body.theme-fog {
+      background: radial-gradient(circle at 50% 40%, rgba(212, 175, 55, 0.12) 0%, transparent 60%),
+                  linear-gradient(180deg, #18191c 0%, #202024 50%, #0c0d0e 100%);
+      --card-bg: rgba(22, 23, 27, 0.75);
+      --card-glow: rgba(212, 175, 55, 0.15);
+    }
+
+    /* Fullscreen Ambient Sky Simulator */
     #skyCanvas {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
       pointer-events: none;
       z-index: 0;
+      opacity: 0.95;
     }
 
     .app-shell {
@@ -60,17 +103,17 @@
       padding: 24px 20px 90px 20px;
     }
 
-    /* Glassmorphism 2.0 Utility */
+    /* Glassmorphism 2.0 Ultra Luxury */
     .glass-card {
       background: var(--card-bg);
-      backdrop-filter: blur(28px) saturate(180%);
-      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      backdrop-filter: blur(30px) saturate(180%);
+      -webkit-backdrop-filter: blur(30px) saturate(180%);
       border: 1px solid var(--card-border);
-      border-radius: 26px;
+      border-radius: 28px;
       box-shadow: 
-        inset 0 1px 1px 0 rgba(255, 255, 255, 0.12),
-        0 20px 50px -15px rgba(0, 0, 0, 0.65);
-      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.16),
+        0 24px 55px -15px rgba(0, 0, 0, 0.65);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
       position: relative;
       overflow: hidden;
     }
@@ -78,18 +121,18 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
-      opacity: 0.7;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+      opacity: 0.8;
     }
     .glass-card:hover {
       border-color: var(--card-border-hover);
       box-shadow: 
-        inset 0 1px 1px 0 rgba(255, 255, 255, 0.2),
-        0 25px 60px -15px var(--card-glow);
+        inset 0 1px 2px 0 rgba(255, 255, 255, 0.25),
+        0 30px 70px -15px var(--card-glow);
       transform: translateY(-2px);
     }
 
-    /* Top Glass Navbar */
+    /* Header & Navigation Bar */
     header {
       display: flex;
       justify-content: space-between;
@@ -104,41 +147,41 @@
       gap: 16px;
     }
     .brand-mark {
-      width: 48px; height: 48px;
-      border-radius: 16px;
+      width: 50px; height: 50px;
+      border-radius: 17px;
       background: linear-gradient(135deg, #0284c7, #10b981, #6366f1);
       display: flex; align-items: center; justify-content: center;
-      font-size: 20px; font-weight: 900; color: #fff;
-      box-shadow: 0 0 24px rgba(56, 189, 248, 0.5);
+      font-size: 21px; font-weight: 900; color: #fff;
+      box-shadow: 0 0 26px rgba(56, 189, 248, 0.55);
       position: relative;
     }
     .brand-mark::after {
       content: '';
       position: absolute; inset: -2px;
-      border-radius: 18px;
+      border-radius: 19px;
       background: linear-gradient(135deg, #38bdf8, transparent, #10b981);
       z-index: -1;
       opacity: 0.6;
     }
     .brand-text h1 {
       font-size: 22px; font-weight: 800; letter-spacing: -0.5px;
-      background: linear-gradient(180deg, #ffffff 30%, #cbd5e1 100%);
+      background: linear-gradient(180deg, #ffffff 40%, #cbd5e1 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .brand-text p {
       font-size: 12px; color: var(--text-muted); font-weight: 500;
-      display: flex; align-items: center; gap: 6px;
+      display: flex; align-items: center; gap: 7px;
     }
     .live-chip {
       width: 7px; height: 7px; border-radius: 50%; background: #10b981;
-      box-shadow: 0 0 10px #10b981;
+      box-shadow: 0 0 12px #10b981;
       display: inline-block;
       animation: pulse 2s infinite;
     }
     @keyframes pulse {
       0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.3); opacity: 0.6; }
+      50% { transform: scale(1.35); opacity: 0.6; }
     }
 
     .nav-actions {
@@ -163,29 +206,30 @@
       cursor: pointer;
     }
     .nav-btn:hover {
-      background: rgba(56, 189, 248, 0.15);
+      background: rgba(56, 189, 248, 0.16);
       border-color: var(--cyan);
       color: var(--cyan);
-      box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
+      box-shadow: 0 0 18px rgba(56, 189, 248, 0.3);
       transform: translateY(-1px);
     }
     .nav-btn-highlight {
       background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(16, 185, 129, 0.25));
-      border-color: rgba(56, 189, 248, 0.4);
+      border-color: rgba(56, 189, 248, 0.45);
       color: var(--cyan);
     }
     .sound-toggle-btn.active {
-      background: rgba(16, 185, 129, 0.2);
+      background: rgba(16, 185, 129, 0.25);
       border-color: rgba(16, 185, 129, 0.5);
       color: #10b981;
+      box-shadow: 0 0 16px rgba(16, 185, 129, 0.35);
     }
 
-    /* Interactive Search & Station Picker Bar */
+    /* Controls Deck: Global Search & Stations */
     .controls-deck {
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 16px;
-      padding: 14px 22px;
+      padding: 14px 24px;
       margin-bottom: 24px;
       align-items: center;
     }
@@ -208,21 +252,21 @@
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 9999px;
-      padding: 8px 16px 8px 36px;
+      padding: 9px 16px 9px 38px;
       color: #fff;
       font-size: 13.5px;
       font-family: inherit;
       outline: none;
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
     }
     .search-input:focus {
       border-color: var(--cyan);
       background: rgba(255, 255, 255, 0.08);
-      box-shadow: 0 0 16px rgba(56, 189, 248, 0.2);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
     }
     .search-icon-svg {
       position: absolute;
-      left: 12px; top: 50%;
+      left: 14px; top: 50%;
       transform: translateY(-50%);
       color: var(--text-dim);
       pointer-events: none;
@@ -237,7 +281,7 @@
     .quick-station-pill {
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 6px 12px;
+      padding: 6px 13px;
       border-radius: 9999px;
       font-size: 12px;
       font-weight: 600;
@@ -247,7 +291,7 @@
       transition: all 0.2s ease;
     }
     .quick-station-pill:hover, .quick-station-pill.active {
-      background: rgba(56, 189, 248, 0.15);
+      background: rgba(56, 189, 248, 0.18);
       border-color: var(--cyan);
       color: #fff;
     }
@@ -260,7 +304,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 14px;
+      padding: 6px 15px;
       border-radius: 9999px;
       font-size: 12px;
       font-weight: 800;
@@ -270,25 +314,24 @@
       white-space: nowrap;
     }
 
-    /* Hero Weather Showcase Grid */
+    /* Hero Weather Showcase: Giant Temp + Windy Mini-Radar */
     .hero-weather-grid {
       display: grid;
       grid-template-columns: 1.35fr 1.05fr;
-      gap: 20px;
+      gap: 22px;
       margin-bottom: 24px;
     }
     @media (max-width: 980px) {
       .hero-weather-grid { grid-template-columns: 1fr; }
     }
 
-    /* Left Hero: Giant Temp & Condition */
+    /* Left Hero: Giant Temp & Micro-Physics */
     .main-temp-card {
       padding: 38px 36px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 340px;
-      background: linear-gradient(135deg, rgba(14, 28, 45, 0.8) 0%, rgba(9, 18, 30, 0.7) 100%);
+      min-height: 350px;
     }
     .temp-top-meta {
       display: flex;
@@ -304,7 +347,7 @@
       color: var(--cyan);
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
     }
     .temp-primary-flex {
       display: flex;
@@ -313,7 +356,7 @@
       gap: 20px;
     }
     .temp-huge-num {
-      font-size: clamp(74px, 9vw, 116px);
+      font-size: clamp(74px, 9vw, 118px);
       font-weight: 900;
       line-height: 0.88;
       letter-spacing: -4px;
@@ -328,15 +371,22 @@
       vertical-align: top;
       color: var(--cyan);
     }
-    .hero-animated-icon {
-      font-size: clamp(68px, 9vw, 105px);
+    
+    /* Bespoke Animated SVG Weather Icon Container */
+    .hero-weather-icon-wrap {
+      width: clamp(100px, 12vw, 140px);
+      height: clamp(100px, 12vw, 140px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.6));
       animation: floatSmooth 4.5s ease-in-out infinite;
     }
     @keyframes floatSmooth {
       0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-10px) rotate(2deg); }
+      50% { transform: translateY(-10px) rotate(1.5deg); }
     }
+
     .condition-headline {
       font-size: 28px;
       font-weight: 800;
@@ -370,13 +420,13 @@
       color: #e2e8f0;
     }
 
-    /* Right Hero: Live Windy-Style Particle Stream Radar Mini-Stage */
+    /* Right Hero: Windy 60 FPS Fluid Radar */
     .windy-stage-card {
       padding: 24px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 340px;
+      min-height: 350px;
     }
     .radar-top-bar {
       display: flex;
@@ -398,7 +448,7 @@
       width: 100%;
       height: 220px;
       border-radius: 18px;
-      background: #06101c;
+      background: #050d18;
       border: 1px solid rgba(255, 255, 255, 0.08);
       position: relative;
       overflow: hidden;
@@ -501,7 +551,7 @@
     }
     .spline-canvas-wrap {
       width: 100%;
-      height: 120px;
+      height: 125px;
       position: relative;
     }
     #hourlyCanvas {
@@ -513,7 +563,7 @@
       display: flex;
       gap: 12px;
       overflow-x: auto;
-      padding: 14px 0 6px 0;
+      padding: 16px 0 6px 0;
       scroll-behavior: smooth;
     }
     .hourly-chips-scroll::-webkit-scrollbar { height: 6px; }
@@ -521,7 +571,7 @@
       background: rgba(255, 255, 255, 0.15); border-radius: 999px;
     }
     .h-chip {
-      flex: 0 0 94px;
+      flex: 0 0 96px;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.07);
       border-radius: 20px;
@@ -534,13 +584,13 @@
       cursor: pointer;
     }
     .h-chip:hover, .h-chip.active {
-      background: rgba(56, 189, 248, 0.15);
+      background: rgba(56, 189, 248, 0.16);
       border-color: var(--cyan);
       transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(56, 189, 248, 0.18);
+      box-shadow: 0 8px 20px rgba(56, 189, 248, 0.2);
     }
     .h-chip-time { font-size: 12px; font-weight: 700; color: var(--text-muted); }
-    .h-chip-icon { font-size: 26px; }
+    .h-chip-icon-box { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; }
     .h-chip-temp { font-size: 17px; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: #fff; }
     .h-chip-pop { font-size: 11px; font-weight: 700; color: var(--cyan); }
 
@@ -548,7 +598,7 @@
     .vitals-master-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 22px;
       margin-bottom: 24px;
     }
     @media (max-width: 1040px) {
@@ -645,7 +695,7 @@
     }
     .forecast-row-item:last-child { border-bottom: none; }
     .f-day { font-size: 15px; font-weight: 700; color: #fff; }
-    .f-icon { font-size: 24px; text-align: center; }
+    .f-icon-box { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; }
     .f-bar-track {
       height: 7px;
       background: rgba(255, 255, 255, 0.08);
@@ -681,11 +731,50 @@
       flex-wrap: wrap;
       gap: 14px;
     }
+
+    /* Embedded Keyframe Animations for Animated SVG Weather Icons */
+    @keyframes spinRays {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .anim-spin-rays {
+      animation: spinRays 16s linear infinite;
+      transform-origin: 50% 50%;
+    }
+    @keyframes cloudDrift {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(4px); }
+    }
+    .anim-cloud-drift {
+      animation: cloudDrift 5s ease-in-out infinite;
+    }
+    @keyframes raindropFall {
+      0% { transform: translateY(-4px); opacity: 0; }
+      40% { opacity: 1; }
+      100% { transform: translateY(14px); opacity: 0; }
+    }
+    .anim-drop-1 { animation: raindropFall 1.1s cubic-bezier(0.4, 0, 0.8, 1) infinite; }
+    .anim-drop-2 { animation: raindropFall 1.1s cubic-bezier(0.4, 0, 0.8, 1) infinite 0.35s; }
+    .anim-drop-3 { animation: raindropFall 1.1s cubic-bezier(0.4, 0, 0.8, 1) infinite 0.7s; }
+    @keyframes lightningFlash {
+      0%, 90%, 94%, 98%, 100% { opacity: 0.1; }
+      92%, 96% { opacity: 1; }
+    }
+    .anim-lightning-bolt {
+      animation: lightningFlash 3.5s ease-in-out infinite;
+    }
+    @keyframes fogSway {
+      0%, 100% { transform: translateX(-3px); opacity: 0.55; }
+      50% { transform: translateX(3px); opacity: 0.85; }
+    }
+    .anim-fog-bar {
+      animation: fogSway 4s ease-in-out infinite;
+    }
   </style>
 </head>
-<body>
+<body class="theme-sunny">
 
-  <!-- Fullscreen Ambient Sky Simulator -->
+  <!-- Ambient Dynamic Sky Canvas -->
   <canvas id="skyCanvas"></canvas>
 
   <div class="app-shell">
@@ -711,12 +800,12 @@
       </div>
     </header>
 
-    <!-- Search Bar & NCR Command Presets Deck -->
+    <!-- Global City Search & Presets Deck -->
     <div class="glass-card controls-deck">
       <div class="search-group">
         <div class="search-input-wrap">
           <svg class="search-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          <input type="text" id="citySearchInput" class="search-input" placeholder="Search any global or Indian city (e.g. Mumbai, Bengaluru, Shimla)..." />
+          <input type="text" id="citySearchInput" class="search-input" placeholder="Search any city globally (e.g. Mumbai, Bengaluru, Shimla, London)..." />
         </div>
         <div class="quick-stations-wrap">
           <button class="quick-station-pill active" onclick="switchPreset('delhi', this)">Delhi Mandir Marg</button>
@@ -736,7 +825,7 @@
       </div>
     </div>
 
-    <!-- Hero Weather Showcase: Giant Temperature + Windy Mini-Radar Canvas -->
+    <!-- Hero Weather Showcase: Giant Temp + Windy Mini-Radar -->
     <div class="hero-weather-grid">
       
       <!-- Card 1: Giant Temperature & Micro-Physics -->
@@ -756,7 +845,10 @@
               <div id="heroConditionName" class="condition-headline">Loading Weather…</div>
               <p id="heroConditionDesc" class="condition-subline">Fetching boundary layer atmospheric telemetry from ECMWF IFS.</p>
             </div>
-            <div id="heroWeatherIcon" class="hero-animated-icon">⛅</div>
+            <!-- Bespoke Animated SVG Weather Icon -->
+            <div id="heroWeatherIcon" class="hero-weather-icon-wrap">
+              <!-- Dynamically populated -->
+            </div>
           </div>
         </div>
 
@@ -964,16 +1056,15 @@
 
   </div>
 
-  <!-- Ultra-Premium Weather Engine Script -->
+  <!-- Ultra-Premium Weather Engine & Bespoke Animated Icon SVG System -->
   <script>
     // Global Application State
     let isFahrenheit = false;
     let currentRawData = null;
     let currentStationKey = 'delhi';
-    let currentTheme = 'clear_day';
+    let currentTheme = 'theme-sunny';
     let isAudioActive = false;
     let audioCtx = null;
-    let noiseNode = null;
     let gainNode = null;
 
     // Station Coordinates Mapping
@@ -986,7 +1077,153 @@
       ghaziabad: { lat: 28.6603, lon: 77.3573, name: 'Ghaziabad (Vasundhara)' }
     };
 
-    // 1. Ambient Background Particles (Rain, Fog, Stellar Sky, Sunbeams)
+    // 1. Bespoke Animated SVG Weather Icon Generator
+    function getAnimatedWeatherSVG(code, isDay = 1, size = 110) {
+      // Sunny / Clear Day
+      if (code === 0 && isDay) {
+        return `
+          <svg width="${size}" height="${size}" viewBox="0 0 100 100">
+            <defs>
+              <radialGradient id="sunGlowHero" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#fff" />
+                <stop offset="40%" stop-color="#fde047" />
+                <stop offset="100%" stop-color="#f59e0b" />
+              </radialGradient>
+              <filter id="heroSunFilter"><feGaussianBlur stdDeviation="3.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+            <g class="anim-spin-rays">
+              <line x1="50" y1="10" x2="50" y2="19" stroke="#fbbf24" stroke-width="4.5" stroke-linecap="round"/>
+              <line x1="50" y1="81" x2="50" y2="90" stroke="#fbbf24" stroke-width="4.5" stroke-linecap="round"/>
+              <line x1="10" y1="50" x2="19" y2="50" stroke="#fbbf24" stroke-width="4.5" stroke-linecap="round"/>
+              <line x1="81" y1="50" x2="90" y2="50" stroke="#fbbf24" stroke-width="4.5" stroke-linecap="round"/>
+              <line x1="22" y1="22" x2="28" y2="28" stroke="#fbbf24" stroke-width="4.5" stroke-linecap="round"/>
+              <line x1="72" y1="72" x2="78" y2="78" stroke="#fbbf24" stroke-width="4.5" stroke-linecap="round"/>
+              <line x1="22" y1="78" x2="28" y2="72" stroke="#fbbf24" stroke-width="4.5" stroke-linecap="round"/>
+              <line x1="72" y1="28" x2="78" y2="22" stroke="#fbbf24" stroke-width="4.5" stroke-linecap="round"/>
+            </g>
+            <circle cx="50" cy="50" r="22" fill="url(#sunGlowHero)" filter="url(#heroSunFilter)"/>
+          </svg>
+        `;
+      }
+
+      // Clear Night / Moon
+      if (code === 0 && !isDay) {
+        return `
+          <svg width="${size}" height="${size}" viewBox="0 0 100 100">
+            <defs>
+              <linearGradient id="moonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="70%" stop-color="#e0e7ff"/>
+                <stop offset="100%" stop-color="#c7d2fe"/>
+              </linearGradient>
+            </defs>
+            <circle cx="25" cy="28" r="2" fill="#fff" opacity="0.8"/>
+            <circle cx="78" cy="22" r="1.5" fill="#fff" opacity="0.9"/>
+            <circle cx="82" cy="70" r="2.2" fill="#fff" opacity="0.75"/>
+            <path d="M 52 18 A 32 32 0 1 0 78 74 A 26 26 0 1 1 52 18 Z" fill="url(#moonGrad)" filter="drop-shadow(0 0 16px rgba(199,210,254,0.65))"/>
+          </svg>
+        `;
+      }
+
+      // Partly Cloudy (Day or Night)
+      if (code === 1 || code === 2) {
+        return `
+          <svg width="${size}" height="${size}" viewBox="0 0 100 100">
+            <defs>
+              <linearGradient id="cloudGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="100%" stop-color="#94a3b8"/>
+              </linearGradient>
+            </defs>
+            <circle cx="36" cy="36" r="16" fill="#f59e0b" filter="drop-shadow(0 0 10px #f59e0b)"/>
+            <path class="anim-cloud-drift" d="M 30 72 L 74 72 A 14 14 0 0 0 74 44 A 18 18 0 0 0 42 40 A 15 15 0 0 0 30 72 Z" fill="url(#cloudGrad)" filter="drop-shadow(0 8px 20px rgba(0,0,0,0.5))"/>
+          </svg>
+        `;
+      }
+
+      // Overcast / Cloudy
+      if (code === 3) {
+        return `
+          <svg width="${size}" height="${size}" viewBox="0 0 100 100">
+            <defs>
+              <linearGradient id="cloudBack" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#64748b"/>
+                <stop offset="100%" stop-color="#334155"/>
+              </linearGradient>
+              <linearGradient id="cloudFront" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#cbd5e1"/>
+                <stop offset="100%" stop-color="#64748b"/>
+              </linearGradient>
+            </defs>
+            <path d="M 22 56 L 66 56 A 12 12 0 0 0 66 32 A 16 16 0 0 0 38 28 A 14 14 0 0 0 22 56 Z" fill="url(#cloudBack)"/>
+            <path class="anim-cloud-drift" d="M 32 75 L 78 75 A 15 15 0 0 0 78 45 A 20 20 0 0 0 46 40 A 16 16 0 0 0 32 75 Z" fill="url(#cloudFront)" filter="drop-shadow(0 10px 22px rgba(0,0,0,0.6))"/>
+          </svg>
+        `;
+      }
+
+      // Rain / Drizzle (51, 53, 61, 63, 65, 80)
+      if ([51, 53, 61, 63, 65, 80].includes(code)) {
+        return `
+          <svg width="${size}" height="${size}" viewBox="0 0 100 100">
+            <defs>
+              <linearGradient id="cloudRain" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#94a3b8"/>
+                <stop offset="100%" stop-color="#475569"/>
+              </linearGradient>
+            </defs>
+            <path d="M 30 54 L 75 54 A 15 15 0 0 0 75 24 A 20 20 0 0 0 44 20 A 16 16 0 0 0 30 54 Z" fill="url(#cloudRain)" filter="drop-shadow(0 8px 18px rgba(0,0,0,0.6))"/>
+            <line x1="38" y1="62" x2="34" y2="76" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round" class="anim-drop-1"/>
+            <line x1="52" y1="62" x2="48" y2="76" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round" class="anim-drop-2"/>
+            <line x1="66" y1="62" x2="62" y2="76" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round" class="anim-drop-3"/>
+          </svg>
+        `;
+      }
+
+      // Thunderstorm (95)
+      if (code === 95) {
+        return `
+          <svg width="${size}" height="${size}" viewBox="0 0 100 100">
+            <defs>
+              <linearGradient id="cloudStorm" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#64748b"/>
+                <stop offset="100%" stop-color="#1e293b"/>
+              </linearGradient>
+            </defs>
+            <path d="M 30 52 L 75 52 A 15 15 0 0 0 75 22 A 20 20 0 0 0 44 18 A 16 16 0 0 0 30 52 Z" fill="url(#cloudStorm)"/>
+            <line x1="36" y1="62" x2="32" y2="76" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" class="anim-drop-1"/>
+            <line x1="68" y1="62" x2="64" y2="76" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" class="anim-drop-2"/>
+            <polygon points="54,48 44,66 51,66 46,86 63,61 55,61" fill="#facc15" filter="drop-shadow(0 0 10px #eab308)" class="anim-lightning-bolt"/>
+          </svg>
+        `;
+      }
+
+      // Fog / Smog (45, 48)
+      if (code === 45 || code === 48) {
+        return `
+          <svg width="${size}" height="${size}" viewBox="0 0 100 100">
+            <defs>
+              <linearGradient id="fogGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#94a3b8" stop-opacity="0.3"/>
+                <stop offset="50%" stop-color="#e2e8f0" stop-opacity="0.9"/>
+                <stop offset="100%" stop-color="#94a3b8" stop-opacity="0.3"/>
+              </linearGradient>
+            </defs>
+            <rect x="20" y="32" width="60" height="7" rx="3.5" fill="url(#fogGrad)" class="anim-fog-bar"/>
+            <rect x="14" y="47" width="72" height="8" rx="4" fill="url(#fogGrad)" class="anim-fog-bar" style="animation-delay:0.7s"/>
+            <rect x="24" y="63" width="52" height="7" rx="3.5" fill="url(#fogGrad)" class="anim-fog-bar" style="animation-delay:1.4s"/>
+          </svg>
+        `;
+      }
+
+      // Fallback Default
+      return `
+        <svg width="${size}" height="${size}" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="20" fill="#38bdf8" filter="drop-shadow(0 0 12px #38bdf8)"/>
+        </svg>
+      `;
+    }
+
+    // 2. Fullscreen Ambient Sky Simulator (Rain streaks, Fog puffs, Stars, Sunbeams)
     const skyCanvas = document.getElementById('skyCanvas');
     const skyCtx = skyCanvas.getContext('2d');
     let particles = [];
@@ -1000,7 +1237,7 @@
 
     function initSkyParticles() {
       particles = [];
-      const count = Math.min(80, Math.floor(window.innerWidth / 18));
+      const count = Math.min(100, Math.floor(window.innerWidth / 16));
       for (let i = 0; i < count; i++) {
         particles.push({
           x: Math.random() * skyCanvas.width,
@@ -1009,29 +1246,40 @@
           alpha: Math.random() * 0.7 + 0.2,
           speed: Math.random() * 0.4 + 0.15,
           drift: (Math.random() - 0.5) * 0.3,
-          length: Math.random() * 16 + 8
+          length: Math.random() * 18 + 8
         });
       }
     }
 
     function animateSky() {
       skyCtx.clearRect(0, 0, skyCanvas.width, skyCanvas.height);
-      const isRain = (currentTheme === 'rain');
+      const isRain = (currentTheme === 'theme-rain' || currentTheme === 'theme-storm');
+      const isFog = (currentTheme === 'theme-fog');
+      const isNight = (currentTheme === 'theme-night');
 
       for (const p of particles) {
         if (isRain) {
-          p.y += p.speed * 14 + 6;
-          p.x += p.drift * 2;
+          p.y += p.speed * 16 + 8;
+          p.x += p.drift * 2.5;
           if (p.y > skyCanvas.height) {
             p.y = -15;
             p.x = Math.random() * skyCanvas.width;
           }
           skyCtx.beginPath();
           skyCtx.moveTo(p.x, p.y);
-          skyCtx.lineTo(p.x + p.drift * 3, p.y + p.length);
-          skyCtx.strokeStyle = `rgba(56, 189, 248, ${p.alpha * 0.45})`;
-          skyCtx.lineWidth = 1.3;
+          skyCtx.lineTo(p.x + p.drift * 4, p.y + p.length);
+          skyCtx.strokeStyle = `rgba(56, 189, 248, ${p.alpha * 0.5})`;
+          skyCtx.lineWidth = 1.4;
           skyCtx.stroke();
+        } else if (isFog) {
+          p.x += p.drift * 0.8 + 0.2;
+          p.y -= p.speed * 0.2;
+          if (p.x > skyCanvas.width) p.x = 0;
+          if (p.y < 0) p.y = skyCanvas.height;
+          skyCtx.beginPath();
+          skyCtx.arc(p.x, p.y, p.radius * 3.5, 0, Math.PI * 2);
+          skyCtx.fillStyle = `rgba(203, 213, 225, ${p.alpha * 0.15})`;
+          skyCtx.fill();
         } else {
           p.y -= p.speed;
           p.x += p.drift;
@@ -1041,9 +1289,7 @@
           }
           skyCtx.beginPath();
           skyCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-          skyCtx.fillStyle = (currentTheme === 'fog') 
-            ? `rgba(203, 213, 225, ${p.alpha * 0.25})` 
-            : `rgba(56, 189, 248, ${p.alpha * 0.35})`;
+          skyCtx.fillStyle = isNight ? `rgba(248, 250, 252, ${p.alpha * 0.5})` : `rgba(251, 191, 36, ${p.alpha * 0.35})`;
           skyCtx.fill();
         }
       }
@@ -1052,7 +1298,7 @@
     resizeSky();
     animateSky();
 
-    // 2. Windy-Style Mini Fluid Particle Vector Stream
+    // 3. Windy-Style Mini Fluid Particle Vector Stream
     const miniCanvas = document.getElementById('miniWindCanvas');
     const miniCtx = miniCanvas.getContext('2d');
     let windParticles = [];
@@ -1080,7 +1326,7 @@
 
     function animateWindStream() {
       if (!miniCanvas.width) return;
-      miniCtx.fillStyle = 'rgba(6, 16, 28, 0.15)';
+      miniCtx.fillStyle = 'rgba(5, 13, 24, 0.15)';
       miniCtx.fillRect(0, 0, miniCanvas.width, miniCanvas.height);
 
       const angle = (currentRawData?.current?.wind_direction_10m || 290) * (Math.PI / 180);
@@ -1104,32 +1350,32 @@
         miniCtx.beginPath();
         miniCtx.moveTo(prevX, prevY);
         miniCtx.lineTo(wp.x, wp.y);
-        miniCtx.strokeStyle = `rgba(56, 189, 248, ${life * 0.7})`;
+        miniCtx.strokeStyle = `rgba(56, 189, 248, ${life * 0.75})`;
         miniCtx.lineWidth = 1.6;
         miniCtx.stroke();
       }
       requestAnimationFrame(animateWindStream);
     }
-    setTimeout(() => { resizeMiniWind(); animateWindStream(); }, 100);
+    setTimeout(() => { resizeMiniWind(); animateWindStream(); }, 120);
 
-    // 3. WMO Weather Code Interpreter
+    // 4. WMO Weather Code Interpreter & Scene Theme Selector
     function decodeWMO(code, isDay = 1) {
       const map = {
-        0: { name: 'Clear Sky', icon: isDay ? '☀️' : '🌙', desc: 'Sunny and cloudless atmospheric column.', theme: isDay ? 'clear_day' : 'clear_night' },
-        1: { name: 'Mainly Clear', icon: isDay ? '🌤️' : '☁️', desc: 'Scattered high-altitude cirrus wisps with sharp horizon.', theme: isDay ? 'clear_day' : 'clear_night' },
-        2: { name: 'Partly Cloudy', icon: '⛅', desc: 'Comfortable intervals of sun and cumulus clouds.', theme: 'clouds' },
-        3: { name: 'Overcast', icon: '☁️', desc: 'Dense overcast deck insulating surface temperatures.', theme: 'clouds' },
-        45: { name: 'Radiation Fog / Haze', icon: '🌫️', desc: 'Low boundary layer inversion with aerosol scattering.', theme: 'fog' },
-        48: { name: 'Depositing Rime Fog', icon: '🌫️', desc: 'Freezing water droplets suspended in stagnant airflow.', theme: 'fog' },
-        51: { name: 'Light Drizzle', icon: '🌦️', desc: 'Fine drizzle droplets dampening ground surfaces.', theme: 'rain' },
-        53: { name: 'Moderate Drizzle', icon: '🌦️', desc: 'Steady fine drizzle with low convective lift.', theme: 'rain' },
-        61: { name: 'Slight Rain', icon: '🌧️', desc: 'Passing light rain showers clearing airborne particulate matter.', theme: 'rain' },
-        63: { name: 'Moderate Rain', icon: '🌧️', desc: 'Steady rain accumulation scrubbing the boundary atmospheric layer.', theme: 'rain' },
-        65: { name: 'Heavy Rain', icon: '⛈️', desc: 'Intense rain event with rapid precipitation deposition.', theme: 'rain' },
-        80: { name: 'Rain Showers', icon: '🌦️', desc: 'Scattered convective rain showers across urban sectors.', theme: 'rain' },
-        95: { name: 'Severe Thunderstorm', icon: '⚡', desc: 'Vigorous convective cells with lightning and wind shear.', theme: 'rain' }
+        0: { name: 'Clear Sky', desc: 'Sunny and cloudless atmospheric column with maximum solar radiation.', theme: isDay ? 'theme-sunny' : 'theme-night' },
+        1: { name: 'Mainly Clear', desc: 'Scattered high-altitude cirrus wisps with exceptional horizon sight lines.', theme: isDay ? 'theme-sunny' : 'theme-night' },
+        2: { name: 'Partly Cloudy', desc: 'Comfortable intervals of sun and cumulus cloud decks.', theme: 'theme-cloudy' },
+        3: { name: 'Overcast Deck', desc: 'Dense overcast deck insulating surface boundary temperatures.', theme: 'theme-cloudy' },
+        45: { name: 'Radiation Fog / Haze', desc: 'Low boundary layer inversion with elevated aerosol scattering.', theme: 'theme-fog' },
+        48: { name: 'Depositing Rime Fog', desc: 'Freezing moisture droplets suspended in stagnant airflow.', theme: 'theme-fog' },
+        51: { name: 'Light Drizzle', desc: 'Fine drizzle droplets dampening ground surfaces.', theme: 'theme-rain' },
+        53: { name: 'Moderate Drizzle', desc: 'Steady fine drizzle with low convective lift.', theme: 'theme-rain' },
+        61: { name: 'Slight Rain', desc: 'Passing light rain showers clearing airborne particulate matter.', theme: 'theme-rain' },
+        63: { name: 'Moderate Rain', desc: 'Steady rain accumulation scrubbing the boundary atmospheric layer.', theme: 'theme-rain' },
+        65: { name: 'Heavy Rain', desc: 'Intense precipitation event with rapid hydrological deposition.', theme: 'theme-rain' },
+        80: { name: 'Rain Showers', desc: 'Scattered convective rain showers across urban sectors.', theme: 'theme-rain' },
+        95: { name: 'Severe Thunderstorm', desc: 'Vigorous convective cells with lightning activity and wind shear.', theme: 'theme-storm' }
       };
-      return map[code] || { name: 'Clear Air', icon: isDay ? '🌤️' : '🌙', desc: 'Standard meteorological conditions.', theme: 'clear_day' };
+      return map[code] || { name: 'Clear Air', desc: 'Standard meteorological conditions across region.', theme: 'theme-sunny' };
     }
 
     function convertTemp(degC) {
@@ -1143,7 +1389,7 @@
       if (currentRawData) renderData(currentRawData);
     }
 
-    // 4. Fetch Weather Data (Open-Meteo Precision API)
+    // 5. Fetch Weather Data (Open-Meteo Precision API)
     async function loadWeather(lat, lon, label) {
       if (label) document.getElementById('currentLocLabel').textContent = label;
       const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,cloud_cover,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m,dew_point_2m,visibility&hourly=temperature_2m,precipitation_probability,weather_code,wind_speed_10m,uv_index&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,uv_index_max,sunrise,sunset&forecast_days=7&timezone=Asia/Kolkata`;
@@ -1159,7 +1405,7 @@
       }
     }
 
-    // 5. Connect with AirNova Core AQI Engine
+    // 6. Connect with AirNova Core AQI Engine
     async function fetchLiveAQI() {
       try {
         const res = await fetch('/api/environment?city=Delhi');
@@ -1190,21 +1436,27 @@
       return 'Severe';
     }
 
-    // 6. Master Render Routine
+    // 7. Master Render Routine
     function renderData(data) {
       const c = data.current;
       const d = data.daily;
       const h = data.hourly;
       const u = isFahrenheit ? '°F' : '°C';
 
+      // Weather condition info
       const wInfo = decodeWMO(c.weather_code, c.is_day);
       currentTheme = wInfo.theme;
+
+      // Update Body Theme for dynamic atmospheric background
+      document.body.className = currentTheme;
 
       // 1. Hero Card Fill
       document.getElementById('heroTemp').textContent = convertTemp(c.temperature_2m);
       document.getElementById('heroConditionName').textContent = wInfo.name;
       document.getElementById('heroConditionDesc').textContent = wInfo.desc;
-      document.getElementById('heroWeatherIcon').textContent = wInfo.icon;
+      
+      // Render Bespoke Animated SVG Weather Icon
+      document.getElementById('heroWeatherIcon').innerHTML = getAnimatedWeatherSVG(c.weather_code, c.is_day, 120);
 
       document.getElementById('heroFeelsLike').textContent = `${convertTemp(c.apparent_temperature)}${u}`;
       document.getElementById('heroHighLow').textContent = `H: ${convertTemp(d.temperature_2m_max[0])}° L: ${convertTemp(d.temperature_2m_min[0])}°`;
@@ -1297,7 +1549,7 @@
       renderSevenDay(d);
     }
 
-    // 7. Interactive 24-Hour Spline Curve Canvas
+    // 8. Interactive 24-Hour Spline Curve Canvas
     function renderHourlySpline(h) {
       const canvas = document.getElementById('hourlyCanvas');
       const ctx = canvas.getContext('2d');
@@ -1349,7 +1601,7 @@
       ctx.lineWidth = 2.5;
       ctx.stroke();
 
-      // Render Hourly Chips
+      // Render Hourly Chips with Bespoke Mini SVG Icons
       const scroll = document.getElementById('hourlyChipsScroll');
       scroll.innerHTML = '';
       const nowIdx = new Date().getHours();
@@ -1357,7 +1609,7 @@
       for (let i = nowIdx; i < nowIdx + 24 && i < h.time.length; i++) {
         const timeStr = h.time[i].split('T')[1];
         const isCurrent = (i === nowIdx);
-        const icon = decodeWMO(h.weather_code[i], 1).icon;
+        const iconSvg = getAnimatedWeatherSVG(h.weather_code[i], 1, 30);
         const temp = convertTemp(h.temperature_2m[i]);
         const pop = h.precipitation_probability[i] || 0;
 
@@ -1365,7 +1617,7 @@
         chip.className = `h-chip ${isCurrent ? 'active' : ''}`;
         chip.innerHTML = `
           <div class="h-chip-time">${isCurrent ? 'Now' : timeStr}</div>
-          <div class="h-chip-icon">${icon}</div>
+          <div class="h-chip-icon-box">${iconSvg}</div>
           <div class="h-chip-temp">${temp}°</div>
           <div class="h-chip-pop">${pop > 10 ? pop + '%' : '·'}</div>
         `;
@@ -1373,7 +1625,7 @@
       }
     }
 
-    // 8. 7-Day Extended Forecast Render
+    // 9. 7-Day Extended Forecast Render with Bespoke Mini SVG Icons
     function renderSevenDay(d) {
       const container = document.getElementById('sevenDayContainer');
       container.innerHTML = '';
@@ -1385,7 +1637,7 @@
       for (let i = 0; i < d.time.length; i++) {
         const dateObj = new Date(d.time[i]);
         const dayName = i === 0 ? 'Today' : days[dateObj.getDay()];
-        const icon = decodeWMO(d.weather_code[i], 1).icon;
+        const iconSvg = getAnimatedWeatherSVG(d.weather_code[i], 1, 32);
         const low = convertTemp(d.temperature_2m_min[i]);
         const high = convertTemp(d.temperature_2m_max[i]);
 
@@ -1396,7 +1648,7 @@
         row.className = 'forecast-row-item';
         row.innerHTML = `
           <div class="f-day">${dayName}</div>
-          <div class="f-icon">${icon}</div>
+          <div class="f-icon-box">${iconSvg}</div>
           <div class="f-bar-track">
             <div class="f-bar-fill" style="left:${leftPct}%;width:${widthPct}%"></div>
           </div>
@@ -1409,7 +1661,7 @@
       }
     }
 
-    // 9. Preset Switching & City Search Handler
+    // 10. Preset Switching & City Search Handler
     function switchPreset(key, btn) {
       document.querySelectorAll('.quick-station-pill').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
@@ -1458,7 +1710,7 @@
       }
     });
 
-    // 10. Web Audio API Ambient Synthesizer (Generative Rain/Wind Sound)
+    // 11. Web Audio API Ambient Synthesizer (Generative Rain/Wind Sound)
     function toggleAtmosphericAudio() {
       const btn = document.getElementById('soundBtn');
       const icon = document.getElementById('soundIcon');
