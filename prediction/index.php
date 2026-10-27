@@ -15,6 +15,11 @@
         <div class="eyebrow">AIRNOVA • DELHI NCR ATMOSPHERIC INTELLIGENCE</div>
         <h1>AQI-72 <span>Delhi NCR Forecast Dashboard</span></h1>
         <p>72-hour CAMS chemistry + ECMWF meteorology/PBL + CPCB adaptive ground calibration + NASA FIRMS VIIRS stubble-plume diagnostics.</p>
+        <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;">
+          <a href="/" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:#94a3b8;text-decoration:none;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);">← Root Portal</a>
+          <a href="/weather.html" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:#fbbf24;text-decoration:none;padding:4px 12px;border-radius:999px;background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.3);">☀️ Weather Hub</a>
+          <a href="/airvision.html" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:#38bdf8;text-decoration:none;padding:4px 12px;border-radius:999px;background:rgba(56,189,248,0.12);border:1px solid rgba(56,189,248,0.3);">📷 AirVision Cam</a>
+        </div>
       </div>
       <div class="status" id="statusBadge">Checking…</div>
     </header>

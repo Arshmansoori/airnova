@@ -4,6 +4,8 @@ RewriteRule ^(?:airnova/|airnova-config\.php|\.env|.*\.(?:sqlite|log|bak|uploadi
 
 RewriteRule ^api/(.*)$ api.php [QSA,L]
 RewriteRule ^(?:2|admin)/?$ index.html [L]
+RewriteRule ^weather/?$ weather.html [L]
+RewriteRule ^airvision/?$ airvision.html [L]
 
 # Allow direct access to existing files and directories
 RewriteCond %{REQUEST_FILENAME} -f [OR]
