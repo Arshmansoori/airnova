@@ -1483,29 +1483,468 @@ html[data-theme="light"] .detail-metrics dd {
 }
 
 /* ==========================================================================
-   11. Responsive Clean Layout Adjustments
+   11. Ultra-Clean Responsive Layout for Tablet & Mobile (iPad, iOS, Android)
    ========================================================================== */
-@media (max-width: 800px) {
-  .detail-grid {
-    grid-template-columns: 1fr;
+
+/* --- TABLETS & SMALL LAPTOPS (max-width: 1080px) --- */
+@media (max-width: 1080px) {
+  .shell {
+    padding: 22px 36px 36px !important;
+  }
+  .nav {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+  }
+  .brand {
+    width: 220px !important;
+    margin-left: 0 !important;
+  }
+  .header-actions {
+    margin-left: auto !important;
+  }
+  .navlinks {
+    order: 3 !important;
+    width: 100% !important;
+    justify-content: center !important;
+    margin-top: 4px !important;
+  }
+  .hero {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 28px !important;
+    margin-top: 15px !important;
+    min-height: auto !important;
+  }
+  .intro {
+    grid-column: 1 / -1 !important;
+    text-align: center !important;
+    padding-bottom: 0 !important;
+  }
+  .intro .eyebrow {
+    justify-content: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .intro h1 {
+    font-size: clamp(42px, 5vw, 56px) !important;
+  }
+  .intro p {
+    max-width: 520px !important;
+    margin: 16px auto 0 !important;
+    font-size: 14px !important;
+  }
+  .meter-area {
+    align-items: center !important;
+  }
+  .meter {
+    max-width: 350px !important;
+  }
+  .weather {
+    padding-left: 20px !important;
+    align-items: center !important;
+    text-align: center !important;
+    min-height: auto !important;
+  }
+  .weather-eyebrow {
+    justify-content: center !important;
+  }
+  .temperature {
+    justify-content: center !important;
+  }
+  .spectrum {
+    margin-top: 36px !important;
+    padding: 20px 24px !important;
   }
 }
 
-@media (max-width: 740px) {
-  .theme-btn span {
-    display: none;
+/* --- MEDIUM TABLETS (max-width: 860px) --- */
+@media (max-width: 860px) {
+  .shell {
+    padding: 18px 24px 30px !important;
   }
-  .theme-btn {
-    padding: 7px 9px;
+  .hero {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 22px !important;
+  }
+  .weather {
+    padding-left: 12px !important;
+  }
+  .range {
+    max-width: 320px !important;
+  }
+  .detail-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}
+
+/* --- MOBILE PHONES & PHABLETS (max-width: 680px) --- */
+@media (max-width: 680px) {
+  .shell {
+    padding: 14px 16px 28px !important;
+    perspective: none !important;
+  }
+  
+  /* Fluid Header */
+  .nav {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 12px 8px !important;
+  }
+  .brand {
+    width: 170px !important;
+    max-width: 46% !important;
+    margin-left: 0 !important;
   }
   .header-actions {
-    gap: 8px;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
   }
+  .theme-switcher {
+    padding: 2.5px !important;
+    gap: 2px !important;
+  }
+  .theme-btn {
+    padding: 6px 8px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    justify-content: center !important;
+  }
+  .theme-btn span {
+    display: none !important;
+  }
+  .theme-btn svg {
+    width: 14px !important;
+    height: 14px !important;
+  }
+  .city {
+    padding: 8px 12px !important;
+    font-size: 11px !important;
+    border-radius: 999px !important;
+    gap: 6px !important;
+  }
+  .city svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
+  .city .chevron {
+    display: none !important;
+  }
+  .navlinks {
+    order: 3 !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    padding: 4px !important;
+    border-radius: 999px !important;
+    gap: 3px !important;
+  }
+  .navlinks::-webkit-scrollbar {
+    display: none !important;
+  }
+  .navlinks a {
+    padding: 9px 15px !important;
+    font-size: 11.5px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    border-radius: 999px !important;
+  }
+  
+  /* Single-Column Hero Stack */
+  main {
+    padding: 20px 0 25px !important;
+  }
+  .hero {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 24px !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+    min-height: auto !important;
+  }
+  
+  /* Intro Headline */
+  .intro {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+  .intro .eyebrow {
+    justify-content: center !important;
+    margin: 0 auto 14px !important;
+    font-size: 8px !important;
+    padding: 5px 12px !important;
+  }
+  .intro h1 {
+    font-size: clamp(34px, 9vw, 44px) !important;
+    letter-spacing: -1.5px !important;
+    line-height: 1.15 !important;
+  }
+  .intro p {
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+    max-width: 320px !important;
+    margin: 12px auto 0 !important;
+  }
+  
+  /* Center Meter Dial */
+  .meter-area {
+    width: 100% !important;
+    max-width: 330px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    transform: none !important;
+  }
+  .meter {
+    width: 100% !important;
+    max-width: 290px !important;
+    aspect-ratio: 1 !important;
+    transform: none !important;
+  }
+  .meter-content {
+    transform: none !important;
+  }
+  .aqi-value {
+    font-size: 78px !important;
+    letter-spacing: -4px !important;
+    line-height: 1.1 !important;
+  }
+  .meter-label {
+    font-size: 8px !important;
+    letter-spacing: 1.8px !important;
+  }
+  .status {
+    font-size: 11px !important;
+    padding: 6px 14px !important;
+    margin-top: 6px !important;
+  }
+  .meter-start, .meter-end {
+    font-size: 9px !important;
+    top: 78% !important;
+  }
+  
+  /* Today's Range Card */
+  .range {
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 16px auto 0 !important;
+    padding: 14px 16px !important;
+    border-radius: 18px !important;
+  }
+  .range-title {
+    font-size: 8.5px !important;
+    letter-spacing: 1.5px !important;
+  }
+  .range-row {
+    margin-top: 14px !important;
+    gap: 12px !important;
+  }
+  .range-item {
+    padding: 8px 10px !important;
+    gap: 8px !important;
+  }
+  .range-item strong {
+    font-size: 26px !important;
+    letter-spacing: -0.8px !important;
+  }
+  .range-item small {
+    font-size: 8.5px !important;
+    letter-spacing: 1px !important;
+  }
+  .range-arrow {
+    width: 30px !important;
+    height: 30px !important;
+  }
+  .range-arrow svg {
+    width: 15px !important;
+    height: 15px !important;
+  }
+
+  /* Weather Card on Mobile: Beautiful Standalone Glass Card */
+  .weather {
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+    padding: 20px 22px 18px !important;
+    border-left: 1px solid rgba(175, 230, 255, 0.4) !important;
+    border: 1px solid rgba(175, 230, 255, 0.4) !important;
+    border-radius: 20px !important;
+    background: linear-gradient(115deg, rgba(16, 48, 76, 0.88), rgba(26, 36, 75, 0.82)) !important;
+    backdrop-filter: blur(20px) !important;
+    box-shadow: 0 18px 45px rgba(0, 12, 32, 0.6) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    min-height: auto !important;
+  }
+  html[data-theme="light"] .weather {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border-color: rgba(180, 210, 240, 0.8) !important;
+    box-shadow: 0 16px 40px rgba(15, 45, 85, 0.08) !important;
+  }
+  .weather:before {
+    display: none !important;
+  }
+  .weather-eyebrow {
+    font-size: 9px !important;
+    letter-spacing: 1.6px !important;
+    justify-content: center !important;
+    margin-bottom: 2px !important;
+  }
+  .weather-icon {
+    width: 140px !important;
+    height: 110px !important;
+    margin: 6px auto !important;
+    transform: scale(0.9) !important;
+    transform-origin: center !important;
+  }
+  .temperature {
+    justify-content: center !important;
+    line-height: 1 !important;
+  }
+  .temperature > span {
+    font-size: 64px !important;
+  }
+  .temperature button {
+    font-size: 28px !important;
+  }
+  .condition {
+    font-size: 15px !important;
+    margin-top: 6px !important;
+  }
+  .feels {
+    font-size: 11px !important;
+    margin-top: 12px !important;
+    padding: 8px 16px !important;
+  }
+  
+  /* Spectrum Bar on Mobile */
+  .spectrum {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 24px !important;
+    padding: 18px 16px 16px !important;
+    border-radius: 18px !important;
+  }
+  .spectrum-head h2 {
+    font-size: 10px !important;
+    letter-spacing: 1.4px !important;
+  }
+  .spectrum-track {
+    margin-top: 24px !important;
+  }
+  .spectrum-labels {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 12px 6px !important;
+    margin-top: 16px !important;
+    text-align: center !important;
+  }
+  .spectrum-labels > span {
+    font-size: 10px !important;
+    white-space: normal !important;
+    line-height: 1.3 !important;
+  }
+  .spectrum-labels small {
+    font-size: 8.5px !important;
+    margin-top: 3px !important;
+    display: block !important;
+  }
+  .spectrum-pointer > span {
+    font-size: 8.5px !important;
+    padding: 2px 7px !important;
+    top: -18px !important;
+  }
+  
+  /* Footer on Mobile */
+  .foot {
+    flex-direction: column !important;
+    gap: 10px !important;
+    text-align: center !important;
+    padding-top: 22px !important;
+    font-size: 10px !important;
+  }
+  .footer-word {
+    font-size: 9px !important;
+    letter-spacing: 2px !important;
+  }
+  .footer-disclaimer {
+    margin-left: 0 !important;
+    font-size: 9px !important;
+    max-width: 300px !important;
+    margin: 0 auto !important;
+  }
+  .foot > button {
+    margin-left: 0 !important;
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 12px !important;
+  }
+  
+  /* Dialog on Mobile */
+  dialog {
+    width: calc(100vw - 24px) !important;
+    max-height: 85vh !important;
+    padding: 20px 18px !important;
+    border-radius: 20px !important;
+    margin: auto !important;
+  }
+  .dialog-heading h2 {
+    font-size: 22px !important;
+  }
+  .search input {
+    font-size: 14px !important;
+  }
+  
+  /* Scene Auroras on Mobile */
   .scene:before {
-    filter: blur(22px);
+    filter: blur(24px) !important;
     background: 
-      radial-gradient(ellipse at 5% 40%, rgba(0, 242, 254, 0.55), transparent 42%),
-      radial-gradient(ellipse at 95% 20%, rgba(168, 85, 247, 0.58), transparent 40%),
-      radial-gradient(ellipse at 50% 90%, rgba(255, 0, 127, 0.48), transparent 40%);
+      radial-gradient(ellipse at 5% 40%, rgba(0, 242, 254, 0.6), transparent 42%),
+      radial-gradient(ellipse at 95% 20%, rgba(168, 85, 247, 0.65), transparent 40%),
+      radial-gradient(ellipse at 50% 90%, rgba(255, 0, 127, 0.5), transparent 40%) !important;
+  }
+}
+
+/* --- SMALL MOBILE PHONES (max-width: 375px) --- */
+@media (max-width: 375px) {
+  .shell {
+    padding: 12px 12px 24px !important;
+  }
+  .brand {
+    width: 145px !important;
+  }
+  .city {
+    padding: 7px 10px !important;
+    font-size: 10px !important;
+  }
+  .intro h1 {
+    font-size: 32px !important;
+  }
+  .meter {
+    max-width: 260px !important;
+  }
+  .aqi-value {
+    font-size: 68px !important;
+  }
+  .range, .weather {
+    max-width: 290px !important;
+  }
+  .temperature > span {
+    font-size: 56px !important;
   }
 }

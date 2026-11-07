@@ -339,13 +339,15 @@
   .sunlight { left: 20%; top: -10%; width: 130vw; height: 70vh; opacity: 0.8; }
   .light-rays { inset: -10% -80% 15% -30%; opacity: 0.6; }
   .landscape { translate: 0 0; }
-  .meter, .range, .weather, .intro, .spectrum { transform: none; }
+  .shell { perspective: none !important; }
+  .meter, .range, .weather, .intro, .spectrum { transform: none !important; }
   .range:hover { transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .landscape { translate: 0 0; transition: none; }
-  .meter, .range, .weather, .intro, .spectrum { transform: none; }
+  .shell { perspective: none !important; }
+  .meter, .range, .weather, .intro, .spectrum { transform: none !important; }
   .fog-bank, .light-rays { will-change: auto; }
 }
 
