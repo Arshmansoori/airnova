@@ -697,3 +697,427 @@
       radial-gradient(ellipse at 50% 90%, rgba(255, 0, 127, 0.38), transparent 40%);
   }
 }
+
+
+/* ==========================================================================
+   9. Tri-Mode Theme Switcher & Visual Modes:
+      1. Light Mode (Pure White Background & Crystal Glass)
+      2. Vivid Mode (Hyper-Colorful Multi-Chromatic Aurora & Lights)
+      3. Landscape / Image Mode (Scenic Alpine Lake Wallpaper Hero)
+   ========================================================================== */
+
+.header-actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.theme-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3.5px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(20, 48, 78, 0.8), rgba(9, 25, 46, 0.9));
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.15), 0 8px 24px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(18px);
+}
+
+.theme-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 10px;
+  font-weight: 600;
+  color: #9cbddb;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.theme-btn svg {
+  width: 13px;
+  height: 13px;
+  stroke-width: 1.8;
+  opacity: 0.85;
+}
+
+.theme-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.theme-btn.active {
+  background: linear-gradient(120deg, #00f2fe, #a855f7);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 2px 14px rgba(0, 242, 254, 0.45);
+  font-weight: 750;
+}
+
+.theme-btn.active svg {
+  opacity: 1;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.85));
+}
+
+/* --------------------------------------------------------------------------
+   MODE 2: Landscape / Scenic Image Mode (Focus on Alpine Mountain Lake)
+   -------------------------------------------------------------------------- */
+html[data-theme="landscape"] .landscape {
+  opacity: 0.96 !important;
+  filter: brightness(0.88) saturate(1.25) contrast(1.08) !important;
+}
+
+html[data-theme="landscape"] .scene:before,
+html[data-theme="landscape"] .scene:after {
+  opacity: 0.15 !important;
+}
+
+html[data-theme="landscape"] .scene-shade {
+  background: 
+    linear-gradient(90deg, rgba(3, 14, 30, 0.65), rgba(6, 25, 48, 0.18) 50%, rgba(3, 14, 30, 0.55)),
+    linear-gradient(0deg, rgba(2, 9, 20, 0.88), transparent 45%, rgba(2, 12, 28, 0.4) 100%) !important;
+}
+
+html[data-theme="landscape"] .sunlight {
+  opacity: 0.9 !important;
+  background: radial-gradient(ellipse at 42% 37%, rgba(255, 214, 138, 0.72) 0%, rgba(255, 192, 152, 0.38) 25%, transparent 65%) !important;
+}
+
+html[data-theme="landscape"] .light-rays {
+  opacity: 0.85 !important;
+}
+
+html[data-theme="landscape"] .fog-bank,
+html[data-theme="landscape"] .mist {
+  opacity: 0.65 !important;
+}
+
+html[data-theme="landscape"] .meter-face {
+  background: radial-gradient(circle at 45% 25%, rgba(18, 52, 85, 0.78), rgba(4, 18, 35, 0.92)) !important;
+  backdrop-filter: blur(22px) !important;
+}
+
+html[data-theme="landscape"] .theme-btn[data-theme-btn="landscape"].active {
+  background: linear-gradient(120deg, #00c6ff, #0072ff) !important;
+}
+
+/* --------------------------------------------------------------------------
+   MODE 3: Light Crystal Mode (Pure White Background Theme)
+   -------------------------------------------------------------------------- */
+html[data-theme="light"] body {
+  background: #f4f7fc !important;
+  color: #0d1e33 !important;
+}
+
+html[data-theme="light"] .scene {
+  background: linear-gradient(155deg, #ffffff 0%, #edf3fc 45%, #f2f6fd 100%) !important;
+}
+
+html[data-theme="light"] .landscape {
+  opacity: 0.14 !important;
+  filter: brightness(1.15) saturate(0.85) !important;
+}
+
+html[data-theme="light"] .scene:before {
+  background: 
+    radial-gradient(ellipse at 15% 40%, rgba(0, 160, 255, 0.18), transparent 45%),
+    radial-gradient(ellipse at 85% 20%, rgba(180, 100, 255, 0.15), transparent 45%),
+    radial-gradient(ellipse at 50% 85%, rgba(0, 230, 170, 0.14), transparent 45%) !important;
+  filter: blur(35px) !important;
+}
+
+html[data-theme="light"] .scene:after {
+  background: 
+    radial-gradient(ellipse at 88% 8%, rgba(255, 170, 80, 0.16), transparent 45%),
+    radial-gradient(ellipse at 20% 80%, rgba(0, 190, 255, 0.15), transparent 45%) !important;
+  filter: blur(40px) !important;
+}
+
+html[data-theme="light"] .scene-shade {
+  background: linear-gradient(0deg, rgba(240, 246, 255, 0.85), transparent 50%, rgba(245, 249, 255, 0.6) 100%) !important;
+}
+
+html[data-theme="light"] .grain {
+  opacity: 0.015 !important;
+}
+
+html[data-theme="light"] .brand img {
+  filter: brightness(0.25) saturate(2.2) drop-shadow(0 2px 10px rgba(0, 50, 120, 0.15)) !important;
+}
+
+html[data-theme="light"] .navlinks {
+  background: rgba(255, 255, 255, 0.88) !important;
+  border: 1px solid rgba(0, 0, 0, 0.09) !important;
+  box-shadow: 0 8px 30px rgba(15, 35, 65, 0.07) !important;
+  color: #415770 !important;
+}
+
+html[data-theme="light"] .navlinks a {
+  color: #496380 !important;
+}
+
+html[data-theme="light"] .navlinks a:hover {
+  color: #0066cc !important;
+  background: rgba(0, 112, 243, 0.06) !important;
+}
+
+html[data-theme="light"] .navlinks a.active {
+  background: linear-gradient(120deg, #0066ff, #00b4d8) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 18px rgba(0, 102, 255, 0.35) !important;
+}
+
+html[data-theme="light"] .theme-switcher {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 8px 24px rgba(15, 35, 65, 0.07) !important;
+}
+
+html[data-theme="light"] .theme-btn {
+  color: #556c87 !important;
+}
+
+html[data-theme="light"] .theme-btn:hover {
+  color: #0b1a2d !important;
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+html[data-theme="light"] .theme-btn.active {
+  background: linear-gradient(120deg, #0066ff, #00b4d8) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 14px rgba(0, 102, 255, 0.35) !important;
+}
+
+html[data-theme="light"] .city {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  color: #162c44 !important;
+  box-shadow: 0 8px 24px rgba(15, 35, 65, 0.07) !important;
+}
+
+html[data-theme="light"] .city > svg {
+  color: #0066cc !important;
+}
+
+html[data-theme="light"] .city .chevron {
+  color: #617b96 !important;
+}
+
+html[data-theme="light"] .eyebrow {
+  background: rgba(0, 112, 243, 0.08) !important;
+  border-color: rgba(0, 112, 243, 0.22) !important;
+  color: #0066cc !important;
+  box-shadow: 0 4px 16px rgba(0, 112, 243, 0.12) !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .intro h1 {
+  color: #0b1a2d !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .intro h1 em {
+  background-image: linear-gradient(110deg, #0066ff 0%, #00a8e8 25%, #7b2cbf 50%, #e63946 75%, #00b4d8 100%) !important;
+  filter: drop-shadow(0 4px 18px rgba(0, 102, 255, 0.2)) !important;
+}
+
+html[data-theme="light"] .intro p {
+  color: #4a637d !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .meter-face {
+  background: radial-gradient(circle at 35% 20%, #ffffff 0%, #edf4fc 70%, #d8e5f5 100%) !important;
+  border: 1.5px solid rgba(180, 210, 245, 0.85) !important;
+  box-shadow: 
+    0 24px 60px rgba(15, 45, 85, 0.12), 
+    inset 0 2px 6px rgba(255, 255, 255, 0.95), 
+    0 0 0 5px rgba(235, 243, 252, 0.9) !important;
+}
+
+html[data-theme="light"] .meter-face:before {
+  background: conic-gradient(from 0deg, transparent 0 62%, rgba(0, 102, 255, 0.08) 72%, rgba(180, 100, 255, 0.10) 82%, transparent 92%) !important;
+}
+
+html[data-theme="light"] .meter-halo {
+  background: radial-gradient(circle, transparent 48%, rgba(0, 102, 255, 0.08) 64%, transparent 76%) !important;
+  box-shadow: 0 20px 80px rgba(0, 102, 255, 0.12) !important;
+}
+
+html[data-theme="light"] .aqi-value {
+  color: #0b1a2d !important;
+  text-shadow: 0 2px 12px rgba(10, 30, 60, 0.1) !important;
+}
+
+html[data-theme="light"] .meter-label {
+  color: #55728d !important;
+  text-shadow: none !important;
+  font-weight: 700 !important;
+}
+
+html[data-theme="light"] #ticks line {
+  stroke: rgba(140, 175, 210, 0.6) !important;
+}
+
+html[data-theme="light"] #ticks line.major {
+  stroke: rgba(40, 85, 140, 0.85) !important;
+}
+
+html[data-theme="light"] .status {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: var(--status-color, #ff4757) !important;
+  color: var(--status-color, #ff4757) !important;
+  box-shadow: 0 4px 18px rgba(10, 30, 60, 0.08) !important;
+}
+
+html[data-theme="light"] .range {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(180, 210, 240, 0.75) !important;
+  box-shadow: 0 20px 50px rgba(15, 45, 85, 0.08) !important;
+}
+
+html[data-theme="light"] .range-title {
+  color: #446380 !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .range-line {
+  background: linear-gradient(90deg, transparent, rgba(0, 102, 255, 0.25), transparent) !important;
+}
+
+html[data-theme="light"] .range-item {
+  background: rgba(245, 250, 255, 0.95) !important;
+  border-color: rgba(180, 210, 240, 0.7) !important;
+}
+
+html[data-theme="light"] .range-item strong {
+  color: #0b1a2d !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .range-low strong { color: #009966 !important; }
+html[data-theme="light"] .range-high strong { color: #e63946 !important; }
+
+html[data-theme="light"] .weather {
+  border-left-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+html[data-theme="light"] .weather-eyebrow {
+  color: #526f8c !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .temperature > span {
+  background: linear-gradient(145deg, #0b1a2d 20%, #0066cc 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: none !important;
+}
+
+html[data-theme="light"] .temperature button {
+  color: #0066cc !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .condition {
+  color: #1a324b !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .feels {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(180, 210, 240, 0.8) !important;
+  color: #43617f !important;
+  box-shadow: 0 6px 20px rgba(15, 40, 75, 0.06) !important;
+}
+
+html[data-theme="light"] .feels strong {
+  color: #0b1a2d !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .spectrum {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(180, 210, 240, 0.75) !important;
+  box-shadow: 0 20px 50px rgba(15, 45, 85, 0.08) !important;
+}
+
+html[data-theme="light"] .spectrum-head h2 {
+  color: #0b1a2d !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .spectrum-labels > span {
+  color: #55728d !important;
+}
+
+html[data-theme="light"] .spectrum-labels span[aria-current="true"] {
+  color: #0066cc !important;
+  text-shadow: none !important;
+  font-weight: 800 !important;
+}
+
+html[data-theme="light"] .foot {
+  color: #647f9b !important;
+}
+
+html[data-theme="light"] .footer-word {
+  color: #0066cc !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .footer-disclaimer {
+  color: #7a95b0 !important;
+}
+
+html[data-theme="light"] dialog {
+  background: #ffffff !important;
+  color: #0b1a2d !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 30px 90px rgba(10, 30, 60, 0.18) !important;
+}
+
+html[data-theme="light"] .search {
+  background: #f2f7fc !important;
+  border-color: rgba(180, 210, 240, 0.8) !important;
+  color: #405c78 !important;
+}
+
+html[data-theme="light"] .search input {
+  color: #0b1a2d !important;
+}
+
+html[data-theme="light"] .city-result {
+  border-bottom-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+html[data-theme="light"] .city-result:hover {
+  background: rgba(0, 112, 243, 0.05) !important;
+}
+
+html[data-theme="light"] .city-result strong {
+  color: #0b1a2d !important;
+}
+
+html[data-theme="light"] .city-result small {
+  color: #5f7a95 !important;
+}
+
+@media (max-width: 740px) {
+  .theme-btn span {
+    display: none;
+  }
+  .theme-btn {
+    padding: 7px 9px;
+  }
+  .header-actions {
+    gap: 8px;
+  }
+}

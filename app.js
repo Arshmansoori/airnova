@@ -170,12 +170,35 @@
  motion();
  $('#motion-button').addEventListener('click',()=>{still=!still;storage.set('airnova-simple-motion',still?'pause':'play');motion()});
 
+ // Theme Mode Switcher: Light (white bg), Vivid (colorful aurora), Landscape (scenic image)
+ const themeKey = 'airnova-theme-mode';
+ let currentTheme = storage.get(themeKey, 'vivid');
+
+ function applyTheme(theme) {
+  if (!['light', 'vivid', 'landscape'].includes(theme)) theme = 'vivid';
+  currentTheme = theme;
+  document.documentElement.setAttribute('data-theme', theme);
+  storage.set(themeKey, theme);
+  $$('[data-theme-btn]').forEach(btn => {
+   const isActive = btn.dataset.themeBtn === theme;
+   btn.classList.toggle('active', isActive);
+   btn.setAttribute('aria-checked', String(isActive));
+  });
+ }
+ applyTheme(currentTheme);
+
+ $$('[data-theme-btn]').forEach(btn => {
+  btn.addEventListener('click', () => applyTheme(btn.dataset.themeBtn));
+ });
+
  addEventListener('pageshow', event => {
   if (!event.persisted) return;
   city = cities.find(candidate => candidate.id === storage.get('airnova-simple-city', 'delhi')) || cities[0];
   unit = storage.get('airnova-simple-unit', 'c');
   still = storage.get('airnova-simple-motion', '') === 'pause' || matchMedia('(prefers-reduced-motion: reduce)').matches;
   motion();
+  currentTheme = storage.get(themeKey, 'vivid');
+  applyTheme(currentTheme);
   render();
  });
 
@@ -220,9 +243,10 @@
   const my = phys.my || 0;
   const sv = phys.sv || 0;
 
+  const isLight = currentTheme === 'light';
   stars.forEach(s => {
-   const alpha = 0.15 + 0.2 * (0.5 + 0.5 * Math.sin((still ? 0 : time * 0.00045) + s.phase));
-   ctx.fillStyle = `rgba(205, 235, 255, ${alpha})`;
+   const alpha = (isLight ? 0.08 : 0.16) + 0.18 * (0.5 + 0.5 * Math.sin((still ? 0 : time * 0.00045) + s.phase));
+   ctx.fillStyle = isLight ? `rgba(40, 95, 160, ${alpha})` : `rgba(205, 235, 255, ${alpha})`;
    ctx.beginPath();
    const sx = s.x * w + (mx * -10 * s.z);
    const sy = s.y * h + (my * -8 * s.z) + (sv * -15 * s.z);
@@ -240,7 +264,12 @@
     p.x = Math.random();
    }
    ctx.beginPath();
-   const hue = [
+   const hue = isLight ? [
+    [0, 112, 243],
+    [123, 44, 191],
+    [0, 180, 140],
+    [230, 57, 70]
+   ][Math.floor(p.phase) % 4] : [
     [0, 242, 254],   // Electric Cyan
     [255, 0, 127],   // Neon Magenta
     [168, 85, 247],  // Electric Purple
