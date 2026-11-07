@@ -211,10 +211,10 @@
   last = time;
   ctx.clearRect(0, 0, w, h);
 
-  const rootStyle = getComputedStyle(document.documentElement);
-  const mx = parseFloat(rootStyle.getPropertyValue('--mx')) || 0;
-  const my = parseFloat(rootStyle.getPropertyValue('--my')) || 0;
-  const sv = parseFloat(rootStyle.getPropertyValue('--scroll-v')) || 0;
+  const phys = window.AN_PHYSICS || { mx: 0, my: 0, sv: 0 };
+  const mx = phys.mx || 0;
+  const my = phys.my || 0;
+  const sv = phys.sv || 0;
 
   stars.forEach(s => {
    const alpha = 0.15 + 0.2 * (0.5 + 0.5 * Math.sin((still ? 0 : time * 0.00045) + s.phase));

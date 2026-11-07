@@ -1,4 +1,6 @@
-/* Local, code-rendered volumetric cloud, 3D scroll physics & silky spatial parallax. No dependencies. */
+/* Local, code-rendered volumetric cloud, zero-lag 3D scroll physics & silky spatial parallax. No dependencies. */
+window.AN_PHYSICS = { mx: 0, my: 0, sp: 0, sv: 0 };
+
 (() => {
   'use strict';
   const root = document.documentElement;
@@ -14,6 +16,10 @@
 
   function updatePhysics() {
     if (quiet()) {
+      window.AN_PHYSICS.mx = 0;
+      window.AN_PHYSICS.my = 0;
+      window.AN_PHYSICS.sp = 0;
+      window.AN_PHYSICS.sv = 0;
       root.style.setProperty('--mx', '0');
       root.style.setProperty('--my', '0');
       root.style.setProperty('--scroll-p', '0');
@@ -22,26 +28,34 @@
       return;
     }
 
-    // High-precision luxury damping (lerp factor 0.08 for liquid inertia)
-    currentX += (targetX - currentX) * 0.08;
-    currentY += (targetY - currentY) * 0.08;
+    // High-precision luxury damping (lerp factor 0.085 for instant liquid inertia)
+    currentX += (targetX - currentX) * 0.085;
+    currentY += (targetY - currentY) * 0.085;
 
     // Scroll progress & velocity damping
     const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
     const scrollProgress = Math.min(1, Math.max(0, window.scrollY / maxScroll));
-    scrollVelocity += (targetVelocity - scrollVelocity) * 0.12;
-    targetVelocity *= 0.86;
+    scrollVelocity += (targetVelocity - scrollVelocity) * 0.14;
+    targetVelocity *= 0.85;
+
+    const normalizedVelocity = scrollVelocity / 45;
+
+    // Update shared memory state (ZERO DOM style recalculation lag for canvas)
+    window.AN_PHYSICS.mx = currentX;
+    window.AN_PHYSICS.my = currentY;
+    window.AN_PHYSICS.sp = scrollProgress;
+    window.AN_PHYSICS.sv = normalizedVelocity;
 
     root.style.setProperty('--mx', currentX.toFixed(4));
     root.style.setProperty('--my', currentY.toFixed(4));
     root.style.setProperty('--scroll-p', scrollProgress.toFixed(4));
-    root.style.setProperty('--scroll-v', (scrollVelocity / 45).toFixed(4));
+    root.style.setProperty('--scroll-v', normalizedVelocity.toFixed(4));
 
     const needsMotion = 
-      Math.abs(targetX - currentX) > 0.0004 || 
-      Math.abs(targetY - currentY) > 0.0004 || 
-      Math.abs(scrollVelocity) > 0.05 ||
-      Math.abs(targetVelocity) > 0.05;
+      Math.abs(targetX - currentX) > 0.0003 || 
+      Math.abs(targetY - currentY) > 0.0003 || 
+      Math.abs(scrollVelocity) > 0.04 ||
+      Math.abs(targetVelocity) > 0.04;
 
     if (needsMotion) {
       requestAnimationFrame(updatePhysics);
