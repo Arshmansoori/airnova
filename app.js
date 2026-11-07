@@ -12,7 +12,23 @@
  let city = cities.find(c=>c.id===storage.get('airnova-simple-city','delhi'))||cities[0];
  let unit = storage.get('airnova-simple-unit','c');
  let still = storage.get('airnova-simple-motion','')==='pause'||matchMedia('(prefers-reduced-motion: reduce)').matches;
- const status = v=>v<=50?{text:'Good',color:'#00f5a0',rgb:'0, 245, 160'}:v<=100?{text:'Moderate',color:'#ffd166',rgb:'255, 209, 102'}:v<=150?{text:'Sensitive groups',color:'#ff9f43',rgb:'255, 159, 67'}:v<=200?{text:'Unhealthy',color:'#ff4757',rgb:'255, 71, 87'}:v<=300?{text:'Very unhealthy',color:'#a55eea',rgb:'165, 94, 234'}:{text:'Hazardous',color:'#ff007f',rgb:'255, 0, 127'};
+ const status = v => {
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  if (isLight) {
+   return v <= 50 ? { text: 'Good', color: '#00875a', rgb: '0, 135, 90' } :
+          v <= 100 ? { text: 'Moderate', color: '#b7791f', rgb: '183, 121, 31' } :
+          v <= 150 ? { text: 'Sensitive groups', color: '#d97706', rgb: '217, 119, 6' } :
+          v <= 200 ? { text: 'Unhealthy', color: '#dc2626', rgb: '220, 38, 38' } :
+          v <= 300 ? { text: 'Very unhealthy', color: '#7c3aed', rgb: '124, 58, 237' } :
+                     { text: 'Hazardous', color: '#be185d', rgb: '190, 24, 93' };
+  }
+  return v <= 50 ? { text: 'Good', color: '#00f5a0', rgb: '0, 245, 160' } :
+         v <= 100 ? { text: 'Moderate', color: '#ffd166', rgb: '255, 209, 102' } :
+         v <= 150 ? { text: 'Sensitive groups', color: '#ff9f43', rgb: '255, 159, 67' } :
+         v <= 200 ? { text: 'Unhealthy', color: '#ff4757', rgb: '255, 71, 87' } :
+         v <= 300 ? { text: 'Very unhealthy', color: '#a55eea', rgb: '165, 94, 234' } :
+                    { text: 'Hazardous', color: '#ff007f', rgb: '255, 0, 127' };
+ };
  const fraction = value=>{const bands=[0,50,100,150,200,300,500];const i=Math.min(5,Math.max(0,bands.findIndex((v,i)=>i<6&&value>=v&&value<=bands[i+1])));return(i+(value-bands[i])/(bands[i+1]-bands[i]))/6};
  const arc = $('.arc'), length = arc.getTotalLength();
  const spectrum = $('.spectrum');
@@ -184,6 +200,7 @@
    btn.classList.toggle('active', isActive);
    btn.setAttribute('aria-checked', String(isActive));
   });
+  if (typeof render === 'function') render();
  }
  applyTheme(currentTheme);
 

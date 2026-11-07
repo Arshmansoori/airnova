@@ -6,6 +6,15 @@
   --active-aqi-rgb: 255, 71, 87;
 }
 
+/* Smooth visual transitions across theme modes */
+body, .scene, .meter-face, .range, .spectrum, .weather, .navlinks, .city, .theme-switcher, .theme-btn, .range-item, .feels, .status, .detail-panel, .detail-city {
+  transition: background 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              color 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 /* ==========================================================================
    1. Multi-Chromatic Aurora Borealis & Cosmic Atmospheric Curtain
    ========================================================================== */
@@ -87,7 +96,7 @@
   gap: 9px;
   font-size: 8.5px;
   letter-spacing: 2.8px;
-  font-weight: 700;
+  font-weight: 750;
   color: #7eeaff;
   margin-bottom: 22px;
   padding: 6px 14px 6px 10px;
@@ -241,14 +250,20 @@
     0 0 60px rgba(var(--active-aqi-rgb, 255, 71, 87), 0.5), 
     0 4px 18px rgba(0, 0, 0, 0.9);
   letter-spacing: -6px;
-  font-weight: 700;
+  font-weight: 750;
 }
 
 .meter-label {
   color: #aaeaff;
   letter-spacing: 2.5px;
-  font-weight: 700;
+  font-weight: 750;
   text-shadow: 0 0 14px rgba(0, 242, 254, 0.6);
+}
+
+.meter-start, .meter-end {
+  color: #8bb5d6;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
 }
 
 .status {
@@ -258,7 +273,7 @@
     inset 0 1px rgba(255, 255, 255, 0.35), 
     0 0 32px rgba(var(--status-rgb, 255, 71, 87), 0.45);
   color: #ffffff;
-  font-weight: 600;
+  font-weight: 700;
   backdrop-filter: blur(14px);
 }
 
@@ -310,7 +325,7 @@
 .range-title {
   color: #c0e6ff;
   letter-spacing: 2px;
-  font-weight: 700;
+  font-weight: 750;
   text-transform: uppercase;
 }
 
@@ -410,7 +425,7 @@
 
 .weather-eyebrow { 
   color: #bce0ff; 
-  font-weight: 700;
+  font-weight: 750;
   letter-spacing: 2px;
   text-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
 }
@@ -465,17 +480,18 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 0 22px rgba(0, 242, 254, 0.45));
-  font-weight: 600;
+  font-weight: 650;
 }
 
 .temperature button {
   color: #7eeaff;
   text-shadow: 0 0 20px rgba(0, 242, 254, 0.6);
+  font-weight: 700;
 }
 
 .condition {
   color: #ffffff;
-  font-weight: 600;
+  font-weight: 650;
   text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 242, 254, 0.3);
 }
 
@@ -597,8 +613,13 @@
 
 .spectrum-labels > span {
   color: #a4c4de;
-  font-weight: 600;
+  font-weight: 650;
   transition: color 0.3s;
+}
+
+.spectrum-labels small {
+  color: #83a5c2;
+  font-weight: 600;
 }
 
 .spectrum-labels span[aria-current="true"] {
@@ -640,7 +661,7 @@
 }
 
 .foot { color: #9bbfe2; }
-.footer-word { color: #00f2fe; text-shadow: 0 0 14px rgba(0, 242, 254, 0.65); }
+.footer-word { color: #00f2fe; text-shadow: 0 0 14px rgba(0, 242, 254, 0.65); font-weight: 800; }
 .footer-disclaimer { color: #8ba9cb; }
 
 /* ==========================================================================
@@ -696,17 +717,6 @@
   50% { translate: 0 3px; } 
 }
 
-@media (max-width: 740px) {
-  .scene:before {
-    filter: blur(22px);
-    background: 
-      radial-gradient(ellipse at 5% 40%, rgba(0, 242, 254, 0.45), transparent 42%),
-      radial-gradient(ellipse at 95% 20%, rgba(168, 85, 247, 0.48), transparent 40%),
-      radial-gradient(ellipse at 50% 90%, rgba(255, 0, 127, 0.38), transparent 40%);
-  }
-}
-
-
 /* ==========================================================================
    9. Tri-Mode Theme Switcher & Visual Modes:
       1. Light Mode (Pure White Background & Crystal Glass)
@@ -741,7 +751,7 @@
   border-radius: 999px;
   border: 1px solid transparent;
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 650;
   color: #9cbddb;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
@@ -816,11 +826,11 @@ html[data-theme="landscape"] .theme-btn[data-theme-btn="landscape"].active {
 }
 
 /* --------------------------------------------------------------------------
-   MODE 3: Light Crystal Mode (Pure White Background Theme)
+   MODE 3: Light Crystal Mode (Pure White Background & High Contrast Text)
    -------------------------------------------------------------------------- */
 html[data-theme="light"] body {
   background: #f4f7fc !important;
-  color: #0d1e33 !important;
+  color: #0f2338 !important;
 }
 
 html[data-theme="light"] .scene {
@@ -828,22 +838,22 @@ html[data-theme="light"] .scene {
 }
 
 html[data-theme="light"] .landscape {
-  opacity: 0.14 !important;
-  filter: brightness(1.15) saturate(0.85) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
 }
 
 html[data-theme="light"] .scene:before {
   background: 
-    radial-gradient(ellipse at 15% 40%, rgba(0, 160, 255, 0.18), transparent 45%),
-    radial-gradient(ellipse at 85% 20%, rgba(180, 100, 255, 0.15), transparent 45%),
-    radial-gradient(ellipse at 50% 85%, rgba(0, 230, 170, 0.14), transparent 45%) !important;
+    radial-gradient(ellipse at 15% 40%, rgba(0, 160, 255, 0.16), transparent 45%),
+    radial-gradient(ellipse at 85% 20%, rgba(180, 100, 255, 0.14), transparent 45%),
+    radial-gradient(ellipse at 50% 85%, rgba(0, 230, 170, 0.12), transparent 45%) !important;
   filter: blur(35px) !important;
 }
 
 html[data-theme="light"] .scene:after {
   background: 
-    radial-gradient(ellipse at 88% 8%, rgba(255, 170, 80, 0.16), transparent 45%),
-    radial-gradient(ellipse at 20% 80%, rgba(0, 190, 255, 0.15), transparent 45%) !important;
+    radial-gradient(ellipse at 88% 8%, rgba(255, 170, 80, 0.14), transparent 45%),
+    radial-gradient(ellipse at 20% 80%, rgba(0, 190, 255, 0.13), transparent 45%) !important;
   filter: blur(40px) !important;
 }
 
@@ -855,24 +865,26 @@ html[data-theme="light"] .grain {
   opacity: 0.015 !important;
 }
 
+/* Brand Logo inverted cleanly to deep navy obsidian on white */
 html[data-theme="light"] .brand img {
-  filter: brightness(0.25) saturate(2.2) drop-shadow(0 2px 10px rgba(0, 50, 120, 0.15)) !important;
+  filter: invert(0.92) hue-rotate(180deg) drop-shadow(0 2px 8px rgba(0, 80, 180, 0.15)) !important;
 }
 
 html[data-theme="light"] .navlinks {
-  background: rgba(255, 255, 255, 0.88) !important;
-  border: 1px solid rgba(0, 0, 0, 0.09) !important;
-  box-shadow: 0 8px 30px rgba(15, 35, 65, 0.07) !important;
-  color: #415770 !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 8px 30px rgba(15, 35, 65, 0.06) !important;
+  color: #3b536e !important;
 }
 
 html[data-theme="light"] .navlinks a {
-  color: #496380 !important;
+  color: #3b536e !important;
+  font-weight: 600 !important;
 }
 
 html[data-theme="light"] .navlinks a:hover {
   color: #0066cc !important;
-  background: rgba(0, 112, 243, 0.06) !important;
+  background: rgba(0, 112, 243, 0.07) !important;
 }
 
 html[data-theme="light"] .navlinks a.active {
@@ -880,21 +892,22 @@ html[data-theme="light"] .navlinks a.active {
   color: #ffffff !important;
   border-color: transparent !important;
   box-shadow: 0 4px 18px rgba(0, 102, 255, 0.35) !important;
+  font-weight: 700 !important;
 }
 
 html[data-theme="light"] .theme-switcher {
-  background: rgba(255, 255, 255, 0.9) !important;
-  border: 1px solid rgba(0, 0, 0, 0.1) !important;
-  box-shadow: 0 8px 24px rgba(15, 35, 65, 0.07) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 8px 24px rgba(15, 35, 65, 0.06) !important;
 }
 
 html[data-theme="light"] .theme-btn {
-  color: #556c87 !important;
+  color: #4b6480 !important;
 }
 
 html[data-theme="light"] .theme-btn:hover {
-  color: #0b1a2d !important;
-  background: rgba(0, 0, 0, 0.05) !important;
+  color: #0f2338 !important;
+  background: rgba(0, 0, 0, 0.04) !important;
 }
 
 html[data-theme="light"] .theme-btn.active {
@@ -902,13 +915,15 @@ html[data-theme="light"] .theme-btn.active {
   color: #ffffff !important;
   border-color: transparent !important;
   box-shadow: 0 4px 14px rgba(0, 102, 255, 0.35) !important;
+  font-weight: 700 !important;
 }
 
 html[data-theme="light"] .city {
-  background: rgba(255, 255, 255, 0.9) !important;
-  border: 1px solid rgba(0, 0, 0, 0.1) !important;
-  color: #162c44 !important;
-  box-shadow: 0 8px 24px rgba(15, 35, 65, 0.07) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  color: #0f2338 !important;
+  font-weight: 600 !important;
+  box-shadow: 0 8px 24px rgba(15, 35, 65, 0.06) !important;
 }
 
 html[data-theme="light"] .city > svg {
@@ -916,14 +931,19 @@ html[data-theme="light"] .city > svg {
 }
 
 html[data-theme="light"] .city .chevron {
-  color: #617b96 !important;
+  color: #637e99 !important;
+}
+
+html[data-theme="light"] .city-dot {
+  background: #00b875 !important;
+  box-shadow: 0 0 10px rgba(0, 184, 117, 0.6) !important;
 }
 
 html[data-theme="light"] .eyebrow {
-  background: rgba(0, 112, 243, 0.08) !important;
-  border-color: rgba(0, 112, 243, 0.22) !important;
+  background: rgba(0, 102, 255, 0.07) !important;
+  border: 1px solid rgba(0, 102, 255, 0.2) !important;
   color: #0066cc !important;
-  box-shadow: 0 4px 16px rgba(0, 112, 243, 0.12) !important;
+  box-shadow: 0 4px 16px rgba(0, 102, 255, 0.1) !important;
   text-shadow: none !important;
 }
 
@@ -933,68 +953,91 @@ html[data-theme="light"] .intro h1 {
 }
 
 html[data-theme="light"] .intro h1 em {
-  background-image: linear-gradient(110deg, #0066ff 0%, #00a8e8 25%, #7b2cbf 50%, #e63946 75%, #00b4d8 100%) !important;
-  filter: drop-shadow(0 4px 18px rgba(0, 102, 255, 0.2)) !important;
+  background-image: linear-gradient(110deg, #0052cc 0%, #0099ff 25%, #7b2cbf 50%, #e63946 75%, #0099ff 100%) !important;
+  filter: drop-shadow(0 4px 18px rgba(0, 102, 255, 0.18)) !important;
 }
 
 html[data-theme="light"] .intro p {
-  color: #4a637d !important;
+  color: #435b75 !important;
   text-shadow: none !important;
+  font-weight: 450 !important;
 }
 
 html[data-theme="light"] .meter-face {
-  background: radial-gradient(circle at 35% 20%, #ffffff 0%, #edf4fc 70%, #d8e5f5 100%) !important;
-  border: 1.5px solid rgba(180, 210, 245, 0.85) !important;
+  background: radial-gradient(circle at 35% 20%, #ffffff 0%, #edf4fc 65%, #d9e6f7 100%) !important;
+  border: 1.5px solid rgba(170, 205, 240, 0.9) !important;
   box-shadow: 
     0 24px 60px rgba(15, 45, 85, 0.12), 
     inset 0 2px 6px rgba(255, 255, 255, 0.95), 
-    0 0 0 5px rgba(235, 243, 252, 0.9) !important;
+    0 0 0 5px rgba(235, 244, 254, 0.95) !important;
 }
 
 html[data-theme="light"] .meter-face:before {
-  background: conic-gradient(from 0deg, transparent 0 62%, rgba(0, 102, 255, 0.08) 72%, rgba(180, 100, 255, 0.10) 82%, transparent 92%) !important;
+  background: conic-gradient(from 0deg, transparent 0 62%, rgba(0, 102, 255, 0.06) 72%, rgba(180, 100, 255, 0.08) 82%, transparent 92%) !important;
 }
 
 html[data-theme="light"] .meter-halo {
-  background: radial-gradient(circle, transparent 48%, rgba(0, 102, 255, 0.08) 64%, transparent 76%) !important;
-  box-shadow: 0 20px 80px rgba(0, 102, 255, 0.12) !important;
+  background: radial-gradient(circle, transparent 48%, rgba(0, 102, 255, 0.06) 64%, transparent 76%) !important;
+  box-shadow: 0 20px 80px rgba(0, 102, 255, 0.1) !important;
 }
 
 html[data-theme="light"] .aqi-value {
   color: #0b1a2d !important;
-  text-shadow: 0 2px 12px rgba(10, 30, 60, 0.1) !important;
+  text-shadow: 0 2px 10px rgba(10, 30, 60, 0.1) !important;
 }
 
 html[data-theme="light"] .meter-label {
-  color: #55728d !important;
+  color: #486582 !important;
   text-shadow: none !important;
+  font-weight: 750 !important;
+}
+
+html[data-theme="light"] .meter-start,
+html[data-theme="light"] .meter-end {
+  color: #516f8c !important;
   font-weight: 700 !important;
+  text-shadow: none !important;
 }
 
 html[data-theme="light"] #ticks line {
-  stroke: rgba(140, 175, 210, 0.6) !important;
+  stroke: rgba(140, 175, 210, 0.65) !important;
 }
 
 html[data-theme="light"] #ticks line.major {
-  stroke: rgba(40, 85, 140, 0.85) !important;
+  stroke: rgba(30, 75, 130, 0.85) !important;
+  stroke-width: 1.8 !important;
+}
+
+html[data-theme="light"] .arc-track {
+  stroke: rgba(0, 102, 255, 0.12) !important;
+}
+
+html[data-theme="light"] .meter-orbit.orbit-one {
+  border-color: rgba(0, 102, 255, 0.2) !important;
+}
+
+html[data-theme="light"] .meter-orbit.orbit-two {
+  opacity: 0.35 !important;
 }
 
 html[data-theme="light"] .status {
   background: rgba(255, 255, 255, 0.95) !important;
-  border-color: var(--status-color, #ff4757) !important;
+  border: 1.5px solid var(--status-color, #ff4757) !important;
   color: var(--status-color, #ff4757) !important;
+  font-weight: 700 !important;
   box-shadow: 0 4px 18px rgba(10, 30, 60, 0.08) !important;
 }
 
 html[data-theme="light"] .range {
-  background: rgba(255, 255, 255, 0.9) !important;
-  border-color: rgba(180, 210, 240, 0.75) !important;
-  box-shadow: 0 20px 50px rgba(15, 45, 85, 0.08) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(180, 210, 240, 0.8) !important;
+  box-shadow: 0 18px 45px rgba(15, 45, 85, 0.08) !important;
 }
 
 html[data-theme="light"] .range-title {
-  color: #446380 !important;
+  color: #38536e !important;
   text-shadow: none !important;
+  font-weight: 750 !important;
 }
 
 html[data-theme="light"] .range-line {
@@ -1002,8 +1045,8 @@ html[data-theme="light"] .range-line {
 }
 
 html[data-theme="light"] .range-item {
-  background: rgba(245, 250, 255, 0.95) !important;
-  border-color: rgba(180, 210, 240, 0.7) !important;
+  background: rgba(244, 249, 255, 0.95) !important;
+  border: 1px solid rgba(180, 210, 240, 0.7) !important;
 }
 
 html[data-theme="light"] .range-item strong {
@@ -1011,16 +1054,30 @@ html[data-theme="light"] .range-item strong {
   text-shadow: none !important;
 }
 
-html[data-theme="light"] .range-low strong { color: #009966 !important; }
-html[data-theme="light"] .range-high strong { color: #e63946 !important; }
+html[data-theme="light"] .range-low strong { color: #00875a !important; }
+html[data-theme="light"] .range-low small { color: #00875a !important; font-weight: 750 !important; text-shadow: none !important; }
+html[data-theme="light"] .range-low .range-arrow {
+  background: rgba(0, 184, 117, 0.1) !important;
+  border-color: rgba(0, 184, 117, 0.3) !important;
+  color: #00875a !important;
+}
+
+html[data-theme="light"] .range-high strong { color: #d9383a !important; }
+html[data-theme="light"] .range-high small { color: #d9383a !important; font-weight: 750 !important; text-shadow: none !important; }
+html[data-theme="light"] .range-high .range-arrow {
+  background: rgba(230, 57, 70, 0.1) !important;
+  border-color: rgba(230, 57, 70, 0.3) !important;
+  color: #d9383a !important;
+}
 
 html[data-theme="light"] .weather {
   border-left-color: rgba(0, 0, 0, 0.08) !important;
 }
 
 html[data-theme="light"] .weather-eyebrow {
-  color: #526f8c !important;
+  color: #4a6785 !important;
   text-shadow: none !important;
+  font-weight: 750 !important;
 }
 
 html[data-theme="light"] .temperature > span {
@@ -1033,74 +1090,147 @@ html[data-theme="light"] .temperature > span {
 html[data-theme="light"] .temperature button {
   color: #0066cc !important;
   text-shadow: none !important;
+  font-weight: 700 !important;
 }
 
 html[data-theme="light"] .condition {
-  color: #1a324b !important;
+  color: #0f2338 !important;
+  font-weight: 650 !important;
   text-shadow: none !important;
 }
 
 html[data-theme="light"] .feels {
   background: rgba(255, 255, 255, 0.92) !important;
-  border-color: rgba(180, 210, 240, 0.8) !important;
-  color: #43617f !important;
-  box-shadow: 0 6px 20px rgba(15, 40, 75, 0.06) !important;
+  border: 1px solid rgba(180, 210, 240, 0.8) !important;
+  color: #3b5673 !important;
+  box-shadow: 0 4px 18px rgba(15, 40, 75, 0.06) !important;
+}
+
+html[data-theme="light"] .feels svg {
+  color: #0066cc !important;
+  filter: none !important;
 }
 
 html[data-theme="light"] .feels strong {
   color: #0b1a2d !important;
+  font-weight: 750 !important;
   text-shadow: none !important;
 }
 
 html[data-theme="light"] .spectrum {
-  background: rgba(255, 255, 255, 0.9) !important;
-  border-color: rgba(180, 210, 240, 0.75) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(180, 210, 240, 0.8) !important;
   box-shadow: 0 20px 50px rgba(15, 45, 85, 0.08) !important;
 }
 
 html[data-theme="light"] .spectrum-head h2 {
   color: #0b1a2d !important;
+  font-weight: 800 !important;
   text-shadow: none !important;
 }
 
+html[data-theme="light"] .spectrum-head h2 > span {
+  color: #0066cc !important;
+  filter: none !important;
+}
+
 html[data-theme="light"] .spectrum-labels > span {
-  color: #55728d !important;
+  color: #4b6682 !important;
+  font-weight: 650 !important;
+}
+
+html[data-theme="light"] .spectrum-labels small {
+  color: #6a86a3 !important;
+  font-weight: 600 !important;
 }
 
 html[data-theme="light"] .spectrum-labels span[aria-current="true"] {
   color: #0066cc !important;
+  font-weight: 850 !important;
   text-shadow: none !important;
-  font-weight: 800 !important;
+}
+
+html[data-theme="light"] .spectrum-labels span[aria-current="true"] small {
+  color: #0052cc !important;
+  font-weight: 850 !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .spectrum-pointer > span {
+  background: linear-gradient(135deg, #0066ff, #00b4d8) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 0 3px 12px rgba(0, 102, 255, 0.35) !important;
+}
+
+html[data-theme="light"] .spectrum-pointer i {
+  background: #0066ff !important;
+  border-color: #ffffff !important;
 }
 
 html[data-theme="light"] .foot {
-  color: #647f9b !important;
+  color: #55728f !important;
 }
 
 html[data-theme="light"] .footer-word {
   color: #0066cc !important;
+  font-weight: 800 !important;
   text-shadow: none !important;
 }
 
 html[data-theme="light"] .footer-disclaimer {
-  color: #7a95b0 !important;
+  color: #6f8ba6 !important;
+}
+
+html[data-theme="light"] .foot button {
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #3b5673 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+}
+
+html[data-theme="light"] .foot button:hover {
+  border-color: #0066cc !important;
+  color: #0066cc !important;
 }
 
 html[data-theme="light"] dialog {
   background: #ffffff !important;
   color: #0b1a2d !important;
-  border-color: rgba(0, 0, 0, 0.1) !important;
-  box-shadow: 0 30px 90px rgba(10, 30, 60, 0.18) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 30px 90px rgba(10, 30, 60, 0.2) !important;
+}
+
+html[data-theme="light"] .dialog-heading div span {
+  color: #0066cc !important;
+  font-weight: 750 !important;
+}
+
+html[data-theme="light"] .dialog-heading h2 {
+  color: #0b1a2d !important;
+  font-weight: 700 !important;
+}
+
+html[data-theme="light"] .dialog-heading button {
+  color: #4b6682 !important;
+}
+
+html[data-theme="light"] .dialog-heading button:hover {
+  color: #0b1a2d !important;
 }
 
 html[data-theme="light"] .search {
-  background: #f2f7fc !important;
-  border-color: rgba(180, 210, 240, 0.8) !important;
-  color: #405c78 !important;
+  background: #f4f8fc !important;
+  border: 1px solid rgba(180, 210, 240, 0.8) !important;
+  color: #0b1a2d !important;
 }
 
 html[data-theme="light"] .search input {
   color: #0b1a2d !important;
+}
+
+html[data-theme="light"] .search input::placeholder {
+  color: #7b96b0 !important;
 }
 
 html[data-theme="light"] .city-result {
@@ -1108,15 +1238,257 @@ html[data-theme="light"] .city-result {
 }
 
 html[data-theme="light"] .city-result:hover {
-  background: rgba(0, 112, 243, 0.05) !important;
+  background: rgba(0, 112, 243, 0.06) !important;
 }
 
 html[data-theme="light"] .city-result strong {
   color: #0b1a2d !important;
+  font-weight: 600 !important;
 }
 
 html[data-theme="light"] .city-result small {
-  color: #5f7a95 !important;
+  color: #55728f !important;
+}
+
+/* ==========================================================================
+   10. Secondary Detail Views (/aqi, /weather.html, ?view=...)
+   ========================================================================== */
+.detail-view {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 10px 0 30px;
+}
+
+.detail-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.detail-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #00f2fe;
+  padding: 7px 15px;
+  border-radius: 999px;
+  background: rgba(0, 242, 254, 0.12);
+  border: 1px solid rgba(0, 242, 254, 0.35);
+  margin-bottom: 10px;
+  transition: all 0.25s;
+}
+
+.detail-back:hover {
+  background: rgba(0, 242, 254, 0.25);
+  color: #ffffff;
+}
+
+.detail-heading h1 {
+  font-size: clamp(32px, 3.8vw, 48px);
+  margin: 0;
+  color: #ffffff;
+}
+
+.detail-heading h1 em {
+  background-image: linear-gradient(110deg, #00f2fe, #a855f7);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.detail-location {
+  font-size: 13px;
+  font-weight: 700;
+  color: #9cbddb;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(14, 38, 65, 0.75);
+  border: 1px solid rgba(0, 242, 254, 0.3);
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.detail-panel {
+  border: 1px solid rgba(175, 230, 255, 0.35);
+  border-radius: 20px;
+  background: linear-gradient(115deg, rgba(16, 48, 76, 0.88), rgba(26, 36, 75, 0.82));
+  backdrop-filter: blur(20px);
+  padding: 24px;
+  box-shadow: 0 20px 50px rgba(0, 10, 30, 0.6);
+  margin-bottom: 20px;
+}
+
+.detail-panel h2 {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #c9e4fb;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+}
+
+.detail-city-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail-city {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.detail-city:hover {
+  background: rgba(0, 242, 254, 0.15);
+  border-color: rgba(0, 242, 254, 0.4);
+}
+
+.detail-city[aria-pressed="true"] {
+  background: linear-gradient(120deg, rgba(0, 242, 254, 0.25), rgba(168, 85, 247, 0.2));
+  border-color: #00f2fe;
+}
+
+.detail-city-value {
+  font-size: 14px;
+  font-weight: 750;
+  color: #00f2fe;
+}
+
+.detail-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 0 0 24px;
+}
+
+.detail-metrics div {
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.detail-metrics dt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #8da7bf;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.detail-metrics dt svg {
+  width: 14px;
+  height: 14px;
+  color: #00f2fe;
+}
+
+.detail-metrics dd {
+  margin: 10px 0 0;
+  font-size: 24px;
+  font-weight: 750;
+  color: #ffffff;
+}
+
+/* Light mode for detail views */
+html[data-theme="light"] .detail-heading h1 {
+  color: #0b1a2d !important;
+}
+
+html[data-theme="light"] .detail-back {
+  background: rgba(0, 102, 255, 0.08) !important;
+  border-color: rgba(0, 102, 255, 0.25) !important;
+  color: #0066cc !important;
+}
+
+html[data-theme="light"] .detail-back:hover {
+  background: rgba(0, 102, 255, 0.15) !important;
+  color: #0052cc !important;
+}
+
+html[data-theme="light"] .detail-location {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(180, 210, 240, 0.8) !important;
+  color: #0b1a2d !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+}
+
+html[data-theme="light"] .detail-panel {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(180, 210, 240, 0.8) !important;
+  box-shadow: 0 16px 45px rgba(15, 45, 85, 0.08) !important;
+}
+
+html[data-theme="light"] .detail-panel h2 {
+  color: #0b1a2d !important;
+}
+
+html[data-theme="light"] .detail-city {
+  background: rgba(245, 250, 255, 0.9) !important;
+  border-color: rgba(180, 210, 240, 0.7) !important;
+  color: #0b1a2d !important;
+}
+
+html[data-theme="light"] .detail-city:hover {
+  background: rgba(0, 102, 255, 0.08) !important;
+  border-color: #0066cc !important;
+}
+
+html[data-theme="light"] .detail-city[aria-pressed="true"] {
+  background: rgba(0, 102, 255, 0.12) !important;
+  border-color: #0066cc !important;
+}
+
+html[data-theme="light"] .detail-city-value {
+  color: #0066cc !important;
+}
+
+html[data-theme="light"] .detail-metrics div {
+  background: rgba(245, 250, 255, 0.9) !important;
+  border-color: rgba(180, 210, 240, 0.7) !important;
+}
+
+html[data-theme="light"] .detail-metrics dt {
+  color: #4b6682 !important;
+}
+
+html[data-theme="light"] .detail-metrics dt svg {
+  color: #0066cc !important;
+}
+
+html[data-theme="light"] .detail-metrics dd {
+  color: #0b1a2d !important;
+}
+
+/* ==========================================================================
+   11. Responsive Clean Layout Adjustments
+   ========================================================================== */
+@media (max-width: 800px) {
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 740px) {
@@ -1128,5 +1500,12 @@ html[data-theme="light"] .city-result small {
   }
   .header-actions {
     gap: 8px;
+  }
+  .scene:before {
+    filter: blur(22px);
+    background: 
+      radial-gradient(ellipse at 5% 40%, rgba(0, 242, 254, 0.55), transparent 42%),
+      radial-gradient(ellipse at 95% 20%, rgba(168, 85, 247, 0.58), transparent 40%),
+      radial-gradient(ellipse at 50% 90%, rgba(255, 0, 127, 0.48), transparent 40%);
   }
 }
