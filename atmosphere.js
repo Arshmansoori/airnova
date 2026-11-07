@@ -1,4 +1,4 @@
-/* Local, code-rendered volumetric cloud and silky 3D spatial parallax. No dependencies. */
+/* Local, code-rendered volumetric cloud, 3D scroll physics & silky spatial parallax. No dependencies. */
 (() => {
   'use strict';
   const root = document.documentElement;
@@ -8,41 +8,70 @@
 
   let targetX = 0, targetY = 0;
   let currentX = 0, currentY = 0;
+  let lastScrollY = window.scrollY;
+  let targetVelocity = 0, scrollVelocity = 0;
   let animating = false;
 
-  function updateParallax() {
+  function updatePhysics() {
     if (quiet()) {
       root.style.setProperty('--mx', '0');
       root.style.setProperty('--my', '0');
+      root.style.setProperty('--scroll-p', '0');
+      root.style.setProperty('--scroll-v', '0');
       animating = false;
       return;
     }
 
-    // High-precision luxury damping (lerp factor 0.075 for liquid physics)
-    currentX += (targetX - currentX) * 0.075;
-    currentY += (targetY - currentY) * 0.075;
+    // High-precision luxury damping (lerp factor 0.08 for liquid inertia)
+    currentX += (targetX - currentX) * 0.08;
+    currentY += (targetY - currentY) * 0.08;
+
+    // Scroll progress & velocity damping
+    const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const scrollProgress = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+    scrollVelocity += (targetVelocity - scrollVelocity) * 0.12;
+    targetVelocity *= 0.86;
 
     root.style.setProperty('--mx', currentX.toFixed(4));
     root.style.setProperty('--my', currentY.toFixed(4));
+    root.style.setProperty('--scroll-p', scrollProgress.toFixed(4));
+    root.style.setProperty('--scroll-v', (scrollVelocity / 45).toFixed(4));
 
-    if (Math.abs(targetX - currentX) > 0.0004 || Math.abs(targetY - currentY) > 0.0004) {
-      requestAnimationFrame(updateParallax);
+    const needsMotion = 
+      Math.abs(targetX - currentX) > 0.0004 || 
+      Math.abs(targetY - currentY) > 0.0004 || 
+      Math.abs(scrollVelocity) > 0.05 ||
+      Math.abs(targetVelocity) > 0.05;
+
+    if (needsMotion) {
+      requestAnimationFrame(updatePhysics);
     } else {
       animating = false;
     }
   }
 
-  function onPointerMove(e) {
-    if (!fine.matches || quiet()) return;
-    targetX = (e.clientX / innerWidth - 0.5) * 2;
-    targetY = (e.clientY / innerHeight - 0.5) * 2;
+  function startPhysics() {
     if (!animating) {
       animating = true;
-      requestAnimationFrame(updateParallax);
+      requestAnimationFrame(updatePhysics);
     }
   }
 
-  addEventListener('pointermove', onPointerMove, { passive: true });
+  addEventListener('pointermove', e => {
+    if (!fine.matches || quiet()) return;
+    targetX = (e.clientX / innerWidth - 0.5) * 2;
+    targetY = (e.clientY / innerHeight - 0.5) * 2;
+    startPhysics();
+  }, { passive: true });
+
+  window.addEventListener('scroll', () => {
+    if (quiet()) return;
+    const currentY = window.scrollY;
+    const delta = currentY - lastScrollY;
+    lastScrollY = currentY;
+    targetVelocity = Math.max(-50, Math.min(50, delta));
+    startPhysics();
+  }, { passive: true });
 
   // Mobile Gyroscope 3D Tilt
   if (window.DeviceOrientationEvent) {
@@ -50,20 +79,14 @@
       if (quiet() || e.gamma === null || e.beta === null) return;
       targetX = Math.max(-1, Math.min(1, e.gamma / 22));
       targetY = Math.max(-1, Math.min(1, (e.beta - 35) / 22));
-      if (!animating) {
-        animating = true;
-        requestAnimationFrame(updateParallax);
-      }
+      startPhysics();
     }, { passive: true });
   }
 
   document.addEventListener('pointerleave', () => {
     targetX = 0;
     targetY = 0;
-    if (!animating) {
-      animating = true;
-      requestAnimationFrame(updateParallax);
-    }
+    startPhysics();
   });
 
   // Dynamic specular light reflection inside cards

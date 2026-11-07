@@ -1,9 +1,15 @@
-/* Atmosphere enhancement: 3D spatial depth, chiseled luxury optics & physical parallax. */
-:root { --mx: 0; --my: 0; }
+/* Atmosphere enhancement: Scroll-driven 3D physics, spatial depth & physical parallax. */
+:root { 
+  --mx: 0; 
+  --my: 0; 
+  --scroll-p: 0;
+  --scroll-v: 0;
+}
 
 .shell {
   perspective: 1400px;
   transform-style: preserve-3d;
+  padding-bottom: 50px !important;
 }
 
 .hero {
@@ -13,9 +19,9 @@
 .landscape {
   filter: brightness(0.58) saturate(0.72);
   opacity: 0.78;
-  translate: calc(var(--mx) * -22px) calc(var(--my) * -14px);
-  scale: 1.05;
-  transition: translate 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  translate: calc(var(--mx) * -22px) calc(var(--my) * -14px + var(--scroll-p) * -35px);
+  scale: calc(1.05 + var(--scroll-p) * 0.08);
+  transition: translate 0.5s cubic-bezier(0.16, 1, 0.3, 1), scale 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .scene-shade {
@@ -31,7 +37,7 @@
   height: 90vh;
   background: radial-gradient(ellipse at 42% 37%, #ffdfa93b 0%, #d9ae7d1c 21%, #dfb98c06 44%, transparent 65%);
   mix-blend-mode: screen;
-  translate: calc(var(--mx) * 32px) calc(var(--my) * 18px);
+  translate: calc(var(--mx) * 32px) calc(var(--my) * 18px + var(--scroll-p) * -20px);
   animation: sunlight-breathe 16s ease-in-out infinite alternate;
   pointer-events: none;
   transition: translate 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -45,7 +51,7 @@
   mask-image: linear-gradient(#0008, #000 45%, transparent 92%);
   mix-blend-mode: screen;
   transform-origin: 65% 0%;
-  transform: rotate(calc(var(--mx) * 5deg)) translate(calc(var(--mx) * 16px), calc(var(--my) * 10px));
+  transform: rotate(calc(var(--mx) * 5deg + var(--scroll-p) * 4deg)) translate(calc(var(--mx) * 16px), calc(var(--my) * 10px));
   animation: rays-sway 26s ease-in-out infinite alternate;
   pointer-events: none;
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -65,7 +71,7 @@
 }
 
 .fog-distant {
-  translate: calc(var(--mx) * -12px) calc(var(--my) * -6px);
+  translate: calc(var(--mx) * -12px) calc(var(--my) * -6px + var(--scroll-p) * -18px);
   filter: blur(3px);
   transition: translate 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -77,7 +83,7 @@
   height: 65%;
   opacity: 0.45;
   filter: blur(7px);
-  translate: calc(var(--mx) * -35px) calc(var(--my) * -20px);
+  translate: calc(var(--mx) * -35px) calc(var(--my) * -20px + var(--scroll-p) * -45px);
   animation-duration: 65s;
   animation-delay: -25s;
   animation-direction: alternate-reverse;
@@ -87,9 +93,14 @@
 .mist-one { opacity: 0.6; }
 .mist-two { opacity: 0.7; }
 
+/* 3D Scroll & Tilt for Intro Headline */
 .intro {
   transform-style: preserve-3d;
-  transform: perspective(1000px) rotateX(calc(var(--my) * -3.5deg)) rotateY(calc(var(--mx) * 4.5deg)) translateZ(24px);
+  transform: 
+    perspective(1000px) 
+    rotateX(calc(var(--my) * -3.5deg + var(--scroll-v) * -6deg)) 
+    rotateY(calc(var(--mx) * 4.5deg)) 
+    translateZ(calc(24px - var(--scroll-p) * 12px));
   transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
   will-change: transform;
 }
@@ -100,14 +111,18 @@
   animation: headline-light 16s ease-in-out infinite alternate;
 }
 
-/* 3D Luxury Chronometer Meter */
+/* 3D Luxury Chronometer Meter with Dynamic Scroll Pitch */
 .meter-area {
   transform-style: preserve-3d;
 }
 
 .meter {
   transform-style: preserve-3d;
-  transform: perspective(1200px) rotateX(calc(var(--my) * -8.5deg)) rotateY(calc(var(--mx) * 11deg)) translateZ(48px);
+  transform: 
+    perspective(1200px) 
+    rotateX(calc(var(--my) * -8.5deg + var(--scroll-v) * -12deg)) 
+    rotateY(calc(var(--mx) * 11deg)) 
+    translateZ(calc(48px - var(--scroll-p) * 22px));
   transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
   will-change: transform;
 }
@@ -134,7 +149,7 @@
   content: '';
   position: absolute;
   inset: -65%;
-  background: conic-gradient(from calc(var(--mx) * 45deg), transparent 0 73%, #e9fbff12 79%, #e9fbff04 86%, transparent 90%);
+  background: conic-gradient(from calc(var(--mx) * 45deg + var(--scroll-p) * 60deg), transparent 0 73%, #e9fbff12 79%, #e9fbff04 86%, transparent 90%);
   animation: lens-reflection 30s linear infinite;
   z-index: -1;
 }
@@ -175,7 +190,7 @@
 .meter-orbit.orbit-one { border-color: #a1dded20; transform: translateZ(15px); }
 .meter-orbit.orbit-two { border-color: #a1dded12; transform: translateZ(25px); }
 
-/* 3D Elevated Range & Spectrum Glass Cards */
+/* 3D Elevated Range & Spectrum Glass Cards with Scroll Elevation */
 .range, .spectrum {
   position: relative;
   isolation: isolate;
@@ -194,7 +209,11 @@
 }
 
 .range {
-  transform: perspective(1000px) rotateX(calc(var(--my) * -5deg)) rotateY(calc(var(--mx) * 7deg)) translateZ(32px);
+  transform: 
+    perspective(1000px) 
+    rotateX(calc(var(--my) * -5deg + var(--scroll-v) * -7deg)) 
+    rotateY(calc(var(--mx) * 7deg)) 
+    translateZ(calc(32px - var(--scroll-p) * 14px));
 }
 
 .range:hover {
@@ -225,8 +244,13 @@
   animation: glass-light 18s 3s ease-in-out infinite;
 }
 
+/* Spectrum rises and unfolds forward as user scrolls down */
 .spectrum {
-  transform: perspective(1000px) rotateX(calc(var(--my) * -3deg)) rotateY(calc(var(--mx) * 4deg)) translateZ(20px);
+  transform: 
+    perspective(1000px) 
+    rotateX(calc(var(--my) * -3deg + (1 - var(--scroll-p)) * 5deg + var(--scroll-v) * 6deg)) 
+    rotateY(calc(var(--mx) * 4deg)) 
+    translateZ(calc(16px + var(--scroll-p) * 32px));
 }
 
 .spectrum-pointer {
@@ -240,7 +264,11 @@
 /* 3D Elevated Weather Card */
 .weather {
   transform-style: preserve-3d;
-  transform: perspective(1000px) rotateX(calc(var(--my) * -5.5deg)) rotateY(calc(var(--mx) * 7.5deg)) translateZ(32px);
+  transform: 
+    perspective(1000px) 
+    rotateX(calc(var(--my) * -5.5deg + var(--scroll-v) * -8deg)) 
+    rotateY(calc(var(--mx) * 7.5deg)) 
+    translateZ(calc(32px - var(--scroll-p) * 15px));
   transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
   will-change: transform;
 }

@@ -214,13 +214,14 @@
   const rootStyle = getComputedStyle(document.documentElement);
   const mx = parseFloat(rootStyle.getPropertyValue('--mx')) || 0;
   const my = parseFloat(rootStyle.getPropertyValue('--my')) || 0;
+  const sv = parseFloat(rootStyle.getPropertyValue('--scroll-v')) || 0;
 
   stars.forEach(s => {
    const alpha = 0.15 + 0.2 * (0.5 + 0.5 * Math.sin((still ? 0 : time * 0.00045) + s.phase));
    ctx.fillStyle = `rgba(205, 235, 255, ${alpha})`;
    ctx.beginPath();
    const sx = s.x * w + (mx * -10 * s.z);
-   const sy = s.y * h + (my * -8 * s.z);
+   const sy = s.y * h + (my * -8 * s.z) + (sv * -15 * s.z);
    ctx.arc(sx, sy, s.r, 0, Math.PI * 2);
    ctx.fill();
   });
@@ -228,7 +229,8 @@
   if (still) return;
 
   motes.forEach(p => {
-   p.y -= p.speed * dt * (p.z * 0.7);
+   const warp = Math.abs(sv) * 0.02;
+   p.y -= (p.speed + warp) * dt * (p.z * 0.75);
    if (p.y < -0.05) {
     p.y = 1.05;
     p.x = Math.random();
@@ -243,12 +245,12 @@
 
    const pulse = 0.15 + 0.35 * (0.5 + 0.5 * Math.sin(time * 0.0006 + p.phase));
    ctx.fillStyle = `rgba(${hue.join(',')}, ${pulse})`;
-   ctx.shadowBlur = 6 * p.z;
-   ctx.shadowColor = `rgba(${hue.join(',')}, 0.5)`;
+   ctx.shadowBlur = (6 + Math.abs(sv) * 12) * p.z;
+   ctx.shadowColor = `rgba(${hue.join(',')}, 0.55)`;
 
    const px = p.x * w + Math.sin(time * 0.00015 + p.phase) * (14 * p.z) + (mx * -28 * p.z);
-   const py = p.y * h + (my * -18 * p.z);
-   const pr = (0.5 + (p.phase % 1) * 0.45) * Math.min(1.8, p.z);
+   const py = p.y * h + (my * -18 * p.z) + (sv * -30 * p.z);
+   const pr = (0.5 + (p.phase % 1) * 0.45) * Math.min(2.4, p.z + Math.abs(sv) * 0.8);
 
    ctx.arc(px, py, pr, 0, Math.PI * 2);
    ctx.fill();
