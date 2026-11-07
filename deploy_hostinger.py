@@ -40,6 +40,8 @@ INCLUDES = [
     "weather.html",
     "airvision.html",
     "404.html",
+    "api.php",
+    "airnova",
     ".htaccess",
     "_redirects",
     "styles.css",
