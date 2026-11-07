@@ -159,8 +159,10 @@
       padding: 6px 14px; border-radius: 8px; font-size: 13px;
     }
   </style>
+  <link rel="stylesheet" href="/site-theme.css">
+  <script src="/site-nav.js" defer></script>
 </head>
-<body>
+<body class="airnova-product " data-product="airvision">
 
   <div class="container">
     <header>
@@ -471,7 +473,6 @@
         b.textContent = `🔥 ${count} Live NASA Sat Hotspots`;
       }
     };
-    wind.loadLiveFirmsHotspots('prediction/api.php?action=hotspots');
     wind.start();
 
     window.addEventListener('resize', () => wind.resize());

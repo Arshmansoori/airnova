@@ -45,7 +45,7 @@ class WindParticleEngine {
     this.loadLiveFirmsHotspots();
   }
 
-  async loadLiveFirmsHotspots(apiUrl = 'api.php?action=hotspots') {
+  async loadLiveFirmsHotspots(apiUrl = '/prediction/api.php?action=hotspots') {
     try {
       const res = await fetch(apiUrl);
       if (!res.ok) return;

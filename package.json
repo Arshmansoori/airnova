@@ -1,0 +1,22 @@
+{
+  "name": "airnova-atmospheric-suite",
+  "version": "2.0.0",
+  "description": "Airnova Atmospheric Intelligence Suite — Premium AQI, Weather, and Deep-Tech AirVision Portal",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "preview": "node server.js",
+    "check": "node --check app.js && node --check atmosphere.js && node --check server.js && node --check site-nav.js"
+  },
+  "keywords": [
+    "airnova",
+    "aqi",
+    "air-quality",
+    "atmospheric-intelligence",
+    "weather",
+    "airvision"
+  ],
+  "author": "Airnova Team",
+  "license": "MIT"
+}

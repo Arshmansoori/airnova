@@ -1,7 +1,7 @@
 const $ = id => document.getElementById(id);
 const api = (action, params={}) => {
   const q = new URLSearchParams({action, ...params});
-  return fetch(`api.php?${q.toString()}`, {cache:'no-store'});
+  return fetch(`/prediction/api.php?${q.toString()}`, {cache:'no-store'});
 };
 const fmt=(v,d=0)=>(v===null||v===undefined||Number.isNaN(Number(v)))?'—':Number(v).toFixed(d);
 const timeFmt=s=>{ if(!s)return'—'; const raw=/[zZ]|[+-]\d{2}:?\d{2}$/.test(s)?s:`${s}+05:30`; const d=new Date(raw); return Number.isNaN(d.getTime())?s:d.toLocaleString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}); };
@@ -306,11 +306,7 @@ function initWindSimulation() {
   });
 }
 
-// Enhance standard init to launch deep-tech modules
-const originalInit = init;
-init = async function() {
-  await originalInit();
-  initAirVision();
-  initWindSimulation();
-};
+initAirVision();
+initWindSimulation();
+init();
 

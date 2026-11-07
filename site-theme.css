@@ -1,0 +1,131 @@
+:root {
+  --airnova-glass: linear-gradient(112deg, #0e304ce8, #101f38ef 57%, #261f3ae8);
+  --airnova-line: #96d3ff49;
+  --airnova-ink: #e6f2ff;
+  --airnova-muted: #b1c7df;
+  --airnova-accent: #86eaff;
+  color-scheme: dark;
+}
+
+html:has(.airnova-product) { background: #061324; }
+.airnova-product {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  margin: 0;
+  background: transparent;
+  color: var(--airnova-ink);
+  font-family: Inter, system-ui, sans-serif;
+}
+.airnova-product::before {
+  position: fixed;
+  z-index: -3;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 10% 48%, #00b9e43c, transparent 50%),
+    radial-gradient(ellipse at 95% 6%, #956dff49, transparent 52%),
+    linear-gradient(0deg, #061122ec, #10213da6 55%, #051224b3),
+    url("/assets/alpine-lake.jpg") center / cover no-repeat;
+}
+.airnova-product::after {
+  position: fixed;
+  z-index: -2;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background: url("/assets/fog.svg") center 48% / 110% auto no-repeat;
+  opacity: .24;
+  animation: product-fog 24s ease-in-out infinite alternate;
+}
+@keyframes product-fog { to { transform: translateX(6%); opacity: .42; } }
+.product-header {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  width: min(1280px, 100%);
+  margin: 0 auto;
+  padding: 22px clamp(14px, 4vw, 52px);
+  box-sizing: border-box;
+}
+.product-logo { display: block; flex: 0 1 230px; }
+.product-logo img { display: block; width: 100%; filter: drop-shadow(0 0 15px #34d7ff48); }
+.product-nav {
+  display: flex;
+  gap: 3px;
+  max-width: 100%;
+  padding: 4px;
+  border: 1px solid #a9d2ff38;
+  border-radius: 40px;
+  background: linear-gradient(130deg, #152a41c9, #08162bd9);
+  box-shadow: inset 0 1px #d7eeff20, 0 8px 30px #0003;
+  backdrop-filter: blur(20px);
+}
+.product-nav a {
+  padding: 10px clamp(7px, 1.5vw, 18px);
+  border: 1px solid transparent;
+  border-radius: 30px;
+  color: #b8cde3;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.product-nav a:hover,.product-nav a[aria-current="page"] {
+  border-color: #89dfff59;
+  background: linear-gradient(120deg, #1b9acc60, #5968d544);
+  color: #f4fbff;
+}
+.airnova-product :is(button,a,input,select):focus-visible { outline: 2px solid var(--airnova-accent); outline-offset: 3px; }
+.airnova-product :is(.app-shell,.container,.shell,.nova-app) { color: var(--airnova-ink); background: transparent; }
+.airnova-product .nova-app { min-height: calc(100svh - 100px); }
+.airnova-product .nova-header { background: #091b2dbb; border-bottom: 1px solid #9bd7ff29; }
+.airnova-product .nova-header a[href="/"],
+.airnova-product[data-product="weather"] .brand-mark { display: none; }
+.airnova-product :is(.glass-card,.showcase-grid .card,.science-banner,.deeptech-card,.panel,.cards .card,.aqi-panel,.trend-section,.station-preview,.pol-card) {
+  background: var(--airnova-glass);
+  border-color: var(--airnova-line);
+  box-shadow: inset 0 1px #d7eeff22, 0 14px 34px #000e2755;
+  backdrop-filter: blur(20px);
+}
+.airnova-product :is(.hero h1,.brand-text h1,.aqi-hero-panel h1) {
+  background: linear-gradient(100deg, #eff9ff 8%, #89eafc 53%, #c0a6ff 96%);
+  background-clip: text;
+  color: transparent;
+}
+.airnova-product :is(.nav-btn,.btn-action,.btn-primary,#loadBtn,.quick-station-pill.active,.scene-pill.active) {
+  border-color: #8ad7fc53;
+  background: linear-gradient(120deg, #207b9d76, #49447d87);
+  color: #eefaff;
+}
+.airnova-product :is(.search-input,.controls select,.controls input) { background: #08182b; border-color: var(--airnova-line); color: var(--airnova-ink); }
+.airnova-product :is(.vision-stats-grid .v-stat,.stat-cell,.wind-controls-deck,.deck,.aqi-dominant-pollutant-box) {
+  border-color: var(--airnova-line);
+  background: #0a1c31a6;
+}
+.airnova-product[data-product="weather"] { --bg: #061324; --card-border: #96d3ff49; --text: #e6f2ff; --text-muted: #b1c7df; --cyan: #86eaff; }
+.airnova-product[data-product="weather"] #skyCanvas { opacity: .36; }
+.airnova-product[data-product="weather"] .nav-actions a,
+.airnova-product[data-product="airvision"] .container > header,
+.airnova-product[data-product="forecast"] .hero > div:first-child > div:has(> a) { display: none !important; }
+.airnova-product[data-product="airvision"] .hero { margin-top: 4px; }
+.airnova-product[data-product="airvision"] { padding-inline: clamp(12px, 3vw, 24px); }
+.airnova-product[data-product="airvision"] .showcase-grid > .card { min-width: 0; }
+.product-admin-note { margin: 0 auto 12px; width: min(90%, 800px); color: var(--airnova-muted); font-size: 13px; }
+.product-admin-note a { color: var(--airnova-accent); }
+
+@media(max-width:640px) {
+  .product-header { flex-direction: column; gap: 7px; padding-block: 13px; }
+  .product-logo { flex: 0 0 auto; width: 155px; }
+  .product-nav { gap: 1px; }
+  .product-nav a { padding: 8px clamp(5px, 2.3vw, 12px); font-size: 10px; }
+  .airnova-product .nova-header { position: relative; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .airnova-product::after { animation: none; }
+}

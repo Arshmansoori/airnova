@@ -1,0 +1,6 @@
+/aqi /station.html 200
+/weather /weather.html 200
+/airvision /airvision.html 200
+/forecast /prediction/ 301
+/admin /station.html 200
+/2 /station.html 200

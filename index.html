@@ -1,20 +1,113 @@
-<!doctype html>
-<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content="Air Nova: station air quality, regional model forecasts and transparent environmental data."/><title>Air Nova | Air Quality Intelligence</title><style>html,body{margin:0;padding:0;background-color:#080f0c;color:#e4ebe7;}</style>  <script type="module" crossorigin src="/assets/index-B6BwySlj.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-vYMqC1Hj.css">
-</head><body>
-  <div id="airnova-nav-dock" style="position:fixed;top:16px;right:16px;z-index:999999;display:flex;align-items:center;gap:10px;background:rgba(12,24,35,0.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1.5px solid rgba(56,189,248,0.3);border-radius:9999px;padding:6px 14px;box-shadow:0 8px 32px rgba(0,0,0,0.5);font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;">
-    <div style="display:flex;align-items:center;gap:6px;padding-right:6px;border-right:1px solid rgba(255,255,255,0.15)">
-      <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#10b981;box-shadow:0 0 10px #10b981"></span>
-      <span style="font-size:11px;font-weight:800;letter-spacing:0.8px;color:#94a3b8;text-transform:uppercase">Deep Tech</span>
-    </div>
-    <a href="/weather.html" style="display:flex;align-items:center;gap:6px;text-decoration:none;color:#fbbf24;font-size:12.5px;font-weight:700;padding:5px 12px;border-radius:9999px;background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.3);transition:all 0.2s ease;">
-      <span>☀️</span> <span>Weather Hub</span>
-    </a>
-    <a href="/airvision.html" style="display:flex;align-items:center;gap:6px;text-decoration:none;color:#f1f7fb;font-size:12.5px;font-weight:700;padding:5px 12px;border-radius:9999px;background:linear-gradient(135deg,rgba(56,189,248,0.25),rgba(14,165,233,0.15));border:1px solid rgba(56,189,248,0.35);transition:all 0.2s ease;">
-      <span>📷</span> <span>AirVision Cam</span>
-    </a>
-    <a href="/prediction/" style="display:flex;align-items:center;gap:6px;text-decoration:none;color:#38bdf8;font-size:12.5px;font-weight:700;padding:5px 12px;border-radius:9999px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);transition:all 0.2s ease;">
-      <span>💨</span> <span>72h Inversion Engine</span> <span>↗</span>
-    </a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#061324"><meta name="description" content="Airnova. Beautifully simple air quality and weather intelligence.">
+  <title>Airnova — Breathe Better. Live Healthier.</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600;650;700;750;800;850;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="atmosphere.css"><link rel="stylesheet" href="vivid.css"><script src="app.js" defer></script><script src="atmosphere.js" defer></script>
+</head>
+<body>
+  <div class="scene" aria-hidden="true"><div class="landscape"></div><div class="sky-glow"></div><div class="sunlight"></div><div class="light-rays"></div><div class="horizon-glow"></div><div class="fog-bank fog-distant"></div><div class="mist mist-one"></div><div class="fog-bank fog-near"></div><div class="mist mist-two"></div><canvas id="world"></canvas><div class="scene-shade"></div><div class="grain"></div></div>
+  <svg class="sprite" aria-hidden="true"><defs>
+    <symbol id="pin" viewBox="0 0 24 24"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="home-icon" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7M5 9v11h5v-6h4v6h5V9"/></symbol>
+    <symbol id="wind" viewBox="0 0 24 24"><path d="M3 8h12a3 3 0 1 0-3-3M2 12h17a3 3 0 1 1-3 3M4 17h5a2 2 0 1 1-2 2"/></symbol>
+    <symbol id="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+    <symbol id="chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+    <symbol id="drop" viewBox="0 0 24 24"><path d="M12 3S5 11 5 15a7 7 0 0 0 14 0c0-4-7-12-7-12Z"/></symbol>
+    <symbol id="thermometer" viewBox="0 0 24 24"><path d="M9 14V5a3 3 0 0 1 6 0v9a5 5 0 1 1-6 0ZM12 8v10"/></symbol>
+  </defs></svg>
+  <div class="shell">
+    <header class="nav entrance">
+      <a href="./" class="brand" aria-label="Airnova home"><img src="assets/airnova-logo.png" alt="Airnova — AI-powered air quality solutions"></a>
+      <nav class="navlinks product-home-nav" aria-label="Main navigation">
+        <a href="./" class="active" data-tab="home" aria-current="page"><svg><use href="#home-icon"/></svg>Home</a>
+        <a href="/aqi" data-tab="aqi"><svg><use href="#wind"/></svg>AQI</a>
+        <a href="/weather.html" data-tab="weather"><svg><use href="#sun"/></svg>Weather</a>
+        <a href="/airvision.html">AirVision</a>
+        <a href="/prediction/">Forecast</a>
+      </nav>
+      <button class="city" id="city-button" aria-haspopup="dialog"><svg><use href="#pin"/></svg><span id="city-label">Delhi NCR</span><span class="city-dot"></span><svg class="chevron"><use href="#chevron"/></svg></button>
+    </header>
+    <main id="home">
+      <div class="hero">
+        <section class="intro entrance"><h1>Breathe <em>Better.</em><br>Live <em>Healthier.</em></h1></section>
+        <section class="meter-area entrance" id="aqi" aria-label="Air quality index">
+          <div class="meter"><div class="meter-orbit orbit-one"></div><div class="meter-orbit orbit-two"></div><div class="meter-halo"></div><div class="meter-face"></div>
+            <svg class="meter-svg" viewBox="0 0 400 400" aria-hidden="true"><defs><linearGradient id="ring" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#32edb0"/><stop offset=".3" stop-color="#a6e75d"/><stop offset=".55" stop-color="#f2da71"/><stop offset=".77" stop-color="#f2a870"/><stop offset="1" stop-color="#a48eff"/></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="5"/></filter></defs><g id="ticks"></g><path class="arc-track" d="M80 300 A156 156 0 1 1 320 300"/><path class="arc-glow" d="M80 300 A156 156 0 1 1 320 300"/><path class="arc" d="M80 300 A156 156 0 1 1 320 300"/><circle class="arc-point" id="arc-point" r="6" cx="320" cy="100"/></svg>
+            <div class="meter-content"><span class="meter-label">AIR QUALITY INDEX</span><strong class="aqi-value" id="aqi-value">162</strong><span class="status" id="aqi-status"><i></i> Unhealthy</span></div>
+            <span class="meter-start">0</span><span class="meter-end">500</span>
+          </div>
+          <section class="range" aria-labelledby="range-heading">
+            <div class="range-title"><span class="range-line" aria-hidden="true"></span><h2 id="range-heading">Today’s AQI range</h2><span class="range-line" aria-hidden="true"></span></div>
+            <div class="range-row">
+              <div class="range-item range-low"><span class="range-arrow down" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v15m-6-6 6 6 6-6"/></svg></span><div><strong id="aqi-low">94</strong><small>Low</small></div></div>
+              <div class="range-item range-high"><span class="range-arrow up" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20V5m-6 6 6-6 6 6"/></svg></span><div><strong id="aqi-high">182</strong><small>High</small></div></div>
+            </div>
+          </section>
+        </section>
+        <section class="weather entrance" id="weather" aria-label="Current weather"><div class="weather-icon" aria-hidden="true"><div class="sun-rays"></div><div class="sun-sphere"></div><div class="cloud-back"></div><div class="cloud-front"></div><div class="cloud-base"></div></div><div class="temperature"><span id="temperature">28</span><button id="unit-button" aria-label="Switch temperature to Fahrenheit">°<small>C</small></button></div><div class="condition" id="condition">Partly Cloudy</div><div class="feels"><svg><use href="#thermometer"/></svg>Feels like <strong id="feels">31°C</strong></div></section>
+      </div>
+      <section class="spectrum entrance" aria-labelledby="spectrum-heading">
+        <div class="spectrum-head"><h2 id="spectrum-heading"><span aria-hidden="true">✧</span> Air quality spectrum</h2></div>
+        <div class="spectrum-track" aria-hidden="true">
+          <div class="spectrum-color"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="spectrum-pointer" id="spectrum-pointer"><span>162</span><i></i></div>
+        </div>
+        <div class="spectrum-labels">
+          <span>Good<small>0–50</small></span>
+          <span>Moderate<small>51–100</small></span>
+          <span>Sensitive groups<small>101–150</small></span>
+          <span aria-current="true">Unhealthy<small>151–200</small></span>
+          <span>Very unhealthy<small>201–300</small></span>
+          <span>Hazardous<small>301–500</small></span>
+        </div>
+      </section>
+    </main>
+    <footer class="foot entrance"><span class="footer-word">AIRNOVA</span><i></i><span>Designed for clarity.</span><span class="footer-disclaimer">Displayed readings are illustrative, not live measurements.</span><button id="motion-button" aria-label="Pause background animations" title="Pause animations"><span class="pause-icon">Ⅱ</span></button></footer>
   </div>
-  <div id="root"></div></body></html>
+  <dialog id="city-dialog"><div class="dialog-heading"><div><span>YOUR CORNER OF THE WORLD</span><h2>Find your air.</h2></div><button id="close-dialog" aria-label="Close search"><svg><use href="#close"/></svg></button></div><div class="search"><svg><use href="#search"/></svg><input id="city-search" placeholder="Search sample cities…" aria-label="Search sample cities" autocomplete="off"></div><div id="city-results"></div><p>Illustrative air quality and weather snapshots.</p></dialog>
+  <template id="aqi-view">
+    <div class="detail-view">
+      <header class="detail-heading entrance">
+        <div><a class="detail-back" href="./">← Home</a><h1>Air <em>quality.</em></h1></div>
+        <span class="detail-location" data-current-city></span>
+      </header>
+      <div class="detail-grid">
+        <div class="detail-panel detail-instrument" data-instrument></div>
+        <div class="detail-aside" data-spectrum-slot>
+          <section class="detail-panel" aria-labelledby="compare-heading">
+            <h2 id="compare-heading">Compare city AQI</h2>
+            <div class="detail-city-list" data-city-list></div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </template>
+  <template id="weather-view">
+    <div class="detail-view">
+      <header class="detail-heading entrance">
+        <div><a class="detail-back" href="./">← Home</a><h1>Local <em>weather.</em></h1></div>
+        <span class="detail-location" data-current-city></span>
+      </header>
+      <div class="detail-grid">
+        <div class="detail-panel detail-instrument" data-instrument></div>
+        <section class="detail-panel" aria-labelledby="weather-details-heading">
+          <h2 id="weather-details-heading">Weather details</h2>
+          <dl class="detail-metrics">
+            <div><dt><svg aria-hidden="true"><use href="#drop"/></svg> Humidity</dt><dd data-detail-humidity></dd></div>
+            <div><dt><svg aria-hidden="true"><use href="#wind"/></svg> Wind speed</dt><dd data-detail-wind></dd></div>
+          </dl>
+          <h2>Compare city temperatures</h2>
+          <div class="detail-city-list" data-city-list></div>
+        </section>
+      </div>
+    </div>
+  </template>
+</body>
+</html>

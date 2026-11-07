@@ -1267,8 +1267,10 @@
       border-top: 1px solid rgba(255, 255, 255, 0.06);
     }
   </style>
+  <link rel="stylesheet" href="/site-theme.css">
+  <script src="/site-nav.js" defer></script>
 </head>
-<body class="theme-sunny">
+<body class="airnova-product theme-sunny" data-product="weather">
 
   <!-- Ambient Dynamic Sky Canvas Engine -->
   <canvas id="skyCanvas"></canvas>
@@ -2400,7 +2402,13 @@
     function toggleTempUnit() {
       isFahrenheit = !isFahrenheit;
       document.getElementById('heroTempUnit').textContent = isFahrenheit ? '°F' : '°C';
-      if (currentRawData) renderData(currentRawData);
+      if (currentRawData) renderData(currentRawData, currentAirData);
+    }
+
+    function applyAtmosphereTheme(themeClass) {
+      const previous = [...document.body.classList].filter(name => name.startsWith('theme-'));
+      document.body.classList.remove(...previous);
+      document.body.classList.add(themeClass);
     }
 
     // Manual Theme Switcher Routine
@@ -2411,7 +2419,7 @@
       document.getElementById('autoSyncBtn').classList.remove('active');
 
       currentTheme = themeClass;
-      document.body.className = themeClass;
+      applyAtmosphereTheme(themeClass);
     }
 
     function enableLiveAutoSync(btn) {
@@ -2421,7 +2429,7 @@
       if (currentRawData) {
         const wInfo = decodeWMO(currentRawData.current.weather_code, currentRawData.current.is_day);
         currentTheme = wInfo.theme;
-        document.body.className = currentTheme;
+        applyAtmosphereTheme(currentTheme);
       }
     }
 
@@ -2443,6 +2451,7 @@
           fetch(airUrl).catch(() => null)
         ]);
 
+        if (!wRes.ok) throw new Error('Weather provider returned HTTP ' + wRes.status);
         const wData = await wRes.json();
         currentRawData = wData;
 
@@ -2456,6 +2465,7 @@
         renderStationRankingsTable();
       } catch (err) {
         console.error('Master telemetry load error:', err);
+        if (!currentRawData) document.getElementById('heroConditionName').textContent = 'Weather temporarily unavailable';
       }
     }
 
@@ -2470,7 +2480,7 @@
       const wInfo = decodeWMO(c.weather_code, c.is_day);
       if (isAutoSyncEnabled) {
         currentTheme = wInfo.theme;
-        document.body.className = currentTheme;
+        applyAtmosphereTheme(currentTheme);
       }
 
       // Hero Card Fill

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420">
+  <defs>
+    <filter id="wisps" x="-20%" y="-50%" width="140%" height="200%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".006 .014" numOctaves="4" seed="17" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="130" xChannelSelector="R" yChannelSelector="G"/>
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+    <radialGradient id="soft"><stop stop-color="#bed4dd" stop-opacity=".48"/><stop offset=".5" stop-color="#aacbd7" stop-opacity=".25"/><stop offset="1" stop-color="#aacbd7" stop-opacity="0"/></radialGradient>
+  </defs>
+  <g filter="url(#wisps)"><ellipse cx="350" cy="230" rx="360" ry="62" fill="url(#soft)"/><ellipse cx="710" cy="180" rx="410" ry="72" fill="url(#soft)"/><ellipse cx="930" cy="265" rx="290" ry="48" fill="url(#soft)"/></g>
+</svg>
