@@ -20,38 +20,46 @@
   transform: translate3d(0, 0, 0);
 }
 
-/* Primary Chromatic Aurora: Electric Cyan, Neon Violet, Hot Magenta, Emerald Mint */
+/* Primary Chromatic Aurora: Rich Electric Cyan, Neon Violet, Hot Magenta, Emerald Mint & Solar Gold */
 .scene:before {
   background: 
-    radial-gradient(ellipse at 15% 42%, rgba(0, 242, 254, 0.52) 0%, transparent 40%),
-    radial-gradient(ellipse at 85% 20%, rgba(168, 85, 247, 0.55) 0%, transparent 42%),
-    radial-gradient(ellipse at 50% 86%, rgba(255, 0, 127, 0.42) 0%, transparent 44%),
-    radial-gradient(ellipse at 78% 82%, rgba(0, 245, 160, 0.38) 0%, transparent 40%),
-    radial-gradient(ellipse at 32% 18%, rgba(255, 179, 0, 0.32) 0%, transparent 36%);
-  filter: blur(34px);
-  animation: aurora-tide 18s ease-in-out infinite alternate;
+    radial-gradient(ellipse at 15% 38%, rgba(0, 242, 254, 0.75) 0%, transparent 45%),
+    radial-gradient(ellipse at 85% 18%, rgba(168, 85, 247, 0.78) 0%, transparent 48%),
+    radial-gradient(ellipse at 50% 82%, rgba(255, 0, 127, 0.62) 0%, transparent 48%),
+    radial-gradient(ellipse at 78% 75%, rgba(0, 245, 160, 0.58) 0%, transparent 45%),
+    radial-gradient(ellipse at 30% 14%, rgba(255, 179, 0, 0.52) 0%, transparent 42%),
+    radial-gradient(circle at 50% 45%, rgba(0, 242, 254, 0.38) 0%, transparent 58%);
+  filter: blur(38px);
+  animation: aurora-tide 16s ease-in-out infinite alternate;
 }
 
-/* Secondary Chromatic Drift: Sunset Amber, Radiant Lavender, Mint Aurora */
+/* Secondary Chromatic Drift: Sunset Amber, Radiant Lavender, Mint Aurora & Coral Flame */
 .scene:after {
   background: 
-    radial-gradient(ellipse at 12% 92%, rgba(0, 245, 160, 0.42) 0%, transparent 40%),
-    radial-gradient(ellipse at 88% 8%, rgba(255, 159, 67, 0.45) 0%, transparent 42%),
-    radial-gradient(ellipse at 48% 18%, rgba(138, 43, 226, 0.35) 0%, transparent 46%),
-    radial-gradient(ellipse at 70% 55%, rgba(0, 242, 254, 0.35) 0%, transparent 44%);
-  filter: blur(38px);
-  animation: aurora-tide 24s -10s ease-in-out infinite alternate-reverse;
+    radial-gradient(ellipse at 10% 88%, rgba(0, 245, 160, 0.65) 0%, transparent 46%),
+    radial-gradient(ellipse at 90% 10%, rgba(255, 120, 60, 0.68) 0%, transparent 48%),
+    radial-gradient(ellipse at 46% 15%, rgba(168, 85, 247, 0.58) 0%, transparent 50%),
+    radial-gradient(ellipse at 65% 50%, rgba(0, 242, 254, 0.52) 0%, transparent 50%),
+    radial-gradient(circle at 35% 65%, rgba(255, 0, 127, 0.48) 0%, transparent 45%);
+  filter: blur(42px);
+  animation: aurora-tide 22s -9s ease-in-out infinite alternate-reverse;
 }
 
+/* Default & Vivid Mode: Pure Chromatic Color Shades without Mountain Wallpaper */
 .landscape {
-  filter: brightness(0.68) saturate(1.25) contrast(1.08);
-  opacity: 0.86;
+  opacity: 0 !important;
+  visibility: hidden;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s;
+}
+
+.scene {
+  background: radial-gradient(circle at 50% 25%, #0d2847 0%, #081a33 45%, #030d1d 95%) !important;
 }
 
 .scene-shade {
   background: 
-    linear-gradient(90deg, rgba(3, 14, 32, 0.62), rgba(8, 30, 60, 0.22) 48%, rgba(14, 18, 44, 0.32)),
-    linear-gradient(0deg, rgba(2, 10, 24, 0.90), transparent 48%, rgba(5, 16, 36, 0.30));
+    linear-gradient(90deg, rgba(2, 9, 22, 0.32), transparent 48%, rgba(4, 11, 28, 0.25)),
+    linear-gradient(0deg, rgba(2, 8, 20, 0.55), transparent 55%, rgba(3, 10, 25, 0.25));
 }
 
 .sky-glow {
@@ -769,6 +777,7 @@
    -------------------------------------------------------------------------- */
 html[data-theme="landscape"] .landscape {
   opacity: 0.96 !important;
+  visibility: visible !important;
   filter: brightness(0.88) saturate(1.25) contrast(1.08) !important;
 }
 
