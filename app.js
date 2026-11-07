@@ -1,33 +1,62 @@
 (() => {
  'use strict';
- const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
- const cities=[
+ const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+ const cities = [
   {id:'delhi',name:'Delhi NCR',country:'India',aqi:162,low:94,high:182,temp:28,feels:31,condition:'Partly Cloudy',humidity:64,wind:12},
   {id:'mumbai',name:'Mumbai',country:'India',aqi:89,low:61,high:118,temp:30,feels:34,condition:'Warm & Breezy',humidity:78,wind:18},
   {id:'bengaluru',name:'Bengaluru',country:'India',aqi:54,low:32,high:76,temp:24,feels:25,condition:'Mostly Sunny',humidity:58,wind:9},
   {id:'london',name:'London',country:'United Kingdom',aqi:32,low:18,high:48,temp:12,feels:10,condition:'Overcast',humidity:82,wind:16},
   {id:'singapore',name:'Singapore',country:'Singapore',aqi:47,low:28,high:62,temp:31,feels:35,condition:'Partly Cloudy',humidity:80,wind:11}
  ];
- const storage={get(k,f){try{return localStorage.getItem(k)??f}catch{return f}},set(k,v){try{localStorage.setItem(k,v)}catch{}}};
- let city=cities.find(c=>c.id===storage.get('airnova-simple-city','delhi'))||cities[0];
- let unit=storage.get('airnova-simple-unit','c');
- let still=storage.get('airnova-simple-motion','')==='pause'||matchMedia('(prefers-reduced-motion: reduce)').matches;
- const status=v=>v<=50?{text:'Good',color:'#87e2b8'}:v<=100?{text:'Moderate',color:'#d2e39c'}:v<=150?{text:'Sensitive groups',color:'#f1d58d'}:v<=200?{text:'Unhealthy',color:'#f2cd8c'}:v<=300?{text:'Very unhealthy',color:'#cbb2e8'}:{text:'Hazardous',color:'#c0a3dc'};
- const fraction=value=>{const bands=[0,50,100,150,200,300,500];const i=Math.min(5,Math.max(0,bands.findIndex((v,i)=>i<6&&value>=v&&value<=bands[i+1])));return(i+(value-bands[i])/(bands[i+1]-bands[i]))/6};
- const arc=$('.arc'),length=arc.getTotalLength();
+ const storage = {get(k,f){try{return localStorage.getItem(k)??f}catch{return f}},set(k,v){try{localStorage.setItem(k,v)}catch{}}};
+ let city = cities.find(c=>c.id===storage.get('airnova-simple-city','delhi'))||cities[0];
+ let unit = storage.get('airnova-simple-unit','c');
+ let still = storage.get('airnova-simple-motion','')==='pause'||matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const status = v=>v<=50?{text:'Good',color:'#87e2b8'}:v<=100?{text:'Moderate',color:'#d2e39c'}:v<=150?{text:'Sensitive groups',color:'#f1d58d'}:v<=200?{text:'Unhealthy',color:'#f2cd8c'}:v<=300?{text:'Very unhealthy',color:'#cbb2e8'}:{text:'Hazardous',color:'#c0a3dc'};
+ const fraction = value=>{const bands=[0,50,100,150,200,300,500];const i=Math.min(5,Math.max(0,bands.findIndex((v,i)=>i<6&&value>=v&&value<=bands[i+1])));return(i+(value-bands[i])/(bands[i+1]-bands[i]))/6};
+ const arc = $('.arc'), length = arc.getTotalLength();
  const spectrum = $('.spectrum');
  const spectrumPointer = $('#spectrum-pointer');
  const spectrumLabels = $$('.spectrum-labels > span');
  const requestedView = new URLSearchParams(location.search).get('view');
  const view = ['aqi', 'weather'].includes(requestedView) ? requestedView : 'home';
+
  // Follow the actual arc geometry so the graduations stay aligned.
- for(let i=0;i<=60;i++){const p=arc.getPointAtLength(length*i/60);const cx=200,cy=200;const dx=p.x-cx,dy=p.y-cy;const r=Math.hypot(dx,dy);const inner=i%5===0?12:7;const line=document.createElementNS('http://www.w3.org/2000/svg','line');line.setAttribute('x1',cx+dx/r*(r-12));line.setAttribute('y1',cy+dy/r*(r-12));line.setAttribute('x2',cx+dx/r*(r-12-inner));line.setAttribute('y2',cy+dy/r*(r-12-inner));if(i%5===0)line.classList.add('major');$('#ticks').append(line);}
+ for(let i=0;i<=60;i++){
+  const p=arc.getPointAtLength(length*i/60);
+  const cx=200,cy=200;
+  const dx=p.x-cx,dy=p.y-cy;
+  const r=Math.hypot(dx,dy);
+  const inner=i%5===0?12:7;
+  const line=document.createElementNS('http://www.w3.org/2000/svg','line');
+  line.setAttribute('x1',cx+dx/r*(r-12));
+  line.setAttribute('y1',cy+dy/r*(r-12));
+  line.setAttribute('x2',cx+dx/r*(r-12-inner));
+  line.setAttribute('y2',cy+dy/r*(r-12-inner));
+  if(i%5===0)line.classList.add('major');
+  $('#ticks').append(line);
+ }
+
  let countFrame;
  function render(){
-  $('#city-label').textContent=city.name;const st=status(city.aqi);$('#aqi-status').innerHTML='<i></i>'+st.text;$('#aqi-status').style.color=st.color;
-  const f=fraction(city.aqi);$$('.arc,.arc-glow').forEach(el=>{el.style.strokeDasharray=length;el.style.strokeDashoffset=length*(1-f)});
-  const p=arc.getPointAtLength(length*f);$('#arc-point').setAttribute('cx',p.x);$('#arc-point').setAttribute('cy',p.y);
-  cancelAnimationFrame(countFrame);const from=Number($('#aqi-value').textContent)||0;const t=performance.now();function count(now){const p=still?1:Math.min(1,(now-t)/1400);$('#aqi-value').textContent=Math.round(from+(city.aqi-from)*(1-(1-p)**3));if(p<1)countFrame=requestAnimationFrame(count)}countFrame=requestAnimationFrame(count);
+  $('#city-label').textContent=city.name;
+  const st=status(city.aqi);
+  $('#aqi-status').innerHTML='<i></i>'+st.text;
+  $('#aqi-status').style.color=st.color;
+  const f=fraction(city.aqi);
+  $$('.arc,.arc-glow').forEach(el=>{el.style.strokeDasharray=length;el.style.strokeDashoffset=length*(1-f)});
+  const p=arc.getPointAtLength(length*f);
+  $('#arc-point').setAttribute('cx',p.x);
+  $('#arc-point').setAttribute('cy',p.y);
+  cancelAnimationFrame(countFrame);
+  const from=Number($('#aqi-value').textContent)||0;
+  const t=performance.now();
+  function count(now){
+   const p=still?1:Math.min(1,(now-t)/1400);
+   $('#aqi-value').textContent=Math.round(from+(city.aqi-from)*(1-(1-p)**3));
+   if(p<1)countFrame=requestAnimationFrame(count);
+  }
+  countFrame=requestAnimationFrame(count);
   $('#aqi-low').textContent = city.low;
   $('#aqi-high').textContent = city.high;
   spectrum.style.setProperty('--reading-color', st.color);
@@ -38,9 +67,16 @@
    if (index === currentBand) label.setAttribute('aria-current', 'true');
    else label.removeAttribute('aria-current');
   });
-  const c=v=>unit==='f'?Math.round(v*9/5+32):v;$('#temperature').textContent=c(city.temp);$('#unit-button').innerHTML='°<small>'+unit.toUpperCase()+'</small>';$('#unit-button').setAttribute('aria-label','Switch temperature to '+(unit==='c'?'Fahrenheit':'Celsius'));$('#feels').textContent=c(city.feels)+'°'+unit.toUpperCase();$('#condition').textContent=city.condition;$('.sun-sphere').style.opacity=city.id==='london'?'.3':'1';
+  const c=v=>unit==='f'?Math.round(v*9/5+32):v;
+  $('#temperature').textContent=c(city.temp);
+  $('#unit-button').innerHTML='°<small>'+unit.toUpperCase()+'</small>';
+  $('#unit-button').setAttribute('aria-label','Switch temperature to '+(unit==='c'?'Fahrenheit':'Celsius'));
+  $('#feels').textContent=c(city.feels)+'°'+unit.toUpperCase();
+  $('#condition').textContent=city.condition;
+  $('.sun-sphere').style.opacity=city.id==='london'?'.3':'1';
   if (view !== 'home') renderDetail(c);
  }
+
  function selectCity(id) {
   const selected = cities.find(candidate => candidate.id === id);
   if (!selected) return;
@@ -48,6 +84,7 @@
   storage.set('airnova-simple-city', city.id);
   render();
  }
+
  function renderDetail(convertTemperature) {
   $('[data-current-city]').textContent = city.name;
   if (view === 'weather') {
@@ -67,6 +104,7 @@
    }
   });
  }
+
  if (view !== 'home') {
   const main = $('#home');
   main.append($('#' + view + '-view').content.cloneNode(true));
@@ -90,9 +128,20 @@
    list.append(button);
   });
  }
+
  $('#unit-button').addEventListener('click',()=>{unit=unit==='c'?'f':'c';storage.set('airnova-simple-unit',unit);render()});
- function renderCities(){const q=$('#city-search').value.toLowerCase().trim();const found=cities.filter(c=>(c.name+' '+c.country).toLowerCase().includes(q));$('#city-results').innerHTML=found.length?found.map(c=>`<button class="city-result" data-city="${c.id}"><span><strong>${c.name}${c.id===city.id?' · selected':''}</strong><small>${c.country}</small></span><span style="--color:${status(c.aqi).color}">${c.aqi}<small>AQI</small></span></button>`).join(''):'<p class="empty">No sample city found. Try Delhi, Mumbai, Bengaluru, London or Singapore.</p>';$$('.city-result').forEach(b=>b.addEventListener('click',()=>{selectCity(b.dataset.city);$('#city-dialog').close()}))}
- $('#city-button').addEventListener('click',()=>{$('#city-search').value='';renderCities();$('#city-dialog').showModal();$('#city-search').focus()});$('#city-search').addEventListener('input',renderCities);$('#close-dialog').addEventListener('click',()=>$('#city-dialog').close());$('#city-dialog').addEventListener('click',e=>{if(e.target!==e.currentTarget)return;const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.currentTarget.close()});
+ function renderCities(){
+  const q=$('#city-search').value.toLowerCase().trim();
+  const found=cities.filter(c=>(c.name+' '+c.country).toLowerCase().includes(q));
+  $('#city-results').innerHTML=found.length?found.map(c=>`<button class="city-result" data-city="${c.id}"><span><strong>${c.name}${c.id===city.id?' · selected':''}</strong><small>${c.country}</small></span><span style="--color:${status(c.aqi).color}">${c.aqi}<small>AQI</small></span></button>`).join(''):'<p class="empty">No sample city found. Try Delhi, Mumbai, Bengaluru, London or Singapore.</p>';
+  $$('.city-result').forEach(b=>b.addEventListener('click',()=>{selectCity(b.dataset.city);$('#city-dialog').close()}))
+ }
+
+ $('#city-button').addEventListener('click',()=>{$('#city-search').value='';renderCities();$('#city-dialog').showModal();$('#city-search').focus()});
+ $('#city-search').addEventListener('input',renderCities);
+ $('#close-dialog').addEventListener('click',()=>$('#city-dialog').close());
+ $('#city-dialog').addEventListener('click',e=>{if(e.target!==e.currentTarget)return;const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.currentTarget.close()});
+
  function nav() {
   $$('[data-tab]').forEach(link => {
    const active = link.dataset.tab === view;
@@ -104,9 +153,19 @@
   $('#aqi').classList.toggle('focus-glow', view === 'home' && section === 'aqi');
   $('#weather').classList.toggle('focus-glow', view === 'home' && section === 'weather');
  }
- addEventListener('hashchange',nav);nav();
- function motion(){document.documentElement.classList.toggle('still',still);$('#motion-button').setAttribute('aria-label',still?'Play background animations':'Pause background animations');$('#motion-button').title=still?'Play animations':'Pause animations';$('.pause-icon').textContent=still?'▷':'Ⅱ';$('#motion-button').setAttribute('aria-pressed',String(still))}
- motion();$('#motion-button').addEventListener('click',()=>{still=!still;storage.set('airnova-simple-motion',still?'pause':'play');motion()});
+ addEventListener('hashchange',nav);
+ nav();
+
+ function motion(){
+  document.documentElement.classList.toggle('still',still);
+  $('#motion-button').setAttribute('aria-label',still?'Play background animations':'Pause background animations');
+  $('#motion-button').title=still?'Play animations':'Pause animations';
+  $('.pause-icon').textContent=still?'▷':'Ⅱ';
+  $('#motion-button').setAttribute('aria-pressed',String(still))
+ }
+ motion();
+ $('#motion-button').addEventListener('click',()=>{still=!still;storage.set('airnova-simple-motion',still?'pause':'play');motion()});
+
  addEventListener('pageshow', event => {
   if (!event.persisted) return;
   city = cities.find(candidate => candidate.id === storage.get('airnova-simple-city', 'delhi')) || cities[0];
@@ -115,8 +174,88 @@
   motion();
   render();
  });
- const canvas=$('#world'),ctx=canvas.getContext('2d');let w=0,h=0,last=0;const stars=Array.from({length:70},()=>({x:Math.random(),y:Math.random()*.65,r:Math.random()*.8+.2,phase:Math.random()*6}));const motes=Array.from({length:24},()=>({x:Math.random(),y:Math.random(),speed:Math.random()*.007+.002,phase:Math.random()*6}));
- function resize(){w=innerWidth;h=innerHeight;const dpr=Math.min(devicePixelRatio||1,1.5);canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}addEventListener('resize',resize);resize();
- function draw(time){requestAnimationFrame(draw);if(document.hidden||time-last<33)return;const dt=Math.min(.05,(time-last)/1000);last=time;ctx.clearRect(0,0,w,h);stars.forEach(s=>{const alpha=.15+.18*(.5+.5*Math.sin((still?0:time*.00045)+s.phase));ctx.fillStyle=`rgba(196,225,250,${alpha})`;ctx.beginPath();ctx.arc(s.x*w,s.y*h,s.r,0,Math.PI*2);ctx.fill()});if(still)return;motes.forEach(p=>{p.y-=p.speed*dt;if(p.y<0)p.y=1;ctx.beginPath();const hue=[[105,240,255],[180,145,255],[111,255,206],[255,207,135]][Math.floor(p.phase)%4];ctx.fillStyle=`rgba(${hue.join(',')},${.12+.3*(.5+.5*Math.sin(time*.0005+p.phase))})`;ctx.shadowBlur=7;ctx.shadowColor='#93d7e6';ctx.arc(p.x*w+Math.sin(time*.0001+p.phase)*15,p.y*h,.7+(p.phase%1)*.5,0,Math.PI*2);ctx.fill()});ctx.shadowBlur=0}
- requestAnimationFrame(draw);$('#aqi-value').textContent='0';render();
+
+ // True 3D Particle Space in Canvas
+ const canvas = $('#world'), ctx = canvas.getContext('2d');
+ let w = 0, h = 0, last = 0;
+ const stars = Array.from({length: 80}, () => ({
+  x: Math.random(),
+  y: Math.random() * 0.7,
+  z: Math.random() * 0.8 + 0.2,
+  r: Math.random() * 0.8 + 0.2,
+  phase: Math.random() * 6
+ }));
+ const motes = Array.from({length: 36}, () => ({
+  x: Math.random(),
+  y: Math.random(),
+  z: Math.random() * 2.2 + 0.4,
+  speed: Math.random() * 0.007 + 0.003,
+  phase: Math.random() * 6
+ }));
+
+ function resize() {
+  w = innerWidth;
+  h = innerHeight;
+  const dpr = Math.min(devicePixelRatio || 1, 1.5);
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+ }
+ addEventListener('resize', resize);
+ resize();
+
+ function draw(time) {
+  requestAnimationFrame(draw);
+  if (document.hidden || time - last < 30) return;
+  const dt = Math.min(0.05, (time - last) / 1000);
+  last = time;
+  ctx.clearRect(0, 0, w, h);
+
+  const rootStyle = getComputedStyle(document.documentElement);
+  const mx = parseFloat(rootStyle.getPropertyValue('--mx')) || 0;
+  const my = parseFloat(rootStyle.getPropertyValue('--my')) || 0;
+
+  stars.forEach(s => {
+   const alpha = 0.15 + 0.2 * (0.5 + 0.5 * Math.sin((still ? 0 : time * 0.00045) + s.phase));
+   ctx.fillStyle = `rgba(205, 235, 255, ${alpha})`;
+   ctx.beginPath();
+   const sx = s.x * w + (mx * -10 * s.z);
+   const sy = s.y * h + (my * -8 * s.z);
+   ctx.arc(sx, sy, s.r, 0, Math.PI * 2);
+   ctx.fill();
+  });
+
+  if (still) return;
+
+  motes.forEach(p => {
+   p.y -= p.speed * dt * (p.z * 0.7);
+   if (p.y < -0.05) {
+    p.y = 1.05;
+    p.x = Math.random();
+   }
+   ctx.beginPath();
+   const hue = [
+    [90, 240, 255],
+    [165, 140, 255],
+    [95, 255, 200],
+    [255, 205, 130]
+   ][Math.floor(p.phase) % 4];
+
+   const pulse = 0.15 + 0.35 * (0.5 + 0.5 * Math.sin(time * 0.0006 + p.phase));
+   ctx.fillStyle = `rgba(${hue.join(',')}, ${pulse})`;
+   ctx.shadowBlur = 6 * p.z;
+   ctx.shadowColor = `rgba(${hue.join(',')}, 0.5)`;
+
+   const px = p.x * w + Math.sin(time * 0.00015 + p.phase) * (14 * p.z) + (mx * -28 * p.z);
+   const py = p.y * h + (my * -18 * p.z);
+   const pr = (0.5 + (p.phase % 1) * 0.45) * Math.min(1.8, p.z);
+
+   ctx.arc(px, py, pr, 0, Math.PI * 2);
+   ctx.fill();
+  });
+  ctx.shadowBlur = 0;
+ }
+ requestAnimationFrame(draw);
+ $('#aqi-value').textContent = '0';
+ render();
 })();
