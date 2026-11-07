@@ -1559,20 +1559,51 @@ html[data-theme="light"] .detail-metrics dd {
   }
 }
 
-/* --- MEDIUM TABLETS (max-width: 860px) --- */
-@media (max-width: 860px) {
+/* --- MEDIUM TABLETS (max-width: 960px) --- */
+@media (max-width: 960px) {
   .shell {
     padding: 18px 24px 30px !important;
   }
   .hero {
     grid-template-columns: 1fr 1fr !important;
-    gap: 22px !important;
+    gap: 24px !important;
   }
-  .weather {
-    padding-left: 12px !important;
+  .meter-area {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin: 0 auto !important;
+  }
+  .meter {
+    max-width: 330px !important;
   }
   .range {
     max-width: 320px !important;
+    width: 100% !important;
+  }
+  .weather {
+    max-width: 320px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 18px 20px !important;
+    border-left: none !important;
+    border: 1px solid rgba(175, 230, 255, 0.35) !important;
+    border-radius: 20px !important;
+    background: linear-gradient(115deg, rgba(16, 48, 76, 0.85), rgba(26, 36, 75, 0.8)) !important;
+    backdrop-filter: blur(20px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    min-height: auto !important;
+  }
+  html[data-theme="light"] .weather {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border-color: rgba(180, 210, 240, 0.8) !important;
+  }
+  .weather:before {
+    display: none !important;
   }
   .detail-grid {
     grid-template-columns: 1fr !important;
@@ -1580,11 +1611,19 @@ html[data-theme="light"] .detail-metrics dd {
   }
 }
 
-/* --- MOBILE PHONES & PHABLETS (max-width: 680px) --- */
-@media (max-width: 680px) {
+/* --- MOBILE PHONES & PHABLETS (max-width: 768px) --- */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+  }
   .shell {
     padding: 14px 16px 28px !important;
     perspective: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
   }
   
   /* Fluid Header */
@@ -1594,11 +1633,17 @@ html[data-theme="light"] .detail-metrics dd {
     justify-content: space-between !important;
     flex-wrap: wrap !important;
     gap: 12px 8px !important;
+    width: 100% !important;
   }
   .brand {
-    width: 170px !important;
-    max-width: 46% !important;
+    width: 155px !important;
+    max-width: 44% !important;
     margin-left: 0 !important;
+  }
+  .brand img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
   }
   .header-actions {
     display: flex !important;
@@ -1606,13 +1651,17 @@ html[data-theme="light"] .detail-metrics dd {
     gap: 6px !important;
   }
   .theme-switcher {
-    padding: 2.5px !important;
-    gap: 2px !important;
+    padding: 3px !important;
+    gap: 3px !important;
+    border-radius: 999px !important;
   }
   .theme-btn {
-    padding: 6px 8px !important;
+    padding: 6px !important;
     min-width: 32px !important;
     min-height: 32px !important;
+    border-radius: 50% !important;
+    display: inline-flex !important;
+    align-items: center !important;
     justify-content: center !important;
   }
   .theme-btn span {
@@ -1625,8 +1674,12 @@ html[data-theme="light"] .detail-metrics dd {
   .city {
     padding: 8px 12px !important;
     font-size: 11px !important;
+    font-weight: 550 !important;
     border-radius: 999px !important;
     gap: 6px !important;
+    min-height: 32px !important;
+    display: inline-flex !important;
+    align-items: center !important;
   }
   .city svg {
     width: 13px !important;
@@ -1644,9 +1697,10 @@ html[data-theme="light"] .detail-metrics dd {
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch !important;
     scrollbar-width: none !important;
-    padding: 4px !important;
+    padding: 5px 6px !important;
     border-radius: 999px !important;
-    gap: 3px !important;
+    gap: 4px !important;
+    margin-top: 4px !important;
   }
   .navlinks::-webkit-scrollbar {
     display: none !important;
@@ -1654,6 +1708,7 @@ html[data-theme="light"] .detail-metrics dd {
   .navlinks a {
     padding: 9px 15px !important;
     font-size: 11.5px !important;
+    font-weight: 550 !important;
     white-space: nowrap !important;
     flex-shrink: 0 !important;
     border-radius: 999px !important;
@@ -1661,13 +1716,14 @@ html[data-theme="light"] .detail-metrics dd {
   
   /* Single-Column Hero Stack */
   main {
-    padding: 20px 0 25px !important;
+    padding: 16px 0 20px !important;
+    width: 100% !important;
   }
   .hero {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    gap: 24px !important;
+    gap: 22px !important;
     width: 100% !important;
     margin-top: 0 !important;
     min-height: auto !important;
@@ -1682,12 +1738,12 @@ html[data-theme="light"] .detail-metrics dd {
   }
   .intro .eyebrow {
     justify-content: center !important;
-    margin: 0 auto 14px !important;
-    font-size: 8px !important;
+    margin: 0 auto 12px !important;
+    font-size: 9px !important;
     padding: 5px 12px !important;
   }
   .intro h1 {
-    font-size: clamp(34px, 9vw, 44px) !important;
+    font-size: clamp(32px, 8.5vw, 42px) !important;
     letter-spacing: -1.5px !important;
     line-height: 1.15 !important;
   }
@@ -1695,7 +1751,7 @@ html[data-theme="light"] .detail-metrics dd {
     font-size: 13px !important;
     line-height: 1.6 !important;
     max-width: 320px !important;
-    margin: 12px auto 0 !important;
+    margin: 10px auto 0 !important;
   }
   
   /* Center Meter Dial */
@@ -1709,10 +1765,11 @@ html[data-theme="light"] .detail-metrics dd {
     transform: none !important;
   }
   .meter {
-    width: 100% !important;
+    width: min(290px, 80vw) !important;
     max-width: 290px !important;
     aspect-ratio: 1 !important;
     transform: none !important;
+    margin: 0 auto !important;
   }
   .meter-content {
     transform: none !important;
@@ -1720,36 +1777,54 @@ html[data-theme="light"] .detail-metrics dd {
   .aqi-value {
     font-size: 78px !important;
     letter-spacing: -4px !important;
-    line-height: 1.1 !important;
+    line-height: 1.05 !important;
   }
   .meter-label {
-    font-size: 8px !important;
+    font-size: 9px !important;
     letter-spacing: 1.8px !important;
   }
   .status {
-    font-size: 11px !important;
+    font-size: 11.5px !important;
     padding: 6px 14px !important;
     margin-top: 6px !important;
   }
   .meter-start, .meter-end {
-    font-size: 9px !important;
+    font-size: 10px !important;
     top: 78% !important;
+  }
+  .meter-standard {
+    font-size: 10px !important;
+    color: #92b6d6 !important;
+    letter-spacing: 0.5px !important;
+    margin-top: 8px !important;
+  }
+  html[data-theme="light"] .meter-standard {
+    color: #4b6685 !important;
+  }
+  .meter-caption {
+    font-size: 10px !important;
+    color: #a3c4df !important;
+    bottom: 6% !important;
+  }
+  html[data-theme="light"] .meter-caption {
+    color: #476382 !important;
   }
   
   /* Today's Range Card */
   .range {
     width: 100% !important;
     max-width: 320px !important;
-    margin: 16px auto 0 !important;
+    margin: 14px auto 0 !important;
     padding: 14px 16px !important;
     border-radius: 18px !important;
+    box-sizing: border-box !important;
   }
   .range-title {
-    font-size: 8.5px !important;
-    letter-spacing: 1.5px !important;
+    font-size: 9.5px !important;
+    letter-spacing: 1.3px !important;
   }
   .range-row {
-    margin-top: 14px !important;
+    margin-top: 12px !important;
     gap: 12px !important;
   }
   .range-item {
@@ -1757,20 +1832,20 @@ html[data-theme="light"] .detail-metrics dd {
     gap: 8px !important;
   }
   .range-item strong {
-    font-size: 26px !important;
+    font-size: 24px !important;
     letter-spacing: -0.8px !important;
   }
   .range-item small {
-    font-size: 8.5px !important;
+    font-size: 9.5px !important;
     letter-spacing: 1px !important;
   }
   .range-arrow {
-    width: 30px !important;
-    height: 30px !important;
+    width: 28px !important;
+    height: 28px !important;
   }
   .range-arrow svg {
-    width: 15px !important;
-    height: 15px !important;
+    width: 14px !important;
+    height: 14px !important;
   }
 
   /* Weather Card on Mobile: Beautiful Standalone Glass Card */
@@ -1778,8 +1853,8 @@ html[data-theme="light"] .detail-metrics dd {
     width: 100% !important;
     max-width: 320px !important;
     margin: 0 auto !important;
-    padding: 20px 22px 18px !important;
-    border-left: 1px solid rgba(175, 230, 255, 0.4) !important;
+    padding: 18px 20px 16px !important;
+    border-left: none !important;
     border: 1px solid rgba(175, 230, 255, 0.4) !important;
     border-radius: 20px !important;
     background: linear-gradient(115deg, rgba(16, 48, 76, 0.88), rgba(26, 36, 75, 0.82)) !important;
@@ -1790,26 +1865,31 @@ html[data-theme="light"] .detail-metrics dd {
     align-items: center !important;
     text-align: center !important;
     min-height: auto !important;
+    box-sizing: border-box !important;
   }
   html[data-theme="light"] .weather {
     background: rgba(255, 255, 255, 0.92) !important;
     border-color: rgba(180, 210, 240, 0.8) !important;
     box-shadow: 0 16px 40px rgba(15, 45, 85, 0.08) !important;
   }
+  html[data-theme="landscape"] .weather {
+    background: linear-gradient(115deg, rgba(9, 29, 48, 0.86), rgba(16, 26, 45, 0.82)) !important;
+    border-color: rgba(175, 230, 255, 0.35) !important;
+  }
   .weather:before {
     display: none !important;
   }
   .weather-eyebrow {
-    font-size: 9px !important;
-    letter-spacing: 1.6px !important;
+    font-size: 9.5px !important;
+    letter-spacing: 1.5px !important;
     justify-content: center !important;
     margin-bottom: 2px !important;
   }
   .weather-icon {
-    width: 140px !important;
-    height: 110px !important;
+    width: 135px !important;
+    height: 105px !important;
     margin: 6px auto !important;
-    transform: scale(0.9) !important;
+    transform: scale(0.88) !important;
     transform-origin: center !important;
   }
   .temperature {
@@ -1827,9 +1907,25 @@ html[data-theme="light"] .detail-metrics dd {
     margin-top: 6px !important;
   }
   .feels {
-    font-size: 11px !important;
-    margin-top: 12px !important;
-    padding: 8px 16px !important;
+    font-size: 11.5px !important;
+    margin-top: 10px !important;
+    padding: 7px 14px !important;
+  }
+  .weather-subtle {
+    font-size: 10px !important;
+    color: #a0c3de !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    margin-top: 14px !important;
+  }
+  html[data-theme="light"] .weather-subtle {
+    color: #3b5774 !important;
+  }
+  .weather-subtle svg {
+    width: 12px !important;
+    height: 12px !important;
   }
   
   /* Spectrum Bar on Mobile */
@@ -1839,23 +1935,27 @@ html[data-theme="light"] .detail-metrics dd {
     margin-top: 24px !important;
     padding: 18px 16px 16px !important;
     border-radius: 18px !important;
+    box-sizing: border-box !important;
   }
   .spectrum-head h2 {
-    font-size: 10px !important;
+    font-size: 10.5px !important;
     letter-spacing: 1.4px !important;
   }
+  .spectrum-head > span {
+    display: none !important;
+  }
   .spectrum-track {
-    margin-top: 24px !important;
+    margin-top: 22px !important;
   }
   .spectrum-labels {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
-    gap: 12px 6px !important;
-    margin-top: 16px !important;
+    gap: 10px 6px !important;
+    margin-top: 14px !important;
     text-align: center !important;
   }
   .spectrum-labels > span {
-    font-size: 10px !important;
+    font-size: 10.5px !important;
     white-space: normal !important;
     line-height: 1.3 !important;
   }
@@ -1873,19 +1973,19 @@ html[data-theme="light"] .detail-metrics dd {
   /* Footer on Mobile */
   .foot {
     flex-direction: column !important;
-    gap: 10px !important;
+    gap: 8px !important;
     text-align: center !important;
-    padding-top: 22px !important;
+    padding-top: 20px !important;
     font-size: 10px !important;
   }
   .footer-word {
-    font-size: 9px !important;
+    font-size: 9.5px !important;
     letter-spacing: 2px !important;
   }
   .footer-disclaimer {
     margin-left: 0 !important;
-    font-size: 9px !important;
-    max-width: 300px !important;
+    font-size: 9.5px !important;
+    max-width: 290px !important;
     margin: 0 auto !important;
   }
   .foot > button {
@@ -1907,7 +2007,7 @@ html[data-theme="light"] .detail-metrics dd {
     font-size: 22px !important;
   }
   .search input {
-    font-size: 14px !important;
+    font-size: 15px !important;
   }
   
   /* Scene Auroras on Mobile */
@@ -1923,13 +2023,25 @@ html[data-theme="light"] .detail-metrics dd {
 /* --- SMALL MOBILE PHONES (max-width: 375px) --- */
 @media (max-width: 375px) {
   .shell {
-    padding: 12px 12px 24px !important;
+    padding: 10px 12px 24px !important;
   }
   .brand {
-    width: 145px !important;
+    width: 135px !important;
+  }
+  .header-actions {
+    gap: 4px !important;
+  }
+  .theme-btn {
+    min-width: 28px !important;
+    min-height: 28px !important;
+    padding: 4px !important;
+  }
+  .theme-btn svg {
+    width: 13px !important;
+    height: 13px !important;
   }
   .city {
-    padding: 7px 10px !important;
+    padding: 6px 9px !important;
     font-size: 10px !important;
   }
   .intro h1 {
@@ -1946,5 +2058,11 @@ html[data-theme="light"] .detail-metrics dd {
   }
   .temperature > span {
     font-size: 56px !important;
+  }
+  .spectrum-labels > span {
+    font-size: 9.5px !important;
+  }
+  .spectrum-labels small {
+    font-size: 8px !important;
   }
 }
