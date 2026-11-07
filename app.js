@@ -12,7 +12,7 @@
  let city = cities.find(c=>c.id===storage.get('airnova-simple-city','delhi'))||cities[0];
  let unit = storage.get('airnova-simple-unit','c');
  let still = storage.get('airnova-simple-motion','')==='pause'||matchMedia('(prefers-reduced-motion: reduce)').matches;
- const status = v=>v<=50?{text:'Good',color:'#87e2b8'}:v<=100?{text:'Moderate',color:'#d2e39c'}:v<=150?{text:'Sensitive groups',color:'#f1d58d'}:v<=200?{text:'Unhealthy',color:'#f2cd8c'}:v<=300?{text:'Very unhealthy',color:'#cbb2e8'}:{text:'Hazardous',color:'#c0a3dc'};
+ const status = v=>v<=50?{text:'Good',color:'#00f5a0',rgb:'0, 245, 160'}:v<=100?{text:'Moderate',color:'#ffd166',rgb:'255, 209, 102'}:v<=150?{text:'Sensitive groups',color:'#ff9f43',rgb:'255, 159, 67'}:v<=200?{text:'Unhealthy',color:'#ff4757',rgb:'255, 71, 87'}:v<=300?{text:'Very unhealthy',color:'#a55eea',rgb:'165, 94, 234'}:{text:'Hazardous',color:'#ff007f',rgb:'255, 0, 127'};
  const fraction = value=>{const bands=[0,50,100,150,200,300,500];const i=Math.min(5,Math.max(0,bands.findIndex((v,i)=>i<6&&value>=v&&value<=bands[i+1])));return(i+(value-bands[i])/(bands[i+1]-bands[i]))/6};
  const arc = $('.arc'), length = arc.getTotalLength();
  const spectrum = $('.spectrum');
@@ -43,6 +43,10 @@
   const st=status(city.aqi);
   $('#aqi-status').innerHTML='<i></i>'+st.text;
   $('#aqi-status').style.color=st.color;
+  $('#aqi-status').style.setProperty('--status-color', st.color);
+  $('#aqi-status').style.setProperty('--status-rgb', st.rgb);
+  document.documentElement.style.setProperty('--active-aqi-color', st.color);
+  document.documentElement.style.setProperty('--active-aqi-rgb', st.rgb);
   const f=fraction(city.aqi);
   $$('.arc,.arc-glow').forEach(el=>{el.style.strokeDasharray=length;el.style.strokeDashoffset=length*(1-f)});
   const p=arc.getPointAtLength(length*f);
@@ -185,11 +189,11 @@
   r: Math.random() * 0.8 + 0.2,
   phase: Math.random() * 6
  }));
- const motes = Array.from({length: 36}, () => ({
+ const motes = Array.from({length: 56}, () => ({
   x: Math.random(),
   y: Math.random(),
-  z: Math.random() * 2.2 + 0.4,
-  speed: Math.random() * 0.007 + 0.003,
+  z: Math.random() * 2.4 + 0.3,
+  speed: Math.random() * 0.008 + 0.003,
   phase: Math.random() * 6
  }));
 
@@ -237,11 +241,13 @@
    }
    ctx.beginPath();
    const hue = [
-    [90, 240, 255],
-    [165, 140, 255],
-    [95, 255, 200],
-    [255, 205, 130]
-   ][Math.floor(p.phase) % 4];
+    [0, 242, 254],   // Electric Cyan
+    [255, 0, 127],   // Neon Magenta
+    [168, 85, 247],  // Electric Purple
+    [0, 245, 160],   // Emerald Mint
+    [255, 209, 102], // Solar Gold
+    [255, 71, 87]    // Coral Flame
+   ][Math.floor(p.phase) % 6];
 
    const pulse = 0.15 + 0.35 * (0.5 + 0.5 * Math.sin(time * 0.0006 + p.phase));
    ctx.fillStyle = `rgba(${hue.join(',')}, ${pulse})`;

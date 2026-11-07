@@ -1,11 +1,18 @@
-/* Prismatic & Vivid Atmospheric Suite — Ultra-Vibrant Colors & Zero-Lag GPU Compositing */
+/* Prismatic & Vivid Atmospheric Suite — Ultra-Vibrant Luxury Aesthetics & Zero-Lag GPU Compositing */
 @property --edge-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
 
-/* GPU-accelerated vibrant Aurora Borealis atmospheric curtain */
+:root {
+  --active-aqi-color: #ff4757;
+  --active-aqi-rgb: 255, 71, 87;
+}
+
+/* ==========================================================================
+   1. Multi-Chromatic Aurora Borealis & Cosmic Atmospheric Curtain
+   ========================================================================== */
 .scene:before, .scene:after {
   content: '';
   position: absolute;
-  inset: -20%;
+  inset: -25%;
   pointer-events: none;
   mix-blend-mode: screen;
   z-index: 2;
@@ -13,184 +20,271 @@
   transform: translate3d(0, 0, 0);
 }
 
+/* Primary Chromatic Aurora: Electric Cyan, Neon Violet, Hot Magenta, Emerald Mint */
 .scene:before {
   background: 
-    radial-gradient(ellipse at 15% 45%, rgba(0, 242, 254, 0.42), transparent 35%),
-    radial-gradient(ellipse at 85% 22%, rgba(138, 43, 226, 0.45), transparent 36%),
-    radial-gradient(ellipse at 50% 88%, rgba(255, 0, 127, 0.32), transparent 38%),
-    radial-gradient(ellipse at 78% 85%, rgba(0, 245, 160, 0.28), transparent 35%);
-  filter: blur(28px);
-  animation: aurora-tide 19s ease-in-out infinite alternate;
+    radial-gradient(ellipse at 15% 42%, rgba(0, 242, 254, 0.52) 0%, transparent 40%),
+    radial-gradient(ellipse at 85% 20%, rgba(168, 85, 247, 0.55) 0%, transparent 42%),
+    radial-gradient(ellipse at 50% 86%, rgba(255, 0, 127, 0.42) 0%, transparent 44%),
+    radial-gradient(ellipse at 78% 82%, rgba(0, 245, 160, 0.38) 0%, transparent 40%),
+    radial-gradient(ellipse at 32% 18%, rgba(255, 179, 0, 0.32) 0%, transparent 36%);
+  filter: blur(34px);
+  animation: aurora-tide 18s ease-in-out infinite alternate;
 }
 
+/* Secondary Chromatic Drift: Sunset Amber, Radiant Lavender, Mint Aurora */
 .scene:after {
   background: 
-    radial-gradient(ellipse at 12% 95%, rgba(0, 245, 160, 0.32), transparent 35%),
-    radial-gradient(ellipse at 88% 5%, rgba(255, 159, 67, 0.35), transparent 36%),
-    radial-gradient(ellipse at 45% 15%, rgba(112, 111, 211, 0.25), transparent 40%);
-  filter: blur(32px);
-  animation: aurora-tide 25s -11s ease-in-out infinite alternate-reverse;
+    radial-gradient(ellipse at 12% 92%, rgba(0, 245, 160, 0.42) 0%, transparent 40%),
+    radial-gradient(ellipse at 88% 8%, rgba(255, 159, 67, 0.45) 0%, transparent 42%),
+    radial-gradient(ellipse at 48% 18%, rgba(138, 43, 226, 0.35) 0%, transparent 46%),
+    radial-gradient(ellipse at 70% 55%, rgba(0, 242, 254, 0.35) 0%, transparent 44%);
+  filter: blur(38px);
+  animation: aurora-tide 24s -10s ease-in-out infinite alternate-reverse;
 }
 
 .landscape {
-  filter: brightness(0.62) saturate(1.15) contrast(1.05);
-  opacity: 0.82;
+  filter: brightness(0.68) saturate(1.25) contrast(1.08);
+  opacity: 0.86;
 }
 
 .scene-shade {
-  background: linear-gradient(90deg, rgba(4, 19, 41, 0.65), rgba(9, 35, 68, 0.25) 48%, rgba(16, 21, 49, 0.35)),
-              linear-gradient(0deg, rgba(3, 12, 28, 0.92), transparent 48%, rgba(6, 19, 41, 0.35));
+  background: 
+    linear-gradient(90deg, rgba(3, 14, 32, 0.62), rgba(8, 30, 60, 0.22) 48%, rgba(14, 18, 44, 0.32)),
+    linear-gradient(0deg, rgba(2, 10, 24, 0.90), transparent 48%, rgba(5, 16, 36, 0.30));
 }
 
 .sky-glow {
-  background: radial-gradient(ellipse, rgba(255, 207, 166, 0.55), rgba(186, 140, 244, 0.35) 38%, transparent 68%);
+  background: radial-gradient(ellipse, rgba(255, 215, 175, 0.65), rgba(192, 148, 255, 0.45) 38%, transparent 70%);
 }
 
 .sunlight {
-  background: radial-gradient(ellipse at 42% 37%, rgba(255, 202, 122, 0.52) 0%, rgba(255, 183, 140, 0.28) 21%, rgba(192, 169, 255, 0.14) 44%, transparent 65%);
+  background: radial-gradient(ellipse at 42% 37%, rgba(255, 214, 138, 0.62) 0%, rgba(255, 192, 152, 0.36) 21%, rgba(204, 182, 255, 0.20) 44%, transparent 68%);
 }
 
 .fog-distant {
-  filter: blur(3px) drop-shadow(0 0 20px rgba(88, 204, 255, 0.25));
+  filter: blur(3px) drop-shadow(0 0 25px rgba(0, 242, 254, 0.35));
 }
 
 .fog-near {
-  filter: blur(6px) drop-shadow(0 0 25px rgba(154, 128, 244, 0.22));
+  filter: blur(6px) drop-shadow(0 0 30px rgba(168, 85, 247, 0.32));
 }
 
-/* Prismatic Rainbow Shifting Headline */
-.intro h1 em {
-  background-image: linear-gradient(105deg, #00f2fe 0%, #4facfe 18%, #9b51e0 36%, #ff2a85 54%, #ff9f43 72%, #00f5a0 90%, #00f2fe 100%);
-  background-size: 260% 100%;
-  filter: drop-shadow(0 0 24px rgba(0, 242, 254, 0.35));
-  animation: prism-text 10s ease-in-out infinite alternate;
-}
-
+/* ==========================================================================
+   2. Hero Section: Prismatic Shimmering Liquid Typography & High-Tech Badge
+   ========================================================================== */
 .eyebrow {
-  color: #70e1ff;
-  text-shadow: 0 0 20px rgba(44, 207, 255, 0.45);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 8.5px;
+  letter-spacing: 2.8px;
+  font-weight: 700;
+  color: #7eeaff;
+  margin-bottom: 22px;
+  padding: 6px 14px 6px 10px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.15), rgba(168, 85, 247, 0.15));
+  border: 1px solid rgba(0, 242, 254, 0.35);
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.25), inset 0 1px rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  text-transform: uppercase;
 }
+
 .eyebrow > span {
-  background: #00f2fe;
-  box-shadow: 0 0 14px rgba(0, 242, 254, 0.85);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00f5a0;
+  box-shadow: 0 0 10px #00f5a0, 0 0 18px rgba(0, 245, 160, 0.9);
+  animation: beacon-pulse 2s ease-in-out infinite;
 }
 
-.intro p { color: #c3d9ef; }
+.intro h1 {
+  color: #ffffff;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 242, 254, 0.2);
+}
 
-/* 3D Meter with Vibrant Specular Caustics */
+/* Ultra-Vibrant Multi-Chromatic Liquid Gradient on "Better." and "Healthier." */
+.intro h1 em {
+  background-image: linear-gradient(110deg, #00f2fe 0%, #4facfe 16%, #a855f7 34%, #ff007f 52%, #ff9f43 70%, #00f5a0 86%, #00f2fe 100%);
+  background-size: 260% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 26px rgba(0, 242, 254, 0.45)) drop-shadow(0 0 45px rgba(168, 85, 247, 0.3));
+  animation: prism-text 9s ease-in-out infinite alternate;
+}
+
+.intro p { 
+  color: #c9e0f7;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================================================
+   3. The 3D Masterpiece: Chromatic Sapphire Chronometer AQI Meter
+   ========================================================================== */
 .meter-face {
   background: 
-    radial-gradient(ellipse at calc(30% + var(--mx) * 20%) calc(25% + var(--my) * 20%), rgba(0, 242, 254, 0.28) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% 85%, rgba(168, 85, 247, 0.25), transparent 55%),
-    radial-gradient(circle at 50% 90%, rgba(255, 0, 127, 0.12), transparent 45%),
-    linear-gradient(145deg, #0d2a42fa, #05152af8);
-  border: 1.5px solid rgba(147, 219, 255, 0.5);
+    radial-gradient(ellipse at calc(30% + var(--mx) * 20%) calc(25% + var(--my) * 20%), rgba(0, 242, 254, 0.36) 0%, transparent 58%),
+    radial-gradient(ellipse at 85% 85%, rgba(168, 85, 247, 0.32), transparent 58%),
+    radial-gradient(circle at 50% 90%, rgba(var(--active-aqi-rgb, 255, 71, 87), 0.25), transparent 50%),
+    linear-gradient(145deg, #0d2f4afa, #05182ff8);
+  border: 1.5px solid rgba(175, 230, 255, 0.6);
   box-shadow: 
-    0 0 0 1px rgba(255, 255, 255, 0.22),
-    0 0 0 5px rgba(5, 17, 32, 0.9),
-    0 0 0 6.5px rgba(0, 242, 254, 0.35),
-    inset 1.5px 2px 3px rgba(208, 244, 255, 0.45),
-    inset -1.5px -2px 6px rgba(168, 85, 247, 0.35),
-    inset 0 -22px 45px rgba(0, 16, 35, 0.95),
-    0 32px 70px rgba(0, 12, 30, 0.85),
-    -15px 0 70px rgba(0, 242, 254, 0.22),
-    15px 10px 70px rgba(168, 85, 247, 0.24);
+    0 0 0 1px rgba(255, 255, 255, 0.25),
+    0 0 0 5px rgba(5, 17, 34, 0.95),
+    0 0 0 7px rgba(0, 242, 254, 0.45),
+    inset 2px 2px 4px rgba(220, 248, 255, 0.55),
+    inset -2px -2px 8px rgba(168, 85, 247, 0.45),
+    inset 0 -24px 50px rgba(0, 16, 38, 0.98),
+    0 35px 80px rgba(0, 10, 28, 0.9),
+    -18px 0 80px rgba(0, 242, 254, 0.35),
+    18px 12px 80px rgba(168, 85, 247, 0.35),
+    0 20px 80px rgba(var(--active-aqi-rgb, 255, 71, 87), 0.35);
 }
 
 .meter-face:before {
-  background: conic-gradient(from 0deg, transparent 0 65%, rgba(0, 242, 254, 0.14) 73%, rgba(218, 183, 255, 0.2) 82%, transparent 92%);
-  animation-duration: 22s;
+  background: conic-gradient(from 0deg, transparent 0 62%, rgba(0, 242, 254, 0.22) 72%, rgba(225, 195, 255, 0.28) 82%, transparent 92%);
+  animation-duration: 20s;
 }
 
 .meter-face:after {
-  background: radial-gradient(ellipse at calc(35% + var(--mx) * 12%) calc(16% + var(--my) * 10%), rgba(163, 236, 255, 0.25), transparent 58%);
+  background: radial-gradient(ellipse at calc(35% + var(--mx) * 12%) calc(16% + var(--my) * 10%), rgba(185, 242, 255, 0.32), transparent 60%);
 }
 
+/* Pulsing Dynamic Atmospheric Halo Behind the Dial */
 .meter-halo {
-  background: radial-gradient(circle, transparent 50%, rgba(0, 242, 254, 0.12) 64%, transparent 74%);
-  box-shadow: -15px 0 110px rgba(0, 242, 254, 0.45), 18px 12px 110px rgba(138, 43, 226, 0.42), 0 20px 90px rgba(255, 0, 128, 0.25);
-  animation: prism-halo 8s ease-in-out infinite alternate;
+  background: radial-gradient(circle, transparent 48%, rgba(0, 242, 254, 0.18) 64%, transparent 76%);
+  box-shadow: 
+    -20px 0 130px rgba(0, 242, 254, 0.55), 
+    20px 14px 130px rgba(168, 85, 247, 0.52), 
+    0 25px 110px rgba(var(--active-aqi-rgb, 255, 71, 87), 0.45);
+  animation: prism-halo 7s ease-in-out infinite alternate;
 }
 
+/* Outer Concentric Orbits with Bright Satellite Jewels */
 .meter-orbit.orbit-one {
-  border-color: rgba(0, 242, 254, 0.35);
-  box-shadow: inset 0 0 24px rgba(0, 242, 254, 0.1);
+  border-color: rgba(0, 242, 254, 0.45);
+  box-shadow: inset 0 0 30px rgba(0, 242, 254, 0.18);
+  animation-duration: 22s;
 }
+
 .orbit-one:before {
+  width: 7px;
+  height: 7px;
+  background: #00f2fe;
+  box-shadow: 0 0 12px #00f2fe, 0 0 28px rgba(0, 242, 254, 0.95);
+}
+
+.orbit-one:after {
+  content: '';
+  position: absolute;
+  right: 14%;
+  bottom: 14%;
   width: 6px;
   height: 6px;
-  background: #00f2fe;
-  box-shadow: 0 0 10px #00f2fe, 0 0 24px rgba(0, 242, 254, 0.9);
+  border-radius: 50%;
+  background: #ff007f;
+  box-shadow: 0 0 14px #ff007f, 0 0 28px rgba(255, 0, 127, 0.95);
 }
 
 .meter-orbit.orbit-two {
   border: 0;
-  background: conic-gradient(from 30deg, transparent 0 15%, rgba(0, 245, 160, 0.45) 20%, transparent 27% 60%, rgba(187, 146, 255, 0.75) 66%, transparent 74%);
-  mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.5px));
-  animation-duration: 45s;
-  filter: drop-shadow(0 0 7px rgba(166, 138, 255, 0.6));
+  background: conic-gradient(from 30deg, transparent 0 15%, rgba(0, 245, 160, 0.55) 20%, transparent 27% 60%, rgba(200, 160, 255, 0.85) 66%, transparent 74%);
+  mask: radial-gradient(farthest-side, transparent calc(100% - 1.8px), #000 calc(100% - 1.8px));
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1.8px), #000 calc(100% - 1.8px));
+  animation-duration: 36s;
+  filter: drop-shadow(0 0 10px rgba(180, 150, 255, 0.75));
 }
 
+/* Luminous SVG Rings & Ticks */
 .arc {
-  stroke-width: 8;
-  filter: drop-shadow(0 0 6px rgba(165, 227, 109, 0.65));
+  stroke-width: 8.5;
+  filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.75)) drop-shadow(0 0 20px rgba(var(--active-aqi-rgb, 255, 71, 87), 0.55));
 }
+
 .arc-glow {
-  stroke-width: 14;
-  opacity: 0.85;
-  animation: prism-ring 5s ease-in-out infinite;
+  stroke-width: 16;
+  opacity: 0.92;
+  animation: prism-ring 4.5s ease-in-out infinite;
 }
+
 .arc-track {
   stroke: url(#ring);
-  stroke-opacity: 0.18;
-  stroke-width: 8;
-}
-.arc-point {
-  fill: #fff8db;
-  stroke: #7c5825;
-  filter: drop-shadow(0 0 6px #fff1bd) drop-shadow(0 0 18px rgba(255, 213, 106, 0.95));
+  stroke-opacity: 0.22;
+  stroke-width: 8.5;
 }
 
-#ticks line { stroke: rgba(157, 216, 242, 0.45); }
-#ticks line.major { stroke: rgba(198, 237, 252, 0.85); }
+.arc-point {
+  fill: #ffffff;
+  stroke: var(--active-aqi-color, #ff4757);
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 22px var(--active-aqi-color, #ff4757));
+}
+
+#ticks line { stroke: rgba(175, 230, 255, 0.55); stroke-width: 1.2; }
+#ticks line.major { stroke: rgba(220, 245, 255, 0.95); stroke-width: 1.8; filter: drop-shadow(0 0 4px rgba(0, 242, 254, 0.6)); }
 
 .aqi-value {
   color: #ffffff;
-  text-shadow: 0 0 35px rgba(0, 242, 254, 0.5), 0 4px 15px rgba(0, 0, 0, 0.8);
+  text-shadow: 
+    0 0 30px rgba(0, 242, 254, 0.65), 
+    0 0 60px rgba(var(--active-aqi-rgb, 255, 71, 87), 0.5), 
+    0 4px 18px rgba(0, 0, 0, 0.9);
   letter-spacing: -6px;
+  font-weight: 700;
 }
 
 .meter-label {
-  color: #a0ecff;
-  letter-spacing: 2.3px;
-  text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+  color: #aaeaff;
+  letter-spacing: 2.5px;
+  font-weight: 700;
+  text-shadow: 0 0 14px rgba(0, 242, 254, 0.6);
 }
 
 .status {
-  background: linear-gradient(115deg, rgba(237, 181, 55, 0.3), rgba(247, 152, 72, 0.2));
-  border-color: rgba(243, 201, 90, 0.85);
-  box-shadow: inset 0 1px rgba(255, 232, 164, 0.3), 0 0 28px rgba(255, 186, 59, 0.25);
-  color: #fff1c6;
-}
-.status i { animation: status-light 3s ease-in-out infinite; }
-
-/* Vibrant Range & Spectrum Glass Cards with Prismatic Edge-Orbit */
-.range, .spectrum {
-  border-color: rgba(157, 223, 255, 0.45);
-  background: 
-    radial-gradient(ellipse at var(--gx, 20%) var(--gy, 0%), rgba(0, 242, 254, 0.22), transparent 60%),
-    linear-gradient(115deg, rgba(16, 50, 78, 0.9), rgba(26, 36, 75, 0.85) 65%, rgba(48, 30, 75, 0.8));
+  background: linear-gradient(115deg, rgba(var(--status-rgb, 255, 71, 87), 0.28), rgba(168, 85, 247, 0.22));
+  border-color: var(--status-color, #ff4757);
   box-shadow: 
-    0 0 0 1px rgba(255, 255, 255, 0.15),
-    inset 0 1.5px rgba(195, 237, 255, 0.3),
-    0 24px 50px rgba(0, 14, 39, 0.7),
-    -10px 0 45px rgba(0, 242, 254, 0.18),
-    10px 0 45px rgba(172, 123, 255, 0.2);
+    inset 0 1px rgba(255, 255, 255, 0.35), 
+    0 0 32px rgba(var(--status-rgb, 255, 71, 87), 0.45);
+  color: #ffffff;
+  font-weight: 600;
+  backdrop-filter: blur(14px);
+}
+
+.status i { 
+  background: var(--status-color, #ff4757);
+  box-shadow: 0 0 12px var(--status-color, #ff4757), 0 0 22px var(--status-color, #ff4757);
+  animation: status-light 2.5s ease-in-out infinite; 
+}
+
+/* ==========================================================================
+   4. Today's AQI Range Card: Dual-Spectrum Emerald & Coral Neon
+   ========================================================================== */
+.range {
+  width: calc(100% - 10px);
+  max-width: 382px;
+  margin-top: 6px;
+  padding: 16px 16px 14px;
+  border-radius: 20px;
+  border-color: rgba(175, 230, 255, 0.5);
+  background: 
+    radial-gradient(ellipse at var(--gx, 20%) var(--gy, 0%), rgba(0, 242, 254, 0.26), transparent 60%),
+    linear-gradient(115deg, rgba(16, 52, 82, 0.92), rgba(28, 38, 80, 0.88) 65%, rgba(52, 32, 82, 0.85));
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    inset 0 1.5px rgba(215, 245, 255, 0.4),
+    0 28px 60px rgba(0, 14, 42, 0.75),
+    -12px 0 55px rgba(0, 242, 254, 0.25),
+    12px 0 55px rgba(172, 123, 255, 0.25);
   backface-visibility: hidden;
   transform: translate3d(0, 0, 0);
+  position: relative;
 }
 
-.range:after, .spectrum:after {
+.range:after {
   content: '';
   position: absolute;
   inset: 0;
@@ -198,234 +292,91 @@
   border-radius: inherit;
   background: conic-gradient(from var(--edge-angle), #00f2fe, #a855f7 25%, #ff007f 50%, #00f5a0 75%, #00f2fe);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
+  -webkit-mask-composite: xor;
   pointer-events: none;
   animation: border-orbit 10s linear infinite;
 }
 
-.spectrum:after {
-  animation-duration: 14s;
-  animation-delay: -5s;
-  opacity: 0.85;
+.range-title {
+  color: #c0e6ff;
+  letter-spacing: 2px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
-.range:hover, .spectrum:hover {
-  box-shadow: 
-    0 0 0 1px rgba(255, 255, 255, 0.25),
-    inset 0 1.5px rgba(211, 244, 255, 0.4),
-    0 32px 65px rgba(0, 14, 40, 0.85),
-    -12px 0 50px rgba(0, 242, 254, 0.3),
-    12px 0 50px rgba(172, 123, 255, 0.28);
-}
-
-/* Weather Card Vibrant Treatment */
-.weather {
-  border-left-color: transparent;
-  backface-visibility: hidden;
-  transform: translate3d(0, 0, 0);
-}
-.weather:before {
-  height: 100%;
-  top: 0;
-  background: linear-gradient(transparent, rgba(0, 242, 254, 0.65) 25%, rgba(141, 157, 255, 0.75) 65%, transparent);
-  box-shadow: 0 0 18px rgba(0, 242, 254, 0.4);
-}
-
-.weather-eyebrow { color: #b5d5ff; }
-.weather-eyebrow > span { color: #d0b8ff; }
-
-.weather-icon:before {
-  content: '';
-  position: absolute;
-  inset: -22px -18px -22px -28px;
-  border-radius: 50%;
-  background: radial-gradient(ellipse at 65% 25%, rgba(255, 214, 124, 0.35), transparent 55%),
-              radial-gradient(ellipse at 30% 75%, rgba(0, 242, 254, 0.3), transparent 60%);
-  filter: blur(14px);
-  animation: weather-aura 7s ease-in-out infinite alternate;
-  z-index: -2;
-}
-
-.sun-sphere {
-  background: radial-gradient(circle at 32% 24%, #fffbd2 0%, #ffe38f 38%, #ffbe42 65%, #f28b26 92%);
-  box-shadow: inset 0 1px 4px rgba(255, 251, 215, 0.9), inset 0 -3px 8px rgba(216, 140, 44, 0.6), 0 0 35px rgba(255, 203, 92, 0.8), 0 0 85px rgba(255, 184, 67, 0.45);
-  animation: golden-sun 7s ease-in-out infinite alternate;
-}
-
-.sun-rays {
-  opacity: 1;
-  background: repeating-conic-gradient(from 5deg, rgba(255, 229, 168, 0.85) 0 2deg, transparent 2deg 30deg);
-}
-
-.weather-cloud {
-  filter: drop-shadow(0 10px 14px rgba(2, 14, 39, 0.6)) drop-shadow(-4px 3px 15px rgba(0, 242, 254, 0.35));
-}
-
-.temperature > span {
-  background: linear-gradient(145deg, #ffffff 25%, #d8f7ff 58%, #60d5ff 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 18px rgba(0, 242, 254, 0.35));
-}
-
-.temperature button {
-  color: #7ee2ff;
-  text-shadow: 0 0 16px rgba(0, 242, 254, 0.4);
-}
-.condition {
-  color: #f2f7ff;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5);
-}
-
-.feels {
-  border-color: rgba(179, 164, 255, 0.55);
-  background: linear-gradient(115deg, rgba(62, 145, 199, 0.32), rgba(145, 105, 220, 0.28));
-  color: #bde0ff;
-  box-shadow: inset 0 1px rgba(217, 212, 255, 0.2), 0 6px 24px rgba(0, 13, 31, 0.4), 0 0 18px rgba(155, 81, 224, 0.25);
-}
-.feels svg { color: #d0b8ff; }
-.feels strong { color: #ffffff; font-weight: 800; }
-
-.weather-subtle > span:first-child { color: #62ebff; }
-.weather-subtle > span:last-child { color: #ccaeff; }
-
-.navlinks a.active {
-  background: linear-gradient(120deg, rgba(0, 242, 254, 0.35), rgba(138, 43, 226, 0.3));
-  border-color: rgba(0, 242, 254, 0.55);
-  box-shadow: inset 0 1px rgba(198, 248, 255, 0.35), 0 0 24px rgba(0, 242, 254, 0.25);
-  color: #ffffff;
-}
-
-.city {
-  border-color: rgba(0, 242, 254, 0.4);
-  background: linear-gradient(120deg, rgba(24, 63, 85, 0.85), rgba(52, 52, 91, 0.65));
-}
-.city-dot {
-  background: #00f5a0;
-  box-shadow: 0 0 14px rgba(0, 245, 160, 0.95);
-}
-
-.brand img {
-  filter: brightness(1.6) saturate(1.25) drop-shadow(0 0 22px rgba(0, 242, 254, 0.45));
-}
-
-.orbit-one { animation-duration: 24s; }
-.orbit-one:after {
-  content: '';
-  position: absolute;
-  right: 14%;
-  bottom: 14%;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: #ff007f;
-  box-shadow: 0 0 12px #ff007f, 0 0 22px rgba(255, 0, 127, 0.8);
-}
-.orbit-two { animation-duration: 38s; }
-
-.foot { color: #8cb0d4; }
-.footer-word { color: #00f2fe; text-shadow: 0 0 12px rgba(0, 242, 254, 0.5); }
-.footer-disclaimer { color: #7f9ec2; }
-
-@keyframes aurora-tide {
-  0% { translate: -2% -1%; scale: 1; opacity: 0.7; }
-  50% { opacity: 1; }
-  100% { translate: 3% 3%; scale: 1.08; opacity: 0.9; }
-}
-
-@keyframes prism-text {
-  to { background-position: 100% 50%; }
-}
-@keyframes prism-halo {
-  0% { opacity: 0.7; scale: 0.99; }
-  100% { opacity: 1; scale: 1.03; }
-}
-@keyframes prism-ring {
-  50% { opacity: 0.55; stroke-width: 12; }
-}
-@keyframes border-orbit {
-  to { --edge-angle: 360deg; }
-}
-@keyframes status-light {
-  50% { box-shadow: 0 0 16px rgba(255, 209, 109, 0.95); }
-}
-@keyframes weather-aura {
-  to { opacity: 0.75; scale: 1.12; }
-}
-@keyframes golden-sun {
-  to { box-shadow: inset 0 1px 4px rgba(255, 251, 215, 0.95), inset 0 -3px 8px rgba(216, 140, 44, 0.65), 0 0 42px rgba(255, 203, 92, 0.95), 0 0 95px rgba(255, 184, 67, 0.55); }
-}
-
-/* Range Card Colorful Styling */
-.range {
-  width: calc(100% - 10px);
-  max-width: 378px;
-  margin-top: 5px;
-  padding: 15px 15px 13px;
-  border-radius: 19px;
+.range-line {
+  background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.4), transparent);
 }
 
 .range-item {
-  --accent: #00f2fe;
-  --tint: rgba(0, 242, 254, 0.16);
-  --edge: rgba(0, 242, 254, 0.35);
+  --accent: #00f5a0;
+  --tint: rgba(0, 245, 160, 0.20);
+  --edge: rgba(0, 245, 160, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
   min-width: 0;
-  padding: 9px 6px;
+  padding: 10px 8px;
   border: 1px solid var(--edge);
-  border-radius: 11px;
-  background: linear-gradient(120deg, var(--tint), rgba(1, 12, 25, 0.4));
-  box-shadow: inset 0 1px rgba(255, 255, 255, 0.15);
+  border-radius: 13px;
+  background: linear-gradient(120deg, var(--tint), rgba(2, 14, 30, 0.6));
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 0 20px rgba(0, 245, 160, 0.15);
+}
+
+.range-low {
+  --accent: #00f5a0;
+  --tint: rgba(0, 245, 160, 0.20);
+  --edge: rgba(0, 245, 160, 0.45);
 }
 
 .range-high {
-  --accent: #ff9f43;
-  --tint: rgba(255, 159, 67, 0.16);
-  --edge: rgba(255, 159, 67, 0.35);
+  --accent: #ff4757;
+  --tint: rgba(255, 71, 87, 0.22);
+  --edge: rgba(255, 71, 87, 0.5);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 0 20px rgba(255, 71, 87, 0.18);
 }
 
 .range-item strong {
-  font-size: 30px;
+  font-size: 32px;
   line-height: 1;
-  letter-spacing: -1.1px;
-  font-weight: 700;
+  letter-spacing: -1.2px;
+  font-weight: 750;
   color: #ffffff;
-  text-shadow: 0 0 20px var(--accent);
+  text-shadow: 0 0 22px var(--accent);
 }
 
 .range-item small {
-  font-size: 8px;
+  font-size: 8.5px;
   line-height: 1.2;
-  letter-spacing: 1px;
-  font-weight: 700;
+  letter-spacing: 1.2px;
+  font-weight: 750;
   color: var(--accent);
   text-transform: uppercase;
-  text-shadow: 0 0 10px var(--accent);
+  text-shadow: 0 0 12px var(--accent);
 }
 
 .range-arrow {
   display: grid;
   place-items: center;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   flex: 0 0 auto;
   border: 1px solid var(--edge);
-  border-radius: 9px;
+  border-radius: 10px;
   background: var(--tint);
   color: var(--accent);
-  box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 4px 14px rgba(3, 19, 41, 0.5);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.25), 0 4px 16px rgba(3, 19, 41, 0.6);
 }
 
 .range-arrow svg {
-  width: 16px;
-  height: 16px;
-  stroke-width: 2.2;
-  filter: drop-shadow(0 0 6px var(--accent));
-  animation: range-arrow-drift 4s ease-in-out infinite;
+  width: 17px;
+  height: 17px;
+  stroke-width: 2.4;
+  filter: drop-shadow(0 0 8px var(--accent));
+  animation: range-arrow-drift 3.5s ease-in-out infinite;
 }
 
 .range-high .range-arrow svg {
@@ -433,59 +384,316 @@
   animation-delay: -1.5s;
 }
 
-@keyframes range-arrow-drift { 50% { translate: 0 2px; } }
+/* ==========================================================================
+   5. Weather Instrument: Atmospheric Golden Sun & Pearlescent Clouds
+   ========================================================================== */
+.weather {
+  border-left-color: transparent;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+}
 
-/* Hyper-Saturated Glowing Spectrum Bar */
+.weather:before {
+  height: 100%;
+  top: 0;
+  background: linear-gradient(transparent, rgba(0, 242, 254, 0.75) 25%, rgba(168, 85, 247, 0.8) 65%, transparent);
+  box-shadow: 0 0 22px rgba(0, 242, 254, 0.5);
+}
+
+.weather-eyebrow { 
+  color: #bce0ff; 
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
+}
+
+.weather-icon:before {
+  content: '';
+  position: absolute;
+  inset: -25px -20px -25px -32px;
+  border-radius: 50%;
+  background: 
+    radial-gradient(ellipse at 65% 25%, rgba(255, 214, 124, 0.45), transparent 55%),
+    radial-gradient(ellipse at 30% 75%, rgba(0, 242, 254, 0.4), transparent 60%);
+  filter: blur(16px);
+  animation: weather-aura 6.5s ease-in-out infinite alternate;
+  z-index: -2;
+}
+
+.sun-sphere {
+  background: radial-gradient(circle at 32% 24%, #fffde3 0%, #ffe999 36%, #ffb833 65%, #ff7a18 94%);
+  box-shadow: 
+    inset 0 1px 5px rgba(255, 255, 255, 0.95), 
+    inset 0 -4px 10px rgba(220, 110, 20, 0.75), 
+    0 0 45px rgba(255, 195, 70, 0.95), 
+    0 0 95px rgba(255, 140, 40, 0.6);
+  animation: golden-sun 6s ease-in-out infinite alternate;
+}
+
+.sun-rays {
+  opacity: 1;
+  background: repeating-conic-gradient(from 5deg, rgba(255, 235, 175, 0.9) 0 2.5deg, transparent 2.5deg 30deg);
+  animation-duration: 45s;
+}
+
+.cloud-back {
+  background: linear-gradient(140deg, #ffffff, #c9e2f5 65%, #6a95bd);
+  box-shadow: inset 0 3px 6px rgba(255, 255, 255, 0.8), 0 0 20px rgba(0, 242, 254, 0.25);
+}
+
+.cloud-front {
+  background: linear-gradient(145deg, #f0f8ff, #bedbf0 65%, #769ec4);
+  box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.7);
+}
+
+.cloud-base {
+  background: linear-gradient(170deg, #f3faff, #d4e8f7 40%, #95b8d6);
+  box-shadow: inset 0 -3px 6px rgba(100, 140, 180, 0.45), 0 12px 25px rgba(0, 14, 40, 0.35);
+}
+
+.temperature > span {
+  background: linear-gradient(145deg, #ffffff 20%, #d8f7ff 55%, #00f2fe 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 22px rgba(0, 242, 254, 0.45));
+  font-weight: 600;
+}
+
+.temperature button {
+  color: #7eeaff;
+  text-shadow: 0 0 20px rgba(0, 242, 254, 0.6);
+}
+
+.condition {
+  color: #ffffff;
+  font-weight: 600;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 242, 254, 0.3);
+}
+
+.feels {
+  border-color: rgba(188, 175, 255, 0.65);
+  background: linear-gradient(115deg, rgba(62, 145, 199, 0.4), rgba(155, 105, 230, 0.35));
+  color: #c8e6ff;
+  box-shadow: inset 0 1px rgba(230, 225, 255, 0.3), 0 8px 28px rgba(0, 13, 31, 0.5), 0 0 22px rgba(168, 85, 247, 0.35);
+}
+
+.feels svg { color: #dcb8ff; filter: drop-shadow(0 0 6px #dcb8ff); }
+.feels strong { color: #ffffff; font-weight: 800; text-shadow: 0 0 10px rgba(255, 255, 255, 0.6); }
+
+/* ==========================================================================
+   6. Hyper-Saturated Glowing Spectrum Bar (Full Rainbow Showcase)
+   ========================================================================== */
 .spectrum {
-  --band-gap: 6px;
-  --reading-color: #f2cd8c;
-  padding: 18px 24px 16px;
-  border-radius: 19px;
+  max-width: 880px;
+  margin: 44px auto 0;
+  padding: 22px 28px 20px;
+  border-radius: 20px;
+  border-color: rgba(175, 230, 255, 0.5);
+  background: 
+    radial-gradient(ellipse at 50% 0%, rgba(0, 242, 254, 0.22), transparent 65%),
+    linear-gradient(115deg, rgba(16, 48, 76, 0.92), rgba(26, 36, 75, 0.88) 65%, rgba(48, 30, 75, 0.84));
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.18),
+    inset 0 1.5px rgba(215, 245, 255, 0.35),
+    0 28px 60px rgba(0, 14, 40, 0.75),
+    0 0 60px rgba(0, 242, 254, 0.25);
+  position: relative;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.spectrum:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1.5px;
+  border-radius: inherit;
+  background: conic-gradient(from var(--edge-angle), #00f2fe, #a855f7 25%, #ff007f 50%, #00f5a0 75%, #00f2fe);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+  animation: border-orbit 14s linear infinite reverse;
 }
 
 .spectrum-head h2 {
-  color: #e5f5ff;
+  color: #ffffff;
   font-size: 11px;
   font-weight: 800;
-  letter-spacing: 1.4px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  text-shadow: 0 0 14px rgba(0, 242, 254, 0.4);
+  text-shadow: 0 0 16px rgba(0, 242, 254, 0.5);
 }
 
+.spectrum-head h2 > span {
+  color: #00f2fe;
+  font-size: 19px;
+  filter: drop-shadow(0 0 10px #00f2fe);
+}
+
+/* Vivid 6-Color Segmented Spectrum Track */
 .spectrum-color {
-  height: 8px;
+  height: 9px;
   border-radius: 999px;
-  box-shadow: 0 0 24px rgba(0, 245, 160, 0.35);
+  background: linear-gradient(90deg, 
+    #00f5a0 0% 16.66%, 
+    #ffd166 16.66% 33.33%, 
+    #ff9f43 33.33% 50%, 
+    #ff4757 50% 66.66%, 
+    #a55eea 66.66% 83.33%, 
+    #ff007f 83.33% 100%
+  );
+  box-shadow: 
+    0 0 20px rgba(0, 245, 160, 0.4),
+    0 0 35px rgba(255, 71, 87, 0.35),
+    0 0 45px rgba(165, 94, 234, 0.35);
+  position: relative;
 }
 
-.spectrum-pointer span {
-  background: linear-gradient(135deg, #00f2fe, #9b51e0);
-  color: #ffffff;
-  font-weight: 800;
-  box-shadow: 0 4px 16px rgba(0, 242, 254, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+.spectrum-color:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, transparent 0 calc(16.666% - 2.5px), #08172c calc(16.666% - 2.5px) 16.666%);
+  border-radius: inherit;
 }
+
+/* Diamond Cut Floating Pointer */
+.spectrum-pointer {
+  top: -6px;
+  filter: drop-shadow(0 4px 14px rgba(0, 242, 254, 0.65));
+}
+
 .spectrum-pointer i {
-  box-shadow: 0 0 12px #00f2fe;
-  background: #00f2fe;
+  width: 6px;
+  height: 18px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 2px solid #00f2fe;
+  box-shadow: 0 0 14px #00f2fe, 0 0 25px rgba(0, 242, 254, 0.9);
+}
+
+.spectrum-pointer > span {
+  top: -19px;
+  background: linear-gradient(135deg, #00f2fe, #a855f7);
+  color: #ffffff;
+  font-weight: 850;
+  font-size: 8px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  box-shadow: 0 4px 18px rgba(0, 242, 254, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.spectrum-labels > span {
+  color: #a4c4de;
+  font-weight: 600;
+  transition: color 0.3s;
 }
 
 .spectrum-labels span[aria-current="true"] {
   color: #ffffff;
-  font-weight: 800;
-  text-shadow: 0 0 16px rgba(0, 242, 254, 0.85);
+  font-weight: 850;
+  text-shadow: 0 0 18px rgba(0, 242, 254, 0.95);
 }
+
 .spectrum-labels span[aria-current="true"] small {
   color: #00f2fe;
-  font-weight: 800;
+  font-weight: 850;
+  text-shadow: 0 0 10px rgba(0, 242, 254, 0.8);
+}
+
+/* ==========================================================================
+   7. Navigation & Branded Details
+   ========================================================================== */
+.navlinks a.active {
+  background: linear-gradient(120deg, rgba(0, 242, 254, 0.4), rgba(168, 85, 247, 0.35));
+  border-color: rgba(0, 242, 254, 0.65);
+  box-shadow: inset 0 1px rgba(210, 250, 255, 0.45), 0 0 28px rgba(0, 242, 254, 0.35);
+  color: #ffffff;
+}
+
+.city {
+  border-color: rgba(0, 242, 254, 0.45);
+  background: linear-gradient(120deg, rgba(24, 68, 95, 0.9), rgba(56, 56, 100, 0.7));
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+}
+
+.city-dot {
+  background: #00f5a0;
+  box-shadow: 0 0 14px #00f5a0, 0 0 22px rgba(0, 245, 160, 0.95);
+  animation: beacon-pulse 2s ease-in-out infinite;
+}
+
+.brand img {
+  filter: brightness(1.7) saturate(1.35) drop-shadow(0 0 26px rgba(0, 242, 254, 0.55));
+}
+
+.foot { color: #9bbfe2; }
+.footer-word { color: #00f2fe; text-shadow: 0 0 14px rgba(0, 242, 254, 0.65); }
+.footer-disclaimer { color: #8ba9cb; }
+
+/* ==========================================================================
+   8. Animation Keyframes (Hardware GPU Optimized)
+   ========================================================================== */
+@keyframes aurora-tide {
+  0% { translate: -2% -1%; scale: 1; opacity: 0.75; }
+  50% { opacity: 1; }
+  100% { translate: 3% 3%; scale: 1.08; opacity: 0.95; }
+}
+
+@keyframes prism-text {
+  to { background-position: 100% 50%; }
+}
+
+@keyframes prism-halo {
+  0% { opacity: 0.75; scale: 0.99; }
+  100% { opacity: 1; scale: 1.04; }
+}
+
+@keyframes prism-ring {
+  50% { opacity: 0.65; stroke-width: 14; }
+}
+
+@keyframes border-orbit {
+  to { --edge-angle: 360deg; }
+}
+
+@keyframes status-light {
+  50% { box-shadow: 0 0 18px var(--status-color, #ff4757), 0 0 32px var(--status-color, #ff4757); }
+}
+
+@keyframes weather-aura {
+  to { opacity: 0.85; scale: 1.15; }
+}
+
+@keyframes golden-sun {
+  to { 
+    box-shadow: 
+      inset 0 1px 5px rgba(255, 255, 255, 0.98), 
+      inset 0 -4px 10px rgba(220, 110, 20, 0.8), 
+      0 0 55px rgba(255, 195, 70, 0.98), 
+      0 0 115px rgba(255, 140, 40, 0.7); 
+  }
+}
+
+@keyframes beacon-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.35); opacity: 0.75; }
+}
+
+@keyframes range-arrow-drift { 
+  50% { translate: 0 3px; } 
 }
 
 @media (max-width: 740px) {
   .scene:before {
-    filter: blur(20px);
+    filter: blur(22px);
     background: 
-      radial-gradient(ellipse at 5% 40%, rgba(0, 242, 254, 0.35), transparent 40%),
-      radial-gradient(ellipse at 95% 20%, rgba(138, 43, 226, 0.4), transparent 38%),
-      radial-gradient(ellipse at 50% 90%, rgba(255, 0, 127, 0.3), transparent 38%);
+      radial-gradient(ellipse at 5% 40%, rgba(0, 242, 254, 0.45), transparent 42%),
+      radial-gradient(ellipse at 95% 20%, rgba(168, 85, 247, 0.48), transparent 40%),
+      radial-gradient(ellipse at 50% 90%, rgba(255, 0, 127, 0.38), transparent 40%);
   }
 }
