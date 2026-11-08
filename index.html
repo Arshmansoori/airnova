@@ -7,7 +7,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600;650;700;750;800;850;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="atmosphere.css"><link rel="stylesheet" href="theme.css"><script src="app.js" defer></script><script src="atmosphere.js" defer></script>
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="atmosphere.css"><link rel="stylesheet" href="vivid.css"><script src="app.js" defer></script><script src="atmosphere.js" defer></script>
 </head>
 <body>
   <div class="scene" aria-hidden="true"><div class="landscape"></div><div class="sky-glow"></div><div class="sunlight"></div><div class="light-rays"></div><div class="horizon-glow"></div><div class="fog-bank fog-distant"></div><div class="mist mist-one"></div><div class="fog-bank fog-near"></div><div class="mist mist-two"></div><canvas id="world"></canvas><div class="scene-shade"></div><div class="grain"></div></div>
@@ -33,115 +33,56 @@
         <a href="/prediction/">Forecast</a>
       </nav>
       <div class="header-actions">
+        <button class="city" id="city-button" aria-haspopup="dialog"><svg><use href="#pin"/></svg><span id="city-label">Delhi NCR</span><span class="city-dot"></span><svg class="chevron"><use href="#chevron"/></svg></button>
         <div class="theme-switcher" role="radiogroup" aria-label="Theme mode">
-          <button type="button" class="theme-btn active" data-theme-btn="dark" title="Dark Glass Mode" aria-label="Dark mode"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg><span>Dark</span></button>
+          <button type="button" class="theme-btn active" data-theme-btn="dark" title="Dark Mode" aria-label="Dark mode"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg><span>Dark</span></button>
           <button type="button" class="theme-btn" data-theme-btn="light" title="White Light Mode" aria-label="White light mode"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg><span>Light</span></button>
         </div>
-        <button class="city" id="city-button" aria-haspopup="dialog"><svg><use href="#pin"/></svg><span id="city-label">Delhi NCR</span><span class="city-dot"></span><svg class="chevron"><use href="#chevron"/></svg></button>
+        <a href="https://airnova.space/admin" class="login-btn" id="login-button" aria-label="Sign in" title="Account / Sign In">
+          <div class="login-avatar-ring">
+            <svg class="login-icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span class="login-pulse-dot" aria-hidden="true"></span>
+          </div>
+          <span class="login-label">Sign In</span>
+        </a>
       </div>
     </header>
     <main id="home">
       <div class="hero">
-        <section class="intro entrance">
-          <div class="eyebrow"><span></span>REAL-TIME ATMOSPHERIC INTELLIGENCE</div>
-          <h1>Breathe <em class="shimmer-text">Better.</em><br>Live <em class="shimmer-text">Healthier.</em></h1>
-          <p>Know the air around you. Beautifully simple air quality and weather intelligence.</p>
-        </section>
-
-        <!-- Meter Area -->
+        <section class="intro entrance"><div class="eyebrow"><span></span>REAL-TIME ATMOSPHERIC INTELLIGENCE</div><h1>Breathe <em>Better.</em><br>Live <em>Healthier.</em></h1></section>
         <section class="meter-area entrance" id="aqi" aria-label="Air quality index">
-          <div class="meter">
-            <div class="meter-orbit orbit-one"></div>
-            <div class="meter-orbit orbit-two"></div>
-            <div class="meter-halo"></div>
-            <div class="meter-face"></div>
-            <svg class="meter-svg" viewBox="0 0 400 400" aria-hidden="true">
-              <defs>
-                <linearGradient id="ring" x1="0" y1="1" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#00f5a0"/>
-                  <stop offset="25%" stop-color="#00f2fe"/>
-                  <stop offset="50%" stop-color="#ffd166"/>
-                  <stop offset="75%" stop-color="#ff4757"/>
-                  <stop offset="100%" stop-color="#a55eea"/>
-                </linearGradient>
-                <filter id="glow"><feGaussianBlur stdDeviation="6"/></filter>
-              </defs>
-              <g id="ticks"></g>
-              <path class="arc-track" d="M80 300 A156 156 0 1 1 320 300"/>
-              <path class="arc-glow" d="M80 300 A156 156 0 1 1 320 300"/>
-              <path class="arc" d="M80 300 A156 156 0 1 1 320 300"/>
-              <circle class="arc-point" id="arc-point" r="6" cx="320" cy="100"/>
-            </svg>
-            <div class="meter-content">
-              <span class="meter-label">AIR QUALITY INDEX</span>
-              <strong class="aqi-value" id="aqi-value">162</strong>
-              <span class="status" id="aqi-status"><i></i> Unhealthy</span>
-            </div>
+          <div class="meter"><div class="meter-orbit orbit-one"></div><div class="meter-orbit orbit-two"></div><div class="meter-halo"></div><div class="meter-face"></div>
+            <svg class="meter-svg" viewBox="0 0 400 400" aria-hidden="true"><defs><linearGradient id="ring" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#00f5a0"/><stop offset="25%" stop-color="#00f2fe"/><stop offset="50%" stop-color="#ffd166"/><stop offset="75%" stop-color="#ff4757"/><stop offset="100%" stop-color="#a55eea"/></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="6"/></filter></defs><g id="ticks"></g><path class="arc-track" d="M80 300 A156 156 0 1 1 320 300"/><path class="arc-glow" d="M80 300 A156 156 0 1 1 320 300"/><path class="arc" d="M80 300 A156 156 0 1 1 320 300"/><circle class="arc-point" id="arc-point" r="6" cx="320" cy="100"/></svg>
+            <div class="meter-content"><span class="meter-label">AIR QUALITY INDEX</span><strong class="aqi-value" id="aqi-value">162</strong><span class="status" id="aqi-status"><i></i> Unhealthy</span></div>
             <span class="meter-start">0</span><span class="meter-end">500</span>
           </div>
-
           <section class="range" aria-labelledby="range-heading">
             <div class="range-title"><span class="range-line" aria-hidden="true"></span><h2 id="range-heading">Today’s AQI range</h2><span class="range-line" aria-hidden="true"></span></div>
             <div class="range-row">
               <div class="range-item range-low"><span class="range-arrow down" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v15m-6-6 6 6 6-6"/></svg></span><div><strong id="aqi-low">94</strong><small>Low</small></div></div>
-              <div class="range-sep"></div>
               <div class="range-item range-high"><span class="range-arrow up" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20V5m-6 6 6-6 6 6"/></svg></span><div><strong id="aqi-high">182</strong><small>High</small></div></div>
             </div>
           </section>
         </section>
-
-        <!-- Weather Area (Elevated Higher) -->
-        <section class="weather entrance" id="weather" aria-label="Current weather">
-          <div class="weather-eyebrow"><span>●</span> WEATHER INTELLIGENCE</div>
-          <div class="weather-icon" aria-hidden="true">
-            <div class="sun-wrap">
-              <div class="sun-glow"></div>
-              <div class="sun-rays"></div>
-              <div class="sun-core"></div>
-            </div>
-            <div class="cloud-wrap">
-              <div class="cloud-base"></div>
-              <div class="cloud-puff puff-back"></div>
-              <div class="cloud-puff puff-main"></div>
-              <div class="cloud-puff puff-left"></div>
-              <div class="cloud-puff puff-right"></div>
-            </div>
-          </div>
-          <div class="temperature">
-            <span id="temperature">28</span>
-            <button id="unit-button" aria-label="Switch temperature to Fahrenheit">°<small>C</small></button>
-          </div>
-          <div class="condition" id="condition">Partly Cloudy</div>
-          <div class="feels">
-            <svg><use href="#thermometer"/></svg>
-            Feels like <strong id="feels">31°C</strong>
-          </div>
-        </section>
+        <section class="weather entrance" id="weather" aria-label="Current weather"><div class="weather-icon" aria-hidden="true"><div class="sun-rays"></div><div class="sun-sphere"></div><div class="cloud-back"></div><div class="cloud-front"></div><div class="cloud-base"></div></div><div class="temperature"><span id="temperature">28</span><button id="unit-button" aria-label="Switch temperature to Fahrenheit">°<small>C</small></button></div><div class="condition" id="condition">Partly Cloudy</div><div class="feels"><svg><use href="#thermometer"/></svg>Feels like <strong id="feels">31°C</strong></div></section>
       </div>
-
-      <!-- Premium Air Quality Spectrum Reference -->
       <section class="spectrum entrance" aria-labelledby="spectrum-heading">
-        <div class="spectrum-head">
-          <h2 id="spectrum-heading"><span class="spectrum-star" aria-hidden="true">✧</span> AIR QUALITY SPECTRUM</h2>
-          <div class="spectrum-badge" id="spectrum-badge">
-            <span class="spec-dot"></span>
-            <span id="spec-status-text">Unhealthy · 162 AQI</span>
-          </div>
-        </div>
+        <div class="spectrum-head"><h2 id="spectrum-heading"><span aria-hidden="true">✧</span> Air quality spectrum</h2></div>
         <div class="spectrum-track" aria-hidden="true">
           <div class="spectrum-color"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          <div class="spectrum-pointer" id="spectrum-pointer"><span id="spectrum-val">162</span><i></i></div>
+          <div class="spectrum-pointer" id="spectrum-pointer"><span>162</span><i></i></div>
         </div>
         <div class="spectrum-labels">
-          <span data-band="0">Good<small>0–50</small></span>
-          <span data-band="1">Moderate<small>51–100</small></span>
-          <span data-band="2">Sensitive groups<small>101–150</small></span>
-          <span data-band="3" aria-current="true">Unhealthy<small>151–200</small></span>
-          <span data-band="4">Very unhealthy<small>201–300</small></span>
-          <span data-band="5">Hazardous<small>301–500</small></span>
+          <span>Good<small>0–50</small></span>
+          <span>Moderate<small>51–100</small></span>
+          <span>Sensitive groups<small>101–150</small></span>
+          <span aria-current="true">Unhealthy<small>151–200</small></span>
+          <span>Very unhealthy<small>201–300</small></span>
+          <span>Hazardous<small>301–500</small></span>
         </div>
       </section>
     </main>
+    <footer class="foot entrance"><span class="footer-word">AIRNOVA</span><i></i><span>Designed for clarity.</span><span class="footer-disclaimer">Displayed readings are illustrative, not live measurements.</span><button id="motion-button" aria-label="Pause background animations" title="Pause animations"><span class="pause-icon">Ⅱ</span></button></footer>
   </div>
   <dialog id="city-dialog"><div class="dialog-heading"><div><span>YOUR CORNER OF THE WORLD</span><h2>Find your air.</h2></div><button id="close-dialog" aria-label="Close search"><svg><use href="#close"/></svg></button></div><div class="search"><svg><use href="#search"/></svg><input id="city-search" placeholder="Search sample cities…" aria-label="Search sample cities" autocomplete="off"></div><div id="city-results"></div><p>Illustrative air quality and weather snapshots.</p></dialog>
   <template id="aqi-view">

@@ -1,0 +1,2201 @@
+/* Prismatic & Vivid Atmospheric Suite — Ultra-Vibrant Luxury Aesthetics & Zero-Lag GPU Compositing */
+@property --edge-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+
+:root {
+  --active-aqi-color: #ff4757;
+  --active-aqi-rgb: 255, 71, 87;
+}
+
+/* Smooth visual transitions across theme modes */
+body, .scene, .meter-face, .range, .spectrum, .weather, .navlinks, .city, .theme-switcher, .theme-btn, .range-item, .feels, .status, .detail-panel, .detail-city {
+  transition: background 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              color 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   1. Multi-Chromatic Aurora Borealis & Cosmic Atmospheric Curtain
+   ========================================================================== */
+.scene:before, .scene:after {
+  content: '';
+  position: absolute;
+  inset: -25%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  z-index: 2;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Primary Chromatic Aurora: Rich Electric Cyan, Neon Violet, Hot Magenta, Emerald Mint & Solar Gold */
+.scene:before {
+  background: 
+    radial-gradient(ellipse at 15% 38%, rgba(0, 242, 254, 0.75) 0%, transparent 45%),
+    radial-gradient(ellipse at 85% 18%, rgba(168, 85, 247, 0.78) 0%, transparent 48%),
+    radial-gradient(ellipse at 50% 82%, rgba(255, 0, 127, 0.62) 0%, transparent 48%),
+    radial-gradient(ellipse at 78% 75%, rgba(0, 245, 160, 0.58) 0%, transparent 45%),
+    radial-gradient(ellipse at 30% 14%, rgba(255, 179, 0, 0.52) 0%, transparent 42%),
+    radial-gradient(circle at 50% 45%, rgba(0, 242, 254, 0.38) 0%, transparent 58%);
+  filter: blur(38px);
+  animation: aurora-tide 16s ease-in-out infinite alternate;
+}
+
+/* Secondary Chromatic Drift: Sunset Amber, Radiant Lavender, Mint Aurora & Coral Flame */
+.scene:after {
+  background: 
+    radial-gradient(ellipse at 10% 88%, rgba(0, 245, 160, 0.65) 0%, transparent 46%),
+    radial-gradient(ellipse at 90% 10%, rgba(255, 120, 60, 0.68) 0%, transparent 48%),
+    radial-gradient(ellipse at 46% 15%, rgba(168, 85, 247, 0.58) 0%, transparent 50%),
+    radial-gradient(ellipse at 65% 50%, rgba(0, 242, 254, 0.52) 0%, transparent 50%),
+    radial-gradient(circle at 35% 65%, rgba(255, 0, 127, 0.48) 0%, transparent 45%);
+  filter: blur(42px);
+  animation: aurora-tide 22s -9s ease-in-out infinite alternate-reverse;
+}
+
+/* Default & Vivid Mode: Pure Chromatic Color Shades without Mountain Wallpaper */
+.landscape {
+  opacity: 0 !important;
+  visibility: hidden;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s;
+}
+
+.scene {
+  background: radial-gradient(circle at 50% 25%, #0d2847 0%, #081a33 45%, #030d1d 95%) !important;
+}
+
+.scene-shade {
+  background: 
+    linear-gradient(90deg, rgba(2, 9, 22, 0.32), transparent 48%, rgba(4, 11, 28, 0.25)),
+    linear-gradient(0deg, rgba(2, 8, 20, 0.55), transparent 55%, rgba(3, 10, 25, 0.25));
+}
+
+.sky-glow {
+  background: radial-gradient(ellipse, rgba(255, 215, 175, 0.65), rgba(192, 148, 255, 0.45) 38%, transparent 70%);
+}
+
+.sunlight {
+  background: radial-gradient(ellipse at 42% 37%, rgba(255, 214, 138, 0.62) 0%, rgba(255, 192, 152, 0.36) 21%, rgba(204, 182, 255, 0.20) 44%, transparent 68%);
+}
+
+.fog-distant {
+  filter: blur(3px) drop-shadow(0 0 25px rgba(0, 242, 254, 0.35));
+}
+
+.fog-near {
+  filter: blur(6px) drop-shadow(0 0 30px rgba(168, 85, 247, 0.32));
+}
+
+/* ==========================================================================
+   2. Hero Section: Prismatic Shimmering Liquid Typography & High-Tech Badge
+   ========================================================================== */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 8.5px;
+  letter-spacing: 2.8px;
+  font-weight: 750;
+  color: #7eeaff;
+  margin-bottom: 22px;
+  padding: 6px 14px 6px 10px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.15), rgba(168, 85, 247, 0.15));
+  border: 1px solid rgba(0, 242, 254, 0.35);
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.25), inset 0 1px rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  text-transform: uppercase;
+}
+
+.eyebrow > span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00f5a0;
+  box-shadow: 0 0 10px #00f5a0, 0 0 18px rgba(0, 245, 160, 0.9);
+  animation: beacon-pulse 2s ease-in-out infinite;
+}
+
+.intro h1 {
+  color: #ffffff;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 242, 254, 0.2);
+}
+
+/* Ultra-Vibrant Multi-Chromatic Liquid Gradient on "Better." and "Healthier." */
+.intro h1 em {
+  background-image: linear-gradient(110deg, #00f2fe 0%, #4facfe 16%, #a855f7 34%, #ff007f 52%, #ff9f43 70%, #00f5a0 86%, #00f2fe 100%);
+  background-size: 260% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 26px rgba(0, 242, 254, 0.45)) drop-shadow(0 0 45px rgba(168, 85, 247, 0.3));
+  animation: prism-text 9s ease-in-out infinite alternate;
+}
+
+.intro p { 
+  color: #c9e0f7;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================================================
+   3. The 3D Masterpiece: Chromatic Sapphire Chronometer AQI Meter
+   ========================================================================== */
+.meter-face {
+  background: 
+    radial-gradient(ellipse at calc(30% + var(--mx) * 20%) calc(25% + var(--my) * 20%), rgba(0, 242, 254, 0.36) 0%, transparent 58%),
+    radial-gradient(ellipse at 85% 85%, rgba(168, 85, 247, 0.32), transparent 58%),
+    radial-gradient(circle at 50% 90%, rgba(var(--active-aqi-rgb, 255, 71, 87), 0.25), transparent 50%),
+    linear-gradient(145deg, #0d2f4afa, #05182ff8);
+  border: 1.5px solid rgba(175, 230, 255, 0.6);
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.25),
+    0 0 0 5px rgba(5, 17, 34, 0.95),
+    0 0 0 7px rgba(0, 242, 254, 0.45),
+    inset 2px 2px 4px rgba(220, 248, 255, 0.55),
+    inset -2px -2px 8px rgba(168, 85, 247, 0.45),
+    inset 0 -24px 50px rgba(0, 16, 38, 0.98),
+    0 35px 80px rgba(0, 10, 28, 0.9),
+    -18px 0 80px rgba(0, 242, 254, 0.35),
+    18px 12px 80px rgba(168, 85, 247, 0.35),
+    0 20px 80px rgba(var(--active-aqi-rgb, 255, 71, 87), 0.35);
+}
+
+.meter-face:before {
+  background: conic-gradient(from 0deg, transparent 0 62%, rgba(0, 242, 254, 0.22) 72%, rgba(225, 195, 255, 0.28) 82%, transparent 92%);
+  animation-duration: 20s;
+}
+
+.meter-face:after {
+  background: radial-gradient(ellipse at calc(35% + var(--mx) * 12%) calc(16% + var(--my) * 10%), rgba(185, 242, 255, 0.32), transparent 60%);
+}
+
+/* Pulsing Dynamic Atmospheric Halo Behind the Dial */
+.meter-halo {
+  background: radial-gradient(circle, transparent 48%, rgba(0, 242, 254, 0.18) 64%, transparent 76%);
+  box-shadow: 
+    -20px 0 130px rgba(0, 242, 254, 0.55), 
+    20px 14px 130px rgba(168, 85, 247, 0.52), 
+    0 25px 110px rgba(var(--active-aqi-rgb, 255, 71, 87), 0.45);
+  animation: prism-halo 7s ease-in-out infinite alternate;
+}
+
+/* Outer Concentric Orbits with Bright Satellite Jewels */
+.meter-orbit.orbit-one {
+  border-color: rgba(0, 242, 254, 0.45);
+  box-shadow: inset 0 0 30px rgba(0, 242, 254, 0.18);
+  animation-duration: 22s;
+}
+
+.orbit-one:before {
+  width: 7px;
+  height: 7px;
+  background: #00f2fe;
+  box-shadow: 0 0 12px #00f2fe, 0 0 28px rgba(0, 242, 254, 0.95);
+}
+
+.orbit-one:after {
+  content: '';
+  position: absolute;
+  right: 14%;
+  bottom: 14%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff007f;
+  box-shadow: 0 0 14px #ff007f, 0 0 28px rgba(255, 0, 127, 0.95);
+}
+
+.meter-orbit.orbit-two {
+  border: 0;
+  background: conic-gradient(from 30deg, transparent 0 15%, rgba(0, 245, 160, 0.55) 20%, transparent 27% 60%, rgba(200, 160, 255, 0.85) 66%, transparent 74%);
+  mask: radial-gradient(farthest-side, transparent calc(100% - 1.8px), #000 calc(100% - 1.8px));
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1.8px), #000 calc(100% - 1.8px));
+  animation-duration: 36s;
+  filter: drop-shadow(0 0 10px rgba(180, 150, 255, 0.75));
+}
+
+/* Luminous SVG Rings & Ticks */
+.arc {
+  stroke-width: 8.5;
+  filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.75)) drop-shadow(0 0 20px rgba(var(--active-aqi-rgb, 255, 71, 87), 0.55));
+}
+
+.arc-glow {
+  stroke-width: 16;
+  opacity: 0.92;
+  animation: prism-ring 4.5s ease-in-out infinite;
+}
+
+.arc-track {
+  stroke: url(#ring);
+  stroke-opacity: 0.22;
+  stroke-width: 8.5;
+}
+
+.arc-point {
+  fill: #ffffff;
+  stroke: var(--active-aqi-color, #ff4757);
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 22px var(--active-aqi-color, #ff4757));
+}
+
+#ticks line { stroke: rgba(175, 230, 255, 0.55); stroke-width: 1.2; }
+#ticks line.major { stroke: rgba(220, 245, 255, 0.95); stroke-width: 1.8; filter: drop-shadow(0 0 4px rgba(0, 242, 254, 0.6)); }
+
+.aqi-value {
+  color: #ffffff;
+  text-shadow: 
+    0 0 30px rgba(0, 242, 254, 0.65), 
+    0 0 60px rgba(var(--active-aqi-rgb, 255, 71, 87), 0.5), 
+    0 4px 18px rgba(0, 0, 0, 0.9);
+  letter-spacing: -6px;
+  font-weight: 750;
+}
+
+.meter-label {
+  color: #aaeaff;
+  letter-spacing: 2.5px;
+  font-weight: 750;
+  text-shadow: 0 0 14px rgba(0, 242, 254, 0.6);
+}
+
+.meter-start, .meter-end {
+  color: #8bb5d6;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+}
+
+.status {
+  background: linear-gradient(115deg, rgba(var(--status-rgb, 255, 71, 87), 0.28), rgba(168, 85, 247, 0.22));
+  border-color: var(--status-color, #ff4757);
+  box-shadow: 
+    inset 0 1px rgba(255, 255, 255, 0.35), 
+    0 0 32px rgba(var(--status-rgb, 255, 71, 87), 0.45);
+  color: #ffffff;
+  font-weight: 700;
+  backdrop-filter: blur(14px);
+}
+
+.status i { 
+  background: var(--status-color, #ff4757);
+  box-shadow: 0 0 12px var(--status-color, #ff4757), 0 0 22px var(--status-color, #ff4757);
+  animation: status-light 2.5s ease-in-out infinite; 
+}
+
+/* ==========================================================================
+   4. Today's AQI Range Card: Dual-Spectrum Emerald & Coral Neon
+   ========================================================================== */
+.range {
+  width: calc(100% - 10px);
+  max-width: 382px;
+  margin-top: 6px;
+  padding: 16px 16px 14px;
+  border-radius: 20px;
+  border-color: rgba(175, 230, 255, 0.5);
+  background: 
+    radial-gradient(ellipse at var(--gx, 20%) var(--gy, 0%), rgba(0, 242, 254, 0.26), transparent 60%),
+    linear-gradient(115deg, rgba(16, 52, 82, 0.92), rgba(28, 38, 80, 0.88) 65%, rgba(52, 32, 82, 0.85));
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    inset 0 1.5px rgba(215, 245, 255, 0.4),
+    0 28px 60px rgba(0, 14, 42, 0.75),
+    -12px 0 55px rgba(0, 242, 254, 0.25),
+    12px 0 55px rgba(172, 123, 255, 0.25);
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  position: relative;
+}
+
+.range:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1.5px;
+  border-radius: inherit;
+  background: conic-gradient(from var(--edge-angle), #00f2fe, #a855f7 25%, #ff007f 50%, #00f5a0 75%, #00f2fe);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+  animation: border-orbit 10s linear infinite;
+}
+
+.range-title {
+  color: #c0e6ff;
+  letter-spacing: 2px;
+  font-weight: 750;
+  text-transform: uppercase;
+}
+
+.range-line {
+  background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.4), transparent);
+}
+
+.range-item {
+  --accent: #00f5a0;
+  --tint: rgba(0, 245, 160, 0.20);
+  --edge: rgba(0, 245, 160, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 10px 8px;
+  border: 1px solid var(--edge);
+  border-radius: 13px;
+  background: linear-gradient(120deg, var(--tint), rgba(2, 14, 30, 0.6));
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 0 20px rgba(0, 245, 160, 0.15);
+}
+
+.range-low {
+  --accent: #00f5a0;
+  --tint: rgba(0, 245, 160, 0.20);
+  --edge: rgba(0, 245, 160, 0.45);
+}
+
+.range-high {
+  --accent: #ff4757;
+  --tint: rgba(255, 71, 87, 0.22);
+  --edge: rgba(255, 71, 87, 0.5);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 0 20px rgba(255, 71, 87, 0.18);
+}
+
+.range-item strong {
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: -1.2px;
+  font-weight: 750;
+  color: #ffffff;
+  text-shadow: 0 0 22px var(--accent);
+}
+
+.range-item small {
+  font-size: 8.5px;
+  line-height: 1.2;
+  letter-spacing: 1.2px;
+  font-weight: 750;
+  color: var(--accent);
+  text-transform: uppercase;
+  text-shadow: 0 0 12px var(--accent);
+}
+
+.range-arrow {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  border: 1px solid var(--edge);
+  border-radius: 10px;
+  background: var(--tint);
+  color: var(--accent);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.25), 0 4px 16px rgba(3, 19, 41, 0.6);
+}
+
+.range-arrow svg {
+  width: 17px;
+  height: 17px;
+  stroke-width: 2.4;
+  filter: drop-shadow(0 0 8px var(--accent));
+  animation: range-arrow-drift 3.5s ease-in-out infinite;
+}
+
+.range-high .range-arrow svg {
+  animation-direction: reverse;
+  animation-delay: -1.5s;
+}
+
+/* ==========================================================================
+   5. Weather Instrument: Atmospheric Golden Sun & Pearlescent Clouds
+   ========================================================================== */
+.weather {
+  position: relative;
+  border-left-color: transparent;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.weather:before {
+  height: 100%;
+  top: 0;
+  background: linear-gradient(transparent, rgba(0, 242, 254, 0.75) 25%, rgba(168, 85, 247, 0.8) 65%, transparent);
+  box-shadow: 0 0 22px rgba(0, 242, 254, 0.5);
+}
+
+.weather-eyebrow { 
+  color: #bce0ff; 
+  font-weight: 750;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
+}
+
+/* Sun aur Cloud widget: extreme right aur halka sa upar */
+.weather-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 145px;
+  height: 120px;
+  margin: 0;
+  animation: cloud-hover 3.8s ease-in-out infinite alternate;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.weather-icon:before {
+  content: '';
+  position: absolute;
+  inset: -25px -20px -25px -32px;
+  border-radius: 50%;
+  background: 
+    radial-gradient(ellipse at 65% 25%, rgba(255, 230, 110, 0.65), transparent 55%),
+    radial-gradient(ellipse at 30% 75%, rgba(0, 242, 254, 0.4), transparent 60%);
+  filter: blur(18px);
+  animation: weather-aura 6.5s ease-in-out infinite alternate;
+  z-index: -2;
+}
+
+/* Sun Brightness: Radiant white/solar gold & multi-layer bloom */
+.sun-sphere {
+  background: radial-gradient(circle at 32% 24%, #ffffff 0%, #ffffd0 18%, #ffe817 40%, #ffa600 75%, #ff4800 100%);
+  box-shadow: 
+    inset 2px 3px 6px #ffffff, 
+    inset -3px -4px 10px rgba(230, 60, 0, 0.8), 
+    0 0 35px #ffe600, 
+    0 0 75px #ff9e00,
+    0 0 120px rgba(255, 140, 0, 0.9),
+    0 0 170px rgba(255, 90, 0, 0.6);
+  animation: sun-pulse 3.4s ease-in-out infinite alternate, sun-shimmer 3.8s ease-in-out infinite alternate;
+}
+
+/* Sun Rays: continuous 12s smooth rotation */
+.sun-rays {
+  opacity: 1;
+  background: repeating-conic-gradient(from 5deg, rgba(255, 255, 230, 1) 0 3.5deg, transparent 3.5deg 30deg);
+  animation: rotate 12s linear infinite;
+}
+
+/* Cloud Brightness: pure white top highlight, pearlescent body */
+.cloud-back {
+  background: linear-gradient(140deg, #ffffff 25%, #ebf5fc 55%, #badcf5 90%);
+  box-shadow: inset 0 3px 6px #ffffff, 0 0 18px rgba(255, 255, 255, 0.5);
+}
+
+.cloud-front {
+  background: linear-gradient(145deg, #ffffff 15%, #f7fbff 40%, #d4e8f9 76%, #a3c7e8 100%);
+  box-shadow: inset 2px 3px 5px #ffffff, inset -2px -2px 5px rgba(70, 115, 160, 0.3), 0 0 14px rgba(255, 255, 255, 0.4);
+  animation: puff-float 3.2s ease-in-out infinite alternate;
+}
+
+.cloud-base {
+  background: linear-gradient(180deg, #ffffff 0%, #f7fbff 30%, #d4e7f8 68%, #a7cbe8 100%);
+  box-shadow: inset 0 3px 5px #ffffff, inset 0 -3px 6px rgba(70, 115, 160, 0.35), 0 0 16px rgba(255, 255, 255, 0.45), 0 12px 25px rgba(0, 14, 40, 0.35);
+}
+
+/* Temperature: left me halka sa upar */
+.temperature {
+  margin-top: -8px;
+}
+
+.temperature > span {
+  background: linear-gradient(145deg, #ffffff 20%, #d8f7ff 55%, #00f2fe 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 22px rgba(0, 242, 254, 0.45));
+  font-weight: 650;
+}
+
+@keyframes sun-pulse {
+  0% { transform: scale(0.95); filter: drop-shadow(0 0 30px #ffe600); }
+  50% { transform: scale(1.05); filter: drop-shadow(0 0 60px #ff9e00); }
+  100% { transform: scale(0.95); filter: drop-shadow(0 0 30px #ffe600); }
+}
+
+@keyframes sun-shimmer {
+  0% { filter: brightness(1.05); }
+  50% { filter: brightness(1.35); }
+  100% { filter: brightness(1.05); }
+}
+
+@keyframes cloud-hover {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(1.2deg); }
+  100% { transform: translateY(2px) rotate(-0.6deg); }
+}
+
+@keyframes puff-float {
+  0% { transform: scale(1) translateY(0); }
+  100% { transform: scale(1.04) translateY(-2px); }
+}
+
+.temperature button {
+  color: #7eeaff;
+  text-shadow: 0 0 20px rgba(0, 242, 254, 0.6);
+  font-weight: 700;
+}
+
+.condition {
+  color: #ffffff;
+  font-weight: 650;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 242, 254, 0.3);
+}
+
+.feels {
+  border-color: rgba(188, 175, 255, 0.65);
+  background: linear-gradient(115deg, rgba(62, 145, 199, 0.4), rgba(155, 105, 230, 0.35));
+  color: #c8e6ff;
+  box-shadow: inset 0 1px rgba(230, 225, 255, 0.3), 0 8px 28px rgba(0, 13, 31, 0.5), 0 0 22px rgba(168, 85, 247, 0.35);
+}
+
+.feels svg { color: #dcb8ff; filter: drop-shadow(0 0 6px #dcb8ff); }
+.feels strong { color: #ffffff; font-weight: 800; text-shadow: 0 0 10px rgba(255, 255, 255, 0.6); }
+
+/* ==========================================================================
+   6. Hyper-Saturated Glowing Spectrum Bar (Full Rainbow Showcase)
+   ========================================================================== */
+.spectrum {
+  max-width: 880px;
+  margin: 44px auto 0;
+  padding: 22px 28px 20px;
+  border-radius: 20px;
+  border-color: rgba(175, 230, 255, 0.5);
+  background: 
+    radial-gradient(ellipse at 50% 0%, rgba(0, 242, 254, 0.22), transparent 65%),
+    linear-gradient(115deg, rgba(16, 48, 76, 0.92), rgba(26, 36, 75, 0.88) 65%, rgba(48, 30, 75, 0.84));
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.18),
+    inset 0 1.5px rgba(215, 245, 255, 0.35),
+    0 28px 60px rgba(0, 14, 40, 0.75),
+    0 0 60px rgba(0, 242, 254, 0.25);
+  position: relative;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.spectrum:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1.5px;
+  border-radius: inherit;
+  background: conic-gradient(from var(--edge-angle), #00f2fe, #a855f7 25%, #ff007f 50%, #00f5a0 75%, #00f2fe);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+  animation: border-orbit 14s linear infinite reverse;
+}
+
+.spectrum-head h2 {
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 0 16px rgba(0, 242, 254, 0.5);
+}
+
+.spectrum-head h2 > span {
+  color: #00f2fe;
+  font-size: 19px;
+  filter: drop-shadow(0 0 10px #00f2fe);
+}
+
+/* Vivid 6-Color Segmented Spectrum Track */
+.spectrum-color {
+  height: 9px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, 
+    #00f5a0 0% 16.66%, 
+    #ffd166 16.66% 33.33%, 
+    #ff9f43 33.33% 50%, 
+    #ff4757 50% 66.66%, 
+    #a55eea 66.66% 83.33%, 
+    #ff007f 83.33% 100%
+  );
+  box-shadow: 
+    0 0 20px rgba(0, 245, 160, 0.4),
+    0 0 35px rgba(255, 71, 87, 0.35),
+    0 0 45px rgba(165, 94, 234, 0.35);
+  position: relative;
+}
+
+.spectrum-color:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, transparent 0 calc(16.666% - 2.5px), #08172c calc(16.666% - 2.5px) 16.666%);
+  border-radius: inherit;
+}
+
+/* Diamond Cut Floating Pointer */
+.spectrum-pointer {
+  top: -6px;
+  filter: drop-shadow(0 4px 14px rgba(0, 242, 254, 0.65));
+}
+
+.spectrum-pointer i {
+  width: 6px;
+  height: 18px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 2px solid #00f2fe;
+  box-shadow: 0 0 14px #00f2fe, 0 0 25px rgba(0, 242, 254, 0.9);
+}
+
+.spectrum-pointer > span {
+  top: -19px;
+  background: linear-gradient(135deg, #00f2fe, #a855f7);
+  color: #ffffff;
+  font-weight: 850;
+  font-size: 8px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  box-shadow: 0 4px 18px rgba(0, 242, 254, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.spectrum-labels > span {
+  color: #a4c4de;
+  font-weight: 650;
+  transition: color 0.3s;
+}
+
+.spectrum-labels small {
+  color: #83a5c2;
+  font-weight: 600;
+}
+
+.spectrum-labels span[aria-current="true"] {
+  color: #ffffff;
+  font-weight: 850;
+  text-shadow: 0 0 18px rgba(0, 242, 254, 0.95);
+}
+
+.spectrum-labels span[aria-current="true"] small {
+  color: #00f2fe;
+  font-weight: 850;
+  text-shadow: 0 0 10px rgba(0, 242, 254, 0.8);
+}
+
+/* ==========================================================================
+   7. Navigation & Branded Details
+   ========================================================================== */
+.navlinks a.active {
+  background: linear-gradient(120deg, rgba(0, 242, 254, 0.4), rgba(168, 85, 247, 0.35));
+  border-color: rgba(0, 242, 254, 0.65);
+  box-shadow: inset 0 1px rgba(210, 250, 255, 0.45), 0 0 28px rgba(0, 242, 254, 0.35);
+  color: #ffffff;
+}
+
+.city {
+  border-color: rgba(0, 242, 254, 0.45);
+  background: linear-gradient(120deg, rgba(24, 68, 95, 0.9), rgba(56, 56, 100, 0.7));
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+}
+
+.city-dot {
+  background: #00f5a0;
+  box-shadow: 0 0 14px #00f5a0, 0 0 22px rgba(0, 245, 160, 0.95);
+  animation: beacon-pulse 2s ease-in-out infinite;
+}
+
+.brand img {
+  filter: brightness(1.7) saturate(1.35) drop-shadow(0 0 26px rgba(0, 242, 254, 0.55));
+}
+
+.foot { color: #9bbfe2; }
+.footer-word { color: #00f2fe; text-shadow: 0 0 14px rgba(0, 242, 254, 0.65); font-weight: 800; }
+.footer-disclaimer { color: #8ba9cb; }
+
+/* ==========================================================================
+   8. Animation Keyframes (Hardware GPU Optimized)
+   ========================================================================== */
+@keyframes aurora-tide {
+  0% { translate: -2% -1%; scale: 1; opacity: 0.75; }
+  50% { opacity: 1; }
+  100% { translate: 3% 3%; scale: 1.08; opacity: 0.95; }
+}
+
+@keyframes prism-text {
+  to { background-position: 100% 50%; }
+}
+
+@keyframes prism-halo {
+  0% { opacity: 0.75; scale: 0.99; }
+  100% { opacity: 1; scale: 1.04; }
+}
+
+@keyframes prism-ring {
+  50% { opacity: 0.65; stroke-width: 14; }
+}
+
+@keyframes border-orbit {
+  to { --edge-angle: 360deg; }
+}
+
+@keyframes status-light {
+  50% { box-shadow: 0 0 18px var(--status-color, #ff4757), 0 0 32px var(--status-color, #ff4757); }
+}
+
+@keyframes weather-aura {
+  to { opacity: 0.85; scale: 1.15; }
+}
+
+@keyframes golden-sun {
+  to { 
+    box-shadow: 
+      inset 0 1px 5px rgba(255, 255, 255, 0.98), 
+      inset 0 -4px 10px rgba(220, 110, 20, 0.8), 
+      0 0 55px rgba(255, 195, 70, 0.98), 
+      0 0 115px rgba(255, 140, 40, 0.7); 
+  }
+}
+
+@keyframes beacon-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.35); opacity: 0.75; }
+}
+
+@keyframes range-arrow-drift { 
+  50% { translate: 0 3px; } 
+}
+
+/* ==========================================================================
+   9. Tri-Mode Theme Switcher & Visual Modes:
+      1. Light Mode (Pure White Background & Crystal Glass)
+      2. Vivid Mode (Hyper-Colorful Multi-Chromatic Aurora & Lights)
+      3. Landscape / Image Mode (Scenic Alpine Lake Wallpaper Hero)
+   ========================================================================== */
+
+.header-actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Premium Dark/Light Mode Toggle Capsule */
+.theme-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 4px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(20, 48, 78, 0.8), rgba(9, 25, 46, 0.9));
+  border: 1px solid rgba(0, 242, 254, 0.32);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 8px 24px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(20px);
+}
+
+.theme-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #9cbddb;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.theme-btn svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2;
+  opacity: 0.8;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.theme-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.theme-btn:hover svg {
+  transform: scale(1.12);
+  opacity: 1;
+}
+
+.theme-btn.active {
+  background: linear-gradient(125deg, #00f2fe 0%, #7928ca 100%);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 16px rgba(0, 242, 254, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  font-weight: 750;
+}
+
+.theme-btn.active svg {
+  opacity: 1;
+  filter: drop-shadow(0 0 6px #ffffff);
+  transform: rotate(-10deg) scale(1.05);
+}
+
+/* Premium Login Button at Extreme Right */
+.login-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px 6px 8px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(22, 48, 80, 0.8), rgba(10, 26, 48, 0.9));
+  border: 1px solid rgba(0, 242, 254, 0.35);
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.22),
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    0 0 16px rgba(0, 242, 254, 0.15);
+  backdrop-filter: blur(20px);
+  color: #f1f8ff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-btn:before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.login-btn:hover:before {
+  transform: translateX(100%);
+}
+
+.login-btn:hover {
+  border-color: #00f2fe;
+  color: #ffffff;
+  transform: translateY(-1.5px);
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.4),
+    0 12px 30px rgba(0, 0, 0, 0.45),
+    0 0 24px rgba(0, 242, 254, 0.4);
+}
+
+.login-avatar-ring {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.35), rgba(168, 85, 247, 0.45));
+  border: 1px solid rgba(0, 242, 254, 0.5);
+  display: grid;
+  place-items: center;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.35);
+  flex-shrink: 0;
+}
+
+.login-avatar-ring svg {
+  width: 14px;
+  height: 14px;
+  stroke: #ffffff;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 4px rgba(0, 242, 254, 0.6));
+}
+
+.login-pulse-dot {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00f5a0;
+  box-shadow: 0 0 6px #00f5a0, 0 0 10px #00f5a0;
+  border: 1.5px solid #061324;
+}
+
+.login-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #e0f2fe;
+}
+
+/* --------------------------------------------------------------------------
+   MODE 3: Light Crystal Mode (Pure White Background & High Contrast Text)
+   -------------------------------------------------------------------------- */
+html[data-theme="light"] body {
+  background: #f4f7fc !important;
+  color: #0f2338 !important;
+}
+
+html[data-theme="light"] .scene {
+  background: linear-gradient(155deg, #ffffff 0%, #edf3fc 45%, #f2f6fd 100%) !important;
+}
+
+html[data-theme="light"] .landscape {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+html[data-theme="light"] .scene:before {
+  background: 
+    radial-gradient(ellipse at 15% 40%, rgba(0, 160, 255, 0.16), transparent 45%),
+    radial-gradient(ellipse at 85% 20%, rgba(180, 100, 255, 0.14), transparent 45%),
+    radial-gradient(ellipse at 50% 85%, rgba(0, 230, 170, 0.12), transparent 45%) !important;
+  filter: blur(35px) !important;
+}
+
+html[data-theme="light"] .scene:after {
+  background: 
+    radial-gradient(ellipse at 88% 8%, rgba(255, 170, 80, 0.14), transparent 45%),
+    radial-gradient(ellipse at 20% 80%, rgba(0, 190, 255, 0.13), transparent 45%) !important;
+  filter: blur(40px) !important;
+}
+
+html[data-theme="light"] .scene-shade {
+  background: linear-gradient(0deg, rgba(240, 246, 255, 0.85), transparent 50%, rgba(245, 249, 255, 0.6) 100%) !important;
+}
+
+html[data-theme="light"] .grain {
+  opacity: 0.015 !important;
+}
+
+/* Brand Logo inverted cleanly to deep navy obsidian on white */
+html[data-theme="light"] .brand img {
+  filter: invert(0.92) hue-rotate(180deg) drop-shadow(0 2px 8px rgba(0, 80, 180, 0.15)) !important;
+}
+
+html[data-theme="light"] .navlinks {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 8px 30px rgba(15, 35, 65, 0.06) !important;
+  color: #3b536e !important;
+}
+
+html[data-theme="light"] .navlinks a {
+  color: #3b536e !important;
+  font-weight: 600 !important;
+}
+
+html[data-theme="light"] .navlinks a:hover {
+  color: #0066cc !important;
+  background: rgba(0, 112, 243, 0.07) !important;
+}
+
+html[data-theme="light"] .navlinks a.active {
+  background: linear-gradient(120deg, #0066ff, #00b4d8) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 18px rgba(0, 102, 255, 0.35) !important;
+  font-weight: 700 !important;
+}
+
+html[data-theme="light"] .theme-switcher {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 8px 24px rgba(15, 35, 65, 0.06) !important;
+}
+
+html[data-theme="light"] .theme-btn {
+  color: #4b6480 !important;
+}
+
+html[data-theme="light"] .theme-btn:hover {
+  color: #0f2338 !important;
+  background: rgba(0, 0, 0, 0.04) !important;
+}
+
+html[data-theme="light"] .theme-btn.active {
+  background: linear-gradient(120deg, #0066ff, #00b4d8) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 14px rgba(0, 102, 255, 0.35) !important;
+  font-weight: 700 !important;
+}
+
+html[data-theme="light"] .city {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  color: #0f2338 !important;
+  font-weight: 600 !important;
+  box-shadow: 0 8px 24px rgba(15, 35, 65, 0.06) !important;
+}
+
+html[data-theme="light"] .city > svg {
+  color: #0066cc !important;
+}
+
+html[data-theme="light"] .city .chevron {
+  color: #637e99 !important;
+}
+
+html[data-theme="light"] .city-dot {
+  background: #00b875 !important;
+  box-shadow: 0 0 10px rgba(0, 184, 117, 0.6) !important;
+}
+
+html[data-theme="light"] .eyebrow {
+  background: rgba(0, 102, 255, 0.07) !important;
+  border: 1px solid rgba(0, 102, 255, 0.2) !important;
+  color: #0066cc !important;
+  box-shadow: 0 4px 16px rgba(0, 102, 255, 0.1) !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .intro h1 {
+  color: #0b1a2d !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .intro h1 em {
+  background-image: linear-gradient(110deg, #0052cc 0%, #0099ff 25%, #7b2cbf 50%, #e63946 75%, #0099ff 100%) !important;
+  filter: drop-shadow(0 4px 18px rgba(0, 102, 255, 0.18)) !important;
+}
+
+html[data-theme="light"] .intro p {
+  color: #435b75 !important;
+  text-shadow: none !important;
+  font-weight: 450 !important;
+}
+
+html[data-theme="light"] .meter-face {
+  background: radial-gradient(circle at 35% 20%, #ffffff 0%, #edf4fc 65%, #d9e6f7 100%) !important;
+  border: 1.5px solid rgba(170, 205, 240, 0.9) !important;
+  box-shadow: 
+    0 24px 60px rgba(15, 45, 85, 0.12), 
+    inset 0 2px 6px rgba(255, 255, 255, 0.95), 
+    0 0 0 5px rgba(235, 244, 254, 0.95) !important;
+}
+
+html[data-theme="light"] .meter-face:before {
+  background: conic-gradient(from 0deg, transparent 0 62%, rgba(0, 102, 255, 0.06) 72%, rgba(180, 100, 255, 0.08) 82%, transparent 92%) !important;
+}
+
+html[data-theme="light"] .meter-halo {
+  background: radial-gradient(circle, transparent 48%, rgba(0, 102, 255, 0.06) 64%, transparent 76%) !important;
+  box-shadow: 0 20px 80px rgba(0, 102, 255, 0.1) !important;
+}
+
+html[data-theme="light"] .aqi-value {
+  color: #0b1a2d !important;
+  text-shadow: 0 2px 10px rgba(10, 30, 60, 0.1) !important;
+}
+
+html[data-theme="light"] .meter-label {
+  color: #486582 !important;
+  text-shadow: none !important;
+  font-weight: 750 !important;
+}
+
+html[data-theme="light"] .meter-start,
+html[data-theme="light"] .meter-end {
+  color: #516f8c !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] #ticks line {
+  stroke: rgba(140, 175, 210, 0.65) !important;
+}
+
+html[data-theme="light"] #ticks line.major {
+  stroke: rgba(30, 75, 130, 0.85) !important;
+  stroke-width: 1.8 !important;
+}
+
+html[data-theme="light"] .arc-track {
+  stroke: rgba(0, 102, 255, 0.12) !important;
+}
+
+html[data-theme="light"] .meter-orbit.orbit-one {
+  border-color: rgba(0, 102, 255, 0.2) !important;
+}
+
+html[data-theme="light"] .meter-orbit.orbit-two {
+  opacity: 0.35 !important;
+}
+
+html[data-theme="light"] .status {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1.5px solid var(--status-color, #ff4757) !important;
+  color: var(--status-color, #ff4757) !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 18px rgba(10, 30, 60, 0.08) !important;
+}
+
+html[data-theme="light"] .range {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(180, 210, 240, 0.8) !important;
+  box-shadow: 0 18px 45px rgba(15, 45, 85, 0.08) !important;
+}
+
+html[data-theme="light"] .range-title {
+  color: #38536e !important;
+  text-shadow: none !important;
+  font-weight: 750 !important;
+}
+
+html[data-theme="light"] .range-line {
+  background: linear-gradient(90deg, transparent, rgba(0, 102, 255, 0.25), transparent) !important;
+}
+
+html[data-theme="light"] .range-item {
+  background: rgba(244, 249, 255, 0.95) !important;
+  border: 1px solid rgba(180, 210, 240, 0.7) !important;
+}
+
+html[data-theme="light"] .range-item strong {
+  color: #0b1a2d !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .range-low strong { color: #00875a !important; }
+html[data-theme="light"] .range-low small { color: #00875a !important; font-weight: 750 !important; text-shadow: none !important; }
+html[data-theme="light"] .range-low .range-arrow {
+  background: rgba(0, 184, 117, 0.1) !important;
+  border-color: rgba(0, 184, 117, 0.3) !important;
+  color: #00875a !important;
+}
+
+html[data-theme="light"] .range-high strong { color: #d9383a !important; }
+html[data-theme="light"] .range-high small { color: #d9383a !important; font-weight: 750 !important; text-shadow: none !important; }
+html[data-theme="light"] .range-high .range-arrow {
+  background: rgba(230, 57, 70, 0.1) !important;
+  border-color: rgba(230, 57, 70, 0.3) !important;
+  color: #d9383a !important;
+}
+
+html[data-theme="light"] .weather {
+  border-left-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+html[data-theme="light"] .weather-eyebrow {
+  color: #4a6785 !important;
+  text-shadow: none !important;
+  font-weight: 750 !important;
+}
+
+html[data-theme="light"] .temperature > span {
+  background: linear-gradient(145deg, #0b1a2d 20%, #0066cc 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: none !important;
+}
+
+html[data-theme="light"] .temperature button {
+  color: #0066cc !important;
+  text-shadow: none !important;
+  font-weight: 700 !important;
+}
+
+html[data-theme="light"] .condition {
+  color: #0f2338 !important;
+  font-weight: 650 !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .feels {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(180, 210, 240, 0.8) !important;
+  color: #3b5673 !important;
+  box-shadow: 0 4px 18px rgba(15, 40, 75, 0.06) !important;
+}
+
+html[data-theme="light"] .feels svg {
+  color: #0066cc !important;
+  filter: none !important;
+}
+
+html[data-theme="light"] .feels strong {
+  color: #0b1a2d !important;
+  font-weight: 750 !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .spectrum {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(180, 210, 240, 0.8) !important;
+  box-shadow: 0 20px 50px rgba(15, 45, 85, 0.08) !important;
+}
+
+html[data-theme="light"] .spectrum-head h2 {
+  color: #0b1a2d !important;
+  font-weight: 800 !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .spectrum-head h2 > span {
+  color: #0066cc !important;
+  filter: none !important;
+}
+
+html[data-theme="light"] .spectrum-labels > span {
+  color: #4b6682 !important;
+  font-weight: 650 !important;
+}
+
+html[data-theme="light"] .spectrum-labels small {
+  color: #6a86a3 !important;
+  font-weight: 600 !important;
+}
+
+html[data-theme="light"] .spectrum-labels span[aria-current="true"] {
+  color: #0066cc !important;
+  font-weight: 850 !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .spectrum-labels span[aria-current="true"] small {
+  color: #0052cc !important;
+  font-weight: 850 !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .spectrum-pointer > span {
+  background: linear-gradient(135deg, #0066ff, #00b4d8) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 0 3px 12px rgba(0, 102, 255, 0.35) !important;
+}
+
+html[data-theme="light"] .spectrum-pointer i {
+  background: #0066ff !important;
+  border-color: #ffffff !important;
+}
+
+html[data-theme="light"] .foot {
+  color: #55728f !important;
+}
+
+html[data-theme="light"] .footer-word {
+  color: #0066cc !important;
+  font-weight: 800 !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .footer-disclaimer {
+  color: #6f8ba6 !important;
+}
+
+html[data-theme="light"] .foot button {
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #3b5673 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+}
+
+html[data-theme="light"] .foot button:hover {
+  border-color: #0066cc !important;
+  color: #0066cc !important;
+}
+
+html[data-theme="light"] dialog {
+  background: #ffffff !important;
+  color: #0b1a2d !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 30px 90px rgba(10, 30, 60, 0.2) !important;
+}
+
+html[data-theme="light"] .dialog-heading div span {
+  color: #0066cc !important;
+  font-weight: 750 !important;
+}
+
+html[data-theme="light"] .dialog-heading h2 {
+  color: #0b1a2d !important;
+  font-weight: 700 !important;
+}
+
+html[data-theme="light"] .dialog-heading button {
+  color: #4b6682 !important;
+}
+
+html[data-theme="light"] .dialog-heading button:hover {
+  color: #0b1a2d !important;
+}
+
+html[data-theme="light"] .search {
+  background: #f4f8fc !important;
+  border: 1px solid rgba(180, 210, 240, 0.8) !important;
+  color: #0b1a2d !important;
+}
+
+html[data-theme="light"] .search input {
+  color: #0b1a2d !important;
+}
+
+html[data-theme="light"] .search input::placeholder {
+  color: #7b96b0 !important;
+}
+
+html[data-theme="light"] .city-result {
+  border-bottom-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+html[data-theme="light"] .city-result:hover {
+  background: rgba(0, 112, 243, 0.06) !important;
+}
+
+html[data-theme="light"] .city-result strong {
+  color: #0b1a2d !important;
+  font-weight: 600 !important;
+}
+
+html[data-theme="light"] .city-result small {
+  color: #55728f !important;
+}
+
+/* ==========================================================================
+   10. Secondary Detail Views (/aqi, /weather.html, ?view=...)
+   ========================================================================== */
+.detail-view {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 10px 0 30px;
+}
+
+.detail-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.detail-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #00f2fe;
+  padding: 7px 15px;
+  border-radius: 999px;
+  background: rgba(0, 242, 254, 0.12);
+  border: 1px solid rgba(0, 242, 254, 0.35);
+  margin-bottom: 10px;
+  transition: all 0.25s;
+}
+
+.detail-back:hover {
+  background: rgba(0, 242, 254, 0.25);
+  color: #ffffff;
+}
+
+.detail-heading h1 {
+  font-size: clamp(32px, 3.8vw, 48px);
+  margin: 0;
+  color: #ffffff;
+}
+
+.detail-heading h1 em {
+  background-image: linear-gradient(110deg, #00f2fe, #a855f7);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.detail-location {
+  font-size: 13px;
+  font-weight: 700;
+  color: #9cbddb;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(14, 38, 65, 0.75);
+  border: 1px solid rgba(0, 242, 254, 0.3);
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.detail-panel {
+  border: 1px solid rgba(175, 230, 255, 0.35);
+  border-radius: 20px;
+  background: linear-gradient(115deg, rgba(16, 48, 76, 0.88), rgba(26, 36, 75, 0.82));
+  backdrop-filter: blur(20px);
+  padding: 24px;
+  box-shadow: 0 20px 50px rgba(0, 10, 30, 0.6);
+  margin-bottom: 20px;
+}
+
+.detail-panel h2 {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #c9e4fb;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+}
+
+.detail-city-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail-city {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.detail-city:hover {
+  background: rgba(0, 242, 254, 0.15);
+  border-color: rgba(0, 242, 254, 0.4);
+}
+
+.detail-city[aria-pressed="true"] {
+  background: linear-gradient(120deg, rgba(0, 242, 254, 0.25), rgba(168, 85, 247, 0.2));
+  border-color: #00f2fe;
+}
+
+.detail-city-value {
+  font-size: 14px;
+  font-weight: 750;
+  color: #00f2fe;
+}
+
+.detail-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 0 0 24px;
+}
+
+.detail-metrics div {
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.detail-metrics dt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #8da7bf;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.detail-metrics dt svg {
+  width: 14px;
+  height: 14px;
+  color: #00f2fe;
+}
+
+.detail-metrics dd {
+  margin: 10px 0 0;
+  font-size: 24px;
+  font-weight: 750;
+  color: #ffffff;
+}
+
+/* Light mode for detail views */
+html[data-theme="light"] .detail-heading h1 {
+  color: #0b1a2d !important;
+}
+
+html[data-theme="light"] .detail-back {
+  background: rgba(0, 102, 255, 0.08) !important;
+  border-color: rgba(0, 102, 255, 0.25) !important;
+  color: #0066cc !important;
+}
+
+html[data-theme="light"] .detail-back:hover {
+  background: rgba(0, 102, 255, 0.15) !important;
+  color: #0052cc !important;
+}
+
+html[data-theme="light"] .detail-location {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(180, 210, 240, 0.8) !important;
+  color: #0b1a2d !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+}
+
+html[data-theme="light"] .detail-panel {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(180, 210, 240, 0.8) !important;
+  box-shadow: 0 16px 45px rgba(15, 45, 85, 0.08) !important;
+}
+
+html[data-theme="light"] .detail-panel h2 {
+  color: #0b1a2d !important;
+}
+
+html[data-theme="light"] .detail-city {
+  background: rgba(245, 250, 255, 0.9) !important;
+  border-color: rgba(180, 210, 240, 0.7) !important;
+  color: #0b1a2d !important;
+}
+
+html[data-theme="light"] .detail-city:hover {
+  background: rgba(0, 102, 255, 0.08) !important;
+  border-color: #0066cc !important;
+}
+
+html[data-theme="light"] .detail-city[aria-pressed="true"] {
+  background: rgba(0, 102, 255, 0.12) !important;
+  border-color: #0066cc !important;
+}
+
+html[data-theme="light"] .detail-city-value {
+  color: #0066cc !important;
+}
+
+html[data-theme="light"] .detail-metrics div {
+  background: rgba(245, 250, 255, 0.9) !important;
+  border-color: rgba(180, 210, 240, 0.7) !important;
+}
+
+html[data-theme="light"] .detail-metrics dt {
+  color: #4b6682 !important;
+}
+
+html[data-theme="light"] .detail-metrics dt svg {
+  color: #0066cc !important;
+}
+
+html[data-theme="light"] .detail-metrics dd {
+  color: #0b1a2d !important;
+}
+
+/* ==========================================================================
+   11. Ultra-Clean Responsive Layout for Tablet & Mobile (iPad, iOS, Android)
+   ========================================================================== */
+
+/* --- TABLETS & SMALL LAPTOPS (max-width: 1080px) --- */
+@media (max-width: 1080px) {
+  .shell {
+    padding: 22px 36px 36px !important;
+  }
+  .nav {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+  }
+  .brand {
+    width: 220px !important;
+    margin-left: 0 !important;
+  }
+  .header-actions {
+    margin-left: auto !important;
+  }
+  .navlinks {
+    order: 3 !important;
+    width: 100% !important;
+    justify-content: center !important;
+    margin-top: 4px !important;
+  }
+  .hero {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 28px !important;
+    margin-top: 15px !important;
+    min-height: auto !important;
+  }
+  .intro {
+    grid-column: 1 / -1 !important;
+    text-align: center !important;
+    padding-bottom: 0 !important;
+  }
+  .intro .eyebrow {
+    justify-content: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .intro h1 {
+    font-size: clamp(42px, 5vw, 56px) !important;
+  }
+  .intro p {
+    max-width: 520px !important;
+    margin: 16px auto 0 !important;
+    font-size: 14px !important;
+  }
+  .meter-area {
+    align-items: center !important;
+  }
+  .meter {
+    max-width: 350px !important;
+  }
+  .weather {
+    padding-left: 20px !important;
+    align-items: center !important;
+    text-align: center !important;
+    min-height: auto !important;
+  }
+  .weather-eyebrow {
+    justify-content: center !important;
+  }
+  .temperature {
+    justify-content: center !important;
+  }
+  .spectrum {
+    margin-top: 36px !important;
+    padding: 20px 24px !important;
+  }
+}
+
+/* --- MEDIUM TABLETS (max-width: 960px) --- */
+@media (max-width: 960px) {
+  .shell {
+    padding: 18px 24px 30px !important;
+  }
+  .hero {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 24px !important;
+  }
+  .meter-area {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin: 0 auto !important;
+  }
+  .meter {
+    max-width: 330px !important;
+  }
+  .range {
+    max-width: 320px !important;
+    width: 100% !important;
+  }
+  .weather {
+    max-width: 320px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 18px 20px !important;
+    border-left: none !important;
+    border: 1px solid rgba(175, 230, 255, 0.35) !important;
+    border-radius: 20px !important;
+    background: linear-gradient(115deg, rgba(16, 48, 76, 0.85), rgba(26, 36, 75, 0.8)) !important;
+    backdrop-filter: blur(20px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    min-height: auto !important;
+  }
+  html[data-theme="light"] .weather {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border-color: rgba(180, 210, 240, 0.8) !important;
+  }
+  .weather:before {
+    display: none !important;
+  }
+  .detail-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}
+
+/* --- MOBILE PHONES & PHABLETS (max-width: 768px) --- */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+  }
+  .shell {
+    padding: 14px 16px 28px !important;
+    perspective: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* Fluid Header */
+  .nav {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 12px 8px !important;
+    width: 100% !important;
+  }
+  .brand {
+    width: 155px !important;
+    max-width: 44% !important;
+    margin-left: 0 !important;
+  }
+  .brand img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+  }
+  .header-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
+  .theme-switcher {
+    padding: 3px !important;
+    gap: 3px !important;
+    border-radius: 999px !important;
+  }
+  .theme-btn {
+    padding: 6px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    border-radius: 50% !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .theme-btn span {
+    display: none !important;
+  }
+  .theme-btn svg {
+    width: 14px !important;
+    height: 14px !important;
+  }
+  .city {
+    padding: 8px 12px !important;
+    font-size: 11px !important;
+    font-weight: 550 !important;
+    border-radius: 999px !important;
+    gap: 6px !important;
+    min-height: 32px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+  .city svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
+  .city .chevron {
+    display: none !important;
+  }
+  .navlinks {
+    order: 3 !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    padding: 5px 6px !important;
+    border-radius: 999px !important;
+    gap: 4px !important;
+    margin-top: 4px !important;
+  }
+  .navlinks::-webkit-scrollbar {
+    display: none !important;
+  }
+  .navlinks a {
+    padding: 9px 15px !important;
+    font-size: 11.5px !important;
+    font-weight: 550 !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    border-radius: 999px !important;
+  }
+  
+  /* Single-Column Hero Stack */
+  main {
+    padding: 16px 0 20px !important;
+    width: 100% !important;
+  }
+  .hero {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 22px !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+    min-height: auto !important;
+  }
+  
+  /* Intro Headline */
+  .intro {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+  .intro .eyebrow {
+    justify-content: center !important;
+    margin: 0 auto 12px !important;
+    font-size: 9px !important;
+    padding: 5px 12px !important;
+  }
+  .intro h1 {
+    font-size: clamp(32px, 8.5vw, 42px) !important;
+    letter-spacing: -1.5px !important;
+    line-height: 1.15 !important;
+  }
+  .intro p {
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+    max-width: 320px !important;
+    margin: 10px auto 0 !important;
+  }
+  
+  /* Center Meter Dial */
+  .meter-area {
+    width: 100% !important;
+    max-width: 330px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    transform: none !important;
+  }
+  .meter {
+    width: min(290px, 80vw) !important;
+    max-width: 290px !important;
+    aspect-ratio: 1 !important;
+    transform: none !important;
+    margin: 0 auto !important;
+  }
+  .meter-content {
+    transform: none !important;
+  }
+  .aqi-value {
+    font-size: 78px !important;
+    letter-spacing: -4px !important;
+    line-height: 1.05 !important;
+  }
+  .meter-label {
+    font-size: 9px !important;
+    letter-spacing: 1.8px !important;
+  }
+  .status {
+    font-size: 11.5px !important;
+    padding: 6px 14px !important;
+    margin-top: 6px !important;
+  }
+  .meter-start, .meter-end {
+    font-size: 10px !important;
+    top: 78% !important;
+  }
+  .meter-standard {
+    font-size: 10px !important;
+    color: #92b6d6 !important;
+    letter-spacing: 0.5px !important;
+    margin-top: 8px !important;
+  }
+  html[data-theme="light"] .meter-standard {
+    color: #4b6685 !important;
+  }
+  .meter-caption {
+    font-size: 10px !important;
+    color: #a3c4df !important;
+    bottom: 6% !important;
+  }
+  html[data-theme="light"] .meter-caption {
+    color: #476382 !important;
+  }
+  
+  /* Today's Range Card */
+  .range {
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 14px auto 0 !important;
+    padding: 14px 16px !important;
+    border-radius: 18px !important;
+    box-sizing: border-box !important;
+  }
+  .range-title {
+    font-size: 9.5px !important;
+    letter-spacing: 1.3px !important;
+  }
+  .range-row {
+    margin-top: 12px !important;
+    gap: 12px !important;
+  }
+  .range-item {
+    padding: 8px 10px !important;
+    gap: 8px !important;
+  }
+  .range-item strong {
+    font-size: 24px !important;
+    letter-spacing: -0.8px !important;
+  }
+  .range-item small {
+    font-size: 9.5px !important;
+    letter-spacing: 1px !important;
+  }
+  .range-arrow {
+    width: 28px !important;
+    height: 28px !important;
+  }
+  .range-arrow svg {
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+  /* Weather Card on Mobile: Beautiful Standalone Glass Card */
+  .weather {
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+    padding: 18px 20px 16px !important;
+    border-left: none !important;
+    border: 1px solid rgba(175, 230, 255, 0.4) !important;
+    border-radius: 20px !important;
+    background: linear-gradient(115deg, rgba(16, 48, 76, 0.88), rgba(26, 36, 75, 0.82)) !important;
+    backdrop-filter: blur(20px) !important;
+    box-shadow: 0 18px 45px rgba(0, 12, 32, 0.6) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    min-height: auto !important;
+    box-sizing: border-box !important;
+  }
+  html[data-theme="light"] .weather {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border-color: rgba(180, 210, 240, 0.8) !important;
+    box-shadow: 0 16px 40px rgba(15, 45, 85, 0.08) !important;
+  }
+  
+  .weather:before {
+    display: none !important;
+  }
+  .weather-eyebrow {
+    font-size: 9.5px !important;
+    letter-spacing: 1.5px !important;
+    justify-content: center !important;
+    margin-bottom: 2px !important;
+  }
+  .weather-icon {
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    width: 130px !important;
+    height: 105px !important;
+    margin: 0 !important;
+    transform: scale(0.85) !important;
+    transform-origin: top right !important;
+  }
+  .temperature {
+    justify-content: flex-start !important;
+    line-height: 1 !important;
+    margin-top: -8px !important;
+  }
+  .temperature > span {
+    font-size: 64px !important;
+  }
+  .temperature button {
+    font-size: 28px !important;
+  }
+  .condition {
+    font-size: 15px !important;
+    margin-top: 6px !important;
+  }
+  .feels {
+    font-size: 11.5px !important;
+    margin-top: 10px !important;
+    padding: 7px 14px !important;
+  }
+  .weather-subtle {
+    font-size: 10px !important;
+    color: #a0c3de !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    margin-top: 14px !important;
+  }
+  html[data-theme="light"] .weather-subtle {
+    color: #3b5774 !important;
+  }
+  .weather-subtle svg {
+    width: 12px !important;
+    height: 12px !important;
+  }
+  
+  /* Spectrum Bar on Mobile */
+  .spectrum {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 24px !important;
+    padding: 18px 16px 16px !important;
+    border-radius: 18px !important;
+    box-sizing: border-box !important;
+  }
+  .spectrum-head h2 {
+    font-size: 10.5px !important;
+    letter-spacing: 1.4px !important;
+  }
+  .spectrum-head > span {
+    display: none !important;
+  }
+  .spectrum-track {
+    margin-top: 22px !important;
+  }
+  .spectrum-labels {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 10px 6px !important;
+    margin-top: 14px !important;
+    text-align: center !important;
+  }
+  .spectrum-labels > span {
+    font-size: 10.5px !important;
+    white-space: normal !important;
+    line-height: 1.3 !important;
+  }
+  .spectrum-labels small {
+    font-size: 8.5px !important;
+    margin-top: 3px !important;
+    display: block !important;
+  }
+  .spectrum-pointer > span {
+    font-size: 8.5px !important;
+    padding: 2px 7px !important;
+    top: -18px !important;
+  }
+  
+  /* Footer on Mobile */
+  .foot {
+    flex-direction: column !important;
+    gap: 8px !important;
+    text-align: center !important;
+    padding-top: 20px !important;
+    font-size: 10px !important;
+  }
+  .footer-word {
+    font-size: 9.5px !important;
+    letter-spacing: 2px !important;
+  }
+  .footer-disclaimer {
+    margin-left: 0 !important;
+    font-size: 9.5px !important;
+    max-width: 290px !important;
+    margin: 0 auto !important;
+  }
+  .foot > button {
+    margin-left: 0 !important;
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 12px !important;
+  }
+  
+  /* Dialog on Mobile */
+  dialog {
+    width: calc(100vw - 24px) !important;
+    max-height: 85vh !important;
+    padding: 20px 18px !important;
+    border-radius: 20px !important;
+    margin: auto !important;
+  }
+  .dialog-heading h2 {
+    font-size: 22px !important;
+  }
+  .search input {
+    font-size: 15px !important;
+  }
+  
+  /* Scene Auroras on Mobile */
+  .scene:before {
+    filter: blur(24px) !important;
+    background: 
+      radial-gradient(ellipse at 5% 40%, rgba(0, 242, 254, 0.6), transparent 42%),
+      radial-gradient(ellipse at 95% 20%, rgba(168, 85, 247, 0.65), transparent 40%),
+      radial-gradient(ellipse at 50% 90%, rgba(255, 0, 127, 0.5), transparent 40%) !important;
+  }
+}
+
+/* --- SMALL MOBILE PHONES (max-width: 375px) --- */
+@media (max-width: 375px) {
+  .shell {
+    padding: 10px 12px 24px !important;
+  }
+  .brand {
+    width: 135px !important;
+  }
+  .header-actions {
+    gap: 4px !important;
+  }
+  .theme-btn {
+    min-width: 28px !important;
+    min-height: 28px !important;
+    padding: 4px !important;
+  }
+  .theme-btn svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
+  .city {
+    padding: 6px 9px !important;
+    font-size: 10px !important;
+  }
+  .intro h1 {
+    font-size: 32px !important;
+  }
+  .meter {
+    max-width: 260px !important;
+  }
+  .aqi-value {
+    font-size: 68px !important;
+  }
+  .range, .weather {
+    max-width: 290px !important;
+  }
+  .temperature > span {
+    font-size: 56px !important;
+  }
+  .spectrum-labels > span {
+    font-size: 9.5px !important;
+  }
+  .spectrum-labels small {
+    font-size: 8px !important;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .header-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    margin-left: auto !important;
+  }
+  .theme-switcher {
+    padding: 3px !important;
+    gap: 2px !important;
+  }
+  .theme-btn {
+    padding: 6px 8px !important;
+  }
+  .theme-btn span {
+    display: none !important;
+  }
+  .login-btn {
+    padding: 5px 8px !important;
+    gap: 4px !important;
+  }
+  .login-label {
+    display: none !important;
+  }
+  .login-avatar-ring {
+    width: 24px !important;
+    height: 24px !important;
+  }
+}
+
