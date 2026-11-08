@@ -1,6 +1,7 @@
 (() => {
  'use strict';
  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+
  const cities = [
   {id:'delhi',name:'Delhi NCR',country:'India',aqi:162,low:94,high:182,temp:28,feels:31,condition:'Partly Cloudy',humidity:64,wind:12},
   {id:'mumbai',name:'Mumbai',country:'India',aqi:89,low:61,high:118,temp:30,feels:34,condition:'Warm & Breezy',humidity:78,wind:18},
@@ -8,10 +9,16 @@
   {id:'london',name:'London',country:'United Kingdom',aqi:32,low:18,high:48,temp:12,feels:10,condition:'Overcast',humidity:82,wind:16},
   {id:'singapore',name:'Singapore',country:'Singapore',aqi:47,low:28,high:62,temp:31,feels:35,condition:'Partly Cloudy',humidity:80,wind:11}
  ];
- const storage = {get(k,f){try{return localStorage.getItem(k)??f}catch{return f}},set(k,v){try{localStorage.setItem(k,v)}catch{}}};
- let city = cities.find(c=>c.id===storage.get('airnova-simple-city','delhi'))||cities[0];
- let unit = storage.get('airnova-simple-unit','c');
- let still = storage.get('airnova-simple-motion','')==='pause'||matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+ const storage = {
+  get(k, f) { try { return localStorage.getItem(k) ?? f; } catch { return f; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch {} }
+ };
+
+ let city = cities.find(c => c.id === storage.get('airnova-simple-city', 'delhi')) || cities[0];
+ let unit = storage.get('airnova-simple-unit', 'c');
+ let still = storage.get('airnova-simple-motion', '') === 'pause' || matchMedia('(prefers-reduced-motion: reduce)').matches;
+
  const status = v => {
   const isLight = document.documentElement.getAttribute('data-theme') === 'light';
   if (isLight) {
@@ -29,7 +36,13 @@
          v <= 300 ? { text: 'Very unhealthy', color: '#a55eea', rgb: '165, 94, 234' } :
                     { text: 'Hazardous', color: '#ff007f', rgb: '255, 0, 127' };
  };
- const fraction = value=>{const bands=[0,50,100,150,200,300,500];const i=Math.min(5,Math.max(0,bands.findIndex((v,i)=>i<6&&value>=v&&value<=bands[i+1])));return(i+(value-bands[i])/(bands[i+1]-bands[i]))/6};
+
+ const fraction = value => {
+  const bands = [0, 50, 100, 150, 200, 300, 500];
+  const i = Math.min(5, Math.max(0, bands.findIndex((v, idx) => idx < 6 && value >= v && value <= bands[idx + 1])));
+  return (i + (value - bands[i]) / (bands[i + 1] - bands[i])) / 6;
+ };
+
  const arc = $('.arc'), length = arc.getTotalLength();
  const spectrum = $('.spectrum');
  const spectrumPointer = $('#spectrum-pointer');
@@ -37,63 +50,93 @@
  const requestedView = new URLSearchParams(location.search).get('view');
  const view = ['aqi', 'weather'].includes(requestedView) ? requestedView : 'home';
 
- // Follow the actual arc geometry so the graduations stay aligned.
- for(let i=0;i<=60;i++){
-  const p=arc.getPointAtLength(length*i/60);
-  const cx=200,cy=200;
-  const dx=p.x-cx,dy=p.y-cy;
-  const r=Math.hypot(dx,dy);
-  const inner=i%5===0?12:7;
-  const line=document.createElementNS('http://www.w3.org/2000/svg','line');
-  line.setAttribute('x1',cx+dx/r*(r-12));
-  line.setAttribute('y1',cy+dy/r*(r-12));
-  line.setAttribute('x2',cx+dx/r*(r-12-inner));
-  line.setAttribute('y2',cy+dy/r*(r-12-inner));
-  if(i%5===0)line.classList.add('major');
+ // Follow arc geometry so the graduations stay aligned
+ for (let i = 0; i <= 60; i++) {
+  const p = arc.getPointAtLength(length * i / 60);
+  const cx = 200, cy = 200;
+  const dx = p.x - cx, dy = p.y - cy;
+  const r = Math.hypot(dx, dy);
+  const inner = i % 5 === 0 ? 12 : 7;
+  const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+  line.setAttribute('x1', cx + dx / r * (r - 12));
+  line.setAttribute('y1', cy + dy / r * (r - 12));
+  line.setAttribute('x2', cx + dx / r * (r - 12 - inner));
+  line.setAttribute('y2', cy + dy / r * (r - 12 - inner));
+  if (i % 5 === 0) line.classList.add('major');
   $('#ticks').append(line);
  }
 
  let countFrame;
- function render(){
-  $('#city-label').textContent=city.name;
-  const st=status(city.aqi);
-  $('#aqi-status').innerHTML='<i></i>'+st.text;
-  $('#aqi-status').style.color=st.color;
+ function render() {
+  $('#city-label').textContent = city.name;
+  const st = status(city.aqi);
+  $('#aqi-status').innerHTML = '<i></i>' + st.text;
+  $('#aqi-status').style.color = st.color;
   $('#aqi-status').style.setProperty('--status-color', st.color);
   $('#aqi-status').style.setProperty('--status-rgb', st.rgb);
   document.documentElement.style.setProperty('--active-aqi-color', st.color);
   document.documentElement.style.setProperty('--active-aqi-rgb', st.rgb);
-  const f=fraction(city.aqi);
-  $$('.arc,.arc-glow').forEach(el=>{el.style.strokeDasharray=length;el.style.strokeDashoffset=length*(1-f)});
-  const p=arc.getPointAtLength(length*f);
-  $('#arc-point').setAttribute('cx',p.x);
-  $('#arc-point').setAttribute('cy',p.y);
+
+  const f = fraction(city.aqi);
+  $$('.arc,.arc-glow').forEach(el => {
+   el.style.strokeDasharray = length;
+   el.style.strokeDashoffset = length * (1 - f);
+  });
+  const p = arc.getPointAtLength(length * f);
+  $('#arc-point').setAttribute('cx', p.x);
+  $('#arc-point').setAttribute('cy', p.y);
+
+  // Smooth count-up animation
   cancelAnimationFrame(countFrame);
-  const from=Number($('#aqi-value').textContent)||0;
-  const t=performance.now();
-  function count(now){
-   const p=still?1:Math.min(1,(now-t)/1400);
-   $('#aqi-value').textContent=Math.round(from+(city.aqi-from)*(1-(1-p)**3));
-   if(p<1)countFrame=requestAnimationFrame(count);
+  const from = Number($('#aqi-value').textContent) || 0;
+  const t = performance.now();
+  function count(now) {
+   const p = still ? 1 : Math.min(1, (now - t) / 1200);
+   $('#aqi-value').textContent = Math.round(from + (city.aqi - from) * (1 - (1 - p) ** 3));
+   if (p < 1) countFrame = requestAnimationFrame(count);
   }
-  countFrame=requestAnimationFrame(count);
+  countFrame = requestAnimationFrame(count);
+
   $('#aqi-low').textContent = city.low;
   $('#aqi-high').textContent = city.high;
-  spectrum.style.setProperty('--reading-color', st.color);
-  spectrumPointer.style.left = Math.max(1, Math.min(99, f * 100)) + '%';
-  spectrumPointer.firstElementChild.textContent = city.aqi;
+
+  // Spectrum updates
+  if (spectrum) {
+   spectrum.style.setProperty('--reading-color', st.color);
+   spectrum.style.setProperty('--reading-rgb', st.rgb);
+  }
+  if (spectrumPointer) {
+   spectrumPointer.style.left = Math.max(1, Math.min(99, f * 100)) + '%';
+   const valEl = $('#spectrum-val') || spectrumPointer.firstElementChild;
+   if (valEl) valEl.textContent = city.aqi;
+  }
+  const specStatusText = $('#spec-status-text');
+  if (specStatusText) {
+   specStatusText.textContent = `${st.text} · ${city.aqi} AQI`;
+   specStatusText.style.color = st.color;
+  }
+  const specDot = $('#spectrum-badge .spec-dot');
+  if (specDot) {
+   specDot.style.background = st.color;
+   specDot.style.boxShadow = `0 0 10px ${st.color}`;
+  }
+
   const currentBand = Math.max(0, Math.ceil(f * spectrumLabels.length) - 1);
   spectrumLabels.forEach((label, index) => {
    if (index === currentBand) label.setAttribute('aria-current', 'true');
    else label.removeAttribute('aria-current');
   });
-  const c=v=>unit==='f'?Math.round(v*9/5+32):v;
-  $('#temperature').textContent=c(city.temp);
-  $('#unit-button').innerHTML='°<small>'+unit.toUpperCase()+'</small>';
-  $('#unit-button').setAttribute('aria-label','Switch temperature to '+(unit==='c'?'Fahrenheit':'Celsius'));
-  $('#feels').textContent=c(city.feels)+'°'+unit.toUpperCase();
-  $('#condition').textContent=city.condition;
-  $('.sun-sphere').style.opacity=city.id==='london'?'.3':'1';
+
+  const c = v => unit === 'f' ? Math.round(v * 9 / 5 + 32) : v;
+  $('#temperature').textContent = c(city.temp);
+  $('#unit-button').innerHTML = '°<small>' + unit.toUpperCase() + '</small>';
+  $('#unit-button').setAttribute('aria-label', 'Switch temperature to ' + (unit === 'c' ? 'Fahrenheit' : 'Celsius'));
+  $('#feels').textContent = c(city.feels) + '°' + unit.toUpperCase();
+  $('#condition').textContent = city.condition;
+
+  const sunEl = $('.sun-wrap') || $('.sun-sphere');
+  if (sunEl) sunEl.style.opacity = city.id === 'london' ? '.45' : '1';
+
   if (view !== 'home') renderDetail(c);
  }
 
@@ -132,6 +175,7 @@
   if (view === 'aqi') $('[data-spectrum-slot]').append(spectrum);
   else spectrum.hidden = true;
   $('.hero').hidden = true;
+  $$('.home-only').forEach(el => el.hidden = true);
   document.title = (view === 'aqi' ? 'Air quality' : 'Weather') + ' | Airnova';
   const list = $('[data-city-list]');
   cities.forEach(reading => {
@@ -149,18 +193,43 @@
   });
  }
 
- $('#unit-button').addEventListener('click',()=>{unit=unit==='c'?'f':'c';storage.set('airnova-simple-unit',unit);render()});
- function renderCities(){
-  const q=$('#city-search').value.toLowerCase().trim();
-  const found=cities.filter(c=>(c.name+' '+c.country).toLowerCase().includes(q));
-  $('#city-results').innerHTML=found.length?found.map(c=>`<button class="city-result" data-city="${c.id}"><span><strong>${c.name}${c.id===city.id?' · selected':''}</strong><small>${c.country}</small></span><span style="--color:${status(c.aqi).color}">${c.aqi}<small>AQI</small></span></button>`).join(''):'<p class="empty">No sample city found. Try Delhi, Mumbai, Bengaluru, London or Singapore.</p>';
-  $$('.city-result').forEach(b=>b.addEventListener('click',()=>{selectCity(b.dataset.city);$('#city-dialog').close()}))
+ $('#unit-button').addEventListener('click', () => {
+  unit = unit === 'c' ? 'f' : 'c';
+  storage.set('airnova-simple-unit', unit);
+  render();
+ });
+
+ function renderCities() {
+  const q = $('#city-search').value.toLowerCase().trim();
+  const found = cities.filter(c => (c.name + ' ' + c.country).toLowerCase().includes(q));
+  $('#city-results').innerHTML = found.length ? found.map(c =>
+   `<button class="city-result" data-city="${c.id}">
+     <span><strong>${c.name}${c.id === city.id ? ' · selected' : ''}</strong><small>${c.country}</small></span>
+     <span style="--color:${status(c.aqi).color}">${c.aqi}<small>AQI</small></span>
+   </button>`
+  ).join('') : '<p class="empty">No sample city found. Try Delhi, Mumbai, Bengaluru, London or Singapore.</p>';
+
+  $$('.city-result').forEach(b => b.addEventListener('click', () => {
+   selectCity(b.dataset.city);
+   $('#city-dialog').close();
+  }));
  }
 
- $('#city-button').addEventListener('click',()=>{$('#city-search').value='';renderCities();$('#city-dialog').showModal();$('#city-search').focus()});
- $('#city-search').addEventListener('input',renderCities);
- $('#close-dialog').addEventListener('click',()=>$('#city-dialog').close());
- $('#city-dialog').addEventListener('click',e=>{if(e.target!==e.currentTarget)return;const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.currentTarget.close()});
+ $('#city-button').addEventListener('click', () => {
+  $('#city-search').value = '';
+  renderCities();
+  $('#city-dialog').showModal();
+  $('#city-search').focus();
+ });
+ $('#city-search').addEventListener('input', renderCities);
+ $('#close-dialog').addEventListener('click', () => $('#city-dialog').close());
+ $('#city-dialog').addEventListener('click', e => {
+  if (e.target !== e.currentTarget) return;
+  const r = e.currentTarget.getBoundingClientRect();
+  if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) {
+   e.currentTarget.close();
+  }
+ });
 
  function nav() {
   $$('[data-tab]').forEach(link => {
@@ -173,25 +242,37 @@
   $('#aqi').classList.toggle('focus-glow', view === 'home' && section === 'aqi');
   $('#weather').classList.toggle('focus-glow', view === 'home' && section === 'weather');
  }
- addEventListener('hashchange',nav);
+ addEventListener('hashchange', nav);
  nav();
 
- function motion(){
-  document.documentElement.classList.toggle('still',still);
-  $('#motion-button').setAttribute('aria-label',still?'Play background animations':'Pause background animations');
-  $('#motion-button').title=still?'Play animations':'Pause animations';
-  $('.pause-icon').textContent=still?'▷':'Ⅱ';
-  $('#motion-button').setAttribute('aria-pressed',String(still))
+ function motion() {
+  document.documentElement.classList.toggle('still', still);
+  const motionBtn = $('#motion-button');
+  if (motionBtn) {
+   motionBtn.setAttribute('aria-label', still ? 'Play background animations' : 'Pause background animations');
+   motionBtn.title = still ? 'Play animations' : 'Pause animations';
+   const pauseIcon = $('.pause-icon');
+   if (pauseIcon) pauseIcon.textContent = still ? '▷' : 'Ⅱ';
+   motionBtn.setAttribute('aria-pressed', String(still));
+  }
  }
  motion();
- $('#motion-button').addEventListener('click',()=>{still=!still;storage.set('airnova-simple-motion',still?'pause':'play');motion()});
+ const motionBtn = $('#motion-button');
+ if (motionBtn) {
+  motionBtn.addEventListener('click', () => {
+   still = !still;
+   storage.set('airnova-simple-motion', still ? 'pause' : 'play');
+   motion();
+  });
+ }
 
- // Theme Mode Switcher: Light (white bg), Vivid (colorful aurora), Landscape (scenic image)
+ // Theme Switcher: Dark (Signature Atmospheric Glass) & Light (Crisp White Mode)
  const themeKey = 'airnova-theme-mode';
- let currentTheme = storage.get(themeKey, 'vivid');
+ let currentTheme = storage.get(themeKey, 'dark');
+ if (currentTheme !== 'light') currentTheme = 'dark';
 
  function applyTheme(theme) {
-  if (!['light', 'vivid', 'landscape'].includes(theme)) theme = 'vivid';
+  if (!['light', 'dark'].includes(theme)) theme = 'dark';
   currentTheme = theme;
   document.documentElement.setAttribute('data-theme', theme);
   storage.set(themeKey, theme);
@@ -214,7 +295,8 @@
   unit = storage.get('airnova-simple-unit', 'c');
   still = storage.get('airnova-simple-motion', '') === 'pause' || matchMedia('(prefers-reduced-motion: reduce)').matches;
   motion();
-  currentTheme = storage.get(themeKey, 'vivid');
+  currentTheme = storage.get(themeKey, 'dark');
+  if (currentTheme !== 'light') currentTheme = 'dark';
   applyTheme(currentTheme);
   render();
  });
@@ -273,6 +355,7 @@
 
   if (still) return;
 
+  const currentSt = status(city.aqi);
   motes.forEach(p => {
    const warp = Math.abs(sv) * 0.02;
    p.y -= (p.speed + warp) * dt * (p.z * 0.75);
@@ -281,24 +364,10 @@
     p.x = Math.random();
    }
    ctx.beginPath();
-   const hue = isLight ? [
-    [0, 112, 243],
-    [123, 44, 191],
-    [0, 180, 140],
-    [230, 57, 70]
-   ][Math.floor(p.phase) % 4] : [
-    [0, 242, 254],   // Electric Cyan
-    [255, 0, 127],   // Neon Magenta
-    [168, 85, 247],  // Electric Purple
-    [0, 245, 160],   // Emerald Mint
-    [255, 209, 102], // Solar Gold
-    [255, 71, 87]    // Coral Flame
-   ][Math.floor(p.phase) % 6];
-
    const pulse = 0.15 + 0.35 * (0.5 + 0.5 * Math.sin(time * 0.0006 + p.phase));
-   ctx.fillStyle = `rgba(${hue.join(',')}, ${pulse})`;
+   ctx.fillStyle = isLight ? `rgba(2, 132, 199, ${pulse * 0.6})` : `rgba(${currentSt.rgb}, ${pulse})`;
    ctx.shadowBlur = (6 + Math.abs(sv) * 12) * p.z;
-   ctx.shadowColor = `rgba(${hue.join(',')}, 0.55)`;
+   ctx.shadowColor = `rgba(${currentSt.rgb}, 0.55)`;
 
    const px = p.x * w + Math.sin(time * 0.00015 + p.phase) * (14 * p.z) + (mx * -28 * p.z);
    const py = p.y * h + (my * -18 * p.z) + (sv * -30 * p.z);
@@ -310,6 +379,7 @@
   ctx.shadowBlur = 0;
  }
  requestAnimationFrame(draw);
+
  $('#aqi-value').textContent = '0';
  render();
 })();

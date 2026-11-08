@@ -1,0 +1,1184 @@
+/* Airnova Atmospheric Glassmorphism Theme Suite */
+
+:root {
+  --active-aqi-color: #ff4757;
+  --active-aqi-rgb: 255, 71, 87;
+}
+
+/* Smooth visual transitions across theme modes */
+body, .scene, .meter-face, .range, .spectrum, .weather, .navlinks, .city, .theme-switcher, .theme-btn, .range-item, .feels, .status, .detail-panel, .detail-city {
+  transition: background 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              color 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   1. Authentic Atmospheric Dark Mode (Alpine Lake Landscape Backdrop)
+   ========================================================================== */
+.landscape {
+  opacity: 0.62 !important;
+  visibility: visible !important;
+}
+
+.scene {
+  background: linear-gradient(150deg, #061325, #183451 62%, #09152b) !important;
+}
+
+/* ==========================================================================
+   2. Pure Frosted Glassmorphism Weather Instrument
+   ========================================================================== */
+.weather {
+  position: relative;
+  border-left-color: transparent;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  align-self: start;
+  margin-top: 4px; /* Balanced natural vertical alignment */
+  padding: 24px 28px 24px 28px;
+  min-height: 220px;
+  width: 100%;
+  max-width: 340px;
+  border-radius: 24px;
+  background: rgba(18, 38, 62, 0.45);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.22),
+    0 20px 45px rgba(0, 8, 24, 0.45);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.weather:before {
+  display: none !important;
+}
+
+.weather-eyebrow { 
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #8edcff; 
+  font-size: 8.5px;
+  font-weight: 750;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.weather-eyebrow span {
+  color: #00f5a0;
+  font-size: 10px;
+  filter: drop-shadow(0 0 6px #00f5a0);
+}
+
+/* Weather Icon: Positioned in EXTREME RIGHT ME UPAR */
+.weather-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 140px;
+  height: 115px;
+  margin: 0;
+  isolation: isolate;
+  transform-style: preserve-3d;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.weather-icon:before {
+  content: '';
+  position: absolute;
+  inset: -15px -12px -15px -20px;
+  border-radius: 50%;
+  background: 
+    radial-gradient(ellipse at 70% 25%, rgba(255, 230, 110, 0.65), transparent 55%),
+    radial-gradient(ellipse at 30% 75%, rgba(0, 242, 254, 0.3), transparent 60%);
+  filter: blur(20px);
+  animation: weather-aura 5.5s ease-in-out infinite alternate;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Ultra-Bright Realistic Animated Sun */
+.sun-wrap {
+  position: absolute;
+  top: 0px;
+  right: 4px;
+  width: 82px;
+  height: 82px;
+  z-index: 1;
+  transition: opacity 0.5s ease;
+}
+
+.sun-glow {
+  position: absolute;
+  inset: -34px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 220, 0.95) 0%, rgba(255, 215, 0, 0.75) 28%, rgba(255, 140, 0, 0.45) 52%, transparent 72%);
+  filter: blur(18px);
+  animation: sun-pulse 3.4s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.sun-rays {
+  position: absolute;
+  inset: -18px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(255, 255, 240, 1) 0deg 5deg,
+    transparent 5deg 22.5deg,
+    rgba(255, 225, 70, 0.95) 22.5deg 27.5deg,
+    transparent 27.5deg 45deg
+  );
+  mask: radial-gradient(circle, transparent 44%, black 48% 86%, transparent 96%);
+  -webkit-mask: radial-gradient(circle, transparent 44%, black 48% 86%, transparent 96%);
+  animation: sun-spin 12s linear infinite;
+  pointer-events: none;
+}
+
+.sun-core {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 26%, #ffffff 0%, #ffffea 20%, #ffe600 45%, #ffa600 75%, #ff4d00 100%);
+  box-shadow: 
+    inset 2px 3px 6px #ffffff,
+    inset -3px -4px 10px rgba(230, 60, 0, 0.8),
+    0 0 35px #ffe600,
+    0 0 75px #ff9e00,
+    0 0 120px rgba(255, 140, 0, 0.9),
+    0 0 170px rgba(255, 90, 0, 0.6);
+  animation: sun-shimmer 3.8s ease-in-out infinite alternate;
+}
+
+/* 3D Volumetric Bright Animated Cloud */
+.cloud-wrap {
+  position: absolute;
+  bottom: 2px;
+  left: 0px;
+  width: 132px;
+  height: 72px;
+  z-index: 2;
+  filter: drop-shadow(0 14px 24px rgba(0, 12, 32, 0.55)) drop-shadow(0 4px 12px rgba(0, 242, 254, 0.3));
+  animation: cloud-hover 3.8s ease-in-out infinite alternate;
+}
+
+.cloud-base {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 130px;
+  height: 38px;
+  border-radius: 38px;
+  background: linear-gradient(180deg, #ffffff 0%, #f7fbff 30%, #d4e7f8 68%, #a7cbe8 100%);
+  box-shadow: 
+    inset 0 3px 5px #ffffff,
+    inset 0 -3px 6px rgba(70, 115, 160, 0.35),
+    0 0 16px rgba(255, 255, 255, 0.45);
+}
+
+.cloud-puff {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ffffff 20%, #f5faff 45%, #cde3f7 80%, #9bc2e4 100%);
+  box-shadow: 
+    inset 2px 3px 5px #ffffff,
+    inset -2px -2px 5px rgba(70, 115, 160, 0.3),
+    0 0 14px rgba(255, 255, 255, 0.35);
+}
+
+.puff-back {
+  width: 56px;
+  height: 56px;
+  top: 2px;
+  left: 58px;
+  background: linear-gradient(140deg, #ffffff 25%, #e8f3fc 55%, #b4d5f2 90%);
+  opacity: 0.98;
+}
+
+.puff-main {
+  width: 66px;
+  height: 66px;
+  top: -10px;
+  left: 28px;
+  z-index: 2;
+  background: linear-gradient(145deg, #ffffff 15%, #f6faff 42%, #d0e5f8 76%, #9fc4e6 100%);
+  box-shadow: 
+    inset 2px 4px 6px #ffffff,
+    inset -2px -3px 6px rgba(70, 115, 160, 0.35),
+    0 0 18px rgba(255, 255, 255, 0.5);
+  animation: puff-float 3.2s ease-in-out infinite alternate;
+}
+
+.puff-left {
+  width: 46px;
+  height: 46px;
+  top: 10px;
+  left: 4px;
+  z-index: 2;
+}
+
+.puff-right {
+  width: 44px;
+  height: 44px;
+  top: 12px;
+  left: 82px;
+  z-index: 2;
+}
+
+@keyframes sun-pulse {
+  0% { transform: scale(0.94); opacity: 0.85; filter: blur(15px); }
+  50% { transform: scale(1.18); opacity: 1; filter: blur(20px); }
+  100% { transform: scale(0.94); opacity: 0.85; filter: blur(15px); }
+}
+
+@keyframes sun-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes sun-shimmer {
+  0% { filter: drop-shadow(0 0 28px #ffe600) brightness(1.1); transform: scale(0.98); }
+  50% { filter: drop-shadow(0 0 65px #ff9400) brightness(1.38); transform: scale(1.02); }
+  100% { filter: drop-shadow(0 0 28px #ffe600) brightness(1.1); transform: scale(0.98); }
+}
+
+@keyframes cloud-hover {
+  0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  35% { transform: translateY(-7px) translateX(2px) rotate(1.2deg); }
+  70% { transform: translateY(-3px) translateX(-2px) rotate(-0.8deg); }
+  100% { transform: translateY(3px) translateX(1px) rotate(0.5deg); }
+}
+
+@keyframes puff-float {
+  0% { transform: scale(1) translateY(0); }
+  100% { transform: scale(1.04) translateY(-2px); }
+}
+
+@keyframes weather-aura {
+  0% { opacity: 0.6; transform: scale(0.96); }
+  100% { opacity: 1; transform: scale(1.04); }
+}
+
+.temperature {
+  margin-top: -8px;
+}
+
+.temperature > span {
+  font-size: 80px;
+  font-weight: 650;
+  background: linear-gradient(145deg, #ffffff 20%, #d8f7ff 55%, #00f2fe 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 22px rgba(0, 242, 254, 0.45));
+}
+
+.temperature button {
+  color: #7eeaff;
+  text-shadow: 0 0 20px rgba(0, 242, 254, 0.6);
+  font-weight: 700;
+}
+
+.condition {
+  color: #ffffff;
+  font-weight: 650;
+  font-size: 16px;
+  margin-top: 6px;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 242, 254, 0.3);
+}
+
+.feels {
+  margin-top: 14px;
+  border-color: rgba(188, 175, 255, 0.45);
+  background: rgba(40, 65, 91, 0.4);
+  backdrop-filter: blur(12px);
+  color: #c8e6ff;
+  box-shadow: inset 0 1px rgba(230, 225, 255, 0.2), 0 8px 24px rgba(0, 13, 31, 0.4);
+}
+
+.feels svg { color: #80d4e9; }
+.feels strong { color: #ffffff; font-weight: 750; }
+
+/* ==========================================================================
+   3. Frosted Glass Air Quality Spectrum Reference Card
+   ========================================================================== */
+.spectrum {
+  max-width: 900px;
+  margin: 38px auto 0;
+  padding: 24px 32px 22px;
+  border-radius: 24px;
+  background: rgba(18, 38, 62, 0.45);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.22),
+    0 24px 55px rgba(0, 8, 24, 0.5),
+    0 0 45px rgba(var(--reading-rgb, 0, 242, 254), 0.15);
+  position: relative;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  transition: box-shadow 0.5s ease, border-color 0.5s ease;
+}
+
+.spectrum-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.spectrum-head h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+  margin: 0;
+  text-shadow: 0 0 16px rgba(0, 242, 254, 0.4);
+}
+
+.spectrum-head h2 .spectrum-star {
+  color: #00f2fe;
+  font-size: 18px;
+  filter: drop-shadow(0 0 8px #00f2fe);
+}
+
+.spectrum-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(var(--reading-rgb, 255, 71, 87), 0.16);
+  border: 1px solid rgba(var(--reading-rgb, 255, 71, 87), 0.4);
+  font-size: 11px;
+  font-weight: 750;
+  color: #ffffff;
+  letter-spacing: 0.4px;
+  box-shadow: 0 0 16px rgba(var(--reading-rgb, 255, 71, 87), 0.25);
+  transition: all 0.4s ease;
+}
+
+.spectrum-badge .spec-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--reading-color, #ff4757);
+  box-shadow: 0 0 10px var(--reading-color, #ff4757);
+  animation: beacon-pulse 2s ease-in-out infinite;
+}
+
+@keyframes beacon-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.35); opacity: 0.75; }
+}
+
+.spectrum-track {
+  position: relative;
+  padding: 8px 0;
+}
+
+.spectrum-color {
+  height: 12px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, 
+    #00f5a0 0% 16.66%, 
+    #ffd166 16.66% 33.33%, 
+    #ff9f43 33.33% 50%, 
+    #ff4757 50% 66.66%, 
+    #a55eea 66.66% 83.33%, 
+    #ff007f 83.33% 100%
+  );
+  box-shadow: 
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.45),
+    inset 0 -1.5px 2px rgba(0, 0, 0, 0.35),
+    0 0 20px rgba(0, 245, 160, 0.3),
+    0 0 30px rgba(255, 71, 87, 0.25),
+    0 0 40px rgba(165, 94, 234, 0.25);
+  position: relative;
+}
+
+.spectrum-color:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, transparent 0 calc(16.666% - 2.5px), rgba(7, 18, 36, 0.75) calc(16.666% - 2.5px) 16.666%);
+  border-radius: inherit;
+}
+
+.spectrum-pointer {
+  position: absolute;
+  top: -3px;
+  left: 54%;
+  transition: left 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.spectrum-pointer i {
+  display: block;
+  width: 6px;
+  height: 22px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 2px solid var(--reading-color, #00f2fe);
+  box-shadow: 0 0 16px var(--reading-color, #00f2fe), 0 0 28px rgba(255, 255, 255, 0.9);
+}
+
+.spectrum-pointer > span {
+  position: relative;
+  top: 0;
+  margin-bottom: 5px;
+  background: linear-gradient(135deg, var(--reading-color, #00f2fe), #ffffff);
+  color: #061325;
+  font-weight: 850;
+  font-size: 10px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 20px var(--reading-color, rgba(0, 242, 254, 0.7));
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+}
+
+.spectrum-labels {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  margin-top: 18px;
+  gap: 12px;
+}
+
+.spectrum-labels > span {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #9cbdd8;
+  font-size: 11px;
+  font-weight: 650;
+  transition: all 0.3s ease;
+  line-height: 1.3;
+}
+
+.spectrum-labels small {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 600;
+  color: #6d93b3;
+  margin-top: 3px;
+  font-variant-numeric: tabular-nums;
+}
+
+.spectrum-labels span[aria-current="true"] {
+  color: #ffffff;
+  font-weight: 850;
+  text-shadow: 0 0 16px rgba(var(--reading-rgb, 0, 242, 254), 0.95);
+  transform: translateY(-2px);
+}
+
+.spectrum-labels span[aria-current="true"] small {
+  color: var(--reading-color, #00f2fe);
+  font-weight: 800;
+  text-shadow: 0 0 10px var(--reading-color, #00f2fe);
+}
+
+/* ==========================================================================
+   4. Header Theme Switcher
+   ========================================================================== */
+.header-actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.theme-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3.5px;
+  border-radius: 999px;
+  background: rgba(18, 38, 62, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.15), 0 8px 24px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(18px);
+}
+
+.theme-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 10.5px;
+  font-weight: 650;
+  color: #9cbddb;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.theme-btn svg {
+  width: 13px;
+  height: 13px;
+  stroke-width: 1.8;
+  opacity: 0.85;
+}
+
+.theme-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.theme-btn.active {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 2px 12px rgba(2, 132, 199, 0.45);
+  font-weight: 750;
+}
+
+.theme-btn.active svg {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   5. WHITE LIGHT MODE (Ultra-Clean, Razor-Sharp, High-Contrast)
+   ========================================================================== */
+html[data-theme="light"] body {
+  background: #eef3f9 !important;
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .scene {
+  background: linear-gradient(150deg, #e8eff7 0%, #f1f6fb 50%, #e2ebf5 100%) !important;
+}
+
+html[data-theme="light"] .landscape {
+  opacity: 0.16 !important;
+  filter: brightness(1.15) saturate(0.7) !important;
+}
+
+html[data-theme="light"] .scene-shade {
+  background: linear-gradient(0deg, rgba(238, 243, 249, 0.7), transparent 60%) !important;
+}
+
+html[data-theme="light"] .intro h1 {
+  color: #0f172a !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .intro p {
+  color: #475569 !important;
+}
+
+html[data-theme="light"] .eyebrow {
+  background: rgba(2, 132, 199, 0.08) !important;
+  border-color: rgba(2, 132, 199, 0.25) !important;
+  color: #0284c7 !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
+
+/* Glassy White Weather Card */
+html[data-theme="light"] .weather {
+  background: rgba(255, 255, 255, 0.88) !important;
+  border: 1px solid rgba(0, 0, 0, 0.09) !important;
+  box-shadow: 
+    inset 0 1px 1px #ffffff,
+    0 16px 40px rgba(15, 35, 65, 0.07) !important;
+}
+
+html[data-theme="light"] .weather-eyebrow {
+  color: #475569 !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .weather-eyebrow span {
+  color: #0284c7 !important;
+}
+
+html[data-theme="light"] .temperature > span {
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+  background: none !important;
+  filter: none !important;
+}
+
+html[data-theme="light"] .temperature button {
+  color: #0284c7 !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .condition {
+  color: #1e293b !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .feels {
+  background: rgba(241, 245, 249, 0.95) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  color: #334155 !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="light"] .feels strong {
+  color: #0f172a !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .feels svg {
+  color: #0284c7 !important;
+  filter: none !important;
+}
+
+/* Light Mode Cloud & Sun Contrast */
+html[data-theme="light"] .cloud-base {
+  background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 40%, #cbd5e1 100%) !important;
+  box-shadow: inset 0 2px 4px #ffffff, inset 0 -3px 5px rgba(100, 116, 139, 0.35) !important;
+}
+
+html[data-theme="light"] .cloud-puff {
+  background: linear-gradient(145deg, #ffffff 20%, #f1f5f9 55%, #cbd5e1 100%) !important;
+  box-shadow: inset 1px 2px 4px #ffffff, inset -2px -2px 4px rgba(100, 116, 139, 0.3) !important;
+}
+
+html[data-theme="light"] .cloud-wrap {
+  filter: drop-shadow(0 12px 20px rgba(15, 23, 42, 0.18)) !important;
+}
+
+html[data-theme="light"] .weather-icon:before {
+  background: radial-gradient(ellipse at 65% 25%, rgba(255, 210, 80, 0.35), transparent 60%) !important;
+  filter: blur(20px) !important;
+}
+
+/* Meter Dial in White Mode */
+html[data-theme="light"] .meter-face {
+  background: radial-gradient(circle at 45% 20%, #ffffff, #f0f6fc 75%) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 
+    inset 0 1px 1px #ffffff,
+    0 20px 50px rgba(15, 35, 65, 0.08) !important;
+}
+
+html[data-theme="light"] .aqi-value {
+  color: #0f172a !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .meter-label {
+  color: #475569 !important;
+  font-weight: 700 !important;
+}
+
+html[data-theme="light"] .meter-start,
+html[data-theme="light"] .meter-end,
+html[data-theme="light"] .meter-standard,
+html[data-theme="light"] .meter-caption {
+  color: #64748b !important;
+}
+
+html[data-theme="light"] .range {
+  background: rgba(255, 255, 255, 0.88) !important;
+  border: 1px solid rgba(0, 0, 0, 0.09) !important;
+  box-shadow: 0 16px 40px rgba(15, 35, 65, 0.07) !important;
+}
+
+html[data-theme="light"] .range-title {
+  color: #475569 !important;
+}
+
+html[data-theme="light"] .range-item strong {
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .range-item small {
+  color: #64748b !important;
+}
+
+html[data-theme="light"] .range-line,
+html[data-theme="light"] .range-sep {
+  background: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Spectrum in White Mode */
+html[data-theme="light"] .spectrum {
+  background: rgba(255, 255, 255, 0.88) !important;
+  border: 1px solid rgba(0, 0, 0, 0.09) !important;
+  box-shadow: 0 18px 45px rgba(15, 35, 65, 0.07) !important;
+}
+
+html[data-theme="light"] .spectrum-head h2 {
+  color: #0f172a !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .spectrum-head h2 .spectrum-star {
+  color: #0284c7 !important;
+  filter: none !important;
+}
+
+html[data-theme="light"] .spectrum-badge {
+  background: rgba(var(--reading-rgb, 0, 135, 90), 0.1) !important;
+  border-color: rgba(var(--reading-rgb, 0, 135, 90), 0.28) !important;
+  color: #0f172a !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="light"] .spectrum-labels > span {
+  color: #475569 !important;
+}
+
+html[data-theme="light"] .spectrum-labels small {
+  color: #64748b !important;
+}
+
+html[data-theme="light"] .spectrum-labels span[aria-current="true"] {
+  color: #0f172a !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] .spectrum-pointer > span {
+  background: #0f172a !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Navigation in White Mode */
+html[data-theme="light"] .navlinks {
+  background: rgba(255, 255, 255, 0.88) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06) !important;
+}
+
+html[data-theme="light"] .navlinks a {
+  color: #475569 !important;
+}
+
+html[data-theme="light"] .navlinks a.active {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3) !important;
+  border-color: transparent !important;
+}
+
+html[data-theme="light"] .navlinks a:hover {
+  color: #0f172a !important;
+}
+
+html[data-theme="light"] .city {
+  background: rgba(255, 255, 255, 0.88) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  color: #0f172a !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+}
+
+html[data-theme="light"] .theme-switcher {
+  background: rgba(255, 255, 255, 0.88) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+html[data-theme="light"] .theme-btn {
+  color: #64748b !important;
+}
+
+html[data-theme="light"] .theme-btn.active {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3) !important;
+}
+
+/* ==========================================================================
+   6. Clean Responsive Rules (iPad, Mobile, Small Screens)
+   ========================================================================== */
+@media (max-width: 1080px) {
+  .shell {
+    padding: 22px 36px 36px !important;
+  }
+  .nav {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+  }
+  .brand {
+    width: 220px !important;
+    margin-left: 0 !important;
+  }
+  .header-actions {
+    margin-left: auto !important;
+  }
+  .navlinks {
+    order: 3 !important;
+    width: 100% !important;
+    justify-content: center !important;
+    margin-top: 4px !important;
+  }
+  .hero {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 28px !important;
+    margin-top: 15px !important;
+    min-height: auto !important;
+  }
+  .intro {
+    grid-column: 1 / -1 !important;
+    text-align: center !important;
+    padding-bottom: 0 !important;
+  }
+  .intro .eyebrow {
+    justify-content: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .intro h1 {
+    font-size: clamp(42px, 5vw, 56px) !important;
+  }
+  .intro p {
+    max-width: 520px !important;
+    margin: 16px auto 0 !important;
+    font-size: 14px !important;
+  }
+  .meter-area {
+    align-items: center !important;
+  }
+  .meter {
+    max-width: 350px !important;
+  }
+  .weather {
+    position: relative !important;
+    padding: 20px 24px !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+    min-height: 200px !important;
+  }
+  .weather-eyebrow {
+    justify-content: flex-start !important;
+  }
+  .temperature {
+    justify-content: flex-start !important;
+  }
+  .spectrum {
+    margin-top: 36px !important;
+    padding: 20px 24px !important;
+  }
+}
+
+@media (max-width: 960px) {
+  .shell {
+    padding: 18px 24px 30px !important;
+  }
+  .hero {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 24px !important;
+  }
+  .meter-area {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin: 0 auto !important;
+  }
+  .meter {
+    max-width: 330px !important;
+  }
+  .range {
+    max-width: 320px !important;
+    width: 100% !important;
+  }
+  .weather {
+    max-width: 320px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 18px 20px !important;
+    border-left: none !important;
+    position: relative !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+    min-height: 200px !important;
+  }
+  .detail-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+  }
+  .shell {
+    padding: 14px 16px 28px !important;
+    perspective: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+  .nav {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 12px 8px !important;
+    width: 100% !important;
+  }
+  .brand {
+    width: 155px !important;
+    max-width: 44% !important;
+    margin-left: 0 !important;
+  }
+  .header-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
+  .theme-switcher {
+    padding: 3px !important;
+    gap: 3px !important;
+    border-radius: 999px !important;
+  }
+  .theme-btn {
+    padding: 6px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    border-radius: 50% !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .theme-btn span {
+    display: none !important;
+  }
+  .theme-btn svg {
+    width: 14px !important;
+    height: 14px !important;
+  }
+  .city {
+    padding: 8px 12px !important;
+    font-size: 11px !important;
+    font-weight: 550 !important;
+    border-radius: 999px !important;
+    gap: 6px !important;
+    min-height: 32px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+  .city svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
+  .city .chevron {
+    display: none !important;
+  }
+  .navlinks {
+    order: 3 !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    padding: 5px 6px !important;
+    border-radius: 999px !important;
+    gap: 4px !important;
+    margin-top: 4px !important;
+  }
+  .navlinks::-webkit-scrollbar {
+    display: none !important;
+  }
+  .navlinks a {
+    padding: 9px 15px !important;
+    font-size: 11.5px !important;
+    font-weight: 550 !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    border-radius: 999px !important;
+  }
+  main {
+    padding: 16px 0 20px !important;
+    width: 100% !important;
+  }
+  .hero {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 22px !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+    min-height: auto !important;
+  }
+  .intro {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+  .intro .eyebrow {
+    justify-content: center !important;
+    margin: 0 auto 12px !important;
+    font-size: 9px !important;
+    padding: 5px 12px !important;
+  }
+  .intro h1 {
+    font-size: clamp(32px, 8.5vw, 42px) !important;
+    letter-spacing: -1.5px !important;
+    line-height: 1.15 !important;
+  }
+  .intro p {
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+    max-width: 320px !important;
+    margin: 10px auto 0 !important;
+  }
+  .meter-area {
+    width: 100% !important;
+    max-width: 330px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    transform: none !important;
+  }
+  .meter {
+    width: min(290px, 80vw) !important;
+    max-width: 290px !important;
+    aspect-ratio: 1 !important;
+    transform: none !important;
+    margin: 0 auto !important;
+  }
+  .meter-content {
+    transform: none !important;
+  }
+  .aqi-value {
+    font-size: 78px !important;
+    letter-spacing: -4px !important;
+    line-height: 1.05 !important;
+  }
+  .meter-label {
+    font-size: 9px !important;
+    letter-spacing: 1.8px !important;
+  }
+  .status {
+    font-size: 11.5px !important;
+    padding: 6px 14px !important;
+    margin-top: 6px !important;
+  }
+  .meter-start, .meter-end {
+    font-size: 10px !important;
+    top: 78% !important;
+  }
+  .meter-standard {
+    font-size: 10px !important;
+    letter-spacing: 0.5px !important;
+    margin-top: 8px !important;
+  }
+  .meter-caption {
+    font-size: 10px !important;
+    bottom: 6% !important;
+  }
+  .range {
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 14px auto 0 !important;
+    padding: 14px 16px !important;
+    border-radius: 18px !important;
+    box-sizing: border-box !important;
+  }
+  .range-title {
+    font-size: 9.5px !important;
+    letter-spacing: 1.3px !important;
+  }
+  .range-row {
+    margin-top: 12px !important;
+    gap: 12px !important;
+  }
+  .range-item strong {
+    font-size: 24px !important;
+    letter-spacing: -0.8px !important;
+  }
+  .range-item small {
+    font-size: 9.5px !important;
+    letter-spacing: 1px !important;
+  }
+  .weather {
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+    padding: 18px 20px 18px 24px !important;
+    position: relative !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+    min-height: 200px !important;
+    box-sizing: border-box !important;
+  }
+  .weather-icon {
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    width: 130px !important;
+    height: 105px !important;
+    margin: 0 !important;
+    transform: scale(0.85) !important;
+    transform-origin: top right !important;
+  }
+  .temperature {
+    justify-content: flex-start !important;
+    line-height: 1 !important;
+    margin-top: -6px !important;
+  }
+  .spectrum {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 24px !important;
+    padding: 18px 16px 16px !important;
+    border-radius: 18px !important;
+    box-sizing: border-box !important;
+  }
+  .spectrum-head h2 {
+    font-size: 10.5px !important;
+    letter-spacing: 1.4px !important;
+  }
+  .spectrum-track {
+    margin-top: 22px !important;
+  }
+  .spectrum-labels {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 10px 6px !important;
+    margin-top: 14px !important;
+    text-align: center !important;
+  }
+  .spectrum-labels > span {
+    font-size: 10.5px !important;
+    white-space: normal !important;
+    line-height: 1.3 !important;
+  }
+  .spectrum-labels small {
+    font-size: 8.5px !important;
+    margin-top: 3px !important;
+    display: block !important;
+  }
+  .spectrum-pointer > span {
+    font-size: 8.5px !important;
+    padding: 2px 7px !important;
+    top: -18px !important;
+  }
+}
