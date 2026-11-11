@@ -1,12 +1,18 @@
-# AirNova
+# What’s the AQI on my street?
 
-AirNova helps people explore air quality in Delhi NCR and estimate the Air Quality Index (AQI) for a location without installing a monitor there. It includes a station dashboard, a 72-hour forecast with inversion and smoke plume indicators, and an experimental photo-based particulate estimate.
+**AirNova estimates the Air Quality Index (AQI) at a GPS point in Delhi NCR.** Monitoring stations report readings at fixed sites. Enter your latitude and longitude in the forecast dashboard to get an estimate for that location. *Street-level* refers to the point you query. The estimate’s accuracy and spatial resolution at street scale still need validation.
 
-**[Open the live demo](https://airnova.space/)** · [Run locally](#run-locally) · [Benchmark](#preliminary-benchmark) · [Contributing](#contributing)
+**[Open the live demo](https://airnova.space/)** · [72-hour forecast](https://airnova.space/prediction/) · [Run locally](#run-locally) · [Benchmark](#preliminary-benchmark)
 
-[![AirNova dashboard showing its AQI gauge and weather summary](airnova-desktop.png)](https://airnova.space/)
+![Illustrative street grid with a fixed monitoring station and a separate GPS point where AirNova estimates AQI](docs/street-aqi.png)
 
-*Dashboard preview with sample readings.*
+[Open the animated illustration](docs/street-aqi.gif)
+
+![HTML](https://img.shields.io/badge/HTML-263445?style=flat-square&logo=html5&logoColor=E34F26)
+![PHP](https://img.shields.io/badge/PHP-263445?style=flat-square&logo=php&logoColor=B1B7EA)
+![CSS](https://img.shields.io/badge/CSS-263445?style=flat-square&logo=css&logoColor=ADC3FF)
+![JavaScript](https://img.shields.io/badge/JavaScript-263445?style=flat-square&logo=javascript&logoColor=F7DF1E)
+![Python](https://img.shields.io/badge/Python-263445?style=flat-square&logo=python&logoColor=FFD343)
 
 ## Run locally
 
