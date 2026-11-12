@@ -1,0 +1,5 @@
+location_id,valid_time_utc,estimated_aqi,reference_aqi
+synthetic-a,2026-01-01T06:00:00Z,110,100
+synthetic-a,2026-01-01T07:00:00Z,125,130
+synthetic-b,2026-01-01T06:00:00Z,150,150
+synthetic-b,2026-01-01T07:00:00Z,200,215

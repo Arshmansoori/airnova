@@ -41,7 +41,19 @@ Both comparisons cover the same 50 Delhi NCR locations.
 
 Independence from calibration has yet to be established. These comparisons provide a preliminary benchmark for the matched sample.
 
-To reproduce the arithmetic from the benchmark files, use the paired estimate and reference AQI in each matched row. Average the absolute differences separately for the calibrated and live comparisons, and count distinct station labels in the live comparison. The CSV and workbook are needed to recompute the results. The benchmark files are outside this repository. The proposed field validation will hold out entire locations and time periods.
+The original benchmark files are outside this repository. The proposed field validation will hold out entire locations and time periods.
+
+### Run the scorer on a synthetic sample
+
+From the repository root with Python 3.11 or newer:
+
+```sh
+python benchmark/score.py benchmark/synthetic-aqi.csv
+```
+
+Expected output is **4 matched pairs** and **7.50 AQI points MAE**. The [synthetic sample](benchmark/synthetic-aqi.csv) uses invented values to demonstrate the calculation.
+
+To score your own data, use the same CSV header. Pair each estimate with a reference observation for the same location ID and forecast valid time, expressed as an ISO 8601 UTC timestamp such as `2026-01-01T06:00:00Z`. Use the same AQI scale and averaging window for both values. Supply one row per location and valid time. If comparing different forecast lead times, score each lead time separately. The scorer checks for duplicate pairs and invalid values, then averages the absolute difference across all rows. Prepare the location and time matches before running it.
 
 ## Contributing
 
