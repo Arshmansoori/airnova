@@ -138,6 +138,4 @@ Found a bug? Have an idea? **[Open an issue](https://github.com/Arshmansoori/air
 
 **[🌐 airnova.space](https://airnova.space)** &nbsp;·&nbsp; **[❤️ Health Advisor](health.html)** &nbsp;·&nbsp; **[🚀 v1.0.0](https://github.com/Arshmansoori/airnova/releases/tag/v1.0.0)**
 
-*Made with 💙 for Delhi NCR*
-
 </div>
